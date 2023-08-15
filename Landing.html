@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="description" content="">
+        <meta name="keywords" content="CSS, HTML">
+        <meta name="author" content="">
+        <title>Home</title>
+        <link rel="stylesheet" href="styles/style.css"/>
+	
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #79F5AE;
+            text-align: center;
+            padding: 30px 0;
+			
+			outline-color: darkgray;
+			border-bottom: #60C78C solid 20px;
+			}
+
+
+        header a {
+            text-decoration: none;
+            color: white;
+            margin: 0 50px;
+        }
+
+        .main-body {
+            background-color: black;
+            color: white;
+            padding: 20px;
+        }
+		
+		img.logo{
+			width: 80px;
+			heigh
+			float: right;
+			position: relative;
+			top: -95px;
+			left: -15px;
+			
+		}
+    </style>
+</head>
+<body>
+
+    <header>
+	    <a href="#" <img class="logo" 
+			src="Assets\AssetSphere_Logo.png" 
+			alt="Asset Sphere"  
+			width="200" 
+			height="50"></a>
+
+        <a href="#">Market</a>
+        <a href="#">Home</a>
+        <a href="#">Wallet</a>
+    </header>
+	
+
+    <div class="main-body">
+        <h1>Login</h1>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
