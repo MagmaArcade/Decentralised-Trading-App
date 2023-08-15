@@ -1,7 +1,10 @@
 
-            Fonts used: Raleway-Heavy 
+Fonts used: Raleway-Heavy 
 
-            Colors used: 44CBB1,3D2F33  
+Colors used: 44CBB1,3D2F33  
+	Primary Green: #79F5AE
+	Secondary Green: #60C78C
+	Primary Black: #262626
 
-            Icon url: https://thenounproject.com/term/decentralized/5604245  
+Icon url: https://thenounproject.com/term/decentralized/5604245  
         
