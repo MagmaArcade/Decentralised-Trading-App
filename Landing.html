@@ -20,7 +20,6 @@
             text-align: center;
             padding: 30px 0;
 			
-			outline-color: darkgray;
 			border-bottom: #60C78C solid 20px;
 			}
 
@@ -37,15 +36,35 @@
             padding: 20px;
         }
 		
+		.footer {
+            background-color: black;
+			image-align: center;
+image-align: center;
+            color: white;
+            padding: 20px;
+        }
+		
 		img.logo{
 			width: 80px;
 			heigh
-			float: right;
+			float: left;
 			position: relative;
-			top: -95px;
-			left: -15px;
+			top: -0px;
+			left: -0px;
 			
 		}
+		.section {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+		 .image img {
+            max-width: 80%;
+            height: auto;
+        }
+		
+
     </style>
 </head>
 <body>
@@ -58,12 +77,42 @@
 			height="50"></a>
 
         <a href="#">Market</a>
-        <a href="#">Home</a>
+        <a href="#">DashBoard</a>
         <a href="#">Wallet</a>
     </header>
 	
 
     <div class="main-body">
+	
+	<div class="main-body">
+        <div class="section">
+            <div class="text">
+                <h2>Section 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec justo odio.</p>
+            </div>
+            <div class="image">
+                <img src="Assets\1.jpg" alt="Image 1" >
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="image">
+                <img src="Assets\1.jpg" alt="Image 2">
+            </div>
+            <div class="text">
+                <h2>Section 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec justo odio.</p>
+            </div>
+        </div>
+    </div>
+
+	<footer>
+		<img src="Assets\Coin.png" alt="Image 1" >
+		<img src="Assets\Handshake.png" alt="Image 1" >
+		<img src="Assets\Sold.png" alt="Image 1" >
+	</footer>
+	<!--
+	
         <h1>Login</h1>
         <form>
             <label for="username">Username:</label>
@@ -74,6 +123,6 @@
 
             <input type="submit" value="Login">
         </form>
-    </div>
+    </div> -->
 </body>
 </html>
