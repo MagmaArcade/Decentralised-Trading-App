@@ -1,0 +1,55 @@
+/* Style sheet for Landing Page, AssetSphere */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Raleway", sans-serif;
+}
+
+header {
+	background-color: #79F5AE;
+	text-align: center;
+	padding: 30px 0;
+	
+	border-bottom: #60C78C solid 20px;
+	}
+
+
+header a {
+	text-decoration: none;
+	color: white;
+	margin: 50px;
+}
+
+.main-body {
+	background-color: #262626;
+	color: white;
+	padding: 20px;
+}
+
+footer {
+	background-color: #262626;
+	color: white;
+	padding: 20px;
+}
+
+img {
+	max-width: 80%;
+	height: auto;
+}
+
+.section {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+/* unused?? 
+img.logo{
+	width: 80px;
+	float: left;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	
+} */
