@@ -1,5 +1,8 @@
+import React from 'react';
 import { makeStyles } from "@material-ui/core";
+import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
+
 
 import "./App.css";
 
@@ -11,7 +14,7 @@ import Dashboard from "./Pages/Dashboard";
 import Wallet from "./Pages/Wallet";
 import Login from "./Pages/Login";
 
-import NavBar from "./components/NavBar";
+import NavBar from "./Components/NavBar";
 
 function App() {
   return (
@@ -28,8 +31,8 @@ function App() {
         </Box>
       </Grid>
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="Home" element={<Index />} />
+        <Route path="/" element={<Home />} />
+        <Route path="Home" element={<Home />} />
         <Route path="Market" element={<Market />} />
         <Route path="Dashboard" element={<Dashboard />} />
         <Route path="Wallet" element={<Wallet />} />
