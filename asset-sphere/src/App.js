@@ -1,31 +1,41 @@
 import { makeStyles } from "@material-ui/core";
 import { Grid } from "@mui/material";
 
-import Homepage from "./Pages/HomePage";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
-import CoinPage from "./Pages/CoinPage";
-import Header from "./components/Header";
 
-const useStyles = makeStyles(() => ({
-  App: {
-    backgroundColor: "#14161a",
-    color: "white",
-    minHeight: "100vh",
-  },
-}));
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./Pages/Index";
+import Market from "./Pages/Market";
+import Dashboard from "./Pages/Dashboard";
+import Wallet from "./Pages/Wallet";
+import Login from "./Pages/Login";
+
+import NavBar from "./components/NavBar";
 
 function App() {
-  const classes = useStyles();
-
   return (
-    <BrowserRouter>
-      <div className={classes.App}>
-        <Header />
-        <Route path="/" component={Homepage} exact />
-        <Route path="/coins/:id" component={CoinPage} exact />
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <Grid xs={12}>
+        <Box
+          sx={{
+            marginTop: "54px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <NavBar></NavBar>
+        </Box>
+      </Grid>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="Home" element={<Index />} />
+        <Route path="Market" element={<Market />} />
+        <Route path="Dashboard" element={<Dashboard />} />
+        <Route path="Wallet" element={<Wallet />} />
+        <Route path="Login" element={<Login />} />
+      </Routes>
+    </div>
   );
 }
 
