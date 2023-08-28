@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 
 
 import logo from '../assets/AssetSphere_Logo.png';
-import profile from '../assets/1.jpg';
+import profile from '../assets/Profile.png';
 
 
 
@@ -23,12 +23,16 @@ function App() {
 	
 			
 		<Grid item xs={3}>
-			<item> <img
-				src={logo}
-				alt={"Home"}
-				align="left"
-				style={{ width: 200, height: 50 }}
-			/></item>
+			<item> 
+				<Link to="/Home">
+					<img
+						src={logo}
+						alt={"Home"}
+						align="left"
+						style={{ width: 200, height: 50 }}
+					/>
+				</Link>
+			</item>
 		</Grid>
 		<Grid item xs={1.5}>
 			<item>
@@ -45,12 +49,16 @@ function App() {
 			</item>
 		</Grid>
 		<Grid item xs={3}>
-			<item> <img
-				src={profile}
-				alt={"Login"}	
-				align="right"	
-				style={{ width: 50, height: 50 }}				
-			/></item>
+			<item> 
+				<Link to="/Login"> <img
+					src={profile}
+					alt={"Login"}	
+					align="right"	
+					style={{ width: 50, height: 50 }}				
+					/> 
+				</Link>
+			</item>
+			
 		</Grid>
 </Grid>
 

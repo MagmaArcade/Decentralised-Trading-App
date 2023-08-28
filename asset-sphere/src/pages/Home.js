@@ -4,7 +4,7 @@ function App() {
   return (
      <div>
 	 <Navbar></Navbar>
-    	 <p>Discover Asset Sphere – Your Destination for Cryptocurrency Trading. Dive into</p>
+    	 <p> Home </p>
      </div>
 );
 }
