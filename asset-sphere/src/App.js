@@ -8,13 +8,12 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./Pages/Index";
-import Market from "./Pages/Market";
-import Dashboard from "./Pages/Dashboard";
-import Wallet from "./Pages/Wallet";
-import Login from "./Pages/Login";
+import Home from "./pages/Index";
+import Market from "./pages/Market";
+import Dashboard from "./pages/Dashboard";
+import Wallet from "./pages/Wallet";
+import Login from "./pages/Login";
 
-import NavBar from "./Components/NavBar";
 
 function App() {
   return (
@@ -27,7 +26,6 @@ function App() {
             justifyContent: "center",
           }}
         >
-          <NavBar></NavBar>
         </Box>
       </Grid>
       <Routes>
