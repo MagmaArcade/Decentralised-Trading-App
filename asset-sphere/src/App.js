@@ -12,6 +12,7 @@ import Market from "./pages/Market";
 import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/Wallet";
 import Login from "./pages/Login";
+import Navbar from "./pages/Navbar";
 
 
 function App() {
