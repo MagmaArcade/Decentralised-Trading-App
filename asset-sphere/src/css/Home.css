@@ -1,12 +1,17 @@
-p {
-	color: white;}
-h1 {
+h1, h2, p {
 	color: white;
 }
 
 .footer {
 	background-color: black;
 	padding-top: 50px;
+	padding-bottom: 50px;
+
+}
+
+.Home {
+	background-color: #79F5AE;
+	padding-top: 10px;
 	padding-bottom: 50px;
 
 }

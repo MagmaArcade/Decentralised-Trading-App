@@ -1,5 +1,12 @@
 import Navbar from "./Navbar";
+
 import { Grid } from "@mui/material";
+import { Button } from '@mui/material';
+import { Link } from "react-router-dom";
+
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 
 // images
@@ -13,45 +20,62 @@ import "../css/Home.css";
 
 
 
-
-
 function App() {
   return (
-     <div >
-	 <Navbar></Navbar>
-  <div className="Home">
-    <div className="section">
-      <div className="text">
-        <h2>Trade With Ease</h2>
-        <p>
-          Discover Asset Sphere – Your Destination for Cryptocurrency Trading.
-          Dive into the dynamic world of digital assets with our
-          beginner-friendly platform. Whether you’re buying, trading, or
-          selling, we’ve got you covered. Explore a range of cryptocurrencies,
-          access valuable resources, and connect with a community of like-minded
-          traders. Start your crypto journey with PENDINGNAME today.
-        </p>
-      </div>
-      <div className="image">
-        <img src="assets/1.jpg" alt="Image 1" />
-      </div>
-    </div>
-    <div className="section">
-      <div className="image">
-        <img src="assets/1.jpg" alt="Image 2" />
-      </div>
-      <div className="text">
-        <h2>Join Now</h2>
-        <p>- $38 billion </p>
-        <p>- 24h trading volume on Binance exchange </p>
-        <p>- 350+ Cryptocurrencies listed </p>
-        <p>- 150 million Registered users </p>
-        <p>- Lowest transaction fees</p>
-      </div>
-    </div>
-  </div>
-  
-  
+	<div >
+	<Navbar style={{ border: 0 }}></Navbar>
+	 
+	<div className="Home">
+		<div>
+			<h2>Trade With Ease</h2>
+			
+			<Grid 
+				direction="row"
+				justifyContent="center"
+				alignItems="center"
+				container rowSpacing={1}>
+
+				<Grid item xs={5}>
+					<item> 
+						<p >
+							Discover Asset Sphere – Your Destination for Cryptocurrency Trading.
+							Dive into the dynamic world of digital assets with our
+							beginner-friendly platform. Whether you’re buying, trading, or
+							selling, we’ve got you covered. Explore a range of cryptocurrencies,
+							access valuable resources, and connect with a community of like-minded
+							traders. Start your crypto journey with PENDINGNAME today.
+						</p>
+					</item>
+				</Grid>
+			</Grid>
+		</div>
+		
+		<div>
+			<Grid 
+				direction="row"
+				justifyContent="center"
+				alignItems="center"
+				container rowSpacing={1}>
+
+				<Grid item xs={2}>
+					<item>
+						<Link to="/Login">
+							<Button type="submit" color="primary" sx={ { borderRadius: 28 } }> Login </Button>
+						</Link>
+					</item>
+				</Grid>
+				<Grid item xs={2}>
+					<item>
+						<Link to="/Register">
+							<Button type="submit" color="inherit" sx={ { borderRadius: 28 } }> Register </Button>
+						</Link>
+					</item>
+				</Grid>
+			</Grid>
+		</div>
+	  
+	</div>
+	
 	<div className="footer" >
 		<div>
 			<Grid 
