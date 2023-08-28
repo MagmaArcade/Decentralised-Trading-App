@@ -1,0 +1,79 @@
+.Login {
+    background-color: #79F5AE;
+    min-height: 100vh; /* Set minimum height to cover the entire viewport height */
+    text-align: center;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .main {
+    background-color: #79F5AE;
+    padding: 10rem 0;
+  }
+  
+  .main__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 90%;
+    width: 100%;
+    max-width: 12000px;
+    padding: 0 50px;
+  }
+
+  .main__content {
+    color: #ffff;
+    width: 100%;
+  }
+
+  .main__content h1 {
+    font-size: 2rem;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .main__content h2 {
+    font-size: 4rem;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+
+  .main__content p {
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+.main__btn{
+
+}
+
+.main__img--container{
+    text-align: center;
+}
+
+.main__img--card {
+    margin: 10px;
+    height: 500px; width: 500px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+
