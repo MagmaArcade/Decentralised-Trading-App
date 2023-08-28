@@ -14,7 +14,7 @@ import Dashboard from "./Pages/Dashboard";
 import Wallet from "./Pages/Wallet";
 import Login from "./Pages/Login";
 
-import NavBar from "./Components/NavBar";
+import NavBar from "./components/Navbar";
 
 function App() {
   return (
