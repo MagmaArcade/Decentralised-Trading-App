@@ -15,7 +15,6 @@ function App() {
   return (
     <div className="Navbar">
         <Grid 
-			container
 			direction="row"
 			justifyContent="center"
 			alignItems="center"

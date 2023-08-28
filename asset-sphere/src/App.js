@@ -21,7 +21,7 @@ function App() {
       <Grid xs={12}>
         <Box
           sx={{
-            marginTop: "54px",
+            marginTop: "0",
             display: "flex",
             justifyContent: "center",
           }}
