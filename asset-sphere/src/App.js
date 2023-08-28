@@ -7,7 +7,7 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Index";
+import Home from "./pages/Home";
 import Market from "./pages/Market";
 import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/Wallet";
