@@ -22,7 +22,7 @@ function App() {
 				src={market}
 				alt={"market"}
 				align="center"
-				style={{ width: 1100, height: 1000 }}/>
+				style={{ width: 1000, height: 1000 }}/>
 
 			</div>
 		</div>
