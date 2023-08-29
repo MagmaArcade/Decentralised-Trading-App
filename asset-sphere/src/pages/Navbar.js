@@ -74,5 +74,15 @@ function App() {
   );
 }
 
+function scrollFunction() {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    document.getElementsByClassName("navbar")[0].style.padding = "10px 0";
+  } else {
+    document.getElementsByClassName("navbar")[0].style.padding = "30px 0";
+  }
+}
+
+window.onscroll = function() {scrollFunction()};
+
 export default App; 
 
