@@ -37,13 +37,13 @@ function App() {
 
 				<Grid item xs={5}>
 					<item> 
-						<p >
+						<p id="speil">
 							Discover Asset Sphere – Your Destination for Cryptocurrency Trading.
 							Dive into the dynamic world of digital assets with our
 							beginner-friendly platform. Whether you’re buying, trading, or
 							selling, we’ve got you covered. Explore a range of cryptocurrencies,
 							access valuable resources, and connect with a community of like-minded
-							traders. Start your crypto journey with AssetSphere today.
+							traders. Start your crypto journey with Asset Sphere today.
 						</p>
 					</item>
 				</Grid>
