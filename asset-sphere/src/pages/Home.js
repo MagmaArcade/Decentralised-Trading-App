@@ -43,7 +43,7 @@ function App() {
 							beginner-friendly platform. Whether you’re buying, trading, or
 							selling, we’ve got you covered. Explore a range of cryptocurrencies,
 							access valuable resources, and connect with a community of like-minded
-							traders. Start your crypto journey with PENDINGNAME today.
+							traders. Start your crypto journey with AssetSphere today.
 						</p>
 					</item>
 				</Grid>
