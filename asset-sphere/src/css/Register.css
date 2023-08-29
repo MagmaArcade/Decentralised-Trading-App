@@ -31,7 +31,7 @@
   .mainreg__content h1 {
     color: white;
     font-size: 2rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
   
@@ -40,6 +40,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
+    width: 400px;
   }
   
   .register-form input {
@@ -66,7 +67,7 @@
   
   .btnreg__undertext {
     color: #79F5AE;
-    font-size: 0.75rem;
+    font-size: 0.5rem;
     font-style: italic;
     margin-bottom: 2rem; /* Adjust the margin as needed */
   }
