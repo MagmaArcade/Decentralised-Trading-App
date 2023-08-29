@@ -1,5 +1,7 @@
 // get navbar
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
+
 
 // import images
 import market from '../assets/Market.png';
@@ -18,12 +20,15 @@ function App() {
 		<div className="NavBorder">
 			<div className="Market">
 				<p> Market </p>
-				 <img 
-					id="imgStyle"
-					src={market}
-					alt={"market"}
-					align="center"
-					style={{ width: 1000, height: 1000 }}/>
+				
+				<Link to="/Trade"> 
+					<img 
+						id="imgStyle"
+						src={market}
+						alt={"market"}
+						align="center"
+						style={{ width: 1000, height: 1000 }}/>
+				</Link>
 			</div>
 		</div>
      </div>
