@@ -3,8 +3,13 @@ import Navbar from "./Navbar";
 function App() {
   return (
      <div>
-	 <Navbar></Navbar>
-    	 <p> Market </p>
+		<div>
+			<Navbar></Navbar >
+		</div>
+		
+		<div className="NavBorder">
+			<p> Wallet </p>
+		</div>
      </div>
 );
 }

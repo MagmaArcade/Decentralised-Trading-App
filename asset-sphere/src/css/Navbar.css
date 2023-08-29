@@ -1,5 +1,9 @@
 .Navbar {
 	background-color: #79F5AE;
 	padding: 30px 0;
-	border-bottom: #60C78C solid 20px;
+	
+}
+
+.NavBorder {
+border-top: #60C78C solid 20px;
 }
