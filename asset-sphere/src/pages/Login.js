@@ -1,18 +1,26 @@
 import Navbar from "./Navbar";
+import Coin from '../assets/CoinS.png';
+
 import "../css/Login.css";
 
 function Login() {
   return (
-    <div class="Login"> {/* Use 'div' instead of 'body' */}
+    <div className="Login">
       <Navbar />
-      <div class="main__container">
-        <div class="main__img--container">
-          <div class="main__img--card"><i></i></div>
+      <div className="main__container">
+        <div className="main__content">
+          <h1>Log In</h1>
+          <form className="login-form form__container">
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <button type="submit" className="main__btn">Log In</button>
+            <a href="Register.js" className="btn__undertext">Don't have an account? Register here.</a>
+          </form>
         </div>
-        <div class="main__content"></div>
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <p>paragraph paragraph paragraph paragraph paragraph</p>
+
+        <div className="main__img--container">
+          <div className="main__img--card"><img src = {Coin}/></div>
+        </div>
       </div>
     </div>
   );

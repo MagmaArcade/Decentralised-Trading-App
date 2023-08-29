@@ -1,6 +1,7 @@
+/* login.css */
 .Login {
     background-color: #79F5AE;
-    min-height: 100vh; /* Set minimum height to cover the entire viewport height */
+    min-height: 100vh;
     text-align: center;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,70 +11,82 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  .main {
-    background-color: #79F5AE;
-    padding: 10rem 0;
-  }
-  
   .main__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    height: 90%;
+    height: 100%;
     width: 100%;
-    max-width: 12000px;
-    padding: 0 50px;
+    max-width: 1200px;
+    padding: 20px 50px; /* Adjusted padding values */
   }
-
+  
   .main__content {
-    color: #ffff;
-    width: 100%;
-  }
-
-  .main__content h1 {
-    font-size: 2rem;
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
-
-  .main__content h2 {
-    font-size: 4rem;
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-  }
-
-  .main__content p {
-    margin-top: 1rem;
-    font-size: 2rem;
-    font-weight: 700;
-  }
-
-.main__btn{
-
-}
-
-.main__img--container{
-    text-align: center;
-}
-
-.main__img--card {
-    margin: 10px;
-    height: 500px; width: 500px;
-    border-radius: 4px;
+    background-color: #262626;
+    height: 80%; /* Increase height */
+    width: 80%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Adjust vertical alignment */
+  }
+  
+  
+  .main__content h1 {
+    color: white;
+    font-size: 2rem;
+    margin-top: 1rem; /* Adjust top margin */
+    margin-bottom: 0.5rem; /* Adjust bottom margin */
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem; /* Adjust top margin */  }
+  
+  .login-form input {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem; /* Adjust margin */
+    padding: 0.75rem;
+  }
+  
+  .form__container {
+    margin-top: 2rem; /* Add margin between buttons and text */
+  }
+
+  .main__btn {
+    background-color: #262626;
+    color: #fff;
+    padding: 0.75rem 1.5rem; /* Adjust padding */
+    border: 1px solid #79F5AE;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: auto; /* Move the button close to the bottom */
+    margin-bottom: 3rem; /* Add larger gap at the bottom */
+  }
+  
+  .btn__undertext {
+    color: #79F5AE;
+    font-size: 0.5rem; /* Adjust font size */
+    font-style: italic; /* Make the text italic */
+    margin-bottom: 8rem; /* Add larger gap at the bottom */
+  }  
+  
+  .main__img--container {
+    text-align: center;
+  }
+  
+  .main__img--card {
+    margin: auto;
+    float: left 60%;
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    display: flex ;
     flex-direction: column;
     justify-content: center;
     color: #fff;
-}
-
-
+  }
