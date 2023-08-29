@@ -7,13 +7,9 @@ import Navbar from "./Navbar";
 function App() {
   return (
     <div>
-		<div>
-			<Navbar></Navbar >
-		</div>
-		
-		<div className="NavBorder">
-			<p> Trade </p>
-		</div>
+		<Navbar></Navbar >
+	
+		<p> Trade </p>
      </div>
 );
 }
