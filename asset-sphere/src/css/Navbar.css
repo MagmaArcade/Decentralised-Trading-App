@@ -3,7 +3,7 @@
 	padding: 30px 0;
 	overflow: hidden;
 	transition: 0.3s;
-	position: sticky;
+	position: sticky; 
 	width: 100%;
 	top: 0;
 	z-index: 99;

@@ -23,7 +23,7 @@ import "../css/Home.css";
 function App() {
   return (
 	<div >
-	<Navbar style={{ border: 0 }}></Navbar>
+	<Navbar></Navbar>
 	 
 	<div className="Home">
 		<div>
