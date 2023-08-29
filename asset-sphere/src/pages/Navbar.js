@@ -14,7 +14,7 @@ import "../css/Navbar.css";
 
 function App() {
   return (
-    <div className="Navbar">
+    <div className="navbar">
         <Grid 
 			direction="row"
 			justifyContent="center"
@@ -49,6 +49,12 @@ function App() {
 			<Grid item xs={1.5}>
 				<item>
 					<Link to="/Wallet"> Wallet </Link>
+				</item>
+			</Grid>
+
+			<Grid item xs={1.5}>
+				<item>
+					<Link to="/Trade"> Trade </Link>
 				</item>
 			</Grid>
 			
