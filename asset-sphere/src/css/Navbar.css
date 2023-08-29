@@ -1,8 +1,8 @@
 .navbar {
 	background-color: #79F5AE;
-	padding: 30px 10px;
+	padding: 30px 0;
 	overflow: hidden;
-	transition: 0.4s;
+	transition: 0.3s;
 	position: sticky;
 	width: 100%;
 	top: 0;
