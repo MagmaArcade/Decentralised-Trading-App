@@ -1,11 +1,8 @@
-h1, h2, p {
-	color: white;
-}
-
 .footer {
 	background-color: black;
 	padding-top: 50px;
 	padding-bottom: 50px;
+	color: white;
 
 }
 
@@ -13,5 +10,10 @@ h1, h2, p {
 	background-color: #79F5AE;
 	padding-top: 10px;
 	padding-bottom: 50px;
+}
+
+
+h2 {
+	  font-size: 35px;
 
 }

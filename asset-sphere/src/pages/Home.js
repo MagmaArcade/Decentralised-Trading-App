@@ -27,7 +27,7 @@ function App() {
 	 
 	<div className="Home">
 		<div>
-			<h2>Trade With Ease</h2>
+			<h2> Trade With Ease... </h2>
 			
 			<Grid 
 				direction="row"

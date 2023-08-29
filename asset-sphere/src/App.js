@@ -12,6 +12,7 @@ import Market from "./pages/Market";
 import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/Wallet";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Navbar from "./pages/Navbar";
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="Dashboard" element={<Dashboard />} />
         <Route path="Wallet" element={<Wallet />} />
         <Route path="Login" element={<Login />} />
+        <Route path="Register" element={<Register />} />
       </Routes>
     </div>
   );
