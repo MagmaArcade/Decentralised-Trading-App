@@ -14,7 +14,7 @@ function Login() {
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <button type="submit" className="main__btn">Log In</button>
-            <a href="Register.js" className="btn__undertext">Don't have an account? Register here.</a>
+            <a href="Register" className="btn__undertext">Don't have an account? Register here.</a>
           </form>
         </div>
 

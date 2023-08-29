@@ -1,76 +1,75 @@
-/* login.css */
+/* Register */
 .Register {
-    background-color: #79F5AE;
+    background-color: #262626;
     min-height: 100vh;
-    text-align: center;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
-  .main__container {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    height: 100%;
+  .mainreg__container {
+    background-color: #262626;
     width: 100%;
     max-width: 1300px;
-    padding: 20px 50px; /* Adjusted padding values */
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
   }
   
-  .main__content {
+  .mainreg__content {
     background-color: #262626;
-    height: 80%; /* Increase height */
     width: 80%;
+    max-width: 500px; /* Adjust the max-width as needed */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Adjust vertical alignment */
+    justify-content: space-between;
   }
   
-  
-  .main__content h1 {
+  .mainreg__content h1 {
     color: white;
     font-size: 2rem;
-    margin-top: 1rem; /* Adjust top margin */
-    margin-bottom: 0.5rem; /* Adjust bottom margin */
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
   }
   
   .register-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem; /* Adjust top margin */  }
+    margin-top: 1rem;
+  }
   
   .register-form input {
     margin-top: 1rem;
-    margin-bottom: 2.5rem; /* Adjust margin */
+    margin-bottom: 1rem;
     padding: 0.75rem;
+    width: 100%; /* Make the inputs span the full width */
   }
   
-  .form__container {
-    margin-top: 2rem; /* Add margin between buttons and text */
+  .formreg__container {
+    margin-top: 2rem;
   }
-
-  .main__btn {
+  
+  .mainreg__btn {
     background-color: #262626;
     color: #fff;
-    padding: 0.75rem 1.5rem; /* Adjust padding */
+    padding: 0.75rem 1.5rem;
     border: 1px solid #79F5AE;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: auto; /* Move the button close to the bottom */
-    margin-bottom: 3rem; /* Add larger gap at the bottom */
+    margin-top: auto;
+    margin-bottom: 2rem; /* Adjust the margin as needed */
   }
   
-  .btn__undertext {
+  .btnreg__undertext {
     color: #79F5AE;
-    font-size: 0.5rem; /* Adjust font size */
-    font-style: italic; /* Make the text italic */
-    margin-bottom: 8rem; /* Add larger gap at the bottom */
-  }  
+    font-size: 0.75rem;
+    font-style: italic;
+    margin-bottom: 2rem; /* Adjust the margin as needed */
+  }
+  
