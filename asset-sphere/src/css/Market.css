@@ -1,13 +1,13 @@
 .Market {
 	background-color: #262626;
 	color: white;
+	
 }
 
-img {
+#imgStyle {
 	border-style: solid;
   border-color: #79F5AE;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 20px;
-
 }

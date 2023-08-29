@@ -19,11 +19,11 @@ function App() {
 			<div className="Market">
 				<p> Market </p>
 				 <img 
-				src={market}
-				alt={"market"}
-				align="center"
-				style={{ width: 1000, height: 1000 }}/>
-
+					id="imgStyle"
+					src={market}
+					alt={"market"}
+					align="center"
+					style={{ width: 1000, height: 1000 }}/>
 			</div>
 		</div>
      </div>
