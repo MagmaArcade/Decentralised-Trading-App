@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
 
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+//import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
@@ -37,13 +37,13 @@ function App() {
 
 				<Grid item xs={5}>
 					<item> 
-						<p >
+						<p id="speil">
 							Discover Asset Sphere – Your Destination for Cryptocurrency Trading.
 							Dive into the dynamic world of digital assets with our
 							beginner-friendly platform. Whether you’re buying, trading, or
 							selling, we’ve got you covered. Explore a range of cryptocurrencies,
 							access valuable resources, and connect with a community of like-minded
-							traders. Start your crypto journey with PENDINGNAME today.
+							traders. Start your crypto journey with Asset Sphere today.
 						</p>
 					</item>
 				</Grid>
@@ -58,16 +58,16 @@ function App() {
 				container rowSpacing={1}>
 
 				<Grid item xs={2}>
-					<item>
+					<item className="main__btn">
 						<Link to="/Login">
-							<Button type="submit" color="primary" sx={ { borderRadius: 28 } }> Login </Button>
+							<Button type="submit"> Login </Button>
 						</Link>
 					</item>
 				</Grid>
 				<Grid item xs={2}>
-					<item>
+					<item className="main__btn">
 						<Link to="/Register">
-							<Button type="submit" color="inherit" sx={ { borderRadius: 28 } }> Register </Button>
+							<Button type="submit"> Register </Button>
 						</Link>
 					</item>
 				</Grid>

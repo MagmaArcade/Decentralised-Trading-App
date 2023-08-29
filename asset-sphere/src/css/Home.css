@@ -16,3 +16,17 @@ h2 {
 	  font-size: 35px;
 
 }
+
+  .main__btn {
+    color: #fff;
+    padding: 0.75rem 1.5rem; /* Adjust padding */
+    border: 1px solid #79F5AE;
+    border-radius: 10px;
+    cursor: pointer;	
+    margin-top: auto; /* Move the button close to the bottom */
+    margin-bottom: 3rem; /* Add larger gap at the bottom */
+  }
+  
+ .main__btn button{
+	 color: white;
+ }
