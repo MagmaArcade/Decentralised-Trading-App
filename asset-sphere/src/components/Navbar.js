@@ -12,7 +12,7 @@ import "../css/Navbar.css";
 
 
 
-function App() {
+function Navbar() {
   return (
     <div className="navbar">
         <Grid 
@@ -86,5 +86,5 @@ function scrollFunction() {
 
 window.onscroll = function() {scrollFunction()}; */
 
-export default App; 
+export default Navbar; 
 

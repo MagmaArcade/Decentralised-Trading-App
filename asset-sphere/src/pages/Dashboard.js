@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 
-function App() {
+function Dashboard() {
   return (
      <div>
 		<Navbar></Navbar >
@@ -10,4 +10,4 @@ function App() {
 );
 }
 
-export default App;
+export default Dashboard;

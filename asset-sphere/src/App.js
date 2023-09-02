@@ -13,7 +13,6 @@ import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/Wallet";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Navbar from "./components/Navbar";
 import Trade from "./pages/Trade";
 
 

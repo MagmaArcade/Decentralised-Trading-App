@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import Navbar from "../components/Navbar";
 import "../css/Register.css";
 
-function App() {
+function Register() {
   return (
      <div class="Register">
 	      <Navbar></Navbar>
@@ -29,4 +29,4 @@ function App() {
 );
 }
 
-export default App;
+export default Register;

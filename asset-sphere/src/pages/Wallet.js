@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import "../css/Wallet.css";
 
 
-function App() {
+function Wallet() {
   return (
     <div>
 		<Navbar></Navbar >
@@ -14,4 +14,4 @@ function App() {
 );
 }
 
-export default App;
+export default Wallet;

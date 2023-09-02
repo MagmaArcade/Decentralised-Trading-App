@@ -13,7 +13,7 @@ import sold from '../assets/Sold.png';
 import "../css/Home.css";
 
 // Home application
-function App() {
+function Home() {
   	return (
 	<div >
 		<Navbar></Navbar>
@@ -140,4 +140,4 @@ function App() {
 );
 }
 
-export default App;
+export default Home;

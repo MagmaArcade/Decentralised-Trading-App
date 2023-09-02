@@ -10,7 +10,7 @@ import market from '../assets/Market.png';
 import "../css/Market.css";
 
 
-function App() {
+function Market() {
   return (
      <div>
 		<Navbar></Navbar>
@@ -31,4 +31,4 @@ function App() {
 );
 }
 
-export default App;
+export default Market;
