@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import Navbar from "../components/Navbar";
 import Coin from '../assets/CoinS.png';
 import "../css/Login.css";
 
 function Login() {
   return (
     <div className="Login">
-      <Navbar />
       <div className="main__container">
         <div className="main__content">
           <h1>Log In</h1>

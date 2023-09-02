@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 
 import { Grid } from "@mui/material";
 import { Button } from '@mui/material';
@@ -15,9 +14,7 @@ import "../css/Home.css";
 // Home application
 function Home() {
   	return (
-	<div >
-		<Navbar></Navbar>
-		
+	<div>
 		<div className="Home">
 			<div>
 				<h2> Trade With Ease... </h2>

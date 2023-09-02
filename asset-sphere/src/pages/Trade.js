@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import Navbar from "../components/Navbar";
 import "../css/Trade.css";
+
+
 //import "../css/Trade.css";
 
 
-function App() {
+function Trade() {
   return (
   <div className="Trade">
      <Navbar/>

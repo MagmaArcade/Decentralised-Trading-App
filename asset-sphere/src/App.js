@@ -7,6 +7,7 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
+
 import Home from "./pages/Home";
 import Market from "./pages/Market";
 import Dashboard from "./pages/Dashboard";
@@ -14,11 +15,14 @@ import Wallet from "./pages/Wallet";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Trade from "./pages/Trade";
-
+import Footer from "./components/Footer"
+import Navbar from "./components/Navbar"
 
 function App() {
   return (
     <div className="App">
+      <Navbar/>
+
       <Grid xs={12}>
         <Box
           sx={{
@@ -37,10 +41,13 @@ function App() {
         <Route path="Wallet" element={<Wallet />} />
         <Route path="Login" element={<Login />} />
         <Route path="Register" element={<Register />} />
-		<Route path="Trade" element={<Trade />} />
+		    <Route path="Trade" element={<Trade />} />
       </Routes>
+
+      <Footer/>
     </div>
   );
 }
+
 
 export default App;

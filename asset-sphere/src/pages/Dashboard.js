@@ -1,12 +1,10 @@
-import Navbar from "../components/Navbar";
+import "../css/Dashboard.css"
 
 function Dashboard() {
   return (
-     <div>
-		<Navbar></Navbar >
-	
-		<p> Dashboard </p>
-     </div>
+    <div className="Dashboard">
+		  <h2>My Portfolio</h2>
+    </div>
 );
 }
 
