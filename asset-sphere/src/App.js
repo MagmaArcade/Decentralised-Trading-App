@@ -7,6 +7,7 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
+
 import Home from "./pages/Home";
 import Market from "./pages/Market";
 import Dashboard from "./pages/Dashboard";
@@ -20,7 +21,7 @@ import Navbar from "./components/Navbar"
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar >
+      <Navbar/>
 
       <Grid xs={12}>
         <Box
@@ -43,7 +44,7 @@ function App() {
 		    <Route path="Trade" element={<Trade />} />
       </Routes>
 
-      <Footer />
+      <Footer/>
     </div>
   );
 }
