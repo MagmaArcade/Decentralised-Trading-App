@@ -4,58 +4,29 @@ import { Grid } from "@mui/material";
 function Dashboard() {
   return (
     <div className="Dashboard">
-      <Grid id="dashboardLayout"
-        direction="row"
-        justifyContent="left"
-        alignItems="center"
-        container spacing={1}>
-        
-        <Grid item xs={12}>
-          <item>
-              <h2 className="sectionHeadings">My Portfolio</h2>
-          </item>
-        </Grid>
+      <h2 className="sectionHeadings">My Portfolio</h2>
+      
+      <div id="Summary">
+      </div>
 
-        <Grid item xs={12}>
-          <item>
-            <div id="Summary">
+      <div className="smallData">
+        <p>Account Balance</p>
+      </div>
+      <div className="smallData">
+        <p>Portfolio Value</p>
+      </div>
+      <div className="smallData">
+        <p>?????</p>
+      </div>
 
-            </div>
-          </item>
-        </Grid>
+      <div className="smallData">
+        <p>Pie chart of asset summary</p>
+      </div>
 
-        <Grid item xs={2}>
-          <item>
-            <div className="smallData">
-              <p>Account Balance</p>
-            </div>
-          </item>
-        </Grid>
-        <Grid item xs={2}>
-          <item>
-            <div className="smallData">
-              <p>Portfolio value</p>
-            </div>
-          </item>
-        </Grid>
-        <Grid item xs={2}>
-          <item>
-            <div className="smallData">
-              <p>???</p>
-            </div>
-          </item>
-        </Grid>
-        <Grid item xs={1}><noscript>This is a spacer for the grid</noscript></Grid>
-        <Grid item xs={3}>
-          <item>
-            <div id="largeData">
-              <p>Pie chart showing asset summary</p>
-            </div>
-          </item>
-        </Grid>
-        <Grid item xs={1}><noscript>This is a spacer for the grid</noscript></Grid>
+      <h2 className="sectionHeadings">What's Hot</h2>
+      <div id="Summary">
+      </div>
 
-      </Grid>
     </div>
 );
 }

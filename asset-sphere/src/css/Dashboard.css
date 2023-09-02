@@ -4,44 +4,37 @@
 	padding-bottom: 50px;
 }
 
-#dashboardLayout {
-  margin-left: 5em;
-  margin-right: 5em;
+.Dashboard {
+  background-color: #79F5AE;
+
 }
 
 .sectionHeadings {
   font-size: 1.9em;
   text-align: left;
+  margin-left: 8%;
 }
 
 #Summary {
   background-color: #262626;
   height: 15em;
-  width: 85%;
+  width: 83%;
+  margin-left: 8%;
 }
 
 .smallData {
-  height: 10em;
-  width: 10em;
+  height: 12em;
+  width: 12em;
   background-color: white;
   border-radius: 50%;
-  margin-left: 2em;
-  margin-right: 1em;
+  display: inline-block;
+  margin-top: 2em;
+  margin-left: 5%;
+  margin-right: 7%;
+  margin-bottom: 1em;
 }
 
 .smallData p {
   text-align: center;
-  padding: 60px 0;
-}
-
-#largeData p {
-  text-align: center;
-  padding: 100px 0;
-}
-
-#largeData {
-  height: 15em;
-  width: 15em;
-  background-color: white;
-  border-radius: 50%;
+  padding: 65px 0;
 }
