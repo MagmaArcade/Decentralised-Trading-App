@@ -7,7 +7,6 @@ function Login() {
   return (
     <div className="Login">
       <Navbar />
-      <div className="NavBorder">
       <div className="main__container">
         <div className="main__content">
           <h1>Log In</h1>
@@ -22,7 +21,6 @@ function Login() {
         <div className="main__img--container">
           <div className="main__img--card"><img src = {Coin}/></div>
         </div>
-      </div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ function App() {
 			direction="row"
 			justifyContent="center"
 			alignItems="center"
-			container rowSpacing={1}>
+			container spacing={1}>
 
 			<Grid item xs={3}>
 				<item> 
@@ -34,25 +34,25 @@ function App() {
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5}>
+			<Grid item xs={1.5} className="pagelinks">
 				<item>
 					<Link to="/Market" > Market </Link>
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5}>
+			<Grid item xs={1.5} className="pagelinks">
 				<item>
 					<Link to="/Dashboard"> Dashboard </Link>
 				</item>		
 			</Grid>
 			
-			<Grid item xs={1.5}>
+			<Grid item xs={1.5} className="pagelinks">
 				<item>
 					<Link to="/Wallet"> Wallet </Link>
 				</item>
 			</Grid>
 
-			<Grid item xs={1.5}>
+			<Grid item xs={1.5} className="pagelinks">
 				<item>
 					<Link to="/Trade"> Trade </Link>
 				</item>
@@ -74,6 +74,8 @@ function App() {
   );
 }
 
+/* glitchy as f, need to fix later, disabled for developement rn
+
 function scrollFunction() {
   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
     document.getElementsByClassName("navbar")[0].style.padding = "10px 0";
@@ -82,7 +84,7 @@ function scrollFunction() {
   }
 }
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function() {scrollFunction()}; */
 
 export default App; 
 

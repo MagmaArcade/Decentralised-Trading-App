@@ -5,7 +5,7 @@ function App() {
      <div>
 		<Navbar></Navbar >
 	
-		<p> Wallet </p>
+		<p> Dashboard </p>
      </div>
 );
 }

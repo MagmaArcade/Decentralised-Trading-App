@@ -55,7 +55,7 @@ function App() {
 				direction="row"
 				justifyContent="center"
 				alignItems="center"
-				container rowSpacing={1}>
+				container spacing={12}>
 
 				<Grid item xs={2}>
 					<item className="main__btn">
@@ -76,68 +76,66 @@ function App() {
 	  
 	</div>
 	
-	<div className="footer" >
+	<div className="sizzler">
 		<div>
 			<Grid 
 				direction="row"
 				justifyContent="center"
 				alignItems="center"
-				container rowSpacing={1}>
+				container spacing={3}>
 
-				<Grid item xs={3}>
+				<Grid item xs={4}>
 					<item> 
 						<h1>Buy</h1>
 					</item>
 				</Grid>
-				<Grid item xs={3}>
+				<Grid item xs={4}>
 					<item> 
 						<h1>Sell</h1>
 					</item>
 				</Grid>
-				<Grid item xs={3}>
+				<Grid item xs={4}>
 					<item> 
 						<h1>Trade</h1>
 					</item>
 				</Grid>
-			</Grid>
-		</div>
-		  
-		<div>
-		  <img 
-			src={coin}
-			alt={"coin"}
-			align="left"
-			style={{ width: 200, height: 200, paddingLeft: 200 }}/>
-		  <img 
-			src={handshake}
-			alt={"coin"}
-			//align=""
-			style={{ width: 200, height: 200 }}/>
-		  <img 
-			src={sold}
-			alt={"coin"}
-			align="right"
-			style={{ width: 200, height: 200, paddingRight: 200 }}/>
-		</div>
 
-		<div>
-			<Grid 
-				direction="row"
-				justifyContent="center"
-				alignItems="center"
-				container rowSpacing={1}>
+				<Grid item xs={4}>
+					<item> 
+						<img 
+						src={coin}
+						alt={"coin"}
+						style={{ width: 200, height: 200}}/>
+					</item>
+				</Grid>
+				<Grid item xs={4}>
+					<item> 
+						<img 
+						src={handshake}
+						alt={"handshake"}
+						style={{ width: 200, height: 200}}/>
+					</item>
+				</Grid>
+				<Grid item xs={4}>
+					<item> 
+						<img 
+						src={sold}
+						alt={"sold"}
+						style={{ width: 200, height: 200}}/>
+					</item>
+				</Grid>
 
-				<Grid item xs={3}>
+				<Grid item xs={4}>
 					<item> 
 						<p>Buy crypto with ease.</p>
 					</item>
 				</Grid>
-				<Grid item xs={3}>
+				<Grid item xs={4}>
 					<item> 
 						<p>Trade with different coins</p>
 					</item>
 				</Grid>
-				<Grid item xs={3}>
+				<Grid item xs={4}>
 					<item> 
 						<p>Sell with the click of a button</p>
 					</item>
