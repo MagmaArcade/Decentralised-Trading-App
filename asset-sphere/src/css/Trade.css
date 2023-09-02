@@ -229,7 +229,7 @@ This Page is the style elements for the Trade page
     width: 50rem;
     margin-top: 10rem;
     margin-left: 3rem;
-    position: fixed;
+    position:absolute;
   }
 
   .CoinStatistics {
