@@ -1,3 +1,14 @@
+/*
+Name: 	Nathan Hoorbkaht
+		    Nicholas Gustin	
+	    	Connor Lack
+
+SID:	  103865794
+		    103995882
+	    	103992223
+*/
+// this is the Login page. this page is used to access the user's account.
+
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "../css/Register.css";

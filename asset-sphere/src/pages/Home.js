@@ -1,3 +1,13 @@
+/*
+Name: 	Nathan Hoorbkaht
+		Nicholas Gustin	
+	    Connor Lack
+
+SID:	103865794
+		103995882
+	    103992223
+*/
+// this is the Login page. this page is used to access the user's account.
 
 import { Grid } from "@mui/material";
 import { Button } from '@mui/material';
@@ -15,7 +25,7 @@ import "../css/Home.css";
 function Home() {
   	return (
 	<div>
-		<div className="Home">
+		<div className="top">
 			<div>
 				<h2> Trade With Ease... </h2>
 				
@@ -63,7 +73,7 @@ function Home() {
 		
 		</div>
 		
-		<div className="sizzler">
+		<div className="bottom">
 			<div>
 				<Grid 
 					direction="row"
