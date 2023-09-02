@@ -1,3 +1,14 @@
+/*
+Name:   Nathan Hoorbkaht
+		    Nicholas Gustin	
+		    Connor Lack
+
+SID:	  103865794
+		    103995882
+		    103992223
+*/
+// this is the Dashboard page. this page is view coin market history, including options to buy and sell.
+
 import "../css/Dashboard.css"
 
 function Dashboard() {

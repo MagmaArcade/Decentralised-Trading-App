@@ -1,11 +1,11 @@
 /*
 Name:   Nathan Hoorbkaht
   	    Nicholas Gustin	
-	    Connor Lack
+	      Connor Lack
 
 SID:  	103865794
-	    103995882
-	    103992223
+	      103995882
+	      103992223
 */
 // this is the Navbar component. this is used to denote the authors of the site.
 
