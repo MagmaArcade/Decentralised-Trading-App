@@ -30,42 +30,38 @@ This Page is the style elements for the Trade page
     margin: 0 auto;
     height: 100%;
     width: 100%;
-    max-width: 1400px; /* Adjusted to start closer to the webpage width */
-    padding: 50px 50px;
-    gap: 40px; /* gap between the containers */
-    margin-left: 20px; /* Add a left margin to start closer to the webpage width */
-    margin-right: 20px; /* Add a right margin to start closer to the webpage width */
+    max-width: 1400px;
+    padding: 50px 20px; /* Adjusted padding */
+    gap: 50px;
   }
   
   .left__container {
     background-color: #3a3a3a;
     height: 70vh;
-    width: 100%; /* Adjusted to take up 100% of the grid column */
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    justify-content: flex-start; /* Start content at the top */
-    border-radius: 10px; /* Adds roundness to container */
+    justify-content: flex-start;
+    border-radius: 10px;
   }
   
   .right__container {
     background-color: #79F5AE;
     height: 70vh;
-    width: 100%; /* Adjusted to take up 100% of the grid column */
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    justify-content: flex-start; /* Start content at the top */
-    border-radius: 10px; /* Adds roundness to container */
+    justify-content: flex-start;
+    border-radius: 10px;
   }
-
+  
   .button__row {
-    display: flex; /* Displays buttons in row */
-    gap: 50px; /* Spacing between buttons */
+    display: flex;
+    gap: 50px;
   }
-
+  
   .main__btn {
     background-color: #262626;
     color: #fff;
@@ -76,6 +72,53 @@ This Page is the style elements for the Trade page
     margin-top: auto;
     margin-bottom: 2rem;
   }
-
+  
+  .purchase__btn {
+    background-color: #262626;
+    color: #fff;
+    padding: 1rem 5rem;
+    border: 1px solid #79F5AE;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .input__container {
+    display: flex;
+    flex-direction: column; /* Change to column to place "Amount" above input */
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 1rem;
+    border: 1px solid #000; /* Add a thin black border */
+    padding: 10px; /* Add padding for spacing */
+  }
+  
+  .input__container label {
+    font-size: 0.75rem;
+    color: #000000;
+    order: 1; /* Move label above input */
+  }
+  
+  .input__container input[type="number"] {
+    width: 15rem;
+    font-size: 2rem;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #000000;
+    padding: 0;
+    margin: 0;
+    order: 2; /* Move input below label */
+  }
+  
+  /* Style the AUD text on the right side of the input */
+  .input__container::after {
+    content: "AUD";
+    font-size: 2rem;
+    color: #000000;
+    order: 3; /* Move "AUD" text below input */
+  }
   
   

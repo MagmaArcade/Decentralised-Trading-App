@@ -26,7 +26,7 @@ function Trade() {
           <button className="main__btn">BUY</button>
           <button className="main__btn">SELL</button>
         </div>
-        <div className="input-container">
+        <div className="input__container">
             <label htmlFor="amount">Amount</label>
             <input
               type="number"
@@ -34,10 +34,10 @@ function Trade() {
               name="amount"
               placeholder="$"
             />
-          </div>
-      </div>
-      <div>
-
+        </div>
+        <div>
+        <button className="purchase__btn">PURCHASE</button>
+        </div>
       </div>
      </div>
   </div>
