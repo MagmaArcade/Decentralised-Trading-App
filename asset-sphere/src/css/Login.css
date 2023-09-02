@@ -9,7 +9,7 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+  } 
   
   .main__container {
     display: grid;
@@ -79,7 +79,7 @@
   
   .btn__undertext {
     color: #79F5AE;
-    font-size: 0.5rem; /* Adjust font size */
+    font-size: 0.75rem; /* Adjust font size */
     font-style: italic; /* Make the text italic */
     margin-bottom: 8rem; /* Add larger gap at the bottom */
   }  
@@ -90,7 +90,7 @@
   .btn__undertext a {
     color: #79F5AE; /* Set the link text color */
     text-decoration: none; /* Remove underlines (default link style) */
-    font-size: 0.5rem; /* Adjust font size to match existing text */
+    font-size: 0.75rem; /* Adjust font size to match existing text */
     margin-bottom: 8rem; /* Add larger gap at the bottom */
   }
   
