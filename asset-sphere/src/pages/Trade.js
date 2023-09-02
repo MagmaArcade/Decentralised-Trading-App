@@ -36,6 +36,9 @@ function Trade() {
             />
           </div>
       </div>
+      <div>
+
+      </div>
      </div>
   </div>
   );

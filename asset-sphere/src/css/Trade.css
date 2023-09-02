@@ -32,7 +32,7 @@ This Page is the style elements for the Trade page
     width: 100%;
     max-width: 1400px; /* Adjusted to start closer to the webpage width */
     padding: 50px 50px;
-    gap: 20px; /* gap between the containers */
+    gap: 40px; /* gap between the containers */
     margin-left: 20px; /* Add a left margin to start closer to the webpage width */
     margin-right: 20px; /* Add a right margin to start closer to the webpage width */
   }
