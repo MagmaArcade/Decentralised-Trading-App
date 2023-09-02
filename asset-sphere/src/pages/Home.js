@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 
 import { Grid } from "@mui/material";
 import { Button } from '@mui/material';
