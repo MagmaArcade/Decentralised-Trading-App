@@ -9,46 +9,60 @@ SID:	  103865794
 */
 // this is the Register page. this page is used view a users owned coins.
 
+import { Grid } from "@mui/material";
 import "../css/Wallet.css"; // import css styling
 
 function Wallet() {
   return (
     <div className="Wallet">
-      <div className="top_container">
-        <div className="wallet_id_container">
-          <p> Wallet ID: xxxxxx </p>
+      <Grid id="wallet_id_container"
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        container spacing={2}>
+
+        <Grid item xs={3}>
+          <item> 
+            <p>Wallet ID: 000012</p>
+          </item>
+        </Grid>
+
+        <Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
+
+        <Grid item xs={2}>
+          <item> 
+            <button className="trade_btn">Deposit</button>
+          </item>
+        </Grid>
+
+        <Grid item xs={2}>
+          <item> 
+            <button className="trade_btn">Withdrawl</button>
+          </item>
+        </Grid>
+      </Grid>
+
+      <div className="main__container">
+        <div className="left__container">
+          <h1> Trade History </h1>
         </div>
-        <div className="button__row">
-          <button className="main__btn">Deposit</button>
-          <button className="main__btn">Withdrawl</button>
+
+        <div className="right__container">
+          <h1> Current Funds </h1>
+          <div className="input-container">
+            <div>
+              <label htmlFor="coin1">Coin 1</label>
+            </div>
+            <div>
+              <label htmlFor="coin2">Coin 2</label>
+            </div>
+            <div>
+              <label htmlFor="coin3">Coin 3</label>
+            </div>
+            
+            </div>
         </div>
-      </div>
-
-     <div className="main__container">
-      <div className="left__container">
-        <h1> Trade History </h1>
-      </div>
-
-
-      <div className="right__container">
-        
-
-        <h1> Current Funds </h1>
-        
-        <div className="input-container">
-          <div>
-            <label htmlFor="coin1">Coin 1</label>
-          </div>
-          <div>
-            <label htmlFor="coin2">Coin 2</label>
-          </div>
-          <div>
-            <label htmlFor="coin3">Coin 3</label>
-          </div>
-
-          </div>
-      </div>
-     </div>
+      </div>`
   </div>
 );
 }
