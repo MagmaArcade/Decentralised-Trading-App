@@ -1,16 +1,24 @@
+/*
+Name:   Nathan Hoorbkaht
+  	    Nicholas Gustin	
+	    Connor Lack
+
+SID:  	103865794
+	    103995882
+	    103992223
+*/
+// this is the Navbar component. this is used for page navigation.
+
+
 // librarys
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-
 
 // images
 import logo from '../assets/AssetSphere_Logo.png';
 import profile from '../assets/Profile.png';
 
-// css
-import "../css/Navbar.css";
-
-
+import "../css/Navbar.css"; // import css styling
 
 function Navbar() {
   return (

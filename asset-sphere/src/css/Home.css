@@ -1,5 +1,18 @@
+/*
+Name: 	Nathan Hoorbkaht
+		Nicholas Gustin	
+		Connor Lack
 
-.Home {
+SID:	103865794
+		103995882
+		103992223
+
+This Page is the style elements for the Home page
+*/
+
+
+
+.top {
 	background-color: #79F5AE;
 	padding-top: 10px;
 	padding-bottom: 50px;
@@ -22,7 +35,9 @@ h2 {
   color: white;
 }
 
-.sizzler {
+
+/* the bottom section of the Home page */
+.bottom {
 	background-color: #262626;
 	padding-top: 50px;
 	padding-bottom: 50px;

@@ -1,6 +1,15 @@
+/*
+Name:   Nathan Hoorbkaht
+  	    Nicholas Gustin	
+	    Connor Lack
 
-// css
-import "../css/Footer.css";
+SID:  	103865794
+	    103995882
+	    103992223
+*/
+// this is the Navbar component. this is used to denote the authors of the site.
+
+import "../css/Footer.css"; // import css styling
 
 const Footer = () => {
   return (

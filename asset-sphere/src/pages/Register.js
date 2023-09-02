@@ -1,7 +1,18 @@
+/*
+Name:   Nathan Hoorbkaht
+		    Nicholas Gustin	
+		    Connor Lack
+
+SID:  	103865794
+	  	  103995882
+		    103992223
+*/
+// this is the Register page. this page is used get a new user info.
+
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import Navbar from "../components/Navbar";
-import "../css/Register.css";
+import "../css/Register.css"; // import css styling
+
 
 function Register() {
   return (
