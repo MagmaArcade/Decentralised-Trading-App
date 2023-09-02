@@ -7,10 +7,8 @@ import "../css/Wallet.css";
 function Wallet() {
   return (
     <div>
-		<Navbar></Navbar >
-	
-		<p> Wallet </p>
-     </div>
+		  <p> Wallet </p>
+    </div>
 );
 }
 

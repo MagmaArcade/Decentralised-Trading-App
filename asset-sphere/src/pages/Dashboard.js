@@ -2,11 +2,9 @@ import Navbar from "../components/Navbar";
 
 function Dashboard() {
   return (
-     <div>
-		<Navbar></Navbar >
-	
-		<p> Dashboard </p>
-     </div>
+    <div>
+		  <p> Dashboard </p>
+    </div>
 );
 }
 

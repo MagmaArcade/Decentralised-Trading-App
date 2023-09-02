@@ -15,9 +15,7 @@ import "../css/Home.css";
 // Home application
 function Home() {
   	return (
-	<div >
-		<Navbar></Navbar>
-		
+	<div>
 		<div className="Home">
 			<div>
 				<h2> Trade With Ease... </h2>

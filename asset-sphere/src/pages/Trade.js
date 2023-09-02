@@ -4,14 +4,12 @@ import Navbar from "../components/Navbar";
 //import "../css/Trade.css";
 
 
-function App() {
+function Trade() {
   return (
-    <div>
-		<Navbar></Navbar >
-	
-		<p> Trade </p>
-     </div>
+    <div>	
+		  <p> Trade </p>
+    </div>
 );
 }
 
-export default App;
+export default Trade;

@@ -5,15 +5,11 @@ import { Link } from "react-router-dom";
 // css
 import "../css/Footer.css";
 
-
-
-function App() {
+const Footer = () => {
   return (
-    <div className="footer">
-        
-    </div>
+    <footer>©AssetSphere 2023	Created by Nicholas, Nathan and Connor</footer>
   );
-}
+};
 
-export default App; 
+export default Footer; 
 

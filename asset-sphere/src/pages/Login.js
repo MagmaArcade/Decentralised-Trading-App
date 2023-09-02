@@ -7,7 +7,6 @@ import "../css/Login.css";
 function Login() {
   return (
     <div className="Login">
-      <Navbar />
       <div className="main__container">
         <div className="main__content">
           <h1>Log In</h1>
