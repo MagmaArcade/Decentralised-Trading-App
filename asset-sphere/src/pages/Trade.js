@@ -1,23 +1,36 @@
-/*
-Name:   Nathan Hoorbkaht
-		    Nicholas Gustin	
-		    Connor Lack
+import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import "../css/Trade.css";
 
-SID:	  103865794
-		    103995882
-		    103992223
-*/
-// this is the Register page. this page is used view a speciffic coin for more details. including a graph to view
-// the market performance of the coin, as well as option to buy or sell. 
 
-//import "../css/Trade.css"; // import css styling
- 
+//import "../css/Trade.css";
+
+
 function Trade() {
   return (
-    <div>	
-		  <p> Trade </p>
-    </div>
-);
-}
-
-export default Trade;
+  <div className="Trade">
+     <div className="main__container">
+      <div className="left__container">
+        <h1>Hello</h1>
+      </div>
+      <div className="right__container">
+        <h1>Trade Currency</h1>
+        <div className="button__row">
+          <button className="main__btn">BUY</button>
+          <button className="main__btn">SELL</button>
+        </div>
+        <div className="input-container">
+            <label htmlFor="amount">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              placeholder="$"
+            />
+          </div>
+      </div>
+     </div>
+  </div>
+  );
+  }
+  export default Trade;

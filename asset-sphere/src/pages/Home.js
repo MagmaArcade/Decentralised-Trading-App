@@ -1,30 +1,21 @@
-/*
-Name: 	Nathan Hoorbkaht
-		Nicholas Gustin	
-		Connor Lack
 
-SID:	103865794
-		103995882
-		103992223
-*/
-// this is the Home page. this page is used as the landing page for this project.
-
-import { Grid, Button } from "@mui/material"; // import elements from mui
-import { Link } from "react-router-dom"; // import Link from react-router-dom
-import "../css/Home.css"; // import css styling
+import { Grid } from "@mui/material";
+import { Button } from '@mui/material';
+import { Link } from "react-router-dom";
 
 // images
 import coin from '../assets/Coin.png';
 import handshake from '../assets/Handshake.png';
 import sold from '../assets/Sold.png';
 
+// css
+import "../css/Home.css";
 
 // Home application
 function Home() {
   	return (
 	<div>
-		{/* Top Section */}
-		<div className="top">
+		<div className="Home">
 			<div>
 				<h2> Trade With Ease... </h2>
 				
@@ -37,17 +28,19 @@ function Home() {
 					<Grid item xs={3}><noscript>This is a spacer for the grid</noscript></Grid>
 					<Grid item xs={6}>
 						<item> 
-							<p>Discover Asset Sphere – Your Destination for Cryptocurrency Trading.
+							<p>
+								Discover Asset Sphere – Your Destination for Cryptocurrency Trading.
 								Dive into the dynamic world of digital assets with our
 								beginner-friendly platform. Whether you’re buying, trading, or
 								selling, we’ve got you covered. Explore a range of cryptocurrencies,
 								access valuable resources, and connect with a community of like-minded
-								traders. Start your crypto journey with Asset Sphere today.</p>
+								traders. Start your crypto journey with Asset Sphere today.
+							</p>
 						</item>
 					</Grid>
 					<Grid item xs={3}><noscript>This is a spacer for the grid</noscript></Grid>
 
-			{/* Buttons */}
+
 					<Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
 					<Grid item xs={2}>
 						<item className="main__btn">
@@ -70,9 +63,7 @@ function Home() {
 		
 		</div>
 		
-
-		{/* Bottom Section. the following section is split into 3 Rows */}
-		<div className="bottom">
+		<div className="sizzler">
 			<div>
 				<Grid 
 					direction="row"
@@ -80,7 +71,6 @@ function Home() {
 					alignItems="center"
 					container spacing={3}>
 
-			{/* Row 1 */}
 					<Grid item xs={4}>
 						<item> 
 							<h1>Buy</h1>
@@ -97,7 +87,7 @@ function Home() {
 						</item>
 					</Grid>
 
-			{/* Row 2 */}
+
 					<Grid item xs={4}>
 						<item> 
 							<img 
@@ -123,7 +113,7 @@ function Home() {
 						</item>
 					</Grid>
 
-			{/* Row 3 */}
+
 					<Grid item xs={4}>
 						<item> 
 							<p>Buy crypto with ease.</p>
@@ -139,6 +129,7 @@ function Home() {
 							<p>Sell with the click of a button</p>
 						</item>
 					</Grid>
+
 				</Grid>
 			</div>
 		</div>

@@ -1,0 +1,40 @@
+.Dashboard {
+	background-color: #79F5AE;
+	padding-top: 10px;
+	padding-bottom: 50px;
+}
+
+.Dashboard {
+  background-color: #79F5AE;
+
+}
+
+.sectionHeadings {
+  font-size: 1.9em;
+  text-align: left;
+  margin-left: 8%;
+}
+
+#Summary {
+  background-color: #262626;
+  height: 15em;
+  width: 83%;
+  margin-left: 8%;
+}
+
+.smallData {
+  height: 12em;
+  width: 12em;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: 2em;
+  margin-left: 5%;
+  margin-right: 7%;
+  margin-bottom: 1em;
+}
+
+.smallData p {
+  text-align: center;
+  padding: 65px 0;
+}
