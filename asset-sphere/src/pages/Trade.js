@@ -14,7 +14,20 @@ function Trade() {
         <h1>Hello</h1>
       </div>
       <div className="right__container">
-        <h1>Hello</h1>
+        <h1>Trade Currency</h1>
+        <div className="button__row">
+          <button className="main__btn">BUY</button>
+          <button className="main__btn">SELL</button>
+        </div>
+        <div className="input-container">
+            <label htmlFor="amount">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              placeholder="$"
+            />
+          </div>
       </div>
      </div>
   </div>

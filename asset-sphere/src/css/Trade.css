@@ -18,30 +18,52 @@
     margin: 0 auto;
     height: 100%;
     width: 100%;
-    max-width: 1400px; /* Adjusted max-width to start closer to the webpage width */
-    padding: 20px 50px;
-    gap: 20px; /* Add a gap between the containers */
+    max-width: 1400px; /* Adjusted to start closer to the webpage width */
+    padding: 50px 50px;
+    gap: 20px; /* gap between the containers */
     margin-left: 20px; /* Add a left margin to start closer to the webpage width */
     margin-right: 20px; /* Add a right margin to start closer to the webpage width */
   }
   
   .left__container {
     background-color: #3a3a3a;
-    height: 90%;
+    height: 70vh;
     width: 100%; /* Adjusted to take up 100% of the grid column */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    justify-content: flex-start; /* Start content at the top */
+    border-radius: 10px; /* Adds roundness to container */
   }
   
   .right__container {
     background-color: #79F5AE;
-    height: 90%;
+    height: 70vh;
     width: 100%; /* Adjusted to take up 100% of the grid column */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    justify-content: flex-start; /* Start content at the top */
+    border-radius: 10px; /* Adds roundness to container */
   }
+
+  .button__row {
+    display: flex; /* Displays buttons in row */
+    gap: 50px; /* Spacing between buttons */
+  }
+
+  .main__btn {
+    background-color: #262626;
+    color: #fff;
+    padding: 1rem 3rem;
+    border: 1px solid #79F5AE;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: 2rem;
+  }
+
+  
   
