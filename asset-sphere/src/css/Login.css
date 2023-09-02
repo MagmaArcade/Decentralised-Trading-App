@@ -109,17 +109,14 @@ This Page is the style elements for the Login page
   .btn__undertext a:hover {
     text-decoration: underline; /* Add underline on hover if desired */
   }
-  
-  /* ... (remaining styles) */
-  
+    
   
   .main__img--container {
     text-align: center;
   }
   
   .main__img--card {
-    margin: auto;
-    float: left 60%;
+    float: left 40%;
     height: 300px;
     width: 300px;
     border-radius: 10px;
