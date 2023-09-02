@@ -4,19 +4,44 @@
 	padding-bottom: 50px;
 }
 
-h2 {
-	  font-size: 35px;
+#dashboardLayout {
+  margin-left: 5em;
+  margin-right: 5em;
 }
 
-.main__btn {
-  padding: 0.75rem 1.5rem; /* Adjust padding */
-  border: 1px solid #79F5AE;
-  border-radius: 10px;
-  cursor: pointer;	
-  margin-top: auto; /* Move the button close to the bottom */
-  margin-bottom: 3rem; /* Add larger gap at the bottom */
+.sectionHeadings {
+  font-size: 1.9em;
+  text-align: left;
 }
-  
-.main__btn button {
-  color: white;
+
+#Summary {
+  background-color: #262626;
+  height: 15em;
+  width: 85%;
+}
+
+.smallData {
+  height: 10em;
+  width: 10em;
+  background-color: white;
+  border-radius: 50%;
+  margin-left: 2em;
+  margin-right: 1em;
+}
+
+.smallData p {
+  text-align: center;
+  padding: 60px 0;
+}
+
+#largeData p {
+  text-align: center;
+  padding: 100px 0;
+}
+
+#largeData {
+  height: 15em;
+  width: 15em;
+  background-color: white;
+  border-radius: 50%;
 }
