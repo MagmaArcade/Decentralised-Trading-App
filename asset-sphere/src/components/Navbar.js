@@ -27,7 +27,7 @@ function Navbar() {
 			direction="row"
 			justifyContent="center"
 			alignItems="center"
-			container spacing={10}>
+			container spacing={3}>
 
 			<Grid item xs={2}>
 				<item> 

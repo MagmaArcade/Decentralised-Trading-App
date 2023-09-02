@@ -13,11 +13,40 @@ This Page is the style elements for the Market page
 .Market {
 	background-color: #262626;
 	color: white;
-	
+	height: 50em;
 }
 
 #imgStyle {
 	border-style: solid;
   border-color: #79F5AE;
   margin: auto;
+}
+
+.Market table {
+	width: 80%;
+	border: 1px solid;
+	border-color: #79F5AE;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.Market th {
+	font-size: 1.3em;
+	text-align: left;
+	padding-left: 0.7em;
+	padding-top: 0.5em;
+}
+
+.Market td {
+	text-align: left;
+	padding: 1em;
+}
+
+.up {
+	color: rgb(10, 221, 10);
+}
+
+.down {
+	color: red;
 }

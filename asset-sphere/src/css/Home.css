@@ -10,8 +10,6 @@ SID:	103865794
 This Page is the style elements for the Home page
 */
 
-
-
 .top {
 	background-color: #79F5AE;
 	padding-top: 10px;
@@ -19,7 +17,7 @@ This Page is the style elements for the Home page
 }
 
 h2 {
-	font-size: 35px;
+	  font-size: 35px;
 }
 
 .main__btn {

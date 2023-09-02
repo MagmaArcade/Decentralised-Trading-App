@@ -26,7 +26,7 @@ function Dashboard() {
         <p>Portfolio Value</p>
       </div>
       <div className="smallData">
-        <p>?????</p>
+        <p>Percentage Change</p>
       </div>
 
       <div className="smallData">
