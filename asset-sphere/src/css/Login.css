@@ -60,13 +60,21 @@
 
   .main__btn {
     background-color: #262626;
-    color: #fff;
+    color: #fff; /* Set the text color */
     padding: 0.75rem 1.5rem; /* Adjust padding */
     border: 1px solid #79F5AE;
     border-radius: 10px;
     cursor: pointer;
     margin-top: auto; /* Move the button close to the bottom */
     margin-bottom: 3rem; /* Add larger gap at the bottom */
+    font-size: 1rem; /* Set the font size to match previous style */
+  }
+
+  .main__btn a {
+    color: #fff; /* Set the text color */
+    /* padding: 0.5rem 1rem; /* Adjust padding */
+    cursor: pointer;
+    text-decoration: none; /* Remove underlines */
   }
   
   .btn__undertext {
@@ -75,6 +83,23 @@
     font-style: italic; /* Make the text italic */
     margin-bottom: 8rem; /* Add larger gap at the bottom */
   }  
+  
+  /* login.css */
+  /* ... (previous styles) */
+  
+  .btn__undertext a {
+    color: #79F5AE; /* Set the link text color */
+    text-decoration: none; /* Remove underlines (default link style) */
+    font-size: 0.5rem; /* Adjust font size to match existing text */
+    margin-bottom: 8rem; /* Add larger gap at the bottom */
+  }
+  
+  .btn__undertext a:hover {
+    text-decoration: underline; /* Add underline on hover if desired */
+  }
+  
+  /* ... (remaining styles) */
+  
   
   .main__img--container {
     text-align: center;

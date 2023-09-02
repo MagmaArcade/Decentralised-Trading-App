@@ -64,12 +64,30 @@
     margin-top: auto;
     margin-bottom: 2rem; /* Adjust the margin as needed */
   }
+
+  .mainreg__btn a {
+    color: #fff; /* Set the text color */
+    /* padding: 0.5rem 1rem; /* Adjust padding */
+    cursor: pointer;
+    text-decoration: none; /* Remove underlines */
+  }
   
   .btnreg__undertext {
     color: #79F5AE;
     font-size: 0.5rem;
     font-style: italic;
     margin-bottom: 2rem; /* Adjust the margin as needed */
+  }
+
+  .btnreg__undertext a {
+    color: #79F5AE; /* Set the link text color */
+    text-decoration: none; /* Remove underlines (default link style) */
+    font-size: 0.5rem; /* Adjust font size to match existing text */
+    margin-bottom: 8rem; /* Add larger gap at the bottom */
+  }
+
+  .btnreg__undertext a:hover {
+    text-decoration: underline; /* Add underline on hover if desired */
   }
   
   /* Add styles for Navbar */

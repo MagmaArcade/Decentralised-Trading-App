@@ -1,4 +1,5 @@
-
+import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import Navbar from "./Navbar";
 import "../css/Register.css";
 
@@ -15,8 +16,12 @@ function App() {
               <input type="datetime-local" placeholder="Date of Birth"/>
               <input type="email" placeholder="Email" />
               <input type="password" placeholder="Password" />
-              <button type="submit" className="mainreg__btn">Register</button>
-              <a href="Login" className="btnreg__undertext">Already have an account? Login here.</a>
+              <button type="submit" className="mainreg__btn">
+                <Link to="/Dashboard">Register</Link>
+              </button>
+              <p className="btn__undertext">
+                Already have an account? <Link to="/Login">Login here.</Link>
+              </p>
             </form>
           </div>
         </div>
