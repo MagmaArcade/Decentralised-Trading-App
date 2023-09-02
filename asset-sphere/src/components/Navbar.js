@@ -19,9 +19,9 @@ function App() {
 			direction="row"
 			justifyContent="center"
 			alignItems="center"
-			container spacing={1}>
+			container spacing={10}>
 
-			<Grid item xs={3}>
+			<Grid item xs={2}>
 				<item> 
 					<Link to="/Home">
 						<img
@@ -58,7 +58,7 @@ function App() {
 				</item>
 			</Grid>
 			
-			<Grid item xs={3}>
+			<Grid item xs={2}>
 				<item> 
 					<Link to="/Login"> <img
 						src={profile}

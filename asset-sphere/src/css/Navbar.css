@@ -7,8 +7,6 @@
 	width: 100%;
 	top: 0;
 	z-index: 99;
-	display: flex;
-	flex-wrap: wrap;
 }
 
 .pagelinks a {
@@ -19,7 +17,6 @@
 	text-decoration: none;
 }
 
-.navbar a:hover {
-	background-color: #ddd;
-	color: black;
-  }
+.pagelinks a:hover {
+	text-decoration: underline;
+}
