@@ -125,18 +125,24 @@ This Page is the style elements for the Wallet page
   .wallet-left-container,
   .wallet-right-container {
     width: 100%; /* Both containers take full width */
-    margin-left: 10rem;
+    margin-left: 0; /* Remove the left margin */
+    max-width: 97%; /* Ensure they don't exceed the screen width */
   }
 
-  /* Resizing for appearence and design */
-  .wallet-left-container
-  {
-      height: 110%;
+  /* Resizing for appearance and design */
+  .wallet-left-container {
+    max-width: 97%; /* Allow it to shrink to the screen width */
+    height: auto; /* Allow it to expand in height as needed */
   }
 
-  .wallet-right-container
-  {
-      max-width: 1000px;
-      max-height: 300px;
+  .wallet-right-container {
+    max-width: 97%; /* Allow it to shrink to the screen width */
+    max-height: 300px; /* Limit the maximum height for smaller screens */
+  }
+
+  /* Responsive table adjustments */
+  .wallet-table th,
+  .wallet-table td {
+    padding: 8px; /* Reduce cell padding for smaller screens */
   }
 }
