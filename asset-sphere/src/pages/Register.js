@@ -25,7 +25,7 @@ function Register() {
             <input type="datetime-local" placeholder="Date of Birth"/>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button type="submit" className="mainreg__btn">
+            <button type="submit" className="main_reg_btn">
               <Link to="/Dashboard">Register</Link>
             </button>
             <p className="btn_undertext">

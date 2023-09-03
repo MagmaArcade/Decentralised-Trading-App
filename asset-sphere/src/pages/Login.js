@@ -20,7 +20,7 @@ function Login() {
       <div className="main_container">
         <div className="main_content">
           <h1>Log In</h1>
-          <form className="login-form form_container">
+          <form className="login_form form_container">
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <button type="submit" className="main_btn">
