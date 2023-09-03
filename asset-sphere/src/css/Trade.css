@@ -35,7 +35,8 @@ This Page is the style elements for the Trade page
     gap: 50px; /* Gap between containers*/
   }
   
-  .left__container {
+  /* Dimensions and properties of left container */
+  .left__container { 
     background-color: #3a3a3a;
     height: 70vh;
     width: 100%;
@@ -43,11 +44,13 @@ This Page is the style elements for the Trade page
     display: block;
     flex-direction: row;
     align-items: center;
+    /* flex-start starts container contents at the top */
     justify-content: flex-start;
     border-radius: 10px;
     margin: 0 auto;
   }
   
+    /* Dimensions and properties of right container */
   .right__container {
     background-color: #79F5AE;
     height: 70vh;
@@ -56,6 +59,7 @@ This Page is the style elements for the Trade page
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* flex-start starts container contents at the top */
     justify-content: flex-start;
     border-radius: 10px;
     margin: 0 auto;
@@ -71,6 +75,7 @@ This Page is the style elements for the Trade page
       width: 100%; /* Both containers take full width */
     }
 
+    /* Resizing for appearence and design */
     .left__container
     {
         height: 110%;
@@ -107,6 +112,7 @@ This Page is the style elements for the Trade page
     gap: 50px;
   }
   
+  /* Properties for BUY / SELL buttons since they're identical */
   .main__btn {
     background-color: #262626;
     color: #fff;
@@ -114,6 +120,7 @@ This Page is the style elements for the Trade page
     border: 1px solid #79F5AE;
     border-radius: 10px;
     cursor: pointer;
+    /* Adjusting position in container */
     margin-top: auto;
     margin-bottom: 2rem;
   }
@@ -129,7 +136,6 @@ This Page is the style elements for the Trade page
     margin-bottom: 2rem;
   }
   
-  /* Update the .input__container styles */
 .input__container {
     display: flex;
     flex-direction: column; /* Change to column to place "Amount" above input */
@@ -137,13 +143,13 @@ This Page is the style elements for the Trade page
     justify-content: flex-start; /* Change to flex-start */
     width: 65%;
     margin-bottom: 1rem;
-    border: 1px solid #000; /* Add a thin black border */
+    border: 1px solid #000; /* Adds a thin black border */
     border-radius: 10px;
-    padding: 10px; /* Add padding for spacing */
-    position: relative; /* Add relative positioning */
+    padding: 10px; /* Adds padding for spacing */
+    position: relative; /* Adds relative positioning */
   }
   
-  /* Update the label styles */
+  /* Updating the label styles */
   .label {
     font-size: 1rem;
     color: #000000;
@@ -152,8 +158,8 @@ This Page is the style elements for the Trade page
     margin-left: -15rem;
   }
   
-  /* Update the input styles */
-  .input__container input[type="number"] {
+  /* Updates info about the input style */
+  .input__container input[type="number"] { /* ensures that only integers are accepted into the input */
     width: 15rem;
     height: 5rem;
     font-size: 2rem;
@@ -165,10 +171,10 @@ This Page is the style elements for the Trade page
     margin: 0;
   }
   
-  /* Style the AUD text on the right side of the input */
+  /* Styles the AUD text on the right side of the input */
   .input__container::after {
     content: "AUD";
-    font-size: 1.5rem; /* Make AUD text smaller */
+    font-size: 1.5rem; /* Makes AUD text smaller */
     color: #000000;
     position: absolute; /* Position it absolutely within the container */
     right: 10px; /* Adjust the right position to place it inside the border */
@@ -191,12 +197,15 @@ This Page is the style elements for the Trade page
     color: #000000;
   }
   
+  /* Heading styling */
   h1 {
     color: #000; 
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
   
+  /* Heading 3 styling */
+
   .Trade__Top h3 {
     margin: 0;
   }
@@ -210,14 +219,15 @@ This Page is the style elements for the Trade page
     color: #717171;
   }
   
+    /* Change Coin styling and positioning*/
   .Trade__Top button {
     background-color: #79F5AE;
     color: #000000;
     padding: 1rem 2rem;
     border: 1px solid #79F5AE;
-    border-radius: 18px;
+    border-radius: 18px; /* Makes border rounded */
     cursor: pointer;
-    margin-left: 35rem;
+    margin-left: 35rem; /* Reposition Button */
 }
   
   .coin__value {
@@ -229,6 +239,7 @@ This Page is the style elements for the Trade page
     color: #717171;
   }
 
+  /* Gap between date buttons */
   .date__btns__gap{
     display: flex;
     gap: 15px;
