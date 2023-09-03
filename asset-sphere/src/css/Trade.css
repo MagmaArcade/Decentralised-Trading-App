@@ -60,6 +60,42 @@ This Page is the style elements for the Trade page
     border-radius: 10px;
     margin: 0 auto;
   }
+
+  /* Media query for smaller screens */
+@media (max-width: 1400px) {
+    .main__container {
+      grid-template-columns: 1fr; /* Single column layout for small screens */
+    }
+    .left__container,
+    .right__container {
+      width: 100%; /* Both containers take full width */
+    }
+
+    .right__container
+    {
+        max-width: 1000px;
+    }
+
+    .label{
+        margin-right: 20rem;
+    }
+
+    .Statistics, .CoinStatistics
+    {
+        align-items: center;
+        margin-left: 4rem;
+    }
+
+    .coin__value
+    {
+        margin-left: -6rem;
+    }
+
+    .Trade__Low, .date__btns__gap
+    {
+        margin-left: 2rem;
+    }
+}
   
   .button__row {
     display: flex;
@@ -234,6 +270,7 @@ This Page is the style elements for the Trade page
     margin-top: 3rem;
     margin-left: 3rem;
     display: block;
+    position: relative;
   }
 
   .CoinStatistics {
@@ -241,3 +278,5 @@ This Page is the style elements for the Trade page
     height: auto;
     width: 100%; /* Set the width to 100% to fill the container */
   }
+
+  
