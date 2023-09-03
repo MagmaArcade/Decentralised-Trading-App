@@ -24,7 +24,7 @@ function Login() {
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <button type="submit" className="main_btn">
-              <Link to="/Dashboard">Log In</Link>
+              <Link to="/Dashboard">Log In</Link> {/* when login is validated, push to dashboard page */}	
             </button>
             <p className="btn_undertext">
               Don't have an account? <Link to="/Register">Register here.</Link>
@@ -38,5 +38,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;

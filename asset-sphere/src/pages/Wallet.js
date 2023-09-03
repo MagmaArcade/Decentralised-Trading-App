@@ -28,7 +28,7 @@ function Wallet() {
           </item>
         </Grid>
 
-        <Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
+        <Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid> {/* space add an empty grid element that consume the empty grid spaces */}
 
         <Grid item xs={2}>
           <item> 

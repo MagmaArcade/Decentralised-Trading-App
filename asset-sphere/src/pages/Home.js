@@ -32,30 +32,26 @@ function Home() {
 					alignItems="center"
 					container spacing={2}>
 					
-					<Grid item xs={3}><noscript>This is a spacer for the grid</noscript></Grid>
+					<Grid item xs={3}><noscript>This is a spacer for the grid</noscript></Grid>  {/* space add an empty grid element that consume the empty grid spaces */}	
 					<Grid item xs={6}>
 						<item> 
-							<p>
-								Discover AssetSphere – Your Destination for Assset Trading.
-								Enter into the world of digital assets with our
-								beginner-friendly platform. Explore a range of available assets and connect with a community of like-minded
-								traders. Start your trading journey with AssetSphere today.
-							</p>
+							<p>Discover AssetSphere – Your Destination for Assset Trading.
+							Enter into the world of digital assets with our beginner-friendly platform.
+							Explore a range of available assets and connect with a community of like-minded
+							traders. Start your trading journey with AssetSphere today.</p>
 						</item>
 					</Grid>
 					<Grid item xs={3}><noscript>This is a spacer for the grid</noscript></Grid>
-
-
 					<Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
 					<Grid item xs={2}>
-						<item className="main_btn">
+						<item className="main_btn">  {/* login in button, links to login page */}	
 							<Link to="/Login">
 								<Button type="submit"> Login </Button>
 							</Link>
 						</item>
 					</Grid>
 					<Grid item xs={2}>
-						<item className="main_btn">
+						<item className="main_btn">  {/* register in button, register to login page */}	
 							<Link to="/Register">
 								<Button type="submit"> Register </Button>
 							</Link>
@@ -76,7 +72,8 @@ function Home() {
 					alignItems="center"
 					container spacing={3}>
 
-					<Grid item xs={4}>
+					{/* Row 1 - header */}	
+					<Grid item xs={4}> 
 						<item> 
 							<h1>Buy</h1>
 						</item>
@@ -92,8 +89,8 @@ function Home() {
 						</item>
 					</Grid>
 
-
-					<Grid item xs={4}>
+					{/* Row 2 - images */}
+					<Grid item xs={4}> 
 						<item> 
 							<img 
 							src={coin}
@@ -118,7 +115,7 @@ function Home() {
 						</item>
 					</Grid>
 
-
+					{/* Row 3 - body text */}
 					<Grid item xs={4}>
 						<item> 
 							<p>Buy crypto with ease.</p>

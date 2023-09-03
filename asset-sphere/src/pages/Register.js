@@ -19,7 +19,7 @@ function Register() {
       <div className="main_reg_container">
         <div className="main_reg_content">
           <h1>Create Personal Account</h1>
-          <form className="register_form form_reg_container">
+          <form className="register_form form_reg_container"> {/* get all relevent user info for user account */}
             <input type="text" placeholder="First Name" />
             <input type="text" placeholder="Last Name" />
             <input type="datetime-local" placeholder="Date of Birth"/>
