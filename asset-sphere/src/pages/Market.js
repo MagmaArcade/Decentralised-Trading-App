@@ -29,6 +29,8 @@ const theme = createTheme({
 function Market() {
   return (
 	<div className="Market">
+	
+	{/* */}
 		<div className="Search">
 			<Grid
 				direction="row"
@@ -51,6 +53,7 @@ function Market() {
 				</Grid>
 			</Grid>
 		</div>
+
 		<table>
 			<tr>
 				<th>Name</th>
