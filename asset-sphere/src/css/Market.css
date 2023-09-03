@@ -10,19 +10,19 @@ SID:	103865794
 This Page is the style elements for the Market page
 */
 
-.Market {
+.market {
 	background-color: #262626; /* page background color */
 	color: white;
 	height: 70em;  /* this is the height of the page*/
 }
 
-#imgStyle {
+#img_style {
 	border-style: solid;
   	border-color: #79F5AE;
  	 margin: auto;
 }
 
-.Market table {
+.market table {
 	width: 80%;
 	border: 1px solid;
 	border-color: #79F5AE;
@@ -31,14 +31,14 @@ This Page is the style elements for the Market page
 	margin-right: auto;
 }
 
-.Market th {
+.market th {
 	font-size: 1.3em;
 	text-align: left;
 	padding-left: 0.7em;
 	padding-top: 0.5em;
 }
 
-.Market td {
+.market td {
 	text-align: left;
 	padding: 1em;
 }
@@ -60,7 +60,7 @@ This Page is the style elements for the Market page
 	cursor: pointer;
 }
 
-.Search {
+.search {
 	padding-top: 2em;
 	padding-bottom: 1em;
 }

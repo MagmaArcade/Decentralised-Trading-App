@@ -14,7 +14,7 @@ import "../css/Wallet.css"; // import css styling
 
 function Wallet() {
   return (
-    <div className="Wallet">
+    <div className="wallet">
       <Grid id="wallet_id_container"
         direction="row"
         justifyContent="center"
@@ -42,14 +42,14 @@ function Wallet() {
         </Grid>
       </Grid>
 
-      <div className="main__container">
-        <div className="left__container">
+      <div className="main_container">
+        <div className="left_container">
           <h1> Trade History </h1>
         </div>
 
-        <div className="right__container">
+        <div className="right_container">
           <h1> Current Funds </h1>
-          <div className="input-container">
+          <div className="input_container">
             <div>
               <label htmlFor="coin1">Coin 1</label>
             </div>

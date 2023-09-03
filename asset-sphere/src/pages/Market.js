@@ -13,25 +13,12 @@ import { Grid, TextField } from "@mui/material";
 
 import "../css/Market.css"; // import the css syles
 
-
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#79F5AE',
-      light: '#fff',
-    }
-  },
-});
-
-
 function Market() {
   return (
-	<div className="Market">
+	<div className="market">
 	
 	{/* */}
-		<div className="Search">
+		<div className="search">
 			<Grid
 				direction="row"
 				justifyContent="right"

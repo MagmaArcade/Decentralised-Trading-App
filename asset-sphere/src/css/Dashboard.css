@@ -1,28 +1,40 @@
-.Dashboard {
+/*
+Name: 	Nathan Hoorbkaht
+		    Nicholas Gustin	
+		    Connor Lack
+
+SID:	  103865794
+		    103995882
+		    103992223
+
+This Page is the style elements for the Dashboard page
+*/
+
+.dashboard {
 	background-color: #79F5AE;
 	padding-top: 10px;
 	padding-bottom: 50px;
 }
 
-.Dashboard {
+.dashboard {
   background-color: #79F5AE;
 
 }
 
-.sectionHeadings {
+.section_headings {
   font-size: 1.9em;
   text-align: left;
   margin-left: 8%;
 }
 
-#Summary {
+#summary {
   background-color: #262626;
   height: 15em;
   width: 83%;
   margin-left: 8%;
 }
 
-.smallData {
+.small_data {
   height: 12em;
   width: 12em;
   background-color: white;
@@ -34,7 +46,7 @@
   margin-bottom: 1em;
 }
 
-.smallData p {
+.small_data p {
   text-align: center;
   padding: 65px 0;
 }

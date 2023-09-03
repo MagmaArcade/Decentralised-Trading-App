@@ -42,25 +42,25 @@ function Navbar() {
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Market" > Market </Link>
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Dashboard"> Dashboard </Link>
 				</item>		
 			</Grid>
 			
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Wallet"> Wallet </Link>
 				</item>
 			</Grid>
 
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Trade"> Trade </Link>
 				</item>

@@ -10,7 +10,7 @@ SID:	103865794
 This Page is the style elements for the Wallet page
 */
 
-.Wallet {
+.wallet {
     background-color: #262626;
     min-height: 100vh;
     display: flex;
@@ -22,7 +22,7 @@ This Page is the style elements for the Wallet page
     -moz-osx-font-smoothing: grayscale;
   }
   
-.main__container {
+.main_container {
   display: grid;
   grid-template-columns: 2fr 1fr; /* 2/3 for left__container, 1/3 for right__container */
   align-items: center;
@@ -32,7 +32,7 @@ This Page is the style elements for the Wallet page
   width: 100%;
 }
 
-.left__container {
+.left_container {
   background-color: #3a3a3a;
   height: 70vh;
   width: 100%; /* Adjusted to take up 100% of the grid column */
@@ -44,7 +44,7 @@ This Page is the style elements for the Wallet page
   border-radius: 10px; /* Adds roundness to container */
 }
 
-.right__container {
+.right_container {
   background-color: #79F5AE;
   height: 70vh;
   width: 100%; /* Adjusted to take up 100% of the grid column */

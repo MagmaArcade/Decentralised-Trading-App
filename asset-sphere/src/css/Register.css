@@ -10,7 +10,7 @@ SID:	  103865794
 This Page is the style elements for the Register page
 */
 
-.Register {
+.register {
     background-color: #262626;
     min-height: 100vh;
     display: flex;
@@ -23,14 +23,14 @@ This Page is the style elements for the Register page
     -moz-osx-font-smoothing: grayscale;
   }
   
-  .mainreg__container {
+  .main_reg_container {
     background-color: #262626;
     width: 100%; /* Take full width */
     display: flex;
     justify-content: center;
   }
   
-  .mainreg__content {
+  .main_reg_content {
     background-color: #262626;
     width: 80%;
     max-width: 500px; /* Adjust the max-width as needed */
@@ -39,14 +39,14 @@ This Page is the style elements for the Register page
     align-items: center;
   }
   
-  .mainreg__content h1 {
+  .main_reg_content h1 {
     color: white;
     font-size: 2rem;
     margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
   
-  .register-form {
+  .register_form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,18 +54,18 @@ This Page is the style elements for the Register page
     width: 400px;
   }
   
-  .register-form input {
+  .register_form input {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 0.75rem;
     width: 100%; /* Make the inputs span the full width */
   }
   
-  .formreg__container {
+  .form_reg_container {
     margin-top: 2rem;
   }
   
-  .mainreg__btn {
+  .main_reg_btn {
     background-color: #262626;
     color: #fff;
     padding: 0.75rem 1.5rem;
@@ -76,33 +76,33 @@ This Page is the style elements for the Register page
     margin-bottom: 2rem; /* Adjust the margin as needed */
   }
 
-  .mainreg__btn a {
+  .main_reg_btn a {
     color: #fff; /* Set the text color */
     /* padding: 0.5rem 1rem; /* Adjust padding */
     cursor: pointer;
     text-decoration: none; /* Remove underlines */
   }
   
-  .btnreg__undertext {
+  .btn_reg_undertext {
     color: #79F5AE;
     font-size: 0.75rem;
     font-style: italic;
     margin-bottom: 2rem; /* Adjust the margin as needed */
   }
 
-  .btnreg__undertext a {
+  .btn_reg_undertext a {
     color: #79F5AE; /* Set the link text color */
     text-decoration: none; /* Remove underlines (default link style) */
     font-size: 0.75rem; /* Adjust font size to match existing text */
     margin-bottom: 8rem; /* Add larger gap at the bottom */
   }
 
-  .btnreg__undertext a:hover {
+  .btn_reg_undertext a:hover {
     text-decoration: underline; /* Add underline on hover if desired */
   }
   
   /* Add styles for Navbar */
-  .Navbar {
+  .navbar {
     background-color: #333;
     color: white;
     padding: 1rem;

@@ -13,28 +13,28 @@ import "../css/Dashboard.css"
 
 function Dashboard() {
   return (
-    <div className="Dashboard">
-      <h2 className="sectionHeadings">My Portfolio</h2>
+    <div className="dashboard">
+      <h2 className="section_headings">My Portfolio</h2>
       
-      <div id="Summary">
+      <div id="summary">
       </div>
 
-      <div className="smallData">
+      <div className="small_data">
         <p>Account Balance</p>
       </div>
-      <div className="smallData">
+      <div className="small_data">
         <p>Portfolio Value</p>
       </div>
-      <div className="smallData">
+      <div className="small_data">
         <p>Percentage Change</p>
       </div>
 
-      <div className="smallData">
+      <div className="small_data">
         <p>Pie chart of asset summary</p>
       </div>
 
-      <h2 className="sectionHeadings">What's Hot</h2>
-      <div id="Summary">
+      <h2 className="section_headings">What's Hot</h2>
+      <div id="summary">
       </div>
 
     </div>

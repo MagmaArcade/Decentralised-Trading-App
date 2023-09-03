@@ -50,14 +50,14 @@ function Home() {
 
 					<Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
 					<Grid item xs={2}>
-						<item className="main__btn">
+						<item className="main_btn">
 							<Link to="/Login">
 								<Button type="submit"> Login </Button>
 							</Link>
 						</item>
 					</Grid>
 					<Grid item xs={2}>
-						<item className="main__btn">
+						<item className="main_btn">
 							<Link to="/Register">
 								<Button type="submit"> Register </Button>
 							</Link>
@@ -80,17 +80,17 @@ function Home() {
 
 					<Grid item xs={4}>
 						<item> 
-							<h1 className="bottomHeader">Buy</h1>
+							<h1s>Buy</h1s>
 						</item>
 					</Grid>
 					<Grid item xs={4}>
 						<item> 
-							<h1 className="bottomHeader">Sell</h1>
+							<h1>Sell</h1>
 						</item>
 					</Grid>
 					<Grid item xs={4}>
 						<item> 
-							<h1 className="bottomHeader">Trade</h1>
+							<h1>Trade</h1>
 						</item>
 					</Grid>
 
@@ -136,7 +136,6 @@ function Home() {
 							<p>Sell with the click of a button</p>
 						</item>
 					</Grid>
-
 				</Grid>
 			</div>
 		</div>
