@@ -42,25 +42,25 @@ function Navbar() {
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Market" > Market </Link>
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Dashboard"> Dashboard </Link>
 				</item>		
 			</Grid>
 			
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Wallet"> Wallet </Link>
 				</item>
 			</Grid>
 
-			<Grid item xs={1.5} className="pagelinks">
+			<Grid item xs={1.5} className="page_links">
 				<item>
 					<Link to="/Trade"> Trade </Link>
 				</item>
@@ -82,7 +82,9 @@ function Navbar() {
   );
 }
 
-/* glitchy as f, need to fix later, disabled for developement rn
+/* 	This JS function implements a responsive navbar that shrinks as the user scrolls down the page
+	Currently, it is glitching as the user scrolls, creating a very negative experience.
+	This will be fixed in time for the dynamic release of the application.
 
 function scrollFunction() {
   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {

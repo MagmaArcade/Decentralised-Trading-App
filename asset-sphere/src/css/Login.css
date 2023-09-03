@@ -11,7 +11,7 @@ This Page is the style elements for the Login page
 */
 
 
-.Login {
+.login {
     background-color: #262626;
     min-height: 100vh;
     text-align: center;
@@ -23,7 +23,7 @@ This Page is the style elements for the Login page
     -moz-osx-font-smoothing: grayscale;
   } 
   
-  .main__container {
+  .main_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -35,7 +35,7 @@ This Page is the style elements for the Login page
     padding: 20px 50px; /* Adjusted padding values */
   }
   
-  .main__content {
+  .main_content {
     background-color: #262626;
     height: 80%; /* Increase height */
     width: 80%;
@@ -46,31 +46,31 @@ This Page is the style elements for the Login page
   }
   
   
-  .main__content h1 {
+  .main_content h1 {
     color: white;
     font-size: 2rem;
     margin-top: 1rem; /* Adjust top margin */
     margin-bottom: 0.5rem; /* Adjust bottom margin */
   }
   
-  .login-form {
+  .login_form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 1rem; /* Adjust top margin */  }
   
-  .login-form input {
+  .login_form input {
     margin-top: 1rem;
     margin-bottom: 2.5rem; /* Adjust margin */
     padding: 0.75rem;
     width: 200%; /* Make the inputs 2x wider */
   }
   
-  .form__container {
+  .form_container {
     margin-top: 2rem; /* Add margin between buttons and text */
   }
 
-  .main__btn {
+  .main_btn {
     background-color: #262626;
     color: #fff; /* Set the text color */
     padding: 0.75rem 1.5rem; /* Adjust padding */
@@ -82,14 +82,14 @@ This Page is the style elements for the Login page
     font-size: 1rem; /* Set the font size to match previous style */
   }
 
-  .main__btn a {
+  .main_btn a {
     color: #fff; /* Set the text color */
     /* padding: 0.5rem 1rem; /* Adjust padding */
     cursor: pointer;
     text-decoration: none; /* Remove underlines */
   }
   
-  .btn__undertext {
+  .btn_undertext {
     color: #79F5AE;
     font-size: 0.75rem; /* Adjust font size */
     font-style: italic; /* Make the text italic */
@@ -99,23 +99,23 @@ This Page is the style elements for the Login page
   /* login.css */
   /* ... (previous styles) */
   
-  .btn__undertext a {
+  .btn_ndertext a {
     color: #79F5AE; /* Set the link text color */
     text-decoration: none; /* Remove underlines (default link style) */
     font-size: 0.75rem; /* Adjust font size to match existing text */
     margin-bottom: 8rem; /* Add larger gap at the bottom */
   }
   
-  .btn__undertext a:hover {
+  .btn_undertext a:hover {
     text-decoration: underline; /* Add underline on hover if desired */
   }
     
   
-  .main__img--container {
+  .main_img_container {
     text-align: center;
   }
   
-  .main__img--card {
+  .main_img_card {
     float: left 40%;
     height: 300px;
     width: 300px;

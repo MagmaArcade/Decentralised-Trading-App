@@ -10,7 +10,6 @@ SID:	103865794
 This Page is the style elements for the Navbar component.
 */
 
-
 .navbar {
 	background-color: #79F5AE;
 	padding: 30px 0;
@@ -22,7 +21,7 @@ This Page is the style elements for the Navbar component.
 	z-index: 99;
 }
 
-.pagelinks a {
+.page_links a {
 	display: block;
 	color: black;
 	text-align: center;
@@ -30,6 +29,6 @@ This Page is the style elements for the Navbar component.
 	text-decoration: none;
 }
 
-.pagelinks a:hover {
+.page_links a:hover {
 	text-decoration: underline;
 }
