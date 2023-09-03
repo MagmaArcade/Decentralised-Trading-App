@@ -38,12 +38,10 @@ function Home() {
 					<Grid item xs={6}>
 						<item> 
 							<p>
-								Discover Asset Sphere – Your Destination for Cryptocurrency Trading.
-								Dive into the dynamic world of digital assets with our
-								beginner-friendly platform. Whether you’re buying, trading, or
-								selling, we’ve got you covered. Explore a range of cryptocurrencies,
-								access valuable resources, and connect with a community of like-minded
-								traders. Start your crypto journey with Asset Sphere today.
+								Discover AssetSphere – Your Destination for Assset Trading.
+								Enter into the world of digital assets with our
+								beginner-friendly platform. Explore a range of available assets and connect with a community of like-minded
+								traders. Start your trading journey with AssetSphere today.
 							</p>
 						</item>
 					</Grid>
@@ -82,17 +80,17 @@ function Home() {
 
 					<Grid item xs={4}>
 						<item> 
-							<h1>Buy</h1>
+							<h1 className="bottomHeader">Buy</h1>
 						</item>
 					</Grid>
 					<Grid item xs={4}>
 						<item> 
-							<h1>Sell</h1>
+							<h1 className="bottomHeader">Sell</h1>
 						</item>
 					</Grid>
 					<Grid item xs={4}>
 						<item> 
-							<h1>Trade</h1>
+							<h1 className="bottomHeader">Trade</h1>
 						</item>
 					</Grid>
 
