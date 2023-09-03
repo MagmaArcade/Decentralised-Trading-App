@@ -45,10 +45,6 @@ function Trade() {
         </div>
         <div className="trade-right-container">
           <h1>Trade Currency</h1>
-          <div className="button-row">
-            <button className="trade-main-btn">BUY</button>
-            <button className="trade-main-btn">SELL</button>
-          </div>
           <div>
             <label className="trade-label" htmlFor="trade-amount">Amount</label>
           </div>
@@ -61,8 +57,12 @@ function Trade() {
             />
             <label className="trade-dollar-label">$</label>
           </div>
+          <div className="file-upload">
+            <input type="file" id="fileInput" />
+            <label htmlFor="fileInput" className="file-label">UPLOAD SMART CONTRACT</label>
+          </div>
           <div>
-            <button className="trade-purchase-btn">PURCHASE</button>
+            <button className="trade-purchase-btn">TRADE</button>
           </div>
         </div>
       </div>
