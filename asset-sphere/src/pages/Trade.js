@@ -7,7 +7,7 @@ SID:	  103865794
 		    103995882
 		    103992223
 */
-// this is the Trade page. this page is view asset market history, including options to buy and sell.
+// this is the trade page. this page is view asset market history, including options to buy and sell.
 
 import "../css/Trade.css"; // import css styling
 import CoinStatistics from '../assets/CoinStatistics.png'; // import images
@@ -15,21 +15,22 @@ import CoinStatistics from '../assets/CoinStatistics.png'; // import images
 // Trade application
 function Trade() {
   return (
-    <div className="Trade">
+    <div className="trade">
       <div className="trade-main-container">
         <div className="trade-left-container">
-          <div className="Trade-Top">
+          <div className="trade-top">
             <p>
-              <span className="trade-asset-text">Swincoin</span> <span className="trade-btc-text">SWN</span>
+              <span className="trade-asset-text">Swincoin</span>              
+              <span className="trade-btc-text">SWN</span>
             </p>
             <button>Change Asset</button>
           </div>
-          <div className="Trade-Middle">
+          <div className="trade-Middle">
             <p>
               <span className="trade-asset-value">$36,021.65</span> <span className="trade-currency">AUD</span>
             </p>
           </div>
-          <div className="Trade-Low">
+          <div className="trade-Low">
             <div className="date-btns-gap">
               <button className="date-btn">1D</button>
               <button className="date-btn">1W</button>

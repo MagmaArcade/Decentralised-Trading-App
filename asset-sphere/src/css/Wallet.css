@@ -30,6 +30,9 @@ This Page is the style elements for the Wallet page
   margin: 0 auto;
   height: 100%;
   width: 100%;
+  max-width: 1400px; /* Ensures that both right and left container dont go beyond this width */
+  padding: 50px 20px; /* Adjusted padding */
+  gap: 50px; /* Gap between containers*/
 }
 
 .wallet-left-container {
