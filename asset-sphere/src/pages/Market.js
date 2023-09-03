@@ -9,10 +9,10 @@ SID:	103865794
 */
 // this is the Market page. this page is used view all available coins within the market.
 
-import { Grid, TextField } from "@mui/material";
-
+import { Grid, TextField } from "@mui/material"; // import js elements from mui
 import "../css/Market.css"; // import the css syles
 
+// Market application
 function Market() {
   return (
 	<div className="market">

@@ -9,10 +9,10 @@ SID:	  103865794
 */
 // this is the Login page. this page is used to access the user's account.
 
-import React from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import "../css/Register.css";
+import "../css/Register.css"; // import the css syles
 
+// Register application
 function Register() {
   return (
     <div class="register">

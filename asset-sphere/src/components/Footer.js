@@ -11,11 +11,11 @@ SID:  	103865794
 
 import "../css/Footer.css"; // import css styling
 
+// Footer application
 const Footer = () => {
   return (
     <footer>©AssetSphere 2023, Created by Nicholas, Nathan and Connor</footer>
   );
 };
-
 export default Footer; 
 

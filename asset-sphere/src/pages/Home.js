@@ -9,16 +9,14 @@ SID:	103865794
 */
 // this is the Login page. this page is used to access the user's account.
 
-import { Grid, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Grid, Button } from "@mui/material"; // import js elements from mui
+import { Link } from "react-router-dom"; // import link to route to other pages
+import "../css/Home.css"; // import css styling
 
-// images
+// import images
 import coin from '../assets/Coin.png';
 import handshake from '../assets/Handshake.png';
 import sold from '../assets/Sold.png';
-
-// css
-import "../css/Home.css";
 
 // Home application
 function Home() {
@@ -80,7 +78,7 @@ function Home() {
 
 					<Grid item xs={4}>
 						<item> 
-							<h1s>Buy</h1s>
+							<h1>Buy</h1>
 						</item>
 					</Grid>
 					<Grid item xs={4}>
