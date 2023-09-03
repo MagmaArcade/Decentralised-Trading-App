@@ -17,7 +17,7 @@ function Dashboard() {
     <div className="dashboard">
       <h2 className="section-headings">My Portfolio</h2>
       
-      <div id="summary">
+      <div id="summary"> {/* will hold a graph of account balance */}
       </div>
 
       <div className="small-data">
@@ -34,7 +34,7 @@ function Dashboard() {
         <p>Pie chart of asset summary</p>
       </div>
 
-      <h2 className="section-headings">What's Hot</h2>
+      <h2 className="section-headings">What's Hot</h2> {/* will display trending assets */}
       <div id="summary">
       </div>
 
