@@ -99,7 +99,7 @@ This Page is the style elements for the Login page
   /* login.css */
   /* ... (previous styles) */
   
-  .btn-ndertext a {
+  .btn-undertext a {
     color: #79F5AE; /* Set the link text color */
     text-decoration: none; /* Remove underlines (default link style) */
     font-size: 0.75rem; /* Adjust font size to match existing text */
@@ -117,6 +117,7 @@ This Page is the style elements for the Login page
   
   .main-img-card {
     float: left 40%;
+    margin-left: 5rem;
     height: 300px;
     width: 300px;
     border-radius: 10px;
