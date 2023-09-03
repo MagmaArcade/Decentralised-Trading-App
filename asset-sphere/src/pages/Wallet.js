@@ -9,9 +9,10 @@ SID:	  103865794
 */
 // this is the Register page. this page is used view a users owned coins.
 
-import { Grid } from "@mui/material";
+import { Grid } from "@mui/material"; // import js elements from mui
 import "../css/Wallet.css"; // import css styling
 
+// Wallet application
 function Wallet() {
   return (
     <div className="Wallet">

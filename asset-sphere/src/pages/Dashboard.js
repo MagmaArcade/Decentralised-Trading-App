@@ -9,8 +9,9 @@ SID:	  103865794
 */
 // this is the Dashboard page. this page is view coin market history, including options to buy and sell.
 
-import "../css/Dashboard.css"
+import "../css/Dashboard.css" // import css styling
 
+// Dashboard application
 function Dashboard() {
   return (
     <div className="dashboard">

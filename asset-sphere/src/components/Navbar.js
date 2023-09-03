@@ -9,17 +9,15 @@ SID:  	103865794
 */
 // this is the Navbar component. this is used for page navigation.
 
-
-// librarys
-import { Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Grid } from "@mui/material"; // import js elements from mui
+import { Link } from "react-router-dom"; // import link to route to other pages
+import "../css/Navbar.css"; // import css styling
 
 // images
 import logo from '../assets/AssetSphere_Logo.png';
 import profile from '../assets/Profile.png';
 
-import "../css/Navbar.css"; // import css styling
-
+// Navbar application
 function Navbar() {
   return (
     <div className="navbar">

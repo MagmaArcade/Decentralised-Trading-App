@@ -9,11 +9,11 @@ SID:	  103865794
 */
 // this is the Login page. this page is used to access the user's account.
 
-import React from "react";
-import { Link } from "react-router-dom"; // import Link from react-router-dom
+import { Link } from "react-router-dom"; // import link to route to other pages
 import Coin from '../assets/CoinS.png'; // import images
 import "../css/Login.css"; // import css styling
 
+// Login application
 function Login() {
   return (
     <div className="login">
