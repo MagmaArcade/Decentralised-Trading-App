@@ -13,7 +13,7 @@ This Page is the style elements for the Market page
 .Market {
 	background-color: #262626; /* page background color */
 	color: white;
-	height: 65em;  /* this is the height of the page*/
+	height: 70em;  /* this is the height of the page*/
 }
 
 #imgStyle {
@@ -62,9 +62,6 @@ This Page is the style elements for the Market page
 
 .Search {
 	padding-top: 2em;
-	color: white;
+	padding-bottom: 1em;
 }
 
-.search_btn_container {
-	color: white;
-}

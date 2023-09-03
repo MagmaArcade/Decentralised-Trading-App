@@ -13,11 +13,26 @@ import { Grid, TextField } from "@mui/material";
 
 import "../css/Market.css"; // import the css syles
 
+
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#79F5AE',
+      light: '#fff',
+    }
+  },
+});
+
+
 function Market() {
   return (
 	<div className="Market">
+	
+	{/* */}
 		<div className="Search">
-			<Grid id="search_btn_container"
+			<Grid
 				direction="row"
 				justifyContent="right"
 				alignItems="right"
@@ -27,17 +42,18 @@ function Market() {
 
 				<Grid item xs={2}>
 				<item> 
-					<TextField id="outlined-basic" variant="filled" />
+					<TextField color="success" sx={{ backgroundColor: '#3b3b3b'}} focused />
 				</item>
 				</Grid>
 
 				<Grid item xs={2}>
 				<item> 
-					<utton className="search_btn">Search</utton>
+					<button className="search_btn">Search</button>
 				</item>
 				</Grid>
 			</Grid>
 		</div>
+
 		<table>
 			<tr>
 				<th>Name</th>
