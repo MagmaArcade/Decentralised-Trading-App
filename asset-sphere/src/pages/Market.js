@@ -43,7 +43,7 @@ function Market() {
 
 		<table>
 			<tr>
-				<th>Name</th>
+				<th>Date</th>
 				<th>Price</th>
 				<th>Change (24HR)</th>
 				<th>Volume</th>
