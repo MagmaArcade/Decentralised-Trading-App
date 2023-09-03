@@ -15,7 +15,7 @@ import "../css/Wallet.css"; // import css styling
 function Wallet() {
   return (
     <div className="Wallet">
-      <Grid id="wallet_id_container"
+      <Grid id="wallet-id-container"
         direction="row"
         justifyContent="center"
         alignItems="center"
@@ -31,25 +31,25 @@ function Wallet() {
 
         <Grid item xs={2}>
           <item> 
-            <button className="trade_btn">Deposit</button>
+            <button className="wallet-trade_btn">Deposit</button>
           </item>
         </Grid>
 
         <Grid item xs={2}>
           <item> 
-            <button className="trade_btn">Withdrawl</button>
+            <button className="wallet-trade_btn">Withdrawl</button>
           </item>
         </Grid>
       </Grid>
 
-      <div className="main__container">
-        <div className="left__container">
+      <div className="wallet-main-container">
+        <div className="wallet-left-container">
           <h1> Trade History </h1>
         </div>
 
-        <div className="right__container">
+        <div className="wallet-right-container">
           <h1> Current Funds </h1>
-          <div className="input-container">
+          <div className="wallet-input-container">
             <div>
               <label htmlFor="coin1">Coin 1</label>
             </div>
