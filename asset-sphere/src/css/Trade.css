@@ -7,10 +7,10 @@ SID:	103865794
 		103995882
 		103992223
 
-This Page is the style elements for the Trade page
+this Page is the style elements for the trade page
 */
 
-.Trade {
+.trade {
     background-color: #262626;
     min-height: 100vh;
     display: flex;
@@ -101,7 +101,7 @@ This Page is the style elements for the Trade page
         margin-left: -6rem;
     }
 
-    .Trade-Low, .date-btns-gap
+    .trade-Low, .date-btns-gap
     {
         margin-left: 2rem;
     }
@@ -181,7 +181,7 @@ This Page is the style elements for the Trade page
     bottom: 35px; /* Adjust the bottom position to place it inside the border */
   }
 
-    /* Remove number input spinners */
+    /* Remove number input spinners yoink*/
 .trade-input-container input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     appearance: none;
@@ -206,7 +206,7 @@ This Page is the style elements for the Trade page
   
   /* Heading 3 styling */
 
-  .Trade-Top h3 {
+  .trade-top h3 {
     margin: 0;
   }
   
@@ -216,18 +216,22 @@ This Page is the style elements for the Trade page
   }
   
   .trade-btc-text {
+    font-size: 1rem;
     color: #717171;
+    margin-left: 0.5rem; /* Add some spacing between Swincoin and SWN */
   }
   
     /* Change Asset styling and positioning*/
-  .Trade-Top button {
-    background-color: #79F5AE;
-    color: #000000;
+  .trade-top button {
+    background-color: #262626;
+    color: #ffffff;
     padding: 1rem 2rem;
     border: 1px solid #79F5AE;
     border-radius: 18px; /* Makes border rounded */
     cursor: pointer;
     margin-left: 35rem; /* Reposition Button */
+    width: 11rem;
+    font-size: 1rem;
 }
   
   .trade-asset-value {
@@ -254,7 +258,7 @@ This Page is the style elements for the Trade page
     cursor: pointer;
   }
 
-  .Trade-Top {
+  .trade-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -264,7 +268,7 @@ This Page is the style elements for the Trade page
     margin-right: 1.5rem;
   }
 
-  .Trade-Middle {
+  .trade-Middle {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
@@ -272,7 +276,7 @@ This Page is the style elements for the Trade page
     margin-top: -1rem; /* Positioning the Asset Value*/
   }
 
-  .Trade-Low {
+  .trade-Low {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
