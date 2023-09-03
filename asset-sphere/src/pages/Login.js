@@ -16,23 +16,23 @@ import "../css/Login.css"; // import css styling
 
 function Login() {
   return (
-    <div className="Login">
-      <div className="main__container">
-        <div className="main__content">
+    <div className="login">
+      <div className="main_container">
+        <div className="main_content">
           <h1>Log In</h1>
-          <form className="login-form form__container">
+          <form className="login-form form_container">
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button type="submit" className="main__btn">
+            <button type="submit" className="main_btn">
               <Link to="/Dashboard">Log In</Link>
             </button>
-            <p className="btn__undertext">
+            <p className="btn_undertext">
               Don't have an account? <Link to="/Register">Register here.</Link>
             </p>
           </form>
         </div>
-        <div className="main__img--container">
-          <div className="main__img--card"><img src={Coin} alt="Coin" /></div>
+        <div className="main_img_container">
+          <div className="main_img_card"><img src={Coin} alt="Coin" /></div>
         </div>
       </div>
     </div>

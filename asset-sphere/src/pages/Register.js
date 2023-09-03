@@ -15,11 +15,11 @@ import "../css/Register.css";
 
 function Register() {
   return (
-    <div class="Register">
-      <div className="mainreg__container">
-        <div className="mainreg__content">
+    <div class="register">
+      <div className="main_reg_container">
+        <div className="main_reg_content">
           <h1>Create Personal Account</h1>
-          <form className="register-form formreg__container">
+          <form className="register_form form_reg_container">
             <input type="text" placeholder="First Name" />
             <input type="text" placeholder="Last Name" />
             <input type="datetime-local" placeholder="Date of Birth"/>
@@ -28,7 +28,7 @@ function Register() {
             <button type="submit" className="mainreg__btn">
               <Link to="/Dashboard">Register</Link>
             </button>
-            <p className="btn__undertext">
+            <p className="btn_undertext">
               Already have an account? <Link to="/Login">Login here.</Link>
             </p>
           </form>
