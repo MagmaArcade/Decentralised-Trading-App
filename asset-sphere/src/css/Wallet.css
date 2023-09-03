@@ -39,10 +39,10 @@ This Page is the style elements for the Wallet page
   background-color: #3a3a3a;
   height: 70vh;
   width: 100%; /* Adjusted to take up 100% of the grid column */
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   justify-content: flex-start; /* Start content at the top */
   border-radius: 10px; /* Adds roundness to container */
 }
@@ -51,6 +51,7 @@ This Page is the style elements for the Wallet page
   background-color: #79F5AE;
   height: 70vh;
   width: 100%; /* Adjusted to take up 100% of the grid column */
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,6 +73,10 @@ This Page is the style elements for the Wallet page
   color: white;
   font-size: 1.3em;
   width: 100%;
+}
+
+.wallet-h1{
+  color: white;
 }
 
 /* Adjust the table to match the width of the left container */
@@ -98,4 +103,40 @@ This Page is the style elements for the Wallet page
 /* Optional: Add a hover effect for table rows */
 .wallet-table tr:hover {
   background-color: #444;
+}
+
+.asset-table{
+  width: 130%; /* Set the table width to 100% */
+  max-width: none; /* Remove any maximum width */
+  border-collapse: collapse;
+  margin-left: -2rem;
+}
+
+.asset-table th, 
+.asset-table td {
+  padding: 11px;
+  text-align: center;
+}
+
+@media (max-width: 1400px) {
+  .wallet-main-container {
+    grid-template-columns: 1fr; /* Single column layout for small screens */
+  }
+  .wallet-left-container,
+  .wallet-right-container {
+    width: 100%; /* Both containers take full width */
+    margin-left: 10rem;
+  }
+
+  /* Resizing for appearence and design */
+  .wallet-left-container
+  {
+      height: 110%;
+  }
+
+  .wallet-right-container
+  {
+      max-width: 1000px;
+      max-height: 300px;
+  }
 }

@@ -45,7 +45,7 @@ function Wallet() {
 
       <div className="wallet-main-container">
         <div className="wallet-left-container">
-          <h1> Transaction History </h1>
+          <h1 className="wallet-h1"> Transaction History </h1>
           <div>
           <table className="wallet-table">
             <tr>
@@ -127,16 +127,29 @@ function Wallet() {
         <div className="wallet-right-container">
           <h1> Current Funds </h1>
           <div className="wallet-input-container">
-            <div>
-              <label htmlFor="coin1">Coin 1</label>
-            </div>
-            <div>
-              <label htmlFor="coin2">Coin 2</label>
-            </div>
-            <div>
-              <label htmlFor="coin3">Coin 3</label>
-            </div>
-            </div>
+          <table className="asset-table">
+            <tr>
+              <th>Asset</th>
+              <th>Amount</th>
+              <th>Value</th>
+            </tr>
+            <tr>
+              <td>SwinCoin</td>
+              <td>0.20</td>
+              <td>$500.00 AUD</td>
+            </tr>
+            <tr>
+              <td>NathCoin</td>
+              <td>0.69</td>
+              <td>$4300.00 AUD</td>
+            </tr>
+            <tr>
+              <td>GustCoin</td>
+              <td>4.20</td>
+              <td>$530.00 AUD</td>
+            </tr>
+          </table>
+          </div>
         </div>
       </div>`
   </div>
