@@ -9,8 +9,7 @@ SID:	103865794
 */
 // this is the Login page. this page is used to access the user's account.
 
-import { Grid } from "@mui/material";
-import { Button } from '@mui/material';
+import { Grid, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 // images

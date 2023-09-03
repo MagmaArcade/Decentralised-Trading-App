@@ -11,15 +11,15 @@ This Page is the style elements for the Market page
 */
 
 .Market {
-	background-color: #262626;
+	background-color: #262626; /* page background color */
 	color: white;
-	height: 50em;
+	height: 65em;  /* this is the height of the page*/
 }
 
 #imgStyle {
 	border-style: solid;
-  border-color: #79F5AE;
-  margin: auto;
+  	border-color: #79F5AE;
+ 	 margin: auto;
 }
 
 .Market table {
@@ -49,4 +49,22 @@ This Page is the style elements for the Market page
 
 .down {
 	color: red;
+}
+
+.search_btn {
+	background-color: #262626;
+	color: #fff;
+	padding: 1rem 3rem;
+	border: 1px solid #79F5AE;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.Search {
+	padding-top: 2em;
+	color: white;
+}
+
+.search_btn_container {
+	color: white;
 }

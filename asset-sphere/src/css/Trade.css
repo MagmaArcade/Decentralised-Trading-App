@@ -198,7 +198,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Heading styling */
-  h1 {
+  .right__container_header {
     color: #000; 
     margin-top: 2rem;
     margin-bottom: 2rem;
