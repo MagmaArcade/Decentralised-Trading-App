@@ -24,7 +24,7 @@ function Wallet() {
 
         <Grid item xs={3}>
           <item> 
-            <p>Wallet ID: 000012</p>
+            <p>Wallet ID: 000012</p> {/* will display the users individual wallet id */}
           </item>
         </Grid>
 
@@ -45,7 +45,7 @@ function Wallet() {
 
       <div className="wallet-main-container">
         <div className="wallet-left-container">
-          <h1 className="wallet-h1"> Transaction History </h1>
+          <h1 className="wallet-h1"> Transaction History </h1> {/* will display all previous transactions */}
           <div>
           <table className="wallet-table">
             <tr>
@@ -125,7 +125,7 @@ function Wallet() {
         </div>
 
         <div className="wallet-right-container">
-          <h1> Current Funds </h1>
+          <h1> Current Funds </h1> {/* will display all currently owned assets */}
           <div className="wallet-input-container">
           <table className="asset-table">
             <tr>
