@@ -9,12 +9,35 @@ SID:	103865794
 */
 // this is the Market page. this page is used view all available coins within the market.
 
+import { Grid, TextField } from "@mui/material";
 
 import "../css/Market.css"; // import the css syles
 
 function Market() {
   return (
 	<div className="Market">
+		<div className="Search">
+			<Grid id="search_btn_container"
+				direction="row"
+				justifyContent="right"
+				alignItems="right"
+				container spacing={2}>
+
+				<Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
+
+				<Grid item xs={2}>
+				<item> 
+					<TextField id="outlined-basic" variant="filled" />
+				</item>
+				</Grid>
+
+				<Grid item xs={2}>
+				<item> 
+					<utton className="search_btn">Search</utton>
+				</item>
+				</Grid>
+			</Grid>
+		</div>
 		<table>
 			<tr>
 				<th>Name</th>
@@ -57,6 +80,72 @@ function Market() {
 				<td>$0.01</td>
 				<td className="down">9.12%</td>
 				<td>90.00M</td>
+			</tr>
+			<tr>
+				<td>BitGem</td>
+				<td>$42,000.00</td>
+				<td className="up">5.20%</td>
+				<td>18.79M</td>
+			</tr>
+			<tr>
+				<td>EtherSphere</td>
+				<td>$3,500.00</td>
+				<td className="up">8.75%</td>
+				<td>117.64M</td>
+			</tr>
+			<tr>
+				<td>RipperCoin</td>
+				<td>$1.00</td>
+				<td className="down">-2.50%</td>
+				<td>55.71B</td>
+			</tr>
+			<tr>
+				<td>LiteGem</td>
+				<td>$150.00</td>
+				<td className="up">3.80%</td>
+				<td>66.31M</td>
+			</tr>
+			<tr>
+				<td>CardanoSphere</td>
+				<td>$2.50</td>
+				<td className="up">6.25%</td>
+				<td>32.03B</td>
+			</tr>
+			<tr>
+				<td>LinkStar</td>
+				<td>$25.00</td>
+				<td className="down">-1.50%</td>
+				<td>425.92M</td>
+			</tr>
+			<tr>
+				<td>Stellium</td>
+				<td>$0.50</td>
+				<td className="up">4.00%</td>
+				<td>22.36B</td>
+			</tr>
+			<tr>
+				<td>PolkaGem</td>
+				<td>$30.00</td>
+				<td className="down">-0.80%</td>
+				<td>1.02B</td>
+			</tr>
+			<tr>
+				<td>CardanoSphere</td>
+				<td>$2.50</td>
+				<td className="up">6.25%</td>
+				<td>32.03B</td>
+			</tr>
+			<tr>
+				<td>LinkStar</td>
+				<td>$25.00</td>
+				<td className="down">-1.50%</td>
+				<td>425.92M</td>
+			</tr>
+			<tr>
+				<td>LinkStar</td>
+				<td>$25.00</td>
+				<td className="down">-1.50%</td>
+				<td>425.92M</td>
 			</tr>
 		</table>
 	</div>
