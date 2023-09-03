@@ -237,6 +237,7 @@ this Page is the style elements for the trade page
   .trade-asset-value {
     font-size: 2.5rem;
     color: white;
+    margin-left: -3.4rem;
   }
   
   .trade-currency {

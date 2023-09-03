@@ -74,27 +74,28 @@ This Page is the style elements for the Wallet page
   width: 100%;
 }
 
-/* Style for the file upload container */
-.file-upload {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
+/* Adjust the table to match the width of the left container */
+.wallet-table {
+  width: 260%; /* Set the table width to 100% */
+  max-width: none; /* Remove any maximum width */
+  border-collapse: collapse;
+  margin-left: -13rem;
 }
 
-/* Style for the file input */
-#fileInput {
-  display: none; /* Hide the input element */
+/* Rest of the existing styles for table cells and headers */
+.wallet-table th,
+.wallet-table td {
+  padding: 11px;
+  text-align: center;
+  color: white;
+  border: 0.5px solid #79F5AE; /* Add border for cells */
 }
 
-/* Style for the file label/button */
-.file-label {
+.wallet-table th {
   background-color: #262626;
-  color: #fff;
-  padding: 1rem 2rem;
-  border: 1px solid #79F5AE;
-  border-radius: 18px;
-  cursor: pointer;
-  margin-top: 1rem;
+}
+
+/* Optional: Add a hover effect for table rows */
+.wallet-table tr:hover {
+  background-color: #444;
 }

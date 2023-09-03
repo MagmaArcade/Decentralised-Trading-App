@@ -45,7 +45,83 @@ function Wallet() {
 
       <div className="wallet-main-container">
         <div className="wallet-left-container">
-          <h1> Trade History </h1>
+          <h1> Transaction History </h1>
+          <div>
+          <table className="wallet-table">
+            <tr>
+              <th>Date / Time</th>
+              <th>Asset</th>
+              <th>Amount</th>
+              <th>Value</th>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:15am</td>
+              <td>SwinCoin</td>
+              <td>0.20</td>
+              <td>$500.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:15am</td>
+              <td>SwinCoin</td>
+              <td>0.30</td>
+              <td>$4300.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:10am</td>
+              <td>SwinCoin</td>
+              <td>4.20</td>
+              <td>$530.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:32am</td>
+              <td>SwinCoin</td>
+              <td>13.20</td>
+              <td>$120.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:43am</td>
+              <td>SwinCoin</td>
+              <td>51.20</td>
+              <td>$60.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:12am</td>
+              <td>SwinCoin</td>
+              <td>3.20</td>
+              <td>$900.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:34am</td>
+              <td>SwinCoin</td>
+              <td>23.20</td>
+              <td>$522.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:11am</td>
+              <td>SwinCoin</td>
+              <td>34.20</td>
+              <td>$983.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:36am</td>
+              <td>SwinCoin</td>
+              <td>11.20</td>
+              <td>$32.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:32am</td>
+              <td>SwinCoin</td>
+              <td>92.20</td>
+              <td>$433.00 AUD</td>
+            </tr>
+            <tr>
+              <td>19/08/2023 10:31am</td>
+              <td>SwinCoin</td>
+              <td>2.20</td>
+              <td>$86.00 AUD</td>
+            </tr>
+          </table>
+          </div>
         </div>
 
         <div className="wallet-right-container">
@@ -60,7 +136,6 @@ function Wallet() {
             <div>
               <label htmlFor="coin3">Coin 3</label>
             </div>
-            
             </div>
         </div>
       </div>`
