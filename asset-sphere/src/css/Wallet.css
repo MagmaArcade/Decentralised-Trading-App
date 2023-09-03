@@ -10,7 +10,7 @@ SID:	103865794
 This Page is the style elements for the Wallet page
 */
 
-.wallet {
+.Wallet {
     background-color: #262626;
     min-height: 100vh;
     display: flex;
@@ -22,9 +22,9 @@ This Page is the style elements for the Wallet page
     -moz-osx-font-smoothing: grayscale;
   }
   
-.main_container {
+.wallet-main-container {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* 2/3 for left__container, 1/3 for right__container */
+  grid-template-columns: 2fr 1fr; /* 2/3 for left-container, 1/3 for right-container */
   align-items: center;
   justify-content: center;
   margin: 0 auto;
@@ -32,7 +32,7 @@ This Page is the style elements for the Wallet page
   width: 100%;
 }
 
-.left_container {
+.wallet-left-container {
   background-color: #3a3a3a;
   height: 70vh;
   width: 100%; /* Adjusted to take up 100% of the grid column */
@@ -44,7 +44,7 @@ This Page is the style elements for the Wallet page
   border-radius: 10px; /* Adds roundness to container */
 }
 
-.right_container {
+.wallet-right-container {
   background-color: #79F5AE;
   height: 70vh;
   width: 100%; /* Adjusted to take up 100% of the grid column */
@@ -56,7 +56,7 @@ This Page is the style elements for the Wallet page
   border-radius: 10px; /* Adds roundness to container */
 }
 
-.trade_btn {
+.wallet-trade_btn {
   background-color: #262626;
   color: #fff;
   padding: 1rem 3rem;
@@ -65,7 +65,7 @@ This Page is the style elements for the Wallet page
   cursor: pointer;
 }
 
-#wallet_id_container p {
+#wallet-id-container p {
   color: white;
   font-size: 1.3em;
   width: 100%;

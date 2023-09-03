@@ -10,7 +10,7 @@ SID:	103865794
 This Page is the style elements for the Trade page
 */
 
-.trade {
+.Trade {
     background-color: #262626;
     min-height: 100vh;
     display: flex;
@@ -22,9 +22,9 @@ This Page is the style elements for the Trade page
     -moz-osx-font-smoothing: grayscale;
   }
   
-  .main_container {
+  .trade-main-container {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* 2/3 for left__container, 1/3 for right__container */
+    grid-template-columns: 2fr 1fr; /* 2/3 for left-container, 1/3 for right-container */
     align-items: center;
     justify-content: center;
     margin: 0 auto;
@@ -36,7 +36,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Dimensions and properties of left container */
-  .left_container { 
+  .trade-left-container { 
     background-color: #3a3a3a;
     height: 70vh;
     width: 100%;
@@ -51,7 +51,7 @@ This Page is the style elements for the Trade page
   }
   
     /* Dimensions and properties of right container */
-  .right_container {
+  .trade-right-container {
     background-color: #79F5AE;
     height: 70vh;
     width: 100%;
@@ -67,53 +67,53 @@ This Page is the style elements for the Trade page
 
   /* Media query for smaller screens */
 @media (max-width: 1400px) {
-    .main_container {
+    .trade-main-container {
       grid-template-columns: 1fr; /* Single column layout for small screens */
     }
-    .left_container,
-    .right_container {
+    .trade-left-container,
+    .trade-right-container {
       width: 100%; /* Both containers take full width */
     }
 
     /* Resizing for appearence and design */
-    .left_container
+    .trade-left-container
     {
         height: 110%;
     }
 
-    .right_container
+    .trade-right-container
     {
         max-width: 1000px;
     }
 
-    .label{
+    .trade-label{
         margin-right: 20rem;
     }
 
-    .statistics, .coin_statistics
+    .Statistics, .CoinStatistics
     {
         align-items: center;
         margin-left: 4rem;
     }
 
-    .coin_value
+    .trade-asset-value
     {
         margin-left: -6rem;
     }
 
-    .Trade_Low, .date_btns_gap
+    .Trade-Low, .date-btns-gap
     {
         margin-left: 2rem;
     }
 }
   
-  .button_row {
+  .button-row {
     display: flex;
     gap: 50px;
   }
   
   /* Properties for BUY / SELL buttons since they're identical */
-  .main_btn {
+  .trade-main-btn {
     background-color: #262626;
     color: #fff;
     padding: 1rem 3rem;
@@ -125,7 +125,7 @@ This Page is the style elements for the Trade page
     margin-bottom: 2rem;
   }
   
-  .purchase_btn {
+  .trade-purchase-btn {
     background-color: #262626;
     color: #fff;
     padding: 1rem 7.5rem;
@@ -136,7 +136,7 @@ This Page is the style elements for the Trade page
     margin-bottom: 2rem;
   }
   
-.input_container {
+.trade-input-container {
     display: flex;
     flex-direction: column; /* Change to column to place "Amount" above input */
     align-items: center;
@@ -150,7 +150,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Updating the label styles */
-  .label {
+  .trade-label {
     font-size: 1rem;
     color: #000000;
     order: 2; /* Move label below input */
@@ -159,7 +159,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Updates info about the input style */
-  .input_container input[type="number"] { /* ensures that only integers are accepted into the input */
+  .trade-input-container input[type="number"] { /* ensures that only integers are accepted into the input */
     width: 15rem;
     height: 5rem;
     font-size: 2rem;
@@ -172,7 +172,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Styles the AUD text on the right side of the input */
-  .input_container::after {
+  .trade-input-container::after {
     content: "AUD";
     font-size: 1.5rem; /* Makes AUD text smaller */
     color: #000000;
@@ -182,14 +182,14 @@ This Page is the style elements for the Trade page
   }
 
     /* Remove number input spinners */
-.input_container input[type="number"]::-webkit-inner-spin-button {
+.trade-input-container input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     appearance: none;
     margin: 0;
   }
 
 
-  .dollar_label {
+  .trade-dollar-label {
     position: absolute;
     left: 10px; /* Adjust the left position to place the '$' label inside */
     bottom: 35px; /* Adjust the bottom position to place it inside the border */
@@ -198,7 +198,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Heading styling */
-  .right_container_header {
+  .trade-right-container_header {
     color: #000; 
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -206,21 +206,21 @@ This Page is the style elements for the Trade page
   
   /* Heading 3 styling */
 
-  .trade_top h3 {
+  .Trade-Top h3 {
     margin: 0;
   }
   
-  .bitcoin_text {
+  .trade-asset-text {
     font-size: 1.5rem;
     color: white;
   }
   
-  .btc_text {
+  .trade-btc-text {
     color: #717171;
   }
   
-    /* Change Coin styling and positioning*/
-  .trade_top button {
+    /* Change Asset styling and positioning*/
+  .Trade-Top button {
     background-color: #79F5AE;
     color: #000000;
     padding: 1rem 2rem;
@@ -230,22 +230,22 @@ This Page is the style elements for the Trade page
     margin-left: 35rem; /* Reposition Button */
 }
   
-  .coin_value {
+  .trade-asset-value {
     font-size: 2.5rem;
     color: white;
   }
   
-  .currency {
+  .trade-currency {
     color: #717171;
   }
 
   /* Gap between date buttons */
-  .date_btns_gap{
+  .date-btns-gap{
     display: flex;
     gap: 15px;
   }
 
-  .date_btn{
+  .date-btn{
     background-color: #3a3a3a;
     color: #fff;
     padding: 0.25rem 0.35rem;
@@ -254,7 +254,7 @@ This Page is the style elements for the Trade page
     cursor: pointer;
   }
 
-  .trade_top {
+  .Trade-Top {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -264,23 +264,23 @@ This Page is the style elements for the Trade page
     margin-right: 1.5rem;
   }
 
-  .trade_middle {
+  .Trade-Middle {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
-    margin-left: -36rem; /* Positioning the Coin Value*/
-    margin-top: -1rem; /* Positioning the Coin Value*/
+    margin-left: -36rem; /* Positioning the Asset Value*/
+    margin-top: -1rem; /* Positioning the Asset Value*/
   }
 
-  .trade_low {
+  .Trade-Low {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
-    margin-top: -2rem; /* Positioning the Coin Value*/
-    margin-left: 40rem; /* Positioning the Coin Value*/
+    margin-top: -2rem; /* Positioning the Asset Value*/
+    margin-left: 40rem; /* Positioning the Asset Value*/
   }
   
-  .statistics{
+  .Statistics{
     text-align: center;
     width: 50rem;
     margin-top: 3rem;
@@ -289,7 +289,7 @@ This Page is the style elements for the Trade page
     position: relative;
   }
 
-  .coin_statistics {
+  .CoinStatistics {
     max-width: 100%;
     height: auto;
     width: 100%; /* Set the width to 100% to fill the container */
