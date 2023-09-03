@@ -23,7 +23,7 @@ This Page is the style elements for the Login page
     -moz-osx-font-smoothing: grayscale;
   } 
   
-  .main_container {
+  .main-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -35,7 +35,7 @@ This Page is the style elements for the Login page
     padding: 20px 50px; /* Adjusted padding values */
   }
   
-  .main_content {
+  .main-content {
     background-color: #262626;
     height: 80%; /* Increase height */
     width: 80%;
@@ -46,31 +46,31 @@ This Page is the style elements for the Login page
   }
   
   
-  .main_content h1 {
+  .main-content h1 {
     color: white;
     font-size: 2rem;
     margin-top: 1rem; /* Adjust top margin */
     margin-bottom: 0.5rem; /* Adjust bottom margin */
   }
   
-  .login_form {
+  .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 1rem; /* Adjust top margin */  }
   
-  .login_form input {
+  .login-form input {
     margin-top: 1rem;
     margin-bottom: 2.5rem; /* Adjust margin */
     padding: 0.75rem;
     width: 200%; /* Make the inputs 2x wider */
   }
   
-  .form_container {
+  .form-container {
     margin-top: 2rem; /* Add margin between buttons and text */
   }
 
-  .main_btn {
+  .main-btn {
     background-color: #262626;
     color: #fff; /* Set the text color */
     padding: 0.75rem 1.5rem; /* Adjust padding */
@@ -82,14 +82,14 @@ This Page is the style elements for the Login page
     font-size: 1rem; /* Set the font size to match previous style */
   }
 
-  .main_btn a {
+  .main-btn a {
     color: #fff; /* Set the text color */
     /* padding: 0.5rem 1rem; /* Adjust padding */
     cursor: pointer;
     text-decoration: none; /* Remove underlines */
   }
   
-  .btn_undertext {
+  .btn-undertext {
     color: #79F5AE;
     font-size: 0.75rem; /* Adjust font size */
     font-style: italic; /* Make the text italic */
@@ -99,23 +99,23 @@ This Page is the style elements for the Login page
   /* login.css */
   /* ... (previous styles) */
   
-  .btn_ndertext a {
+  .btn-ndertext a {
     color: #79F5AE; /* Set the link text color */
     text-decoration: none; /* Remove underlines (default link style) */
     font-size: 0.75rem; /* Adjust font size to match existing text */
     margin-bottom: 8rem; /* Add larger gap at the bottom */
   }
   
-  .btn_undertext a:hover {
+  .btn-undertext a:hover {
     text-decoration: underline; /* Add underline on hover if desired */
   }
     
   
-  .main_img_container {
+  .main-img-container {
     text-align: center;
   }
   
-  .main_img_card {
+  .main-img-card {
     float: left 40%;
     height: 300px;
     width: 300px;

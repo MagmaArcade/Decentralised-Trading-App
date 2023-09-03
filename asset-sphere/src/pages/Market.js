@@ -16,8 +16,6 @@ import "../css/Market.css"; // import the css syles
 function Market() {
   return (
 	<div className="market">
-	
-	{/* */}
 		<div className="search">
 			<Grid
 				direction="row"
@@ -25,23 +23,23 @@ function Market() {
 				alignItems="right"
 				container spacing={2}>
 
-				<Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
+				<Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>  {/* space add an empty grid element that consume the empty grid spaces */}
 
 				<Grid item xs={2}>
 				<item> 
-					<TextField color="success" sx={{ backgroundColor: '#3b3b3b'}} focused />
+					<TextField color="success" sx={{ backgroundColor: '#3b3b3b'}} focused /> {/* search bar, will post info to table to get desired search */}
 				</item>
 				</Grid>
 
 				<Grid item xs={2}>
 				<item> 
-					<button className="search_btn">Search</button>
+					<button className="search-btn">Search</button>
 				</item>
 				</Grid>
 			</Grid>
 		</div>
 
-		<table>
+		<table>  {/* in this table element, all avaliable assets will be displayed */}
 			<tr>
 				<th>Date</th>
 				<th>Price</th>
@@ -137,18 +135,6 @@ function Market() {
 				<td>$2.50</td>
 				<td className="up">6.25%</td>
 				<td>32.03B</td>
-			</tr>
-			<tr>
-				<td>LinkStar</td>
-				<td>$25.00</td>
-				<td className="down">-1.50%</td>
-				<td>425.92M</td>
-			</tr>
-			<tr>
-				<td>LinkStar</td>
-				<td>$25.00</td>
-				<td className="down">-1.50%</td>
-				<td>425.92M</td>
 			</tr>
 		</table>
 	</div>

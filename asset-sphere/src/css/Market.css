@@ -16,7 +16,7 @@ This Page is the style elements for the Market page
 	height: 70em;  /* this is the height of the page*/
 }
 
-#img_style {
+#img-style {
 	border-style: solid;
   	border-color: #79F5AE;
  	 margin: auto;
@@ -51,7 +51,7 @@ This Page is the style elements for the Market page
 	color: red;
 }
 
-.search_btn {
+.search-btn {
 	background-color: #262626;
 	color: #fff;
 	padding: 1rem 3rem;

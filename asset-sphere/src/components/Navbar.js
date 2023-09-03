@@ -29,7 +29,7 @@ function Navbar() {
 
 			<Grid item xs={2}>
 				<item> 
-					<Link to="/Home">
+					<Link to="/Home"> {/* will route user to the home page */}
 						<img
 							src={logo}
 							alt={"Home"}
@@ -40,33 +40,34 @@ function Navbar() {
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="page_links">
+			<Grid item xs={1.5} className="page-links">
 				<item>
-					<Link to="/Market" > Market </Link>
+					<Link to="/Market" > Market </Link> {/* routes user to the market page */}
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="page_links">
+			<Grid item xs={1.5} className="page-links">
 				<item>
-					<Link to="/Dashboard"> Dashboard </Link>
+					<Link to="/Dashboard"> Dashboard </Link> {/* Dashboard will eventually reroute to login if their is no user account */}
 				</item>		
 			</Grid>
 			
-			<Grid item xs={1.5} className="page_links">
+			<Grid item xs={1.5} className="page-links">
 				<item>
-					<Link to="/Wallet"> Wallet </Link>
+					<Link to="/Wallet"> Wallet </Link> {/* Wallet will eventually reroute to login if their is no user account */}
 				</item>
 			</Grid>
 
-			<Grid item xs={1.5} className="page_links">
+			<Grid item xs={1.5} className="page-links">
 				<item>
-					<Link to="/Trade"> Trade </Link>
+					<Link to="/Trade"> Trade </Link> {/* Trade will eventually reroute to login if their is no user account */}
 				</item>
 			</Grid>
 			
 			<Grid item xs={2}>
 				<item> 
-					<Link to="/Login"> <img
+					<Link to="/Login"> {/* will route user to the login page */}
+						<img 
 						src={profile}
 						alt={"Login"}	
 						align="right"

@@ -20,17 +20,17 @@ function Trade() {
         <div className="trade-left-container">
           <div className="trade-top">
             <p>
-              <span className="trade-asset-text">Swincoin</span>              
-              <span className="trade-btc-text">SWN</span>
+              <span className="trade-asset-text">Swincoin</span> {/* asset name */}        
+              <span className="trade-btc-text">SWN</span> {/* asset code */}
             </p>
-            <button>Change Asset</button>
+            <button>Change Asset</button> {/* will open up a list of coins the user can get more details for */}
           </div>
-          <div className="trade-Middle">
+          <div className="trade-middle">
             <p>
-              <span className="trade-asset-value">$36,021.65</span> <span className="trade-currency">AUD</span>
+              <span className="trade-asset-value">$36,021.65</span> <span className="trade-currency">AUD</span> {/* value of 1 volume of the asset */}
             </p>
           </div>
-          <div className="trade-Low">
+          <div className="trade-low">   {/* these button will adjust the visable period of market perfomance on the graph */}
             <div className="date-btns-gap">
               <button className="date-btn">1D</button>
               <button className="date-btn">1W</button>
@@ -38,8 +38,8 @@ function Trade() {
               <button className="date-btn">1Y</button>
             </div>
           </div>
-          <div className="Statistics">
-            <img src={CoinStatistics} alt="Stats" className="CoinStatistics"/>
+          <div className="statistics">
+            <img src={CoinStatistics} alt="Stats" className="coin-statistics"/> {/* this section will hold a graph of the market performance of the selected coin */}
           </div>
         </div>
         <div className="trade-right-container">
