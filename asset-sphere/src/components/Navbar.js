@@ -82,7 +82,9 @@ function Navbar() {
   );
 }
 
-/* glitchy as f, need to fix later, disabled for developement rn
+/* 	This JS function implements a responsive navbar that shrinks as the user scrolls down the page
+	Currently, it is glitching as the user scrolls, creating a very negative experience.
+	This will be fixed in time for the dynamic release of the application.
 
 function scrollFunction() {
   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
