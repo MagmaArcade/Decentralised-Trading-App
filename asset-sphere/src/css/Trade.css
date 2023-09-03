@@ -112,7 +112,7 @@ this Page is the style elements for the trade page
     gap: 50px;
   }
   
-  /* Properties for BUY / SELL buttons since they're identical */
+  /* Properties for BUY / SELL buttons since they're identical. These buttons were removed from the webpage since it didnt fit the criteria */
   .trade-main-btn {
     background-color: #262626;
     color: #fff;
@@ -155,7 +155,7 @@ this Page is the style elements for the trade page
     color: #000000;
     order: 2; /* Move label below input */
     margin-top: -1.75rem; /* Adjust the margin to place the label outside the border */
-    margin-left: -15rem;
+    margin-left: -12rem;
   }
   
   /* Updates info about the input style */
@@ -299,4 +299,28 @@ this Page is the style elements for the trade page
     width: 100%; /* Set the width to 100% to fill the container */
   }
 
+  /* Style for the file upload container */
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
   
+  /* Style for the file input */
+  #fileInput {
+    display: none; /* Hide the input element */
+  }
+  
+  /* Style for the file label/button */
+  .file-label {
+    background-color: #262626;
+    color: #fff;
+    padding: 1rem 3.5rem;
+    border: 1px solid #79F5AE;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+  }
