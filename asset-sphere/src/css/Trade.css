@@ -71,6 +71,11 @@ This Page is the style elements for the Trade page
       width: 100%; /* Both containers take full width */
     }
 
+    .left__container
+    {
+        height: 110%;
+    }
+
     .right__container
     {
         max-width: 1000px;
