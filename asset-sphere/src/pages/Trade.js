@@ -17,51 +17,51 @@ import CoinStatistics from '../assets/CoinStatistics.png'; // import images
 function Trade() {
   return (
     <div className="Trade">
-      <div className="main__container">
-        <div className="left__container">
-          <div className="Trade__Top">
+      <div className="trade-main-container">
+        <div className="trade-left-container">
+          <div className="Trade-Top">
             <p>
-              <span className="asset-text">Swincoin</span> <span className="btc__text">SWN</span>
+              <span className="trade-asset-text">Swincoin</span> <span className="trade-btc-text">SWN</span>
             </p>
             <button>Change Asset</button>
           </div>
-          <div className="Trade__Middle">
+          <div className="Trade-Middle">
             <p>
-              <span className="asset-value">$36,021.65</span> <span className="currency">AUD</span>
+              <span className="trade-asset-value">$36,021.65</span> <span className="trade-currency">AUD</span>
             </p>
           </div>
-          <div className="Trade__Low">
-            <div className="date__btns__gap">
-              <button className="date__btn">1D</button>
-              <button className="date__btn">1W</button>
-              <button className="date__btn">1M</button>
-              <button className="date__btn">1Y</button>
+          <div className="Trade-Low">
+            <div className="date-btns-gap">
+              <button className="date-btn">1D</button>
+              <button className="date-btn">1W</button>
+              <button className="date-btn">1M</button>
+              <button className="date-btn">1Y</button>
             </div>
           </div>
           <div className="Statistics">
             <img src={CoinStatistics} alt="Stats" className="CoinStatistics"/>
           </div>
         </div>
-        <div className="right__container">
+        <div className="trade-right-container">
           <h1>Trade Currency</h1>
-          <div className="button__row">
-            <button className="main__btn">BUY</button>
-            <button className="main__btn">SELL</button>
+          <div className="button-row">
+            <button className="trade-main-btn">BUY</button>
+            <button className="trade-main-btn">SELL</button>
           </div>
           <div>
-            <label className="label" htmlFor="amount">Amount</label>
+            <label className="trade-label" htmlFor="trade-amount">Amount</label>
           </div>
-          <div className="input__container">
+          <div className="trade-input-container">
             <input
               type="number"
               id="amount"
               name="amount"
               placeholder=""
             />
-            <label className="dollar-label">$</label>
+            <label className="trade-dollar-label">$</label>
           </div>
           <div>
-            <button className="purchase__btn">PURCHASE</button>
+            <button className="trade-purchase-btn">PURCHASE</button>
           </div>
         </div>
       </div>

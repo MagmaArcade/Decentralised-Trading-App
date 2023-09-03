@@ -22,7 +22,7 @@ This Page is the style elements for the Trade page
     -moz-osx-font-smoothing: grayscale;
   }
   
-  .main-container {
+  .trade-main-container {
     display: grid;
     grid-template-columns: 2fr 1fr; /* 2/3 for left-container, 1/3 for right-container */
     align-items: center;
@@ -36,7 +36,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Dimensions and properties of left container */
-  .left-container { 
+  .trade-left-container { 
     background-color: #3a3a3a;
     height: 70vh;
     width: 100%;
@@ -51,7 +51,7 @@ This Page is the style elements for the Trade page
   }
   
     /* Dimensions and properties of right container */
-  .right-container {
+  .trade-right-container {
     background-color: #79F5AE;
     height: 70vh;
     width: 100%;
@@ -67,26 +67,26 @@ This Page is the style elements for the Trade page
 
   /* Media query for smaller screens */
 @media (max-width: 1400px) {
-    .main-container {
+    .trade-main-container {
       grid-template-columns: 1fr; /* Single column layout for small screens */
     }
-    .left-container,
-    .right-container {
+    .trade-left-container,
+    .trade-right-container {
       width: 100%; /* Both containers take full width */
     }
 
     /* Resizing for appearence and design */
-    .left-container
+    .trade-left-container
     {
         height: 110%;
     }
 
-    .right-container
+    .trade-right-container
     {
         max-width: 1000px;
     }
 
-    .label{
+    .trade-label{
         margin-right: 20rem;
     }
 
@@ -96,7 +96,7 @@ This Page is the style elements for the Trade page
         margin-left: 4rem;
     }
 
-    .asset-value
+    .trade-asset-value
     {
         margin-left: -6rem;
     }
@@ -113,7 +113,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Properties for BUY / SELL buttons since they're identical */
-  .main-btn {
+  .trade-main-btn {
     background-color: #262626;
     color: #fff;
     padding: 1rem 3rem;
@@ -125,7 +125,7 @@ This Page is the style elements for the Trade page
     margin-bottom: 2rem;
   }
   
-  .purchase-btn {
+  .trade-purchase-btn {
     background-color: #262626;
     color: #fff;
     padding: 1rem 7.5rem;
@@ -136,7 +136,7 @@ This Page is the style elements for the Trade page
     margin-bottom: 2rem;
   }
   
-.input-container {
+.trade-input-container {
     display: flex;
     flex-direction: column; /* Change to column to place "Amount" above input */
     align-items: center;
@@ -150,7 +150,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Updating the label styles */
-  .label {
+  .trade-label {
     font-size: 1rem;
     color: #000000;
     order: 2; /* Move label below input */
@@ -159,7 +159,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Updates info about the input style */
-  .input-container input[type="number"] { /* ensures that only integers are accepted into the input */
+  .trade-input-container input[type="number"] { /* ensures that only integers are accepted into the input */
     width: 15rem;
     height: 5rem;
     font-size: 2rem;
@@ -172,7 +172,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Styles the AUD text on the right side of the input */
-  .input-container::after {
+  .trade-input-container::after {
     content: "AUD";
     font-size: 1.5rem; /* Makes AUD text smaller */
     color: #000000;
@@ -182,14 +182,14 @@ This Page is the style elements for the Trade page
   }
 
     /* Remove number input spinners */
-.input-container input[type="number"]::-webkit-inner-spin-button {
+.trade-input-container input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     appearance: none;
     margin: 0;
   }
 
 
-  .dollar-label {
+  .trade-dollar-label {
     position: absolute;
     left: 10px; /* Adjust the left position to place the '$' label inside */
     bottom: 35px; /* Adjust the bottom position to place it inside the border */
@@ -198,7 +198,7 @@ This Page is the style elements for the Trade page
   }
   
   /* Heading styling */
-  .right-container_header {
+  .trade-right-container_header {
     color: #000; 
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -210,12 +210,12 @@ This Page is the style elements for the Trade page
     margin: 0;
   }
   
-  .asset-text {
+  .trade-asset-text {
     font-size: 1.5rem;
     color: white;
   }
   
-  .btc-text {
+  .trade-btc-text {
     color: #717171;
   }
   
@@ -230,12 +230,12 @@ This Page is the style elements for the Trade page
     margin-left: 35rem; /* Reposition Button */
 }
   
-  .asset-value {
+  .trade-asset-value {
     font-size: 2.5rem;
     color: white;
   }
   
-  .currency {
+  .trade-currency {
     color: #717171;
   }
 
