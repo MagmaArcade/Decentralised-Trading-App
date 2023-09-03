@@ -7,7 +7,7 @@ SID:	  103865794
 		    103995882
 		    103992223
 */
-// this is the Trade page. this page is view coin market history, including options to buy and sell.
+// this is the Trade page. this page is view asset market history, including options to buy and sell.
 
 import React from "react";
 import { Link } from "react-router-dom"; // import Link from react-router-dom
@@ -21,13 +21,13 @@ function Trade() {
         <div className="left__container">
           <div className="Trade__Top">
             <p>
-              <span className="bitcoin__text">Bitcoin</span> <span className="btc__text">BTC</span>
+              <span className="asset-text">Swincoin</span> <span className="btc__text">SWN</span>
             </p>
-            <button className="Trade__Top__btn">Change Coin</button>
+            <button>Change Asset</button>
           </div>
           <div className="Trade__Middle">
             <p>
-              <span className="coin__value">$36,021.65</span> <span className="currency">AUD</span>
+              <span className="asset-value">$36,021.65</span> <span className="currency">AUD</span>
             </p>
           </div>
           <div className="Trade__Low">
