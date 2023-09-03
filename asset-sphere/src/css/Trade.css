@@ -30,31 +30,35 @@ This Page is the style elements for the Trade page
     margin: 0 auto;
     height: 100%;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1400px; /* Ensures that both right and left container dont go beyond this width */
     padding: 50px 20px; /* Adjusted padding */
-    gap: 50px;
+    gap: 50px; /* Gap between containers*/
   }
   
   .left__container {
     background-color: #3a3a3a;
     height: 70vh;
     width: 100%;
-    display: flex;
+    max-width: 1000px;
+    display: block;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     border-radius: 10px;
+    margin: 0 auto;
   }
   
   .right__container {
     background-color: #79F5AE;
     height: 70vh;
     width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     border-radius: 10px;
+    margin: 0 auto;
   }
   
   .button__row {
@@ -151,17 +155,6 @@ This Page is the style elements for the Trade page
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-
-.Trade__Top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    align-self: flex-start;
-    gap: 560px; /* Adjust the gap as needed */
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-  }
   
   .Trade__Top h3 {
     margin: 0;
@@ -183,15 +176,8 @@ This Page is the style elements for the Trade page
     border: 1px solid #79F5AE;
     border-radius: 18px;
     cursor: pointer;
-  }
-  
-  .Trade__Middle {
-    display: flex;
-    align-items: center; /* Center elements vertically */
-    padding: 20px;
-    margin-left: -55rem; /* Positioning the Coin Value*/
-    margin-top: -18rem; /* Positioning the Coin Value*/
-  }
+    margin-left: 35rem;
+}
   
   .coin__value {
     font-size: 2.5rem;
@@ -216,20 +202,38 @@ This Page is the style elements for the Trade page
     cursor: pointer;
   }
 
-  .Trade__Low {
+  .Trade__Top {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    align-self: flex-start;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .Trade__Middle {
+    display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
-    margin-top: -10rem; /* Positioning the Coin Value*/
-    margin-left: 20rem; /* Positioning the Coin Value*/
+    margin-left: -36rem; /* Positioning the Coin Value*/
+    margin-top: -1rem; /* Positioning the Coin Value*/
+  }
+
+  .Trade__Low {
+    display: block;
+    align-items: center; /* Center elements vertically */
+    padding: 20px;
+    margin-top: -2rem; /* Positioning the Coin Value*/
+    margin-left: 40rem; /* Positioning the Coin Value*/
   }
   
   .Statistics{
     text-align: center;
     width: 50rem;
-    margin-top: 10rem;
+    margin-top: 3rem;
     margin-left: 3rem;
-    position:absolute;
+    display: block;
   }
 
   .CoinStatistics {

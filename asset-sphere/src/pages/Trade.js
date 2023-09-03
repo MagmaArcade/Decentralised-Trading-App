@@ -14,7 +14,6 @@ import { Link } from "react-router-dom"; // import Link from react-router-dom
 import "../css/Trade.css";
 import CoinStatistics from '../assets/CoinStatistics.png'; // import images
 
-
 function Trade() {
   return (
     <div className="Trade">
@@ -24,7 +23,7 @@ function Trade() {
             <p>
               <span className="bitcoin__text">Bitcoin</span> <span className="btc__text">BTC</span>
             </p>
-            <button>Change Coin</button>
+            <button className="Trade__Top__btn">Change Coin</button>
           </div>
           <div className="Trade__Middle">
             <p>
@@ -67,7 +66,6 @@ function Trade() {
         </div>
       </div>
     </div>
-  );
+);
 }
-
 export default Trade;
