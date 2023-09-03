@@ -90,7 +90,7 @@ this Page is the style elements for the trade page
         margin-right: 20rem;
     }
 
-    .Statistics, .CoinStatistics
+    .statistics, .coin-statistics
     {
         align-items: center;
         margin-left: 4rem;
@@ -198,7 +198,7 @@ this Page is the style elements for the trade page
   }
   
   /* Heading styling */
-  .trade-right-container_header {
+  .trade-right-container-header {
     color: #000; 
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -269,7 +269,7 @@ this Page is the style elements for the trade page
     margin-right: 1.5rem;
   }
 
-  .trade-Middle {
+  .trade-middle {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
@@ -277,7 +277,7 @@ this Page is the style elements for the trade page
     margin-top: -1rem; /* Positioning the Asset Value*/
   }
 
-  .trade-Low {
+  .trade-low {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
@@ -285,7 +285,7 @@ this Page is the style elements for the trade page
     margin-left: 40rem; /* Positioning the Asset Value*/
   }
   
-  .Statistics{
+  .statistics{
     text-align: center;
     width: 50rem;
     margin-top: 3rem;
@@ -294,7 +294,7 @@ this Page is the style elements for the trade page
     position: relative;
   }
 
-  .CoinStatistics {
+  .coin-statistics {
     max-width: 100%;
     height: auto;
     width: 100%; /* Set the width to 100% to fill the container */

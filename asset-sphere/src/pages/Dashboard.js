@@ -15,26 +15,26 @@ import "../css/Dashboard.css" // import css styling
 function Dashboard() {
   return (
     <div className="dashboard">
-      <h2 className="section_headings">My Portfolio</h2>
+      <h2 className="section-headings">My Portfolio</h2>
       
       <div id="summary">
       </div>
 
-      <div className="small_data">
+      <div className="small-data">
         <p>Account Balance</p>
       </div>
-      <div className="small_data">
+      <div className="small-data">
         <p>Portfolio Value</p>
       </div>
-      <div className="small_data">
+      <div className="small-data">
         <p>Percentage Change</p>
       </div>
 
-      <div className="small_data">
+      <div className="small-data">
         <p>Pie chart of asset summary</p>
       </div>
 
-      <h2 className="section_headings">What's Hot</h2>
+      <h2 className="section-headings">What's Hot</h2>
       <div id="summary">
       </div>
 

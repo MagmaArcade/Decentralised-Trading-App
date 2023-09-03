@@ -20,7 +20,7 @@ h2 {
 	  font-size: 35px;
 }
 
-.main_btn {
+.main-btn {
   padding: 0.75rem 1.5rem; /* Adjust padding */
   border: 1px solid #79F5AE;
   border-radius: 10px;
@@ -29,7 +29,7 @@ h2 {
   margin-bottom: 3rem; /* Add larger gap at the bottom */
 }
   
-.main_btn button {
+.main-btn button {
   color: white;
 }
 

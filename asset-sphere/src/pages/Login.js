@@ -17,22 +17,22 @@ import "../css/Login.css"; // import css styling
 function Login() {
   return (
     <div className="login">
-      <div className="main_container">
-        <div className="main_content">
+      <div className="main-container">
+        <div className="main-content">
           <h1>Log In</h1>
-          <form className="login_form form_container">
+          <form className="login-form form-container">
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button type="submit" className="main_btn">
+            <button type="submit" className="main-btn">
               <Link to="/Dashboard">Log In</Link> {/* when login is validated, push to dashboard page */}	
             </button>
-            <p className="btn_undertext">
+            <p className="btn-undertext">
               Don't have an account? <Link to="/Register">Register here.</Link>
             </p>
           </form>
         </div>
-        <div className="main_img_container">
-          <div className="main_img_card"><img src={Coin} alt="Coin" /></div>
+        <div className="main-img-container">
+          <div className="main-img-card"><img src={Coin} alt="Coin" /></div>
         </div>
       </div>
     </div>

@@ -44,14 +44,14 @@ function Home() {
 					<Grid item xs={3}><noscript>This is a spacer for the grid</noscript></Grid>
 					<Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid>
 					<Grid item xs={2}>
-						<item className="main_btn">  {/* login in button, links to login page */}	
+						<item className="main-btn">  {/* login in button, links to login page */}	
 							<Link to="/Login">
 								<Button type="submit"> Login </Button>
 							</Link>
 						</item>
 					</Grid>
 					<Grid item xs={2}>
-						<item className="main_btn">  {/* register in button, register to login page */}	
+						<item className="main-btn">  {/* register in button, register to login page */}	
 							<Link to="/Register">
 								<Button type="submit"> Register </Button>
 							</Link>

@@ -59,7 +59,7 @@ This Page is the style elements for the Wallet page
   border-radius: 10px; /* Adds roundness to container */
 }
 
-.wallet-trade_btn {
+.wallet-trade-btn {
   background-color: #262626;
   color: #fff;
   padding: 1rem 3rem;

@@ -32,13 +32,13 @@ function Wallet() {
 
         <Grid item xs={2}>
           <item> 
-            <button className="wallet-trade_btn">Deposit</button>
+            <button className="wallet-trade-btn">Deposit</button>
           </item>
         </Grid>
 
         <Grid item xs={2}>
           <item> 
-            <button className="wallet-trade_btn">Withdrawl</button>
+            <button className="wallet-trade-btn">Withdrawl</button>
           </item>
         </Grid>
       </Grid>

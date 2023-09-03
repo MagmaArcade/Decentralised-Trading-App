@@ -33,7 +33,7 @@ function Market() {
 
 				<Grid item xs={2}>
 				<item> 
-					<button className="search_btn">Search</button>
+					<button className="search-btn">Search</button>
 				</item>
 				</Grid>
 			</Grid>

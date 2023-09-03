@@ -30,7 +30,7 @@ function Trade() {
               <span className="trade-asset-value">$36,021.65</span> <span className="trade-currency">AUD</span>
             </p>
           </div>
-          <div className="trade-Low">
+          <div className="trade-low">
             <div className="date-btns-gap">
               <button className="date-btn">1D</button>
               <button className="date-btn">1W</button>
@@ -38,8 +38,8 @@ function Trade() {
               <button className="date-btn">1Y</button>
             </div>
           </div>
-          <div className="Statistics">
-            <img src={CoinStatistics} alt="Stats" className="CoinStatistics"/>
+          <div className="statistics">
+            <img src={CoinStatistics} alt="Stats" className="coin-statistics"/>
           </div>
         </div>
         <div className="trade-right-container">

@@ -21,7 +21,7 @@ This Page is the style elements for the Dashboard page
 
 }
 
-.section_headings {
+.section-headings {
   font-size: 1.9em;
   text-align: left;
   margin-left: 8%;
@@ -34,7 +34,7 @@ This Page is the style elements for the Dashboard page
   margin-left: 8%;
 }
 
-.small_data {
+.small-data {
   height: 12em;
   width: 12em;
   background-color: white;
@@ -46,7 +46,7 @@ This Page is the style elements for the Dashboard page
   margin-bottom: 1em;
 }
 
-.small_data p {
+.small-data p {
   text-align: center;
   padding: 65px 0;
 }
