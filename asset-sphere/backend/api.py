@@ -75,3 +75,31 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 """
+
+
+w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
+
+
+@app.get("/")
+async def funcTest1():
+    # Ethereum settings
+    chain_id = 5777  
+    my_address = "0x7b185B320441c9Dfea450A7A5F9b130cA207be50"
+    private_key = "0x3c59ae2936753b6f732816c7cee51e277d1644ff0335a2f681ea5cbef7919169"
+
+    with open("./backend/SimpleStorage.sol", "r") as file:
+        simple_storage_file = file.read()
+
+    install_solc("0.6.0")
+    compiled_sol = compile_standard(
+        {
+            "language": "Solidity",
+            "sources": {"SimpleStorage.sol": {"content": simple_storage_file}},
+            "settings": {
+                "outputSelection": {
+                    "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
+                }
+            },
+        },
+        solc_version="0.6.0",
+    )
