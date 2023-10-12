@@ -8,10 +8,12 @@ SID:  	103865794
 	      103992223
 */
 
-import React from 'react';
+// Import libraries
+import React, { useState, useEffect } from 'react';
 import "./App.css"; // import css styling
 import { Grid, Box } from "@mui/material"; // import js elements from mui
 import { Routes, Route } from "react-router-dom"; // import routes for page navigation
+
 
 // import all relevent pages
 import Home from "./pages/Home";
