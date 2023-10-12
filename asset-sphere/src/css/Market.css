@@ -58,10 +58,21 @@ This Page is the style elements for the Market page
 	border: 1px solid #79F5AE;
 	border-radius: 10px;
 	cursor: pointer;
+	margin-left: 8px;
+}
+
+.myTextInput {
+    min-width: 200px;
 }
 
 .search {
 	padding-top: 2em;
 	padding-bottom: 1em;
+	margin-right: 9rem;
 }
 
+@media (max-width: 600px) {
+    .search-btn {
+        margin-left: 4px;
+    }
+}
