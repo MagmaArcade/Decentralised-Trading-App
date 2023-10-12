@@ -12,7 +12,7 @@ SID:	103865794
 import React, { useState } from 'react';
 import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js elements from mui
 import "../css/Market.css"; // import the css syles
-import axios from 'axios'; // import AXIOS for API integration
+import axios from 'axios'
 import * as d3 from 'd3';
 
 // Market application
@@ -24,6 +24,13 @@ function Market() {
 	  ];
 
 	// State for the selected asset in dropdown
+  	const [selectedAsset, setSelectedAsset] = useState('');
+
+  	// State for the search input
+  	const [searchTerm, setSearchTerm] = useState('');
+
+
+	// State variable for retrieving data from the API
   	const [allAssets, setAllAssets] = useState();
 
 	function loadDefaultTable() {
@@ -38,83 +45,147 @@ function Market() {
 
 	loadDefaultTable();
 
-	function tabulate(data, columns) {
-		var table = d3.select('body').append('table')
-		var thead = table.append('thead')
-		var	tbody = table.append('tbody');
-	
-		// append the header row
-		thead.append('tr')
-		  .selectAll('th')
-		  .data(columns).enter()
-		  .append('th')
-			.text(function (column) { return column; });
-	
-		// create a row for each object in the data
-		var rows = tbody.selectAll('tr')
-		  .data(data)
-		  .enter()
-		  .append('tr');
-	
-		// create a cell in each row for each column
-		var cells = rows.selectAll('td')
-		  .data(function (row) {
-			return columns.map(function (column) {
-			  return {column: column, value: row[column]};
-			});
-		  })
-		  .enter()
-		  .append('td')
-			.text(function (d) { return d.value; });
-	
-	  	return table;
-	}
-
-  	return (
-		<div className="market">
-			<div className="search">
-				<Grid
-					direction="row"
-					justifyContent="space-between"
-					alignItems="center"
-					container spacing={2}
-				>
-					{/* Left Section - Dropdown */}
-					<Grid item xs={4}>
-						<Select
-							value={selectedAsset}
-							onChange={(e) => setSelectedAsset(e.target.value)}
-							displayEmpty
-							color="success"
-							sx={{ backgroundColor: '#3b3b3b' }}
-						>
-							<MenuItem value="" disabled>
-								Select Asset
-							</MenuItem>
-							{assets.map((asset) => (
-							<MenuItem value={asset} key={asset}>
-								{asset}
-							</MenuItem>
-							))}
-						</Select>
-					</Grid>
-					{/* Right Section - Search */}
-					<Grid item xs={5} container justifyContent="flex-end" alignItems="center">
-						<Grid item xs={6}>
-							<TextField className="myTextInput" color="success" sx={{ backgroundColor: '#3b3b3b' }} focused />
-						</Grid>
-						<Grid item xs={4}>
-							<button className="search-btn">Search</button>
-						</Grid>
-					</Grid>
-				</Grid>
-			</div>
-
-			<div>
-				{this.tabulate(allAssets, ['Asset ID', 'Name', 'Description', 'Price', 'Category'])}
-			</div>
+  return (
+	<div className="market">
+		<div className="search">
+			<Grid
+				direction="row"
+				justifyContent="space-between"
+				alignItems="center"
+				container spacing={2}
+			>
+       			{/* Left Section - Dropdown */}
+				<Grid item xs={4}>
+            		<Select
+              			value={selectedAsset}
+              			onChange={(e) => setSelectedAsset(e.target.value)}
+              			displayEmpty
+              			color="success"
+              			sx={{ backgroundColor: '#3b3b3b' }}
+            		>
+              			<MenuItem value="" disabled>
+                			Select Asset
+              			</MenuItem>
+              			{assets.map((asset) => (
+                		<MenuItem value={asset} key={asset}>
+                  			{asset}
+                		</MenuItem>
+              			))}
+            		</Select>
+          		</Grid>
+				{/* Right Section - Search */}
+				<Grid item xs={5} container justifyContent="flex-end" alignItems="center">
+          			<Grid item xs={6}>
+            			<TextField className="myTextInput" color="success" sx={{ backgroundColor: '#3b3b3b' }} focused />
+          			</Grid>
+          			<Grid item xs={4}>
+            			<button className="search-btn">Search</button>
+          			</Grid>
+        		</Grid>
+			</Grid>
 		</div>
-	);
+
+		<table>  {/* in this table element, all avaliable assets will be displayed */}
+			<tr>
+				<th>Asset</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Change (24HR)</th>
+				<th>Volume</th>
+			</tr>
+			<tr>
+				<td>SwinCoin</td>
+				<td>$92.00</td>
+				<td className="up">0.25%</td>
+				<td>100.00</td>
+			</tr>
+			<tr>
+				<td>ConzoCoin</td>
+				<td>$192.00</td>
+				<td className="down">0.55%</td>
+				<td>173.00</td>
+			</tr>
+			<tr>
+				<td>DiamondCoin</td>
+				<td>$0.83</td>
+				<td className="up">50.0%</td>
+				<td>1.00M</td>
+			</tr>
+			<tr>
+				<td>NebulaCoin</td>
+				<td>$2.58</td>
+				<td className="up">9.0%</td>
+				<td>1.31M</td>
+			</tr>
+			<tr>
+				<td>Saturnium</td>
+				<td>$250.00</td>
+				<td className="up">0.34%</td>
+				<td>820.00</td>
+			</tr>
+			<tr>
+				<td>FusionX</td>
+				<td>$0.01</td>
+				<td className="down">9.12%</td>
+				<td>90.00M</td>
+			</tr>
+			<tr>
+				<td>BitGem</td>
+				<td>$42,000.00</td>
+				<td className="up">5.20%</td>
+				<td>18.79M</td>
+			</tr>
+			<tr>
+				<td>EtherSphere</td>
+				<td>$3,500.00</td>
+				<td className="up">8.75%</td>
+				<td>117.64M</td>
+			</tr>
+			<tr>
+				<td>RipperCoin</td>
+				<td>$1.00</td>
+				<td className="down">-2.50%</td>
+				<td>55.71B</td>
+			</tr>
+			<tr>
+				<td>LiteGem</td>
+				<td>$150.00</td>
+				<td className="up">3.80%</td>
+				<td>66.31M</td>
+			</tr>
+			<tr>
+				<td>CardanoSphere</td>
+				<td>$2.50</td>
+				<td className="up">6.25%</td>
+				<td>32.03B</td>
+			</tr>
+			<tr>
+				<td>LinkStar</td>
+				<td>$25.00</td>
+				<td className="down">-1.50%</td>
+				<td>425.92M</td>
+			</tr>
+			<tr>
+				<td>Stellium</td>
+				<td>$0.50</td>
+				<td className="up">4.00%</td>
+				<td>22.36B</td>
+			</tr>
+			<tr>
+				<td>PolkaGem</td>
+				<td>$30.00</td>
+				<td className="down">-0.80%</td>
+				<td>1.02B</td>
+			</tr>
+			<tr>
+				<td>CardanoSphere</td>
+				<td>$2.50</td>
+				<td className="up">6.25%</td>
+				<td>32.03B</td>
+			</tr>
+		</table>
+	</div>
+);
 }
 
 export default Market;
