@@ -43,14 +43,6 @@ This Page is the style elements for the Market page
 	padding: 1em;
 }
 
-.up {
-	color: rgb(10, 221, 10);
-}
-
-.down {
-	color: red;
-}
-
 .search-btn {
 	background-color: #262626;
 	color: #fff;

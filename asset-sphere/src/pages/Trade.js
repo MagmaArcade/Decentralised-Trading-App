@@ -30,16 +30,8 @@ function Trade() {
               <span className="trade-asset-value">$36,021.65</span> <span className="trade-currency">AUD</span> {/* value of 1 volume of the asset */}
             </p>
           </div>
-          <div className="trade-low">   {/* these button will adjust the visable period of market perfomance on the graph */}
-            <div className="date-btns-gap">
-              <button className="date-btn">1D</button>
-              <button className="date-btn">1W</button>
-              <button className="date-btn">1M</button>
-              <button className="date-btn">1Y</button>
-            </div>
-          </div>
           <div className="statistics">
-            <img src={CoinStatistics} alt="Stats" className="coin-statistics"/> {/* this section will hold a graph of the market performance of the selected coin */}
+            <p>Description, etc.</p>
           </div>
         </div>
         <div className="trade-right-container">

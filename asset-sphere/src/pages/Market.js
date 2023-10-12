@@ -41,100 +41,28 @@ function Market() {
 
 		<table>  {/* in this table element, all avaliable assets will be displayed */}
 			<tr>
-				<th>Date</th>
+				<th>Name</th>
 				<th>Price</th>
-				<th>Change (24HR)</th>
-				<th>Volume</th>
+				<th>Description</th>
+				<th>Category</th>
 			</tr>
 			<tr>
 				<td>SwinCoin</td>
 				<td>$92.00</td>
-				<td className="up">0.25%</td>
-				<td>100.00</td>
+				<td>test desc</td>
+				<td>Coin</td>
 			</tr>
 			<tr>
 				<td>ConzoCoin</td>
 				<td>$192.00</td>
-				<td className="down">0.55%</td>
-				<td>173.00</td>
+				<td>test desc</td>
+				<td>Coin</td>
 			</tr>
 			<tr>
-				<td>DiamondCoin</td>
+				<td>DiamondPhoto</td>
 				<td>$0.83</td>
-				<td className="up">50.0%</td>
-				<td>1.00M</td>
-			</tr>
-			<tr>
-				<td>NebulaCoin</td>
-				<td>$2.58</td>
-				<td className="up">9.0%</td>
-				<td>1.31M</td>
-			</tr>
-			<tr>
-				<td>Saturnium</td>
-				<td>$250.00</td>
-				<td className="up">0.34%</td>
-				<td>820.00</td>
-			</tr>
-			<tr>
-				<td>FusionX</td>
-				<td>$0.01</td>
-				<td className="down">9.12%</td>
-				<td>90.00M</td>
-			</tr>
-			<tr>
-				<td>BitGem</td>
-				<td>$42,000.00</td>
-				<td className="up">5.20%</td>
-				<td>18.79M</td>
-			</tr>
-			<tr>
-				<td>EtherSphere</td>
-				<td>$3,500.00</td>
-				<td className="up">8.75%</td>
-				<td>117.64M</td>
-			</tr>
-			<tr>
-				<td>RipperCoin</td>
-				<td>$1.00</td>
-				<td className="down">-2.50%</td>
-				<td>55.71B</td>
-			</tr>
-			<tr>
-				<td>LiteGem</td>
-				<td>$150.00</td>
-				<td className="up">3.80%</td>
-				<td>66.31M</td>
-			</tr>
-			<tr>
-				<td>CardanoSphere</td>
-				<td>$2.50</td>
-				<td className="up">6.25%</td>
-				<td>32.03B</td>
-			</tr>
-			<tr>
-				<td>LinkStar</td>
-				<td>$25.00</td>
-				<td className="down">-1.50%</td>
-				<td>425.92M</td>
-			</tr>
-			<tr>
-				<td>Stellium</td>
-				<td>$0.50</td>
-				<td className="up">4.00%</td>
-				<td>22.36B</td>
-			</tr>
-			<tr>
-				<td>PolkaGem</td>
-				<td>$30.00</td>
-				<td className="down">-0.80%</td>
-				<td>1.02B</td>
-			</tr>
-			<tr>
-				<td>CardanoSphere</td>
-				<td>$2.50</td>
-				<td className="up">6.25%</td>
-				<td>32.03B</td>
+				<td>test desc</td>
+				<td>Photo?</td>
 			</tr>
 		</table>
 	</div>
