@@ -69,7 +69,11 @@ function Market() {
 
 		<table>  {/* in this table element, all avaliable assets will be displayed */}
 			<tr>
+<<<<<<< HEAD
 				<th>Asset</th>
+=======
+				<th>Name</th>
+>>>>>>> 5c79e93b3f056f8118cf5510d998a7508fed9d16
 				<th>Price</th>
 				<th>Change (24HR)</th>
 				<th>Volume</th>
