@@ -20,7 +20,7 @@ db_configuration = {
 }
 
 # Get Digital Asset information from the database, to be used for listing dynamic information
-@app.get("/assetinfo/")
+@app.get("/getassetinfo/")
 def get_asset_info():
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
