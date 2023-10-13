@@ -7,9 +7,22 @@ import mysql.connector # Python MySQL database connector
 from web3 import Web3 # Web3.js (smart contract interactor)
 from solcx import compile_standard, install_solc # Solcx (solidity intepreter for smart contracts)
 from fastapi.middleware.cors import CORSMiddleware # security mechanisms
+from datetime import datetime # get date time
+
 
 # FastAPI initialisation
 app = FastAPI()
+
+# Configure CORS to allow requests from your React app
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
+
+w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
 
 
 # MySQL database connection information (JSON format)
@@ -99,51 +112,11 @@ def get_asset_info():
         return assets
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
-    
-
-
-
-# defult fluff
-"""
-@app.get("/")
-async def funcTest1():
-    return "Hello, this is fastAPI data"
-
-@app.get("/jsonData")
-async def funcTest():
-    jsonResult = {
-        "name": "Your name",
-        "Uni-year": 2,
-        "isStudent": True,
-        "hobbies": ["reading", "swimming"]
-    }
-    return jsonResult
-
-
-
-@app.get("/student/{student_id}")
-async def getStudentId(student_id: int):
-    return {"student_id": student_id}
-
-"""
-
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods
-    allow_headers=["*"],  # Allow all headers
-)
-
-"""
-w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
-
 
 @app.get("/")
-async def funcTest1():
+async def start():
     # Ethereum settings
-    chain_id = 5777  
+    chain_id = 5777  # Chain ID for Ganache
     my_address = "0x7b185B320441c9Dfea450A7A5F9b130cA207be50"
     private_key = "0x3c59ae2936753b6f732816c7cee51e277d1644ff0335a2f681ea5cbef7919169"
 
@@ -163,4 +136,28 @@ async def funcTest1():
         },
         solc_version="0.6.0",
     )
+
+
+
+    # deploy contract
+
+
+
+    return "Contract deployed"
+
+"""
+
+@app.get("/purchase")
+async def purchase_product(
+    productId: int,
+    productName: str,
+    productDesc: str,
+    price: int,
+    productCategory: str
+):
+
+    timestamp = datetime.now().strftime("%d %b %Y %I:%M:%S %p %Z")
+
+    return {"message": "Purchase successful", "transactionHash": transaction_hash, "timestamp": timestamp}
+
 """
