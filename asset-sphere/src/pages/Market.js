@@ -80,7 +80,7 @@ function Market() {
 	};
 
 	const setSearchedAssetToSelected = () => {
-		setSelectedAsset(searchedAsset)
+		setSelectedAsset(searchedAsset) // Sets the searched asset (i.e. the text the user types into the box) as the 'selected asset' to then be passed to the API
 	}
 
 	// Return value (actual HTML code for the Market page)
@@ -104,19 +104,18 @@ function Market() {
 								{width: 150, 
 								height: 50, 
 								color: '#FFFFFF',
-								backgroundColor: '#3b3b3b' }
-							}
+								backgroundColor: '#3b3b3b' }}
 						>
 							<MenuItem value="" default>
 								Select Asset
 							</MenuItem>
-
+							
+							{/* Maps the values loaded into const assets at page loading into dropdown selection options */}
 							{assets.map((asset) => (
 							<MenuItem value={asset} key={asset}>
 								{asset}
 							</MenuItem>
 							))}
-
 						</Select>
 					</Grid>
 					

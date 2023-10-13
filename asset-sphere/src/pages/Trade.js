@@ -7,7 +7,7 @@ SID:	  103865794
 		    103995882
 		    103992223
 */
-// this is the trade page. this page is view asset market history, including options to buy and sell.
+// this is the trade page. this page is view singular asset breakdowns, including options to trade.
 
 import "../css/Trade.css"; // import css styling
 
