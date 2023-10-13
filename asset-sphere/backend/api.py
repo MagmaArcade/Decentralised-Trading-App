@@ -73,7 +73,6 @@ def get_asset_info(name: str):
         return {"error": f"MySQL returned an error: {err}"}
     
 
-
 # Get User information from the database, to be used for listing dynamic information
 @app.get("/getuserinfo/")
 def get_asset_info():
@@ -113,6 +112,7 @@ def get_asset_info():
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
 
+
 @app.get("/")
 async def start():
     # Ethereum settings
@@ -137,16 +137,13 @@ async def start():
         solc_version="0.6.0",
     )
 
-
-
     # deploy contract
-
-
-
     return "Contract deployed"
 
-"""
 
+
+
+"""
 @app.get("/purchase")
 async def purchase_product(
     productId: int,
