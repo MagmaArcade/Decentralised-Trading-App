@@ -23,8 +23,8 @@ import Wallet from "./pages/Wallet";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Trade from "./pages/Trade";
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 // App application
 function App() {

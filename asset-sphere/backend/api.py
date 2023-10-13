@@ -6,6 +6,7 @@ from fastapi import FastAPI # fastAPI modules
 import mysql.connector # Python MySQL database connector
 from web3 import Web3 # Web3.js (smart contract interactor)
 from solcx import compile_standard, install_solc # Solcx (solidity intepreter for smart contracts)
+from fastapi.middleware.cors import CORSMiddleware # security mechanisms
 
 # FastAPI initialisation
 app = FastAPI()
@@ -60,12 +61,6 @@ async def getStudentId(student_id: int):
     return {"student_id": student_id}
 
 
-
-"""
-from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
@@ -74,9 +69,8 @@ app.add_middleware(
     allow_methods=["*"],  # Allow all methods
     allow_headers=["*"],  # Allow all headers
 )
+
 """
-
-
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
 
 
@@ -103,3 +97,4 @@ async def funcTest1():
         },
         solc_version="0.6.0",
     )
+"""
