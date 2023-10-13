@@ -13,24 +13,34 @@ import React, { useState, useEffect } from 'react';
 import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js elements from mui
 import "../css/Market.css"; // import the css syles
 import axios from 'axios'
-import * as d3 from 'd3';
-import { render } from '@testing-library/react';
 
+// Get the initial asset list before the main application is exported/React loop starts
+const assets = [];
+axios.get('http://127.0.0.1:8000/getassetinfo/')
+		.then(response => {
+			Object.values(response.data).map(({ name }) => assets.push(name) );
+		})
+		.catch(error => {
+			console.error("Whoops, there was an error: ", error)
+		})
+
+	
 // Market application
 function Market() {
+
 	// State variable which stores every asset in the database
   	const [allAssets, setAllAssets] = useState('[]');
 
-	// State variable which stores the asset you're trying to filter/search by
+	// State variable which stores the asset you're trying to filter by
 	const [selectedAsset, setSelectedAsset] = useState('');
 
+	// State variable which stores the asset you're trying to search by
+	const [searchedAsset, setSearchedAsset] = useState('');
+
 	// String that calls the API to retrieve data from the database, optionally appending your selected asset
-	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString());
-
-	const assets = [
-		'SwinCoin', 'NickCoin'
-	];
-
+	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString())
+	
+	
 	// Function that will automatically (re)render the table upon startup/filter/search
 	useEffect(() => {
 		loadTableData();
@@ -60,6 +70,19 @@ function Market() {
 		})
 	}
 
+	// Handle user input React Hook changes outside of the return value (prevent infinite loops)
+	const onFilterChange = (e) => {
+		setSelectedAsset(e.target.value);
+	  };
+
+	const onSearchChange = (e) => {
+		setSearchedAsset(e.target.value);
+	};
+
+	const setSearchedAssetToSelected = () => {
+		setSelectedAsset(searchedAsset)
+	}
+
 	// Return value (actual HTML code for the Market page)
   	return (
 		<div className="market">
@@ -74,12 +97,17 @@ function Market() {
 					<Grid item xs={4}>
 						<Select
 							value={selectedAsset}
-							onChange={(e) => setSelectedAsset(e.target.value)}
+							onChange={onFilterChange}
 							displayEmpty
 							color="success"
-							sx={{ backgroundColor: '#3b3b3b' }}
+							sx={
+								{width: 150, 
+								height: 50, 
+								color: '#FFFFFF',
+								backgroundColor: '#3b3b3b' }
+							}
 						>
-							<MenuItem value="">
+							<MenuItem value="" default>
 								Select Asset
 							</MenuItem>
 
@@ -95,10 +123,17 @@ function Market() {
 					{/* Right Section - Search */}
 					<Grid item xs={5} container justifyContent="flex-end" alignItems="center">
 						<Grid item xs={6}>
-							<TextField className="myTextInput" color="success" sx={{ backgroundColor: '#3b3b3b' }} focused />
+							<TextField 
+								value={searchedAsset}
+								onChange={onSearchChange}
+								className="myTextInput"
+								color="success" 
+								sx={{ backgroundColor: '#3b3b3b' }} 
+								focused 
+								/>
 						</Grid>
 						<Grid item xs={4}>
-							<button className="search-btn">Search</button>
+							<button className="search-btn" onClick={setSearchedAssetToSelected}>Search</button>
 						</Grid>
 					</Grid>
 				</Grid>

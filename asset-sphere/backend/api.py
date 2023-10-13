@@ -40,7 +40,7 @@ def get_asset_info():
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
     
-# Get a specifical digital asset via name
+# Get a specified digital asset (via name)
 @app.get("/getassetinfo/{name}")
 def get_asset_info(name: str):
     try:
@@ -59,7 +59,6 @@ def get_asset_info(name: str):
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
     
-
 
 
 @app.get("/")
