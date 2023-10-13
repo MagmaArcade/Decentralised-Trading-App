@@ -18,39 +18,39 @@ import { render } from '@testing-library/react';
 
 // Market application
 function Market() {
-	const assets = [
-		'SwinCoin', 'ConzoCoin', 'DiamondCoin', 'NebulaCoin', 'Saturnium',
-		'FusionX', 'BitGem', 'EtherSphere', 'RipperCoin', 'LiteGem',
-		'CardanoSphere', 'LinkStar', 'Stellium', 'PolkaGem', 'CardanoSphere'
-	  ];
-
-	// State for the selected asset in dropdown
-  	const [selectedAsset, setSelectedAsset] = useState('');
-
-  	// State for the search input
-  	const [searchTerm, setSearchTerm] = useState('');
-
-	// State variable for retrieving data from the API
+	// State variable which stores every asset in the database
   	const [allAssets, setAllAssets] = useState('[]');
 
-	useEffect(() => {
-		loadDefaultTable();
-	}, []);
+	// State variable which stores the asset you're trying to filter/search by
+	const [selectedAsset, setSelectedAsset] = useState('');
 
-	function loadDefaultTable() {
-		axios.get('http://127.0.0.1:8000/getassetinfo/')
+	// String that calls the API to retrieve data from the database, optionally appending your selected asset
+	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString());
+
+	const assets = [
+		'SwinCoin', 'NickCoin'
+	];
+
+	// Function that will automatically (re)render the table upon startup/filter/search
+	useEffect(() => {
+		loadTableData();
+	}, [selectedAsset]);
+
+	// AXIOS function to request data from the API/Database
+	function loadTableData() {
+		axios.get(query)
 		.then(response => {
 			setAllAssets(response.data)
-			console.log(response.data)
 		})
 		.catch(error => {
 			console.error("Whoops, there was an error: ", error)
 		})
 	}
 
-	const renderAssets = () => {
+	// Function which dynamically renders returned asset data in the form of a HTML table
+	const renderAssetsInTable = () => {
 		return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
-		  return <tr key={assetID} >
+		  return <tr key={assetID}>
 		  <td>{assetID}</td>
 		  <td>{name}</td>
 		  <td>{description}</td>
@@ -58,10 +58,9 @@ function Market() {
 		  <td>{categoryName}</td>
 		</tr>
 		})
-	  }
-	
-	
+	}
 
+	// Return value (actual HTML code for the Market page)
   	return (
 		<div className="market">
 			<div className="search">
@@ -80,7 +79,7 @@ function Market() {
 							color="success"
 							sx={{ backgroundColor: '#3b3b3b' }}
 						>
-							<MenuItem value="" disabled>
+							<MenuItem value="">
 								Select Asset
 							</MenuItem>
 
@@ -89,8 +88,6 @@ function Market() {
 								{asset}
 							</MenuItem>
 							))}
-							
-
 
 						</Select>
 					</Grid>
@@ -118,7 +115,7 @@ function Market() {
 					</tr>
 				</thead>
 				<tbody>
-					{renderAssets()}
+					{renderAssetsInTable()}
 				</tbody>
 			</table>
 	</div>

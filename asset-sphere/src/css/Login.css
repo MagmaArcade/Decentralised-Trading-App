@@ -64,6 +64,7 @@ This Page is the style elements for the Login page
     margin-bottom: 2.5rem; /* Adjust margin */
     padding: 0.75rem;
     width: 200%; /* Make the inputs 2x wider */
+    position: relative;
   }
   
   .form-container {
@@ -125,4 +126,22 @@ This Page is the style elements for the Login page
     flex-direction: column;
     justify-content: center;
     color: #fff;
+  }
+
+  .text-danger {
+    color: red;
+    font-size: 12px;
+    padding: 2rem;
+    left: 10; /* Aligns the error message to the start of the input */
+    margin-top: 35px; /* Adds a little vertical space between the error and the input */
+    position: absolute;
+  }
+
+  .text-danger2 {
+    color: red;
+    font-size: 12px;
+    padding: 2rem;
+    left: 10; /* Aligns the error message to the start of the input */
+    margin-top: 135px; /* Adds a little vertical space between the error and the input */
+    position: absolute;
   }
