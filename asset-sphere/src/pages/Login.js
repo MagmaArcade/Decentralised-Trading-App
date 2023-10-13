@@ -12,20 +12,47 @@ SID:	  103865794
 import { Link } from "react-router-dom"; // import link to route to other pages
 import Coin from '../assets/CoinS.png'; // import images
 import "../css/Login.css"; // import css styling
+import React, { useState, useEffect } from 'react';
+import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js elements from mui
+import axios from 'axios'
+import * as d3 from 'd3';
+import "../css/Login.css"; // import css styling
+import Validation from "./LoginValidation"; // import login validation styling
 
 // Login application
 function Login() {
+  const [values, setValues] = useState({
+    email: '', 
+    password: ''
+  })
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const[errors, setErrors] = useState ({})
+
+  const handleInput = (event) => {
+    setIsFormValid(false);
+    setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const validationErrors = Validation(values);
+    setErrors(validationErrors);
+    setIsFormValid(Object.keys(validationErrors).length === 0);
+  }
   return (
     <div className="login">
       <div className="main-container">
         <div className="main-content">
           <h1>Log In</h1>
-          <form className="login-form form-container">
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+          <form className="login-form form-container" action="" onSubmit={handleSubmit}>
+            <input type="email" placeholder="Email" name="email" onChange={handleInput}/>
+            {errors.email && <span className='text-danger'> {errors.email}</span>}
+            <input type="password" placeholder="Password" name="password" onChange={handleInput}/>
+            {errors.password && <span className='text-danger2'> {errors.password}</span>}
             <button type="submit" className="main-btn">
-              <Link to="/Dashboard">Log In</Link> {/* when login is validated, push to dashboard page */}	
-            </button>
+            {isFormValid ? <Link to="/Dashboard">Log In</Link> : "Log In"}</button>
             <p className="btn-undertext">
               Don't have an account? <Link to="/Register">Register here.</Link>
             </p>

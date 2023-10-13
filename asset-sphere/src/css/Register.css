@@ -72,8 +72,8 @@ This Page is the style elements for the Register page
     border: 1px solid #79F5AE;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: auto;
-    margin-bottom: 2rem; /* Adjust the margin as needed */
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem; /* Adjust the margin as needed */
   }
 
   .main-reg-btn a {
@@ -109,4 +109,48 @@ This Page is the style elements for the Register page
     width: 100%;
     text-align: center;
   }
+
+  .regtext-danger {
+    color: red;
+    font-size: 12px;
+    padding: 2rem;
+    left: 10; /* Aligns the error message to the start of the input */
+    margin-top: 260px; /* Adds a little vertical space between the error and the input */
+    position: absolute;
+  }
+
+  .regtext-danger2 {
+    color: red;
+    font-size: 12px;
+    padding: 2rem;
+    left: 10; /* Aligns the error message to the start of the input */
+    margin-top: 340px; /* Adds a little vertical space between the error and the input */
+    position: absolute;
+  }
   
+  .regtext-danger3 {
+    color: red;
+    font-size: 12px;
+    padding: 2rem;
+    left: 10; /* Aligns the error message to the start of the input */
+    margin-top: 35px; /* Adds a little vertical space between the error and the input */
+    position: absolute;
+  }
+
+  .regtext-danger4 {
+    color: red;
+    font-size: 12px;
+    padding: 2rem;
+    left: 10; /* Aligns the error message to the start of the input */
+    margin-top: 110px; /* Adds a little vertical space between the error and the input */
+    position: absolute;
+  }
+
+  .regtext-danger5 {
+    color: red;
+    font-size: 12px;
+    padding: 2rem;
+    left: 10; /* Aligns the error message to the start of the input */
+    margin-top: 185px; /* Adds a little vertical space between the error and the input */
+    position: absolute;
+  }
