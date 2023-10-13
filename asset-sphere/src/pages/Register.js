@@ -11,23 +11,57 @@ SID:	  103865794
 
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "../css/Register.css"; // import the css syles
+import React, { useState, useEffect } from 'react';
+import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js elements from mui
+import axios from 'axios'
+import * as d3 from 'd3';
+import Validation from "./RegisterValidation";
 
 // Register application
 function Register() {
+
+  const [values, setValues] = useState({
+    fname: '',
+    lname: '',
+    dob: '',
+    email: '', 
+    password: ''
+  })
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const[errors, setErrors] = useState ({})
+
+  const handleInput = (event) => {
+    setIsFormValid(false);
+    setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const validationErrors = Validation(values);
+    setErrors(validationErrors);
+    setIsFormValid(Object.keys(validationErrors).length === 0);
+  }
+
   return (
     <div class="register">
       <div className="main-reg-container">
         <div className="main-reg-content">
           <h1>Create Personal Account</h1>
-          <form className="register-form form-reg-container"> {/* get all relevent user info for user account */}
-            <input type="text" placeholder="First Name" />
-            <input type="text" placeholder="Last Name" />
-            <input type="datetime-local" placeholder="Date of Birth"/>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+          <form className="register-form form-reg-container" onSubmit={handleSubmit}> {/* get all relevent user info for user account */}
+            <input type="text" placeholder="First Name" name='fname' onChange={handleInput}/>
+            {errors.fname && <span className='regtext-danger4'> {errors.fname}</span>}
+            <input type="text" placeholder="Last Name" name='lname' onChange={handleInput}/>
+            {errors.lname && <span className='regtext-danger3'> {errors.lname}</span>}
+            <input type="date" placeholder="Date of Birth" name='dob' onChange={handleInput}/>
+            {errors.dob && <span className='regtext-danger5'> {errors.dob}</span>}
+            <input type="email" placeholder="Email" name='email' onChange={handleInput}/>
+            {errors.email && <span className='regtext-danger'> {errors.email}</span>}
+            <input type="password" placeholder="Password" name='password' onChange={handleInput}/>
+            {errors.password && <span className='regtext-danger2'> {errors.password}</span>}
             <button type="submit" className="main-reg-btn">
-              <Link to="/Dashboard">Register</Link>
-            </button>
+            {isFormValid ? <Link to="/Dashboard">Sign Up</Link> : "Sign Up"}</button>
             <p className="btn-undertext">
               Already have an account? <Link to="/Login">Login here.</Link>
             </p>
