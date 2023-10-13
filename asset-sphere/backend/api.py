@@ -40,7 +40,50 @@ def get_asset_info():
         return {"error": f"MySQL returned an error: {err}"}
 
 
+# Get User information from the database, to be used for listing dynamic information
+@app.get("/getuserinfo/")
+def get_asset_info():
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = "SELECT * FROM Users" # Selects all data from the DigitalAssets table
+        cursor.execute(query) # execute the query
+        result = cursor.fetchall() # store the data in a temporary variable
+        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
 
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return assets
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
+
+
+# Get Transaction information from the database, to be used for listing dynamic information
+@app.get("/gettrasactionhistoryinfo/")
+def get_asset_info():
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = "SELECT * FROM TransactionHistory" # Selects all data from the DigitalAssets table
+        cursor.execute(query) # execute the query
+        result = cursor.fetchall() # store the data in a temporary variable
+        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return assets
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
+    
+
+
+
+# defult fluff
+"""
 @app.get("/")
 async def funcTest1():
     return "Hello, this is fastAPI data"
@@ -56,10 +99,12 @@ async def funcTest():
     return jsonResult
 
 
+
 @app.get("/student/{student_id}")
 async def getStudentId(student_id: int):
     return {"student_id": student_id}
 
+"""
 
 # Configure CORS
 app.add_middleware(
