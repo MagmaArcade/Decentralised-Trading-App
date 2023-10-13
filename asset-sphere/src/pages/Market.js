@@ -19,9 +19,7 @@ import { render } from '@testing-library/react';
 // Market application
 function Market() {
 	const assets = [
-		'SwinCoin', 'ConzoCoin', 'DiamondCoin', 'NebulaCoin', 'Saturnium',
-		'FusionX', 'BitGem', 'EtherSphere', 'RipperCoin', 'LiteGem',
-		'CardanoSphere', 'LinkStar', 'Stellium', 'PolkaGem', 'CardanoSphere'
+		'*', 'SwinCoin', 'NickCoin'
 	  ];
 
 	// State for the selected asset in dropdown
@@ -33,24 +31,35 @@ function Market() {
 	// State variable for retrieving data from the API
   	const [allAssets, setAllAssets] = useState('[]');
 
+	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString())
+
 	useEffect(() => {
 		loadDefaultTable();
-	}, []);
+	}, [selectedAsset]);
 
 	function loadDefaultTable() {
-		axios.get('http://127.0.0.1:8000/getassetinfo/')
+		axios.get(query)
 		.then(response => {
 			setAllAssets(response.data)
-			console.log(response.data)
 		})
 		.catch(error => {
 			console.error("Whoops, there was an error: ", error)
 		})
 	}
 
-	const renderAssets = () => {
+	function getSpecificAsset() {
+		axios.get(query)
+		.then(response => {
+			setAllAssets(response.data)
+		})
+		.catch(error => {
+			console.error("Whoops, there was an error: ", error)
+		})
+	}
+
+	const renderAssetsInTable = () => {
 		return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
-		  return <tr key={assetID} >
+		  return <tr key={assetID}>
 		  <td>{assetID}</td>
 		  <td>{name}</td>
 		  <td>{description}</td>
@@ -58,9 +67,7 @@ function Market() {
 		  <td>{categoryName}</td>
 		</tr>
 		})
-	  }
-	
-	
+	}
 
   	return (
 		<div className="market">
@@ -89,8 +96,6 @@ function Market() {
 								{asset}
 							</MenuItem>
 							))}
-							
-
 
 						</Select>
 					</Grid>
@@ -118,7 +123,7 @@ function Market() {
 					</tr>
 				</thead>
 				<tbody>
-					{renderAssets()}
+					{renderAssetsInTable()}
 				</tbody>
 			</table>
 	</div>

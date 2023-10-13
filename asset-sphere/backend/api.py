@@ -20,6 +20,7 @@ db_configuration = {
     "database": "assetsphere"
 }
 
+
 # Get Digital Asset information from the database, to be used for listing dynamic information
 @app.get("/getassetinfo/")
 def get_asset_info():
@@ -38,6 +39,26 @@ def get_asset_info():
         return assets
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
+    
+# Get a specifical digital asset via name
+@app.get("/getassetinfo/{name}")
+def get_asset_info(name: str):
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = f"SELECT * FROM DigitalAssets WHERE name = '{name}'" # Selects all data from the DigitalAssets table
+        cursor.execute(query) # execute the query
+        result = cursor.fetchall() # store the data in a temporary variable
+        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return assets
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
+    
 
 
 
