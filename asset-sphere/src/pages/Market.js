@@ -18,26 +18,26 @@ import { render } from '@testing-library/react';
 
 // Market application
 function Market() {
-	const assets = [
-		'*', 'SwinCoin', 'NickCoin'
-	  ];
-
-	// State for the selected asset in dropdown
-  	const [selectedAsset, setSelectedAsset] = useState('');
-
-  	// State for the search input
-  	const [searchTerm, setSearchTerm] = useState('');
-
-	// State variable for retrieving data from the API
+	// State variable which stores every asset in the database
   	const [allAssets, setAllAssets] = useState('[]');
 
-	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString())
+	// State variable which stores the asset you're trying to filter/search by
+	const [selectedAsset, setSelectedAsset] = useState('');
 
+	// String that calls the API to retrieve data from the database, optionally appending your selected asset
+	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString());
+
+	const assets = [
+		'SwinCoin', 'NickCoin'
+	];
+
+	// Function that will automatically (re)render the table upon startup/filter/search
 	useEffect(() => {
-		loadDefaultTable();
+		loadTableData();
 	}, [selectedAsset]);
 
-	function loadDefaultTable() {
+	// AXIOS function to request data from the API/Database
+	function loadTableData() {
 		axios.get(query)
 		.then(response => {
 			setAllAssets(response.data)
@@ -47,16 +47,7 @@ function Market() {
 		})
 	}
 
-	function getSpecificAsset() {
-		axios.get(query)
-		.then(response => {
-			setAllAssets(response.data)
-		})
-		.catch(error => {
-			console.error("Whoops, there was an error: ", error)
-		})
-	}
-
+	// Function which dynamically renders returned asset data in the form of a HTML table
 	const renderAssetsInTable = () => {
 		return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
 		  return <tr key={assetID}>
@@ -69,6 +60,7 @@ function Market() {
 		})
 	}
 
+	// Return value (actual HTML code for the Market page)
   	return (
 		<div className="market">
 			<div className="search">
@@ -87,7 +79,7 @@ function Market() {
 							color="success"
 							sx={{ backgroundColor: '#3b3b3b' }}
 						>
-							<MenuItem value="" disabled>
+							<MenuItem value="">
 								Select Asset
 							</MenuItem>
 

@@ -16,12 +16,12 @@ app = FastAPI()
 db_configuration = {
     "host": "localhost",
     "user": "root",
-    "password": "root",
+    "password": "rootroot",
     "database": "assetsphere"
 }
 
 
-# Get Digital Asset information from the database, to be used for listing dynamic information
+# Get all Digital Asset information from the database, to be used for listing dynamic information
 @app.get("/getassetinfo/")
 def get_asset_info():
     try:
