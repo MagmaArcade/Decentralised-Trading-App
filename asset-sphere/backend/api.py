@@ -242,13 +242,22 @@ async def createUser(user: CreateUsersRequest):
     payload = UsersContract.functions.getUser(userid).call()
 
     # Now we take the payload data and enter it into our MySQL database, ensuring changes on the blockchain reflect in our backend
-    
-    
-    query = f"SELECT COUNT(*) FROM Users" # Gets a count of the current entries in the users table
-    cursor.execute(query) # execute the query
-    current_user_count = cursor.fetchone()[0] # Stores the count
+    split_payload = payload.split(',') # split the CSV into an array
 
-    return userid, payload
+    # Grab a Ganache account address to use for this created user
+    
+    user_address = w3.eth.accounts[current_user_count + 1] # assign this user a wallet account (starting at 1, as our Ganache account that deploys the create user contract is account 0)
+    
+    query = "INSERT INTO users (userId, firstName, lastName, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (int(userid), split_payload[0], split_payload[1], split_payload[2], split_payload[3], split_payload[4], user_address))
+
+    connection.commit()
+
+    # Close the cursor/connection
+    cursor.close()
+    connection.close()
+
+    return payload, userid, split_payload[0], split_payload[1], split_payload[2], split_payload[3], split_payload[4], user_address
     
     
 class SessionManager:
