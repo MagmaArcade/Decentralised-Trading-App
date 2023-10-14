@@ -88,6 +88,7 @@ function Transfer() {
                   height: 50, 
                   color: '#FFFFFF',
                   backgroundColor: '#3b3b3b' }}
+                  className="MuiSelect-root"
               >
                 <MenuItem value="" default>
                   Select Asset
@@ -112,11 +113,12 @@ function Transfer() {
                 id="transferToAccount"
                 name="transferToAccount"
                 placeholder=""
+                maxlength="12"
               />
             </div>
 
             <div>
-              <button className="transaction-purchase-btn">Transaction</button>
+              <button className="transfer-purchase-btn">Complete Transaction</button>
             </div>
           </div>
         </div>

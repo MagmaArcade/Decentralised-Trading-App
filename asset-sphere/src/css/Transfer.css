@@ -48,7 +48,14 @@ this Page is the style elements for the Transfer page
     justify-content: flex-start;
     border-radius: 10px;
     margin: 0 auto;
+    position: relative;
   }
+
+  .transfer-left-container .MuiSelect-root { 
+    position: absolute;
+    top: 2rem; /* Align it with the top of the container */
+    right: 2rem; /* Align it with the right of the container */
+}
   
     /* Dimensions and properties of right container */
   .transfer-right-container {
@@ -148,6 +155,18 @@ this Page is the style elements for the Transfer page
     padding: 10px; /* Adds padding for spacing */
     position: relative; /* Adds relative positioning */
   }
+
+  .transfer-input-container input[type="text"] { 
+    width: 15rem;
+    height: 5rem;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    background: transparent; /* Ensure no background */
+    color: #000000;
+    padding: 0;
+    margin: 0;
+}
   
   /* Updating the label styles */
   .transfer-label {
@@ -155,7 +174,7 @@ this Page is the style elements for the Transfer page
     color: #000000;
     order: 2; /* Move label below input */
     margin-top: -1.75rem; /* Adjust the margin to place the label outside the border */
-    margin-left: -12rem;
+    margin-left: -11rem;
   }
   
   /* Updates info about the input style */
@@ -235,6 +254,12 @@ this Page is the style elements for the Transfer page
 }
   
   .transfer-asset-value {
+    font-size: 2.5rem;
+    color: white;
+    margin-left: -3.4rem;
+  }
+
+  .transfer-asset-dollarsign {
     font-size: 2.5rem;
     color: white;
     margin-left: -3.4rem;
@@ -324,4 +349,8 @@ this Page is the style elements for the Transfer page
     cursor: pointer;
     margin-top: 1rem;
     font-size: 0.8rem;
+  }
+  
+  .transfer-asset {
+    margin-left: 5rem;
   }
