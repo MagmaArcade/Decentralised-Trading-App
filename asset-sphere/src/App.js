@@ -24,6 +24,7 @@ import Register from "./pages/Register";
 import Trade from "./pages/Trade";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Test from "./axiostest"
 
 // App application
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="Login" element={<Login />} />
         <Route path="Register" element={<Register />} />
 		    <Route path="Trade" element={<Trade />} />
+        <Route path="axios" element={<Test />} />
       </Routes>
 
       <Footer/> {/* used to add a footer to all pages */}
