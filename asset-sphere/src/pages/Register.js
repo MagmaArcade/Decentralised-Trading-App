@@ -97,7 +97,6 @@ function Register() {
     <div class="register">
       <div className="main-reg-container">
         <div className="main-reg-content">
-          <h1>{contractData[0]}</h1>
           <h1>Create Personal Account</h1>
           <form className="register-form form-reg-container" onSubmit={handleSubmit}> {/* get all relevent user info for user account */}
             <input type="text" placeholder="First Name" name='fname' onChange={handleInput}/>

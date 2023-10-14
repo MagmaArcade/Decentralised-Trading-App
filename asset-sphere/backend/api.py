@@ -202,10 +202,19 @@ async def deployUserSmartContract():
 
         # standardise the contract information into JSON values for return in a way axios can understand
         contract = ContractInfo(conaddress=tx_receipt.contractAddress, conabi = abi)
+        
 
         # Returns deployed contract address and abi to be posted for interactions with the contract
-        # write these return values to a file using AXIOS for reference later in the application
-        return contract
+        # write these return values to a file for reference later in the application
+        with open('../src/localdata/usercontractinfo.json', 'w') as file:
+            
+            # honestly the most circular bit of code ever written - to dump the Type ContractInfo into a file, it needs to be JSON, which Py doesn't recognise (even though it is formatted like that)
+            # thus, we take the ContractInfo, specifically code it into JSON, then load that JSON to remove the weird backslashes and literals. THEN we write to a file for reference in later applications.
+            contractjson = json.dumps(contract, default=lambda o: o.__dict__)
+            temp = json.loads(contractjson)
+            json.dump(temp, file)
+
+        return
 
 # Code that interacts with the deployed User smart contract to create a new User on the blockchain and return the data to be updated by the database
 
