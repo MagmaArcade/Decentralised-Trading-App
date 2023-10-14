@@ -15,7 +15,6 @@ import constants
 
 # FastAPI initialisation
 app = FastAPI()
-app.UserSChasDeployed = False # check for the users SC being deployed as a property of the app
 
 origins = ["*"]
 
@@ -197,8 +196,6 @@ async def deployUserSmartContract():
         signed_txn = w3.eth.account.sign_transaction(transaction, private_key=constants.privateKeyGanacheAccount)
         tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
         tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-
-        app.UserSChasDeployed = True # changes the check for if the smart contract has been deployed
 
         # standardise the contract information into JSON values for return in a way axios can understand
         contract = ContractInfo(conaddress=tx_receipt.contractAddress, conabi = abi)
