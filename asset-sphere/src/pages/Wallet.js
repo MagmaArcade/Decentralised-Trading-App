@@ -9,11 +9,102 @@ SID:	  103865794
 */
 // this is the Register page. this page is used view a users owned coins.
 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import { Grid } from "@mui/material"; // import js elements from mui
 import "../css/Wallet.css"; // import css styling
 
+
 // Wallet application
 function Wallet() {
+
+    // inialised constants outside of fetch request
+    const queryUserHistory = "";
+    const queryUserAssets = "";
+
+  // Fetch the authentication token from the backend
+  fetch('/api/get_auth_token')
+    .then(response => response.json())
+    .then(data => {
+      const userID = data.auth_token;
+
+      // String that calls the API to retrieve transaction history from the database for the current user
+      queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${userID}`)
+
+      // String that calls the API to retrieve user assets from the database for the current user
+      queryUserAssets = (`http://127.0.0.1:8000/getassetinfo/${userID}`)
+    })
+    .catch(error => {
+      console.error('Error fetching auth token:', error);
+    });
+
+
+	// State variable which stores the asset you're trying to filter by
+	const [selectedAssetHistory, setSelectedAssetHistory] = useState('');
+
+	// Function that will automatically render the table upon startup
+	useEffect(() => {
+		loadTableData();
+	}, [selectedAssetHistory]);
+
+	// AXIOS function to request data from the API/Database
+	function loadTableData() {
+		axios.get(queryUserHistory)
+		.then(response => {
+			setSelectedAssetHistory(response.data)
+		})
+		.catch(error => {
+			console.error("Whoops, there was an error: ", error)
+		})
+	}
+
+	// Function which dynamically renders returned asset data in the form of a HTML table
+	const renderHistoryInTable = () => {
+		return Object.values(allAssets).map(({ assetID, userID, purchaseTime, pricePaid, tokenId}) => {
+		  return <tr key={assetID}>
+		  <td>{assetID}</td>
+		  <td>{userID}</td>
+		  <td>{purchaseTime}</td>
+		  <td>{pricePaid}</td>
+		  <td>{tokenId}</td>
+		</tr>
+		})
+	}
+
+
+  // State variable which stores every asset in the database
+  const [allAssets, setAllAssets] = useState('[]');
+
+  // Function that will automatically (re)render the table upon startup/filter/search
+  useEffect(() => {
+    loadTableData();
+  }, [allAssets]);
+
+  // AXIOS function to request data from the API/Database
+  function loadTableData() {
+    axios.get(queryUserAssets)
+    .then(response => {
+      setAllAssets(response.data)
+    })
+    .catch(error => {
+      console.error("Whoops, there was an error: ", error)
+    })
+  }
+
+  // Function which dynamically renders returned asset data in the form of a HTML table
+  const renderAssetsInTable = () => {
+    return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
+      return <tr key={assetID}>
+      <td>{assetID}</td>
+      <td>{name}</td>
+      <td>{description}</td>
+      <td>{price}</td>
+      <td>{categoryName}</td>
+    </tr>
+    })
+  }
+
+
   return (
     <div className="Wallet">
       <Grid id="wallet-id-container"
@@ -27,131 +118,47 @@ function Wallet() {
             <p>Wallet ID: 000012</p> {/* will display the users individual wallet id */}
           </item>
         </Grid>
-
-        <Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid> {/* space add an empty grid element that consume the empty grid spaces */}
-
-        <Grid item xs={2}>
-          <item> 
-            <button className="wallet-trade-btn">Deposit</button>
-          </item>
-        </Grid>
-
-        <Grid item xs={2}>
-          <item> 
-            <button className="wallet-trade-btn">Withdrawl</button>
-          </item>
-        </Grid>
       </Grid>
 
       <div className="wallet-main-container">
         <div className="wallet-left-container">
           <h1 className="wallet-h1"> Transaction History </h1> {/* will display all previous transactions */}
-          <div>
-          <table className="wallet-table">
-            <tr>
-              <th>Date / Time</th>
-              <th>Asset</th>
-              <th>Amount</th>
-              <th>Value</th>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:15am</td>
-              <td>SwinCoin</td>
-              <td>0.20</td>
-              <td>$500.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:15am</td>
-              <td>SwinCoin</td>
-              <td>0.30</td>
-              <td>$4300.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:10am</td>
-              <td>SwinCoin</td>
-              <td>4.20</td>
-              <td>$530.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:32am</td>
-              <td>SwinCoin</td>
-              <td>13.20</td>
-              <td>$120.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:43am</td>
-              <td>SwinCoin</td>
-              <td>51.20</td>
-              <td>$60.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:12am</td>
-              <td>SwinCoin</td>
-              <td>3.20</td>
-              <td>$900.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:34am</td>
-              <td>SwinCoin</td>
-              <td>23.20</td>
-              <td>$522.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:11am</td>
-              <td>SwinCoin</td>
-              <td>34.20</td>
-              <td>$983.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:36am</td>
-              <td>SwinCoin</td>
-              <td>11.20</td>
-              <td>$32.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:32am</td>
-              <td>SwinCoin</td>
-              <td>92.20</td>
-              <td>$433.00 AUD</td>
-            </tr>
-            <tr>
-              <td>19/08/2023 10:31am</td>
-              <td>SwinCoin</td>
-              <td>2.20</td>
-              <td>$86.00 AUD</td>
-            </tr>
-          </table>
-          </div>
-        </div>
+          <table>  {/* in this table element, all avaliable assets will be displayed */}
+            <thead>
+              <tr>
+                <th>Asset ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              {renderHistoryInTable()}
+            </tbody>
+			    </table>
+	      </div>
 
         <div className="wallet-right-container">
-          <h1> Current Funds </h1> {/* will display all currently owned assets */}
+          <h1> Current Assets </h1> {/* will display all currently owned assets */}
           <div className="wallet-input-container">
-          <table className="asset-table">
-            <tr>
-              <th>Asset</th>
-              <th>Amount</th>
-              <th>Value</th>
-            </tr>
-            <tr>
-              <td>SwinCoin</td>
-              <td>0.20</td>
-              <td>$500.00 AUD</td>
-            </tr>
-            <tr>
-              <td>NathCoin</td>
-              <td>0.69</td>
-              <td>$4300.00 AUD</td>
-            </tr>
-            <tr>
-              <td>GustCoin</td>
-              <td>4.20</td>
-              <td>$530.00 AUD</td>
-            </tr>
-          </table>
+          <table>  {/* in this table element, all assets that belong to this user will be displayed */}
+            <thead>
+              <tr className>
+                <th>Asset ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              {renderAssetsInTable()}
+            </tbody>
+			    </table>
           </div>
         </div>
-      </div>`
+      </div>
   </div>
 );
 }

@@ -7,10 +7,10 @@ SID:	103865794
 		103995882
 		103992223
 
-this Page is the style elements for the trade page
+this Page is the style elements for the Transfer page
 */
 
-.trade {
+.transfer {
     background-color: #262626;
     min-height: 100vh;
     display: flex;
@@ -22,7 +22,7 @@ this Page is the style elements for the trade page
     -moz-osx-font-smoothing: grayscale;
   }
   
-  .trade-main-container {
+  .transfer-main-container {
     display: grid;
     grid-template-columns: 2fr 1fr; /* 2/3 for left-container, 1/3 for right-container */
     align-items: center;
@@ -36,7 +36,7 @@ this Page is the style elements for the trade page
   }
   
   /* Dimensions and properties of left container */
-  .trade-left-container { 
+  .transfer-left-container { 
     background-color: #3a3a3a;
     height: 70vh;
     width: 100%;
@@ -48,10 +48,17 @@ this Page is the style elements for the trade page
     justify-content: flex-start;
     border-radius: 10px;
     margin: 0 auto;
+    position: relative;
   }
+
+  .transfer-left-container .MuiSelect-root { 
+    position: absolute;
+    top: 2rem; /* Align it with the top of the container */
+    right: 2rem; /* Align it with the right of the container */
+}
   
     /* Dimensions and properties of right container */
-  .trade-right-container {
+  .transfer-right-container {
     background-color: #79F5AE;
     height: 70vh;
     width: 100%;
@@ -67,26 +74,26 @@ this Page is the style elements for the trade page
 
   /* Media query for smaller screens */
 @media (max-width: 1400px) {
-    .trade-main-container {
+    .transfer-main-container {
       grid-template-columns: 1fr; /* Single column layout for small screens */
     }
-    .trade-left-container,
-    .trade-right-container {
+    .transfer-left-container,
+    .transfer-right-container {
       width: 100%; /* Both containers take full width */
     }
 
     /* Resizing for appearence and design */
-    .trade-left-container
+    .transfer-left-container
     {
         height: 110%;
     }
 
-    .trade-right-container
+    .transfer-right-container
     {
         max-width: 1000px;
     }
 
-    .trade-label{
+    .transfer-label{
         margin-right: 20rem;
     }
 
@@ -96,12 +103,12 @@ this Page is the style elements for the trade page
         margin-left: 4rem;
     }
 
-    .trade-asset-value
+    .transfer-asset-value
     {
         margin-left: -6rem;
     }
 
-    .trade-Low, .date-btns-gap
+    .transfer-Low, .date-btns-gap
     {
         margin-left: 2rem;
     }
@@ -113,7 +120,7 @@ this Page is the style elements for the trade page
   }
   
   /* Properties for BUY / SELL buttons since they're identical. These buttons were removed from the webpage since it didnt fit the criteria */
-  .trade-main-btn {
+  .transfer-main-btn {
     background-color: #262626;
     color: #fff;
     padding: 1rem 3rem;
@@ -125,7 +132,7 @@ this Page is the style elements for the trade page
     margin-bottom: 2rem;
   }
   
-  .trade-purchase-btn {
+  .transfer-purchase-btn {
     background-color: #262626;
     color: #fff;
     padding: 1rem 7.5rem;
@@ -136,7 +143,7 @@ this Page is the style elements for the trade page
     margin-bottom: 2rem;
   }
   
-.trade-input-container {
+.transfer-input-container {
     display: flex;
     flex-direction: column; /* Change to column to place "Amount" above input */
     align-items: center;
@@ -148,18 +155,30 @@ this Page is the style elements for the trade page
     padding: 10px; /* Adds padding for spacing */
     position: relative; /* Adds relative positioning */
   }
+
+  .transfer-input-container input[type="text"] { 
+    width: 15rem;
+    height: 5rem;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    background: transparent; /* Ensure no background */
+    color: #000000;
+    padding: 0;
+    margin: 0;
+}
   
   /* Updating the label styles */
-  .trade-label {
+  .transfer-label {
     font-size: 1rem;
     color: #000000;
     order: 2; /* Move label below input */
     margin-top: -1.75rem; /* Adjust the margin to place the label outside the border */
-    margin-left: -12rem;
+    margin-left: -11rem;
   }
   
   /* Updates info about the input style */
-  .trade-input-container input[type="number"] { /* ensures that only integers are accepted into the input */
+  .transfer-input-container input[type="number"] { /* ensures that only integers are accepted into the input */
     width: 15rem;
     height: 5rem;
     font-size: 2rem;
@@ -172,7 +191,7 @@ this Page is the style elements for the trade page
   }
   
   /* Styles the AUD text on the right side of the input */
-  .trade-input-container::after {
+  .transfer-input-container::after {
     content: "AUD";
     font-size: 1.5rem; /* Makes AUD text smaller */
     color: #000000;
@@ -182,14 +201,14 @@ this Page is the style elements for the trade page
   }
 
     /* Remove number input spinners yoink*/
-.trade-input-container input[type="number"]::-webkit-inner-spin-button {
+.transfer-input-container input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     appearance: none;
     margin: 0;
   }
 
 
-  .trade-dollar-label {
+  .transfer-dollar-label {
     position: absolute;
     left: 10px; /* Adjust the left position to place the '$' label inside */
     bottom: 35px; /* Adjust the bottom position to place it inside the border */
@@ -198,7 +217,7 @@ this Page is the style elements for the trade page
   }
   
   /* Heading styling */
-  .trade-right-container-header {
+  .transfer-right-container-header {
     color: #000; 
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -206,23 +225,23 @@ this Page is the style elements for the trade page
   
   /* Heading 3 styling */
 
-  .trade-top h3 {
+  .transfer-top h3 {
     margin: 0;
   }
   
-  .trade-asset-text {
+  .transfer-asset-text {
     font-size: 1.5rem;
     color: white;
   }
   
-  .trade-btc-text {
+  .transfer-btc-text {
     font-size: 1rem;
     color: #717171;
     margin-left: 0.5rem; /* Add some spacing between Swincoin and SWN */
   }
   
     /* Change Asset styling and positioning*/
-  .trade-top button {
+  .transfer-top button {
     background-color: #262626;
     color: #ffffff;
     padding: 1rem 2rem;
@@ -234,13 +253,19 @@ this Page is the style elements for the trade page
     font-size: 1rem;
 }
   
-  .trade-asset-value {
+  .transfer-asset-value {
+    font-size: 2.5rem;
+    color: white;
+    margin-left: -3.4rem;
+  }
+
+  .transfer-asset-dollarsign {
     font-size: 2.5rem;
     color: white;
     margin-left: -3.4rem;
   }
   
-  .trade-currency {
+  .transfer-currency {
     color: #717171;
   }
 
@@ -259,7 +284,7 @@ this Page is the style elements for the trade page
     cursor: pointer;
   }
 
-  .trade-top {
+  .transfer-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -269,7 +294,7 @@ this Page is the style elements for the trade page
     margin-right: 1.5rem;
   }
 
-  .trade-middle {
+  .transfer-middle {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
@@ -277,7 +302,7 @@ this Page is the style elements for the trade page
     margin-top: -1rem; /* Positioning the Asset Value*/
   }
 
-  .trade-low {
+  .transfer-low {
     display: block;
     align-items: center; /* Center elements vertically */
     padding: 20px;
@@ -324,4 +349,8 @@ this Page is the style elements for the trade page
     cursor: pointer;
     margin-top: 1rem;
     font-size: 0.8rem;
+  }
+  
+  .transfer-asset {
+    margin-left: 5rem;
   }

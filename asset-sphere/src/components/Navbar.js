@@ -54,7 +54,7 @@ function Navbar() {
 
 			<Grid item xs={1.5} className="page-links">
 				<item>
-					<Link to="/Trade"> Trade </Link> {/* Trade will eventually reroute to login if their is no user account */}
+					<Link to="/Transfer"> Transfer </Link> {/* Transfer will eventually reroute to login if their is no user account */}
 				</item>
 			</Grid>
 			
