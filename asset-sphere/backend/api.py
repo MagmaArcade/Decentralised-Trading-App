@@ -17,10 +17,12 @@ import constants
 app = FastAPI()
 app.UserSChasDeployed = False # check for the users SC being deployed as a property of the app
 
+origins = ["*"]
+
 # Configure CORS to allow requests from your React app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
+    allow_origins=origins,  # Allow all origins
     allow_credentials=True,
     allow_methods=["*"],  # Allow all methods
     allow_headers=["*"],  # Allow all headers
@@ -118,6 +120,18 @@ def get_asset_info():
 
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545")) # Web3.py/Ganache initialisation
 
+class ContractInfo(BaseModel):
+    conaddress: str
+    conabi: tuple
+
+class CreateUsersRequest(BaseModel):
+    conaddress: str
+    conabi: tuple
+    fname: str
+    lname: str
+    dob: str
+    email: str
+    password: str
 
 # Code to take and deploy the 'Users.sol' Smart Contract onto the local chain using account with index 0
 @app.get("/deployusersc")
@@ -167,27 +181,28 @@ async def deployUserSmartContract():
 
         app.UserSChasDeployed = True # changes the check for if the smart contract has been deployed
 
+        # standardise the contract information into JSON values for return in a way axios can understand
+        contract = ContractInfo(conaddress=tx_receipt.contractAddress, conabi = abi)
+
         # Returns deployed contract address and abi to be posted for interactions with the contract
-        # format: ["address", [abi info in the form of json key value pairs]]
         # write these return values to a file using AXIOS for reference later in the application
-        return tx_receipt.contractAddress, abi
+        return contract
 
 # Code that interacts with the deployed User smart contract to create a new User on the blockchain and return the data to be updated by the database
 
-@app.get("/createuser")     # CHANGE TO POST WHEN AXIOS COMES INTO PLAY
-async def createUser(contractAddress, contractabi, userid, userdata):
+@app.post("/createuser")
+async def createUser(user: CreateUsersRequest):
+
+    UsersContract = w3.eth.contract(
+        address = user.conaddress,
+        abi = user.conabi
+    )
     
-    # check to see that the Users SC object has been created. If not, return the value
-    if(app.UserSChasDeployed == False):
-        return "There is no smart contract to handle this interaction on the blockchain yet"
-    else:
-        UsersContract = w3.eth.contract(
-            address = contractAddress,
-            abi = contractabi
-        )
-        
-        UsersContract.functions.CreateUser(userid, userdata) # calls the function that puts user information onto the blockchain
+    userdata = (user.fname + "," + user.lname + "," + user.dob + "," + user.email + "," + user.password)
+    userid = "1"
 
-        returnedUserData = UsersContract.functions.getUser(userid) # call the function that will get the user data we just encoded to update the database
+    UsersContract.functions.createUser(userid, userdata) # calls the function that puts user information onto the blockchain
 
-        return returnedUserData
+    returnedUserData = UsersContract.functions.getUser(userid) # call the function that will get the user data we just encoded to update the database
+    
+    return returnedUserData

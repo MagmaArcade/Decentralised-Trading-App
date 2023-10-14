@@ -17,6 +17,7 @@ import axios from 'axios'
 import * as d3 from 'd3';
 import Validation from "../components/RegisterValidation.js";
 import { useNavigate } from "react-router-dom";
+let contractData = require('../localdata/usercontractinfo.json');
 
 // Register application
 function Register() {
@@ -57,10 +58,32 @@ function Register() {
 
   const navigate = useNavigate();
 
+  const registrationHandler = () => {
+      axios({
+        method: "POST",
+        url: "http://127.0.0.1:8000/createuser",
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        data: {
+          "conaddress": contractData.conaddress,
+          "conabi": contractData.conabi,
+          "fname": values.fname,
+          "lname": values.lname,
+          "dob": values.dob,
+          "email": values.email,
+          "password": values.password
+        }
+      })
+      .then((response) => {
+        console.log(response);
+    })
+  }
+
   useEffect(() => {
     if (isFormValid) {
         // Implement further actions (e.g., API call to server) here
-
+        registrationHandler()
 
         // Push users to wallet
         navigate('/Wallet');
@@ -71,6 +94,7 @@ function Register() {
     <div class="register">
       <div className="main-reg-container">
         <div className="main-reg-content">
+          <h1>{contractData[0]}</h1>
           <h1>Create Personal Account</h1>
           <form className="register-form form-reg-container" onSubmit={handleSubmit}> {/* get all relevent user info for user account */}
             <input type="text" placeholder="First Name" name='fname' onChange={handleInput}/>
