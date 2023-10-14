@@ -306,12 +306,12 @@ async def transferAsset(transferdata: assetTransferData):
     # Lets get the Wallet Address of the user executing this command
     query1 = f"SELECT walletAddress FROM Users WHERE userID={_userFrom}" # Gets the wallet ID of the user executing this call
     cursor.execute(query1) # execute the query
-    _walletFrom = cursor.fetchall # Stores the wallet address
+    _walletFrom = cursor.fetchone()[0] # Stores the wallet address
 
     # Lets get the user ID of the wallet we're sending this asset to
     query2 = f"SELECT userID FROM Users WHERE walletAddress='{_walletTo}'" # Gets the wallet ID of the user executing this call
     cursor.execute(query2) # execute the query
-    _userTo = cursor.fetchall # Stores the wallet address
+    _userTo = cursor.fetchone()[0] # Stores the wallet address
 
 
     # Close the cursor/connection
