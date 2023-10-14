@@ -45,7 +45,7 @@ function Login() {
     setErrors(validationErrors);
     
     if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) {        
-        // Optionally: Check login credentials with server here, then:
+        // Check login credentials with server here if needed, then:
         navigate('/Dashboard');
         setIsFormValid(true);
     } else {
