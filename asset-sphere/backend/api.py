@@ -170,20 +170,29 @@ class CreateUsersRequest(BaseModel):
     email: str
     password: str
 
-# Code to take and deploy the 'Users.sol' Smart Contract onto the local chain using account with index 0
-@app.get("/deployusersc")
-async def deployUserSmartContract():
-    # try:
+# Code to take and deploy the 'Users.sol' Smart Contract or the 'tradeassets.sol' Smart Contract onto the local chain using account with index 0
+@app.get("/deploysc/{scname}")
+async def deploySmartContract(scname: str):
+        
+        # Quick variable assignment depending on the contract passed in (contract names need to be capitalised/exact for abi & bytecode)
+        # Also checks if its one of two valid sc names otherwise returns error & won't deploy anything (doesn't cost gas)
+        if(scname == "users"):
+            contractName = "Users"
+        elif(scname == "tradeassets"):
+            contractName = "TradeAssets"
+        else:
+            return "Invalid Contract Name!!!"
+        
         w3.eth.defaultAccount = w3.eth.accounts[0]
 
-        with open("./users.sol", "r") as file:
-            users_file = file.read()
+        with open(f"./{scname}.sol", "r") as file:
+            sc_file = file.read()
             
         install_solc("0.8.0")
-        users_compiled_sol = compile_standard(
+        compiled_sol = compile_standard(
             {
                 "language": "Solidity",
-                "sources": {"users.sol": {"content": users_file}},
+                "sources": {f"{scname}.sol": {"content": sc_file}},
                 "settings": {
                     "outputSelection": {
                         "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
@@ -194,14 +203,14 @@ async def deployUserSmartContract():
         )
 
         # get bytecode
-        bytecode = users_compiled_sol["contracts"]["users.sol"]["Users"]["evm"]["bytecode"]["object"]
+        bytecode = compiled_sol["contracts"][f"{scname}.sol"][contractName]["evm"]["bytecode"]["object"]
 
         # get abi
-        abi = users_compiled_sol["contracts"]["users.sol"]["Users"]["abi"]
+        abi = compiled_sol["contracts"][f"{scname}.sol"][contractName]["abi"]
 
-        UsersSC = w3.eth.contract(abi=abi, bytecode=bytecode)
+        SmartContract = w3.eth.contract(abi=abi, bytecode=bytecode)
 
-        transaction = UsersSC.constructor().build_transaction(
+        transaction = SmartContract.constructor().build_transaction(
             {
                 "chainId": w3.eth.chain_id,
                 "gasPrice": w3.eth.gas_price,
@@ -222,7 +231,7 @@ async def deployUserSmartContract():
 
         # Returns deployed contract address and abi to be posted for interactions with the contract
         # write these return values to a file for reference later in the application
-        with open('../src/localdata/usercontractinfo.json', 'w') as file:
+        with open(f'../src/localdata/{scname}contractinfo.json', 'w') as file:
             
             # honestly the most circular bit of code ever written - to dump the Type ContractInfo into a file, it needs to be JSON, which Py doesn't recognise (even though it is formatted like that)
             # thus, we take the ContractInfo, specifically code it into JSON, then load that JSON to remove the weird backslashes and literals. THEN we write to a file for reference in later applications.
@@ -314,11 +323,34 @@ async def transferAsset(transferdata: assetTransferData):
     _userTo = cursor.fetchone()[0] # Stores the wallet address
 
 
+    
+    
+    query3 = "UPDATE DigitalAssets SET userID = _userTo WHERE name = _assetName;"
+
+    # gets the asset id and price of the asset in transaction for the transaction history table
+    query4 = f"SELECT assetID, price FROM digitalAssets WHERE name='{_assetName}'" 
+    cursor.execute(query4) # execute the query
+    assetInfo = cursor.fetchone() 
+
+
+    # are you needed? or is it auto increment?
+    # //////////////////////////////////////////////////////////////////////////
+    # gets the table row count of the transaction history table to calculate the transaction id
+    query5 = f"SELECT COUNT(*) FROM transactionHistory" 
+    cursor.execute(query5) # execute the query
+    transaction_count = cursor.fetchone()[0] # Stores the count
+
+    transactionid = str(transaction_count)
+
+
+    query6 = "INSERT INTO users (transactionID, assetID, userID, purchaseTime, price) VALUES (%s, %s, %s, %s, %s)"
+    #cursor.execute(query6, (int(transactionid), assetInfo[0], _userTo, , assetInfo[1])) # purchase time will be recieved contract variable
+
     # Close the cursor/connection
     cursor.close()
     connection.close()
 
-    return _userFrom, _walletFrom, _userTo, _walletTo, _assetName
+    return
 
 class SessionManager:
     def __init__(self):

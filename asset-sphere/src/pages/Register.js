@@ -17,10 +17,11 @@ import axios from 'axios'
 import * as d3 from 'd3';
 import Validation from "../components/RegisterValidation.js";
 import { useNavigate } from "react-router-dom";
-let contractData = require('../localdata/usercontractinfo.json');
 
 // Register application
 function Register() {
+  let contractData = require('../localdata/userscontractinfo.json');
+
   const [inputValues, setInputValues] = useState({
     fname: '',
     lname: '',
