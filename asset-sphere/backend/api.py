@@ -4,7 +4,7 @@ import json
 
 from fastapi import FastAPI # fastAPI modules
 import mysql.connector # Python MySQL database connector
-from web3 import Web3 # Web3.js (smart contract interactor)
+from web3 import Web3, exceptions # Web3.js (smart contract interactor & error handler)
 from solcx import compile_standard, install_solc # Solcx (solidity intepreter for smart contracts)
 from fastapi.middleware.cors import CORSMiddleware # security mechanisms
 from datetime import datetime # get date time
@@ -121,52 +121,54 @@ w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545")) # Web3.py/Ganache initiali
 # Code to take and deploy the 'Users.sol' Smart Contract onto the local chain using account with index 0
 @app.get("/deployusersc")
 async def deployUserSmartContract():
+    # try:
+        w3.eth.defaultAccount = w3.eth.accounts[0]
 
-    w3.eth.defaultAccount = w3.eth.accounts[0]
-
-    with open("./users.sol", "r") as file:
-        users_file = file.read()
-        
-    install_solc("0.8.0")
-    compiled_sol = compile_standard(
-        {
-            "language": "Solidity",
-            "sources": {"users.sol": {"content": users_file}},
-            "settings": {
-                "outputSelection": {
-                    "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
-                }
+        with open("./users.sol", "r") as file:
+            users_file = file.read()
+            
+        install_solc("0.8.0")
+        compiled_sol = compile_standard(
+            {
+                "language": "Solidity",
+                "sources": {"users.sol": {"content": users_file}},
+                "settings": {
+                    "outputSelection": {
+                        "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
+                    }
+                },
             },
-        },
-        solc_version="0.8.0",
-    )
+            solc_version="0.8.0",
+        )
+
+        # get bytecode
+        bytecode = compiled_sol["contracts"]["users.sol"]["Users"]["evm"]["bytecode"]["object"]
+
+        # get abi
+        abi = compiled_sol["contracts"]["users.sol"]["Users"]["abi"]
+
+        Users = w3.eth.contract(abi=abi, bytecode=bytecode)
+
+        transaction = Users.constructor().build_transaction(
+            {
+                "chainId": w3.eth.chain_id,
+                "gasPrice": w3.eth.gas_price,
+                "from": w3.eth.defaultAccount,
+                "nonce": w3.eth.get_transaction_count(w3.eth.defaultAccount),
+            }
+        )
+        transaction.pop('to')
 
 
-    # get bytecode
-    bytecode = compiled_sol["contracts"]["users.sol"]["Users"]["evm"]["bytecode"]["object"]
+        signed_txn = w3.eth.account.sign_transaction(transaction, private_key=constants.privateKeyGanacheAccount)
+        tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+        tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
-    # get abi
-    abi = compiled_sol["contracts"]["users.sol"]["Users"]["abi"]
-
-    Users = w3.eth.contract(abi=abi, bytecode=bytecode)
-
-    transaction = Users.constructor().build_transaction(
-        {
-            "chainId": w3.eth.chain_id,
-            "gasPrice": w3.eth.gas_price,
-            "from": w3.eth.defaultAccount,
-            "nonce": w3.eth.get_transaction_count(w3.eth.defaultAccount),
-        }
-    )
-    transaction.pop('to')
-
-
-    signed_txn = w3.eth.account.sign_transaction(transaction, private_key=constants.privateKeyGanacheAccount)
-    tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
-    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-
-    return "Success"
-
+        return "Success"
+    
+    # error handling at some point
+    # except w3.eth.blocknotfound as err:
+        # return {"error": f"Web3 returned an error: {err}"}
 
 """
 ganache_url = "http://127.0.0.1:7545"
