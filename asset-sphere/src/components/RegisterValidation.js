@@ -37,15 +37,8 @@ function Validation(values) {
         error.email = ""
     }
     // checking if password is empty
-    if (values.password === "") {
-        error.password = "Password should not be empty"
-    }
-    // checking if password matches
-    else if(!password_pattern.test(values.password)) {
-        error.password = "Password didn't match with the associated email"
-    } else {
-        error.password = ""
-    }
+    error.password = values.password === "" ? "Password should not be empty" : ""
+    
     return error;
 }
 
