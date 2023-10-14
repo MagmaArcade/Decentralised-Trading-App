@@ -59,6 +59,9 @@ function Register() {
   const navigate = useNavigate();
 
   const registrationHandler = () => {
+      console.log(contractData.conaddress)
+      console.log(contractData.conabi)  
+
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/createuser",

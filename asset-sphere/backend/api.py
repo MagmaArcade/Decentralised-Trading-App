@@ -212,19 +212,43 @@ async def deployUserSmartContract():
 @app.post("/createuser")
 async def createUser(user: CreateUsersRequest):
 
+    # Default Ganache Account (same one that created the contract, 'our' account)
+    w3.eth.default_account = w3.eth.accounts[0]
+
+    # Open the contract with the address/abi that was passed in by AXIOS
     UsersContract = w3.eth.contract(
         address = user.conaddress,
         abi = user.conabi
     )
     
+    # Create the user data 'payload' (the information to be stored on the chain)
     userdata = (user.fname + "," + user.lname + "," + user.dob + "," + user.email + "," + user.password)
-    userid = "1"
 
-    UsersContract.functions.createUser(userid, userdata) # calls the function that puts user information onto the blockchain
+    # Connect to the MySQL database - we need to ascertain how many users already exist in order to correctly assign this user a user ID (primary keys can't clash)
+    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+    cursor = connection.cursor() # create a cursor to execute SQL queries
+    query = f"SELECT COUNT(*) FROM Users" # Gets a count of the current entries in the users table
+    cursor.execute(query) # execute the query
+    current_user_count = cursor.fetchone()[0] # Stores the count
+    
+    # Since the users start from 0, getting a current count would always ensure that our new, assigned user ID is unique and follows a logical sequence
+    userid = str(current_user_count)
 
-    returnedUserData = UsersContract.functions.getUser(userid)
+    # Transaction that places the user data on the blockchain
+    tx_hash = UsersContract.functions.createUser(userid, userdata).transact() # calls the function that puts user information onto the blockchain
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
-    return returnedUserData
+    # Call the get user function to get user data for update in the local database
+    payload = UsersContract.functions.getUser(userid).call()
+
+    # Now we take the payload data and enter it into our MySQL database, ensuring changes on the blockchain reflect in our backend
+    
+    
+    query = f"SELECT COUNT(*) FROM Users" # Gets a count of the current entries in the users table
+    cursor.execute(query) # execute the query
+    current_user_count = cursor.fetchone()[0] # Stores the count
+
+    return userid, payload
     
     
 class SessionManager:

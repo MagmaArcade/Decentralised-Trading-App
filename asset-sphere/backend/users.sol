@@ -8,13 +8,12 @@ contract Users {
     // Mapping that stores all the user ids & their payloads;
     mapping(string => string) public users;
 
-    function createUser(string memory _userid, string memory _payload) internal {
+    function createUser(string memory _userid, string memory _payload) external {
         users[_userid] = _payload;
     }
 
     // returns all the user details such as [username, bio, zip, etc.....]
-    function getUser(string memory _userid) internal view returns (string memory payload) {
+    function getUser(string memory _userid) external view returns (string memory payload) {
         return users[_userid];
     }
-    
 }
