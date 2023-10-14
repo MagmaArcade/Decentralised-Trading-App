@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Category (
 
 -- Create the DigitalAssets table if it doesn't exist
 CREATE TABLE IF NOT EXISTS DigitalAssets (
-    assetID INT AUTO_INCREMENT PRIMARY KEY,
+    assetID INT PRIMARY KEY,
     name VARCHAR(255),
     description TEXT,
     price DECIMAL(15,2),
@@ -54,17 +54,9 @@ CREATE TABLE IF NOT EXISTS Tokens (
     FOREIGN KEY (associatedAssetId) REFERENCES DigitalAssets(assetID)
 );
 
-
--- Insert data for Users
-INSERT INTO Users (userID, fname, lname, dob, email, password, walletAddress)
-VALUES
-    ("0", 'John', 'Doe', '1990-05-15', 'john.doe@email.com', 'password123', 'wallet123'),
-    ("1", 'Jane', 'Smith', '1985-08-20', 'jane.smith@email.com', 'pass456', 'wallet456'),
-    ("2", 'Bob', 'Johnson', '1995-03-10', 'bob.johnson@email.com', 'pass789', 'wallet789');
-
 -- Insert data for DigitalAssets
-INSERT INTO DigitalAssets (name, description, price, categoryName)
+INSERT INTO DigitalAssets (assetID, name, description, price, categoryName)
 VALUES
-    ('Asset 1', 'Description for Asset 1', 100.00, 'Category A'),
-    ('Asset 2', 'Description for Asset 2', 150.00, 'Category B'),
-    ('Asset 3', 'Description for Asset 3', 75.00, 'Category A');
+    ("0", 'Asset 1', 'Description for Asset 1', 100.00, 'Category A'),
+    ("1", 'Asset 2', 'Description for Asset 2', 150.00, 'Category B'),
+    ("2", 'Asset 3', 'Description for Asset 3', 75.00, 'Category A');
