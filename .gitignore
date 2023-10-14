@@ -1,3 +1,4 @@
 
 *.pyc
 asset-sphere/backend/constants.py
+*.pyc

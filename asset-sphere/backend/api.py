@@ -222,7 +222,7 @@ async def createUser(user: CreateUsersRequest):
 
     UsersContract.functions.createUser(userid, userdata) # calls the function that puts user information onto the blockchain
 
-
+    returnedUserData = UsersContract.functions.getUser(userid)
 
     return returnedUserData
     
