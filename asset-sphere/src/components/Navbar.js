@@ -48,12 +48,6 @@ function Navbar() {
 			
 			<Grid item xs={1.5} className="page-links">
 				<item>
-					<Link to="/Dashboard"> Dashboard </Link> {/* Dashboard will eventually reroute to login if their is no user account */}
-				</item>		
-			</Grid>
-			
-			<Grid item xs={1.5} className="page-links">
-				<item>
 					<Link to="/Wallet"> Wallet </Link> {/* Wallet will eventually reroute to login if their is no user account */}
 				</item>
 			</Grid>
