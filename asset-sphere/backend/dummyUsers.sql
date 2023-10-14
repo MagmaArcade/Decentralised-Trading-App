@@ -23,11 +23,13 @@ CREATE TABLE IF NOT EXISTS Category (
 
 -- Create the DigitalAssets table if it doesn't exist
 CREATE TABLE IF NOT EXISTS DigitalAssets (
-    assetID INT PRIMARY KEY,
+    assetID INT AUTO_INCREMENT PRIMARY KEY,
+    UserId INT,
     name VARCHAR(255),
     description TEXT,
     price DECIMAL(15,2),
     categoryName VARCHAR(255),
+    FOREIGN KEY (UserId) REFERENCES Users(userID),
     FOREIGN KEY (categoryName) REFERENCES Category(categoryName)
 );
 
@@ -38,25 +40,19 @@ CREATE TABLE IF NOT EXISTS TransactionHistory (
     userID INT,
     purchaseTime TIMESTAMP,
     pricePaid DECIMAL(15,2),
-    tokenId VARCHAR(255),
     FOREIGN KEY (assetID) REFERENCES DigitalAssets(assetID),
     FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
--- Create the Tokens table if it doesn't exist
-CREATE TABLE IF NOT EXISTS Tokens (
-    tokenId VARCHAR(255) PRIMARY KEY,
-    associatedUserId INT,
-    associatedAssetId INT,
-    blockChainAddress VARCHAR(255),
-    mintTime TIMESTAMP,
-    FOREIGN KEY (associatedUserId) REFERENCES Users(userID),
-    FOREIGN KEY (associatedAssetId) REFERENCES DigitalAssets(assetID)
-);
+-- Insert data for Category
+INSERT INTO Category (categoryName, description)
+VALUES
+    ('Category A', 'fun a'),
+    ('Category B', 'fun b');
 
 -- Insert data for DigitalAssets
-INSERT INTO DigitalAssets (assetID, name, description, price, categoryName)
+INSERT INTO DigitalAssets (UserId, name, description, price, categoryName)
 VALUES
     ("0", 'Asset 1', 'Description for Asset 1', 100.00, 'Category A'),
-    ("1", 'Asset 2', 'Description for Asset 2', 150.00, 'Category B'),
-    ("2", 'Asset 3', 'Description for Asset 3', 75.00, 'Category A');
+    ("0", 'Asset 2', 'Description for Asset 2', 150.00, 'Category B'),
+    ("0", 'Asset 3', 'Description for Asset 3', 75.00, 'Category A');

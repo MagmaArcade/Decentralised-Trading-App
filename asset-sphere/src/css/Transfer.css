@@ -190,10 +190,8 @@ this Page is the style elements for the Transfer page
     margin: 0;
   }
   
-  /* Styles the AUD text on the right side of the input */
+  /* Styles the */
   .transfer-input-container::after {
-    content: "AUD";
-    font-size: 1.5rem; /* Makes AUD text smaller */
     color: #000000;
     position: absolute; /* Position it absolutely within the container */
     right: 10px; /* Adjust the right position to place it inside the border */
