@@ -158,7 +158,7 @@ function Wallet() {
           <div className="wallet-input-container">
           <table>  {/* in this table element, all assets that belong to this user will be displayed */}
             <thead>
-              <tr>
+              <tr className>
                 <th>Asset ID</th>
                 <th>Name</th>
                 <th>Description</th>
