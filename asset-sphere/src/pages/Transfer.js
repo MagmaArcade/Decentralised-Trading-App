@@ -13,6 +13,7 @@ import { Grid, TextField, Select, MenuItem } from "@mui/material";
 import axios from 'axios';
 import "../css/Transfer.css"; // import css styling
 
+// Gets list of assets outside of render loop
 const assets = [];
 axios.get('http://127.0.0.1:8000/getassetinfo/')
     .then(response => {
@@ -22,13 +23,28 @@ axios.get('http://127.0.0.1:8000/getassetinfo/')
         console.error("Whoops, there was an error: ", error);
     });
 
+
+// Get list of wallets outside of render loop
+const wallets = [];
+axios.get('http://127.0.0.1:8000/getwalletinfo/')
+		.then(response => {
+			Object.values(response.data).map(({ walletAddress }) => wallets.push(walletAddress) );
+		})
+		.catch(error => {
+			console.error("Whoops, there was an error: ", error)
+		})
+
 // Transfer application
 function Transfer() {
 
   const [allAssets, setAllAssets] = useState('[]');
   const [selectedAsset, setSelectedAsset] = useState('');
-  const [searchedAsset, setSearchedAsset] = useState('');
-  const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString());
+  const [selectedWallet, setSelectedWallet] = useState('[]');
+
+  const [currentLoggedInUserID, setLoggedInUserID] = useState("0"); // HARDCODED, FIND A WAY TO LINK WITH SESSION/LOGGED IN USER
+                                                                    // IF SESSION CODE ENDS UP BEING AN INT, CHANGE API ~ LINE 290 WITHIN THE BASEMODEL: change userFrom: string > userFrom: int
+
+  const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset);
   
   // Fetch assets from API on component mount
   useEffect(() => {
@@ -49,6 +65,30 @@ function Transfer() {
 	const onFilterChange = (e) => {
 		setSelectedAsset(e.target.value);
 	  };
+
+  const onWalletAddressChange = (e) => {
+    setSelectedWallet(e.target.value);
+  }
+
+  const handleAssetTransfer = () => {
+    axios({
+      method: "POST",
+      url: "http://127.0.0.1:8000/transferasset",
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      data: {
+        "userFrom": currentLoggedInUserID,
+        "walletTo": selectedWallet,
+        "assetName": selectedAsset,
+      }
+    })
+    .then((response) => {
+      console.log(response);
+  })
+
+  }
+
 
   const render = () => {
     return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
@@ -90,7 +130,7 @@ function Transfer() {
                   backgroundColor: '#3b3b3b' }}
                   className="MuiSelect-root"
               >
-                <MenuItem value="" default>
+                <MenuItem value="" default disabled>
                   Select Asset
                 </MenuItem>
                 
@@ -104,21 +144,29 @@ function Transfer() {
           </div>
           <div className="transfer-right-container">
             <h1>Transfer Assets</h1>
-            <div>
-              <label className="transfer-label" htmlFor="transferToAccount">Transfer To</label>
-            </div>
-            <div className="transfer-input-container">
-              <input
-                type="text"
-                id="transferToAccount"
-                name="transferToAccount"
-                placeholder=""
-                maxlength="12"
-              />
+            <div className="transfer-left-container">
+            <Select
+                value={selectedWallet}
+                onChange={onWalletAddressChange}
+                displayEmpty
+                color="success"
+                className="transfer-input-container"
+              >
+                <MenuItem value="" default disabled>
+                  Select Wallet
+                </MenuItem>
+                
+                {/* Maps the values loaded into const assets at page loading into dropdown selection options */}
+                {wallets.map((wallet) => (
+                <MenuItem value={wallet} key={wallet}>
+                  {wallet}
+                </MenuItem>
+                ))}
+              </Select> 
             </div>
 
             <div>
-              <button className="transfer-purchase-btn">Complete Transaction</button>
+              <button className="transfer-purchase-btn" onClick={handleAssetTransfer}>Complete Transaction</button>
             </div>
           </div>
         </div>

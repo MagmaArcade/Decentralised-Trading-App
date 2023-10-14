@@ -38,7 +38,7 @@ function Market() {
 	const [searchedAsset, setSearchedAsset] = useState('');
 
 	// String that calls the API to retrieve data from the database, optionally appending your selected asset
-	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset.toString())
+	const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset)
 	
 	
 	// Function that will automatically (re)render the table upon startup/filter/search

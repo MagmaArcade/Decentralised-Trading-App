@@ -95,6 +95,25 @@ def get_asset_info():
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
 
+# Get all wallets from the database
+@app.get("/getwalletinfo/")
+def get_wallet_info():
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = "SELECT walletAddress FROM Users" # Selects all data from the DigitalAssets table
+        cursor.execute(query) # execute the query
+        result = cursor.fetchall() # store the data in a temporary variable
+        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return assets
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
+
 # Get Transaction information from the database, to be used for listing dynamic information
 @app.get("/gettrasactionhistoryinfo/{userID}")
 def get_asset_info(userID: str):
@@ -265,6 +284,42 @@ async def createUser(user: CreateUsersRequest):
 
     return
     
+# Handle Asset Transfer
+
+class assetTransferData(BaseModel):
+    userFrom: str
+    walletTo: str
+    assetName: str
+
+@app.post("/transferasset")
+async def transferAsset(transferdata: assetTransferData):
+    
+    # Ease readability by loading in the corresponding values of the above into local function variables
+    _userFrom = transferdata.userFrom
+    _walletTo = transferdata.walletTo
+    _assetName = transferdata.assetName
+
+    # Connect to the MySQL database - get some local variables
+    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+    cursor = connection.cursor() # create a cursor to execute SQL queries
+
+    # Lets get the Wallet Address of the user executing this command
+    query1 = f"SELECT walletAddress FROM Users WHERE userID={_userFrom}" # Gets the wallet ID of the user executing this call
+    cursor.execute(query1) # execute the query
+    _walletFrom = cursor.fetchall # Stores the wallet address
+
+    # Lets get the user ID of the wallet we're sending this asset to
+    query2 = f"SELECT userID FROM Users WHERE walletAddress='{_walletTo}'" # Gets the wallet ID of the user executing this call
+    cursor.execute(query2) # execute the query
+    _userTo = cursor.fetchall # Stores the wallet address
+
+
+    # Close the cursor/connection
+    cursor.close()
+    connection.close()
+
+    return _userFrom, _walletFrom, _userTo, _walletTo, _assetName
+
 class SessionManager:
     def __init__(self):
         self.data = ""
