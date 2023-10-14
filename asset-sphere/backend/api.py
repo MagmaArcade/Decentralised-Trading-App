@@ -115,12 +115,12 @@ def get_asset_info():
 
 # Smart Contract Stuff Below
 
-# Ganache and Web3.py setup
-@app.get("/test")
-async def funcTest1():
+w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545")) # Web3.py/Ganache initialisation
 
-    # type your address here
-    w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
+
+# Code to take and deploy the 'Users.sol' Smart Contract onto the local chain using account with index 0
+@app.get("/deployusersc")
+async def deployUserSmartContract():
 
     w3.eth.defaultAccount = w3.eth.accounts[0]
 
@@ -150,14 +150,12 @@ async def funcTest1():
 
     Users = w3.eth.contract(abi=abi, bytecode=bytecode)
 
-    nonce = w3.eth.get_transaction_count(w3.eth.defaultAccount)
-
     transaction = Users.constructor().build_transaction(
         {
-            "chainId": constants.ganacheChainID,
+            "chainId": w3.eth.chain_id,
             "gasPrice": w3.eth.gas_price,
             "from": w3.eth.defaultAccount,
-            "nonce": nonce,
+            "nonce": w3.eth.get_transaction_count(w3.eth.defaultAccount),
         }
     )
     transaction.pop('to')

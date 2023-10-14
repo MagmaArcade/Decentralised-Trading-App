@@ -3,8 +3,5 @@
 # Local MySQL Database Password (for initiating a connection)
 databasePassword = "rootroot"
 
-# Ganache Chain ID for the local server
-ganacheChainID = "1337"
-
 # Private key for the FIRST GANACHE ACCOUNT (i.e. Account with index 0)
-privateKeyGanacheAccount = "0xd8d2b42afabf371fe20821a148ac90898cc00ffea039a4ba1debf4033fa93a35"
+privateKeyGanacheAccount = "0xb85791afbfd2ace315d2c40e873d1b5b08328f52ee1e971a5403f9187608209f"
