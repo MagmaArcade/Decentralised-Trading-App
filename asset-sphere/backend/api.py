@@ -61,7 +61,7 @@ def get_asset_info(name: str):
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT * FROM DigitalAssets WHERE name = '{name}'" # Selects all data from the DigitalAssets table
+        query = f"SELECT * FROM DigitalAssets WHERE name = '{name}'" # Selects all data from the DigitalAssets table for a given asset name
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
         assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
@@ -81,19 +81,18 @@ def get_asset_info():
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = "SELECT * FROM Users" # Selects all data from the DigitalAssets table
+        query = "SELECT * FROM Users" # Selects all data from the Users table
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
-        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+        user = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
 
         # Close the cursor/connection
         cursor.close()
         connection.close()
 
-        return assets
+        return user
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
-
 
 # Get Transaction information from the database, to be used for listing dynamic information
 @app.get("/gettrasactionhistoryinfo/{userID}")
@@ -101,18 +100,38 @@ def get_asset_info(userID: str):
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT * FROM TransactionHistory WHERE userID = '{userID}'" # Selects all data from the DigitalAssets table
+        query = f"SELECT * FROM TransactionHistory WHERE userID = '{userID}'" # Selects all data from the TransactionHistory table for a given user
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
-        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+        history = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
 
         # Close the cursor/connection
         cursor.close()
         connection.close()
 
-        return assets
+        return history
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
+    
+# Get User ID from the database, to be used in the auth token
+@app.get("/getuserid/{email}")
+def get_asset_info(email: str):
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = f"SELECT userId FROM Users WHERE email = '{email}'" # Selects user data from the DigitalAssets table
+        cursor.execute(query) # execute the query
+        result = cursor.fetchall() # store the data in a temporary variable
+        userId = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return userId
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
+
 
 # Smart Contract Stuff Below
 

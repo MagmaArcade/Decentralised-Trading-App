@@ -51,6 +51,8 @@ function Login() {
     } else {
         setIsFormValid(false);
     }
+
+    setAuthToken(values.email); // sets the userId in api.py to be used in other functions
   }
   
   return (
@@ -75,5 +77,35 @@ function Login() {
       </div>
     </div>
   );
+}
+
+
+// Function to set the authentication token in the backend
+function setAuthToken(email) {
+
+	// String that calls the API to retrieve userID from the database
+  const userId = (`http://127.0.0.1:8000/getuserid/${email}`)
+
+  const requestBody = {
+    auth_token: userId,
+  };
+
+  fetch('/api/set_auth_token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log('Authentication token set successfully');
+      } else {
+        console.error('Failed to set authentication token');
+      }
+    })
+    .catch(error => {
+      console.error('Error while setting authentication token:', error);
+    });
 }
 export default Login;
