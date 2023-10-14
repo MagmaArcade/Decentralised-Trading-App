@@ -15,6 +15,7 @@ import constants
 
 # FastAPI initialisation
 app = FastAPI()
+app.UserSChasDeployed = False # check for the users SC being deployed as a property of the app
 
 # Configure CORS to allow requests from your React app
 app.add_middleware(
@@ -128,7 +129,7 @@ async def deployUserSmartContract():
             users_file = file.read()
             
         install_solc("0.8.0")
-        compiled_sol = compile_standard(
+        users_compiled_sol = compile_standard(
             {
                 "language": "Solidity",
                 "sources": {"users.sol": {"content": users_file}},
@@ -142,14 +143,14 @@ async def deployUserSmartContract():
         )
 
         # get bytecode
-        bytecode = compiled_sol["contracts"]["users.sol"]["Users"]["evm"]["bytecode"]["object"]
+        bytecode = users_compiled_sol["contracts"]["users.sol"]["Users"]["evm"]["bytecode"]["object"]
 
         # get abi
-        abi = compiled_sol["contracts"]["users.sol"]["Users"]["abi"]
+        abi = users_compiled_sol["contracts"]["users.sol"]["Users"]["abi"]
 
-        Users = w3.eth.contract(abi=abi, bytecode=bytecode)
+        UsersSC = w3.eth.contract(abi=abi, bytecode=bytecode)
 
-        transaction = Users.constructor().build_transaction(
+        transaction = UsersSC.constructor().build_transaction(
             {
                 "chainId": w3.eth.chain_id,
                 "gasPrice": w3.eth.gas_price,
@@ -164,85 +165,29 @@ async def deployUserSmartContract():
         tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
         tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
-        return "Success"
+        app.UserSChasDeployed = True # changes the check for if the smart contract has been deployed
+
+        # Returns deployed contract address and abi to be posted for interactions with the contract
+        # format: ["address", [abi info in the form of json key value pairs]]
+        # write these return values to a file using AXIOS for reference later in the application
+        return tx_receipt.contractAddress, abi
+
+# Code that interacts with the deployed User smart contract to create a new User on the blockchain and return the data to be updated by the database
+
+@app.get("/createuser")     # CHANGE TO POST WHEN AXIOS COMES INTO PLAY
+async def createUser(contractAddress, contractabi, userid, userdata):
     
-    # error handling at some point
-    # except w3.eth.blocknotfound as err:
-        # return {"error": f"Web3 returned an error: {err}"}
+    # check to see that the Users SC object has been created. If not, return the value
+    if(app.UserSChasDeployed == False):
+        return "There is no smart contract to handle this interaction on the blockchain yet"
+    else:
+        UsersContract = w3.eth.contract(
+            address = contractAddress,
+            abi = contractabi
+        )
+        
+        UsersContract.functions.CreateUser(userid, userdata) # calls the function that puts user information onto the blockchain
 
-"""
-ganache_url = "http://127.0.0.1:7545"
-w3 = Web3(Web3.HTTPProvider(ganache_url))
+        returnedUserData = UsersContract.functions.getUser(userid) # call the function that will get the user data we just encoded to update the database
 
-account = "0x768139e43D9a2b07f64fBC009E06EaFDA16F413A"
-privatekey = "0xc121c07225786e7f4457794e4b6461874ba0019263e6be04e1068f4393aeec57"
-chainID = "1337"
-
-@app.get("/users")
-async def start():
-    
-    # w3.eth.defaultAccount = w3.eth.accounts[0]
-    
-    with open("./users.sol", "r") as file:
-        users_contract_sol = file.read()
-
-    install_solc("0.8.0")
-    compiled_sol = compile_standard(
-        {
-            "language": "Solidity",
-            "sources": {"users.sol": {"content": users_contract_sol}},
-            "settings": {
-                "outputSelection": {
-                    "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
-                }
-            },
-        },
-        solc_version="0.8.0",
-    )
-
-    abi = compiled_sol["contracts"]["users.sol"]["Users"]["abi"]
-    bytecode = compiled_sol["contracts"]["users.sol"]["Users"]["evm"]["bytecode"]["object"]
-
-    users_contract = w3.eth.contract(abi=abi, bytecode=bytecode)
-
-
-    transaction = users_contract.constructor().build_transaction(
-        {
-            "chainID": chainID,
-            "gasPrice": w3.eth.gas_price,
-            "from": account,
-            "nonce": w3.eth.get_transaction_count(account)
-        }
-    )
-    transaction.pop('to')
-
-    signed_txn = w3.eth.account.sign_transaction(transaction, private_key=private_key)
-    tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
-    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-
-
-    return tx_receipt
-"""
-
-"""
-    # Ethereum settings
-    chain_id = 5777  # Chain ID for Ganache
-    my_address = "0x7b185B320441c9Dfea450A7A5F9b130cA207be50"
-    private_key = "0x3c59ae2936753b6f732816c7cee51e277d1644ff0335a2f681ea5cbef7919169"
-    """
-
-
-"""
-@app.get("/purchase")
-async def purchase_product(
-    productId: int,
-    productName: str,
-    productDesc: str,
-    price: int,
-    productCategory: str
-):
-    timestamp = datetime.now().strftime("%d %b %Y %I:%M:%S %p %Z")
-
-    return {"message": "Purchase successful", "transactionHash": transaction_hash, "timestamp": timestamp}
-
-"""
+        return returnedUserData

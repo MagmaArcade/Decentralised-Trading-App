@@ -17,7 +17,7 @@ import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js 
 import axios from 'axios'
 import * as d3 from 'd3';
 import "../css/Login.css"; // import css styling
-import Validation from "./LoginValidation"; // import login validation styling
+import Validation from "../components/LoginValidation.js"; // import login validation styling
 
 // Login application
 function Login() {

@@ -15,7 +15,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js elements from mui
 import axios from 'axios'
 import * as d3 from 'd3';
-import Validation from "./RegisterValidation";
+import Validation from "../components/RegisterValidation.js";
 
 // Register application
 function Register() {
