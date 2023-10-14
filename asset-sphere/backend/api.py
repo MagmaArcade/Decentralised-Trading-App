@@ -248,17 +248,16 @@ async def createUser(user: CreateUsersRequest):
     
     user_address = w3.eth.accounts[current_user_count + 1] # assign this user a wallet account (starting at 1, as our Ganache account that deploys the create user contract is account 0)
     
-    query = "INSERT INTO users (userId, firstName, lastName, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    query = "INSERT INTO users (userID, fname, lname, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor.execute(query, (int(userid), split_payload[0], split_payload[1], split_payload[2], split_payload[3], split_payload[4], user_address))
 
-    connection.commit()
+    connection.commit() # Commit the changes
 
     # Close the cursor/connection
     cursor.close()
     connection.close()
 
-    return payload, userid, split_payload[0], split_payload[1], split_payload[2], split_payload[3], split_payload[4], user_address
-    
+    return
     
 class SessionManager:
     def __init__(self):
