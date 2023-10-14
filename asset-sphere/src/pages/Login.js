@@ -18,6 +18,7 @@ import axios from 'axios'
 import * as d3 from 'd3';
 import "../css/Login.css"; // import css styling
 import Validation from "../components/LoginValidation.js"; // import login validation styling
+import { useNavigate } from 'react-router-dom';
 
 // Login application
 function Login() {
@@ -26,33 +27,43 @@ function Login() {
     password: ''
   })
 
+  const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
-
-  const[errors, setErrors] = useState ({})
+  const navigate = useNavigate();
 
   const handleInput = (event) => {
+    setValues({
+      ...values, 
+      [event.target.name]: event.target.value
+    });
     setIsFormValid(false);
-    setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const validationErrors = Validation(values);
     setErrors(validationErrors);
-    setIsFormValid(Object.keys(validationErrors).length === 0);
+    
+    if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) {        
+        // Optionally: Check login credentials with server here, then:
+        navigate('/Dashboard');
+        setIsFormValid(true);
+    } else {
+        setIsFormValid(false);
+    }
   }
+  
   return (
     <div className="login">
       <div className="main-container">
         <div className="main-content">
           <h1>Log In</h1>
           <form className="login-form form-container" action="" onSubmit={handleSubmit}>
-            <input type="email" placeholder="Email" name="email" onChange={handleInput}/>
+            <input type="email" placeholder="Email" name="email" onChange={handleInput} value={values.email}/>
             {errors.email && <span className='text-danger'> {errors.email}</span>}
-            <input type="password" placeholder="Password" name="password" onChange={handleInput}/>
+            <input type="password" placeholder="Password" name="password" onChange={handleInput} value={values.password}/>
             {errors.password && <span className='text-danger2'> {errors.password}</span>}
-            <button type="submit" className="main-btn">
-            {isFormValid ? <Link to="/Dashboard">Log In</Link> : "Log In"}</button>
+            <button type="submit" className="main-btn"> Log In </button>
             <p className="btn-undertext">
               Don't have an account? <Link to="/Register">Register here.</Link>
             </p>
