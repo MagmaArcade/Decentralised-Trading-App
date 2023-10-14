@@ -70,7 +70,7 @@ function Wallet() {
 		</tr>
 		})
 	}
-
+  // NEED TO PROGRAM HOW WALLET WILL HAVE DATA UPDATED 
 
   // State variable which stores every asset in the database
   const [allAssets, setAllAssets] = useState('[]');
@@ -81,7 +81,7 @@ function Wallet() {
   }, [allAssets]);
 
   // AXIOS function to request data from the API/Database
-  function loadTableData() {
+  /* function loadTableData() { 
     axios.get(queryUserAssets)
     .then(response => {
       setAllAssets(response.data)
@@ -89,7 +89,7 @@ function Wallet() {
     .catch(error => {
       console.error("Whoops, there was an error: ", error)
     })
-  }
+  } */
 
   // Function which dynamically renders returned asset data in the form of a HTML table
   const renderAssetsInTable = () => {
