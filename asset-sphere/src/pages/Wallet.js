@@ -118,20 +118,6 @@ function Wallet() {
             <p>Wallet ID: 000012</p> {/* will display the users individual wallet id */}
           </item>
         </Grid>
-
-        <Grid item xs={4}><noscript>This is a spacer for the grid</noscript></Grid> {/* space add an empty grid element that consume the empty grid spaces */}
-
-        <Grid item xs={2}>
-          <item> 
-            <button className="wallet-trade-btn">Deposit</button>
-          </item>
-        </Grid>
-
-        <Grid item xs={2}>
-          <item> 
-            <button className="wallet-trade-btn">Withdrawl</button>
-          </item>
-        </Grid>
       </Grid>
 
       <div className="wallet-main-container">

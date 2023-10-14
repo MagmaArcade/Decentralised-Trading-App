@@ -21,7 +21,7 @@ import Market from "./pages/Market";
 import Wallet from "./pages/Wallet";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Trade from "./pages/Trade";
+import Transfer from "./pages/Transfer";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
@@ -48,7 +48,7 @@ function App() {
         <Route path="Wallet" element={<Wallet />} />
         <Route path="Login" element={<Login />} />
         <Route path="Register" element={<Register />} />
-		    <Route path="Trade" element={<Trade />} />
+		    <Route path="Transfer" element={<Transfer />} />
       </Routes>
 
       <Footer/> {/* used to add a footer to all pages */}

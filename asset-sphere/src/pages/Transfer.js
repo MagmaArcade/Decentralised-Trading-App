@@ -7,11 +7,11 @@ SID:	  103865794
 		    103995882
 		    103992223
 */
-// this is the trade page. this page is view singular asset breakdowns, including options to trade.
+// this is the Transfer page. this page is view singular asset breakdowns, including options to Transfer.
 import React, { useState, useEffect } from 'react';
 import { Grid, TextField, Select, MenuItem } from "@mui/material";
 import axios from 'axios';
-import "../css/Trade.css"; // import css styling
+import "../css/Transfer.css"; // import css styling
 
 const assets = [];
 axios.get('http://127.0.0.1:8000/getassetinfo/')
@@ -22,8 +22,8 @@ axios.get('http://127.0.0.1:8000/getassetinfo/')
         console.error("Whoops, there was an error: ", error);
     });
 
-// Trade application
-function Trade() {
+// Transfer application
+function Transfer() {
 
   const [allAssets, setAllAssets] = useState('[]');
   const [selectedAsset, setSelectedAsset] = useState('');
@@ -54,15 +54,15 @@ function Trade() {
     return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
       return (
         <div className="asset-info" key={assetID}>
-          <div className="trade-top">
+          <div className="transfer-top">
             <p>
-              <span className="trade-asset-text">{name}</span>
-              <span className="trade-btc-text">{categoryName}</span>
+              <span className="transfer-asset-text">{name}</span>
+              <span className="transfer-btc-text">{categoryName}</span>
             </p>       
           </div>
-          <div className="trade-middle">
+          <div className="transfer-middle">
             <p>
-              <span className="trade-asset-value">{price}</span> <span className="trade-currency">AUD</span>
+              <span className="transfer-asset-value">{price}</span> <span className="transfer-currency">AUD</span>
             </p>
           </div>
           <div className="statistics">
@@ -74,9 +74,9 @@ function Trade() {
   };
 
     return (
-      <div className="trade">
-        <div className="trade-main-container">
-          <div className="trade-left-container">
+      <div className="transfer">
+        <div className="transfer-main-container">
+          <div className="transfer-left-container">
             {render()};
             <Select
                 value={selectedAsset}
@@ -101,27 +101,26 @@ function Trade() {
                 ))}
               </Select> 
           </div>
-          <div className="trade-right-container">
-            <h1>Trade Currency</h1>
+          <div className="transfer-right-container">
+            <h1>Transfer Assets</h1>
             <div>
-              <label className="trade-label" htmlFor="trade-amount">Amount</label>
+              <label className="transfer-label" htmlFor="transferToAccount">Transfer To</label>
             </div>
-            <div className="trade-input-container">
+            <div className="transfer-input-container">
               <input
                 type="text"
-                id="amount"
-                name="amount"
+                id="transferToAccount"
+                name="transferToAccount"
                 placeholder=""
               />
-              <label className="trade-dollar-label">$</label>
             </div>
 
             <div>
-              <button className="trade-purchase-btn">TRADE</button>
+              <button className="transaction-purchase-btn">Transaction</button>
             </div>
           </div>
         </div>
       </div>
 );
 }
-export default Trade;
+export default Transfer;
