@@ -60,7 +60,10 @@ function Register() {
   useEffect(() => {
     if (isFormValid) {
         // Implement further actions (e.g., API call to server) here
-        navigate('/Dashboard');
+
+
+        // Push users to wallet
+        navigate('/Wallet');
     }
   }, [isFormValid, navigate]);
 
