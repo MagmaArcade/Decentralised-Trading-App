@@ -192,8 +192,7 @@ async def createUser(contractAddress, contractabi, userid, userdata):
 
         return returnedUserData
     
-
-
+    
 class SessionManager:
     def __init__(self):
         self.data = ""
