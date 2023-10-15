@@ -45,7 +45,7 @@ function App() {
           console.error("Whoops, there was an error: ", error)
       })
 
-      axios.get('http://127.0.0.1:8000/deploysc/tradeassets')
+      axios.get('http://127.0.0.1:8000/deploysc/transferassets')
         .then(response => {
           console.log(response)
         })
