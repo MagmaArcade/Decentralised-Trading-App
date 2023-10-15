@@ -6,6 +6,7 @@ contract Users {
     event CreatedUser();
     // UserId -> Payload
     // Mapping that stores all the user ids & their payloads;
+    // Payload
     mapping(string => string[]) public users;
 
     function createUser(string memory _userid, string[] memory _payload) external {

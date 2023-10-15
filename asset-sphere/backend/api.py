@@ -283,20 +283,6 @@ class CreateUsersRequest(BaseModel):
 # Code to take and deploy the 'Users.sol' Smart Contract or the 'tradeassets.sol' Smart Contract onto the local chain using account with index 0
 @app.get("/deploymainsc")
 async def deploySmartContract():
-        
-        """
-        # Quick variable assignment depending on the contract passed in (contract names need to be capitalised/exact for abi & bytecode)
-        # Also checks if its one of two valid sc names otherwise returns error & won't deploy anything (doesn't cost gas)
-        if(scname == "users"):
-            contractName = "Users"
-        elif(scname == "transferassets"):
-            contractName = "TransferAssets"
-        elif(scname == "assets"):
-            contractName = "Assets"
-        else:
-            return "Invalid Contract Name!!!"
-        """
-            
         w3.eth.defaultAccount = w3.eth.accounts[0]
 
         with open(f"./main.sol", "r") as file:
@@ -398,7 +384,8 @@ async def createUser(user: CreateUsersRequest):
     userid = str(current_user_count)
 
     # Transaction that places the user data on the blockchain
-    tx_hash = UsersContract.functions.createUser(userid, [user.fname, user.lname, user.dob, user.email, user.password]).transact() # calls the function that puts user information onto the blockchain    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    tx_hash = UsersContract.functions.createUser(userid, [user.fname, user.lname, user.dob, user.email, user.password]).transact() # calls the function that puts user information onto the blockchain    
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
     # Call the get user function to get user data for update in the local database
     payload = UsersContract.functions.getUser(userid).call()
@@ -416,13 +403,79 @@ async def createUser(user: CreateUsersRequest):
 
     return
 
+# Handle Initial Asset and User Creation 
+# NB: These values are HARDCODED - users cannot create digital assets, therefore we have supplied some to be used for testing
+# NB: The user created in this method (User with the id of 0) will be the owner of all assets on startup
+# GET at start of the app that will deploy assets onto blockchain and update the database with returned values
+@app.get("/createdemodata")
+async def createDemoData():
+
+    # CREATING DEMO ASSET DATA:
+
+    # Default Ganache Account (same one that created the contract, 'our' account)
+    w3.eth.default_account = w3.eth.accounts[0]
+
+    # Open the contract with the address/abi that was written to file
+    # Usually we'd pass this in, but once again this function is HARDCODED as a demo
+    with open(f'../src/localdata/assetscontractinfo.json', 'r') as file:    
+        contractjson = json.load(file)
+    
+    AssetsContract = w3.eth.contract(
+        address = contractjson["conaddress"],
+        abi = contractjson["conabi"]
+    )
+    
+    # Define our Assets for creation
+    assets = [
+        ["0", "0", "Asset 1", "Cool asset", "100.0", "Category A"],
+        ["1", "0", "Asset 2", "Awesome asset", "50.0", "Category B"],
+        ["2", "0", "Asset 3", "Epic asset", "75.0", "Category A"]
+    ]
+
+    # Deploy data (nested loops didn't work for whatever reason)
+    tx_hash = AssetsContract.functions.createAsset(assets[0][0], [assets[0][1], assets[0][2], assets[0][3], assets[0][4], assets[0][5]]).transact() # calls the function that puts user information onto the blockchain    
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+
+    tx_hash = AssetsContract.functions.createAsset(assets[1][0], [assets[1][1], assets[1][2], assets[1][3], assets[1][4], assets[1][5]]).transact() # calls the function that puts user information onto the blockchain    
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+
+    tx_hash = AssetsContract.functions.createAsset(assets[2][0], [assets[2][1], assets[2][2], assets[2][3], assets[2][4], assets[2][5]]).transact() # calls the function that puts user information onto the blockchain    
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    
+
+    # Code that inserts Asset Data into the MySQL database as per requirements
+    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+    cursor = connection.cursor() # create a cursor to execute SQL queries
+
+    query = "INSERT INTO digitalassets (assetID, userId, name, description, price, categoryName) VALUES (%s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (int(assets[0][0]), int(assets[0][1]), assets[0][2], assets[0][3], assets[0][4], assets[0][5]))
+    
+    query = "INSERT INTO digitalassets (assetID, userId, name, description, price, categoryName) VALUES (%s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (int(assets[1][0]), int(assets[1][1]), assets[1][2], assets[1][3], assets[1][4], assets[1][5]))
+    
+    query = "INSERT INTO digitalassets (assetID, userId, name, description, price, categoryName) VALUES (%s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (int(assets[2][0]), int(assets[2][1]), assets[2][2], assets[2][3], assets[2][4], assets[2][5]))
+    
+    connection.commit() # Commit the changes
+
+
+    # CREATING DEMO USER DATA
+
+
+    # Close the cursor/connection
+    cursor.close()
+    connection.close()
+
+    return
+
 # Handle Asset Transfer
 class assetTransferData(BaseModel):
+    conaddress: str
+    conabi: tuple
     userFrom: str
     walletTo: str
     assetName: str
 
-"""
 @app.post("/transferasset")
 async def transferAsset(transferdata: assetTransferData):
     
@@ -453,6 +506,7 @@ async def transferAsset(transferdata: assetTransferData):
 
     _userTostring = str(_userTo)
 
+    # Currently we have the userID and walletAddress of both sender & reciever, as well as the ID of the asset we want to transfer
 
     # check if the user owns the asset
     query2 = f"SELECT userID FROM DigitalAssets WHERE name='{_assetName}'" 
@@ -460,4 +514,3 @@ async def transferAsset(transferdata: assetTransferData):
     _userIdCheck = cursor.fetchone()[0] # Stores the wallet address
 
     return "You do not own the asset"
-"""
