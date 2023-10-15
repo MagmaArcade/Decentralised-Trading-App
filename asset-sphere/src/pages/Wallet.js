@@ -139,7 +139,7 @@ function Wallet() {
           <h1 className="wallet-h1"> Transaction History </h1> {/* will display all previous transactions */}
           <table>  {/* in this table element, all avaliable assets will be displayed */}
             <thead>
-              <tr>
+              <tr className="wallet-p">
                 <th>Transaction ID</th>
                 <th>Asset ID</th>
                 <th>User ID</th>
