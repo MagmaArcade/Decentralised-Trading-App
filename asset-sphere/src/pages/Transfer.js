@@ -161,7 +161,7 @@ function Transfer() {
           </div>
           <div className="transfer-right-container">
             <h1>Transfer Assets</h1>
-            <div className="transfer-left-container">
+            <div className="transfer-right-container">
             <Select
                 value={selectedWallet}
                 onChange={onWalletAddressChange}
