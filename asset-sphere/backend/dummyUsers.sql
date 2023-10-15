@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS TransactionHistory (
     FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
+
+
 -- Insert data for Category
 INSERT INTO Category (categoryName, description)
 VALUES
