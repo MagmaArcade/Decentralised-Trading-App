@@ -37,12 +37,15 @@ function Login() {
     });
   }
 
+  // Logic when the form is submitted
   const handleSubmit = (event) => {
     event.preventDefault();
-    const validationErrors = Validation(values);
-    setErrors(validationErrors);
+    const validationErrors = Validation(values); // Check the values pass validation
+    setErrors(validationErrors); // Set errors if they don't
 
-    if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) {
+    if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) { // Checks there are no entry validation errors
+      
+      // Now we send the entered email and password to the backend, checking if they exist in the database
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/validatelogin",
@@ -55,7 +58,14 @@ function Login() {
         }
       })
       .then((response) => {
-        console.log(response);
+        // If the email and password do exist, route the user to Wallet
+        if(response.data.status == "success") {
+          navigate("/Wallet")
+        }
+        // If not, set the error as invalid email or password and keep them on the page
+        else {
+          setErrors(prev => ({ ...prev, password: "Invalid email or password" }))
+        }
       })
     }
   }

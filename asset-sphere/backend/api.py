@@ -184,32 +184,36 @@ async def login(user: LoginData):
     cursor = connection.cursor() # create a cursor to execute SQL queries
     
     # Load values into local variables
-    _email = LoginData.email
-    _password = LoginData.password
+    _email = user.email
+    _password = user.password
 
     try:
-        query = f"SELECT userID FROM Users WHERE email={_email} AND password={_password}"
-        cursor.execute(query, (user.email, user.password))
+        query = f"SELECT userID FROM Users WHERE email='{_email}' AND password='{_password}'"
+        cursor.execute(query)
         
         db_user = cursor.fetchone()
-        
-        return _email, _password
 
         if db_user:
+            userid = db_user[0]
+            useridstr = str(userid)
+            setSessionToken(useridstr)
             return {"status": "success"}
         else:
             return {"status": "failure", "detail": "Invalid email address or password" }
+        
     except Exception as e:
         print(f"Error: {str(e)}")
     finally:
         cursor.close()
         connection.close()
 
-# API call that takes user login information, validates it, and sets the session token if correct
-@app.post("/setsessiontoken")
-def setSessionToken(user: LoginData):
-
-    
+# function that sets the session token to the validated user
+def setSessionToken(userID: str):
+    currentSession = {
+        "token": userID
+    }
+    with open('../src/localdata/currentSession.json', 'w') as file:
+        json.dump(currentSession, file)
     return
 
 
