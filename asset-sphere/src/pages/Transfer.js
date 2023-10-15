@@ -138,7 +138,7 @@ function Transfer() {
   };
 
     return (
-      <><Navbar /><div className="transfer">
+      <><Navbar/><div className="transfer">
         <div className="transfer-main-container">
           <div className="transfer-left-container">
             {render()};
