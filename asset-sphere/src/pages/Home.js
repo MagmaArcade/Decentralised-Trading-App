@@ -121,12 +121,12 @@ function Home() {
 					{/* Row 3 - body text */}
 					<Grid item xs={4}>
 						<item> 
-							<p>Buy crypto with ease.</p>
+							<p>Buy assets with ease.</p>
 						</item>
 					</Grid>
 					<Grid item xs={4}>
 						<item> 
-							<p>Trade with different coins</p>
+							<p>Trade with different assets</p>
 						</item>
 					</Grid>
 					<Grid item xs={4}>

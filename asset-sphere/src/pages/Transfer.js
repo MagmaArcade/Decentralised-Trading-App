@@ -134,7 +134,7 @@ function Transfer() {
           </div>
         </div>
       );
-    });
+    }); 
   };
 
     return (

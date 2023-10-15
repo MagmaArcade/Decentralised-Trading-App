@@ -13,6 +13,7 @@ This Page is the style elements for the Register page
 .register {
     background-color: #262626;
     min-height: 100vh;
+    max-width: 100%;
     display: flex;
     flex-direction: column; /* Change to column to stack elements vertically */
     align-items: center;
@@ -100,15 +101,7 @@ This Page is the style elements for the Register page
   .btn-reg-undertext a:hover {
     text-decoration: underline; /* Add underline on hover if desired */
   }
-  
-  /* Add styles for Navbar */
-  .navbar {
-    background-color: #79F5AE;
-    color: white;
-    padding: 1rem;
-    width: 100%;
-    text-align: center;
-  }
+
 
   .regtext-danger {
     color: red;
