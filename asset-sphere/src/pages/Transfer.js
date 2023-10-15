@@ -18,7 +18,7 @@ var currentSessionToken = "";    // Will initalise as blank, but this will be ca
 
 // Gets current list of assets outside of render loop
 const assets = [];
-axios.get('http://127.0.0.1:8000/getassetinfo/')
+axios.get(`http://127.0.0.1:8000/getuserassets/${currentSessionToken}`)
     .then(response => {
         Object.values(response.data).map(({ name }) => assets.push(name));
     })
@@ -49,7 +49,7 @@ function Transfer() {
   const [currentLoggedInUserID, setLoggedInUserID] = useState("0"); // HARDCODED, FIND A WAY TO LINK WITH SESSION/LOGGED IN USER
                                                                     // IF SESSION CODE ENDS UP BEING AN INT, CHANGE API ~ LINE 290 WITHIN THE BASEMODEL: change userFrom: string > userFrom: int
 
-  const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset);
+  const query = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}`);
   
   // Fetch assets from API on component mounts
   useEffect(() => {
