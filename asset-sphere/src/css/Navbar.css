@@ -35,6 +35,13 @@ This Page is the style elements for the Navbar component.
 
 .asset-sphere {
 	padding: 0;
+	width: 200;
+	height: 50;
+
+}
+
+.login-icon {
+	width: 50px; height: 50px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -51,18 +58,25 @@ This Page is the style elements for the Navbar component.
 @media only screen and (max-width: 600px) {
     .navbar {
         padding: 15px 0;
+		align-items: center;
     }
 
     .page-links a {
         padding: 6px;
         font-size: 14px;
-		margin-left: -90px;
+		margin-left: -140px;
     }
 
 	.login-icon {
-
+		max-width: 40px; 
+		max-height: 40px;
 	}
 
+	.asset-sphere {
+		padding: 0;
+		width: 160;
+		height: 40;
+	}
 }
 
 @media only screen and (max-width: 600px) {
