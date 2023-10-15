@@ -263,6 +263,8 @@ async def deploySmartContract(scname: str):
             contractName = "Users"
         elif(scname == "transferassets"):
             contractName = "TransferAssets"
+        elif(scname == "assets"):
+            contractName = "Assets"
         else:
             return "Invalid Contract Name!!!"
         
@@ -322,6 +324,23 @@ async def deploySmartContract(scname: str):
             temp = json.loads(contractjson)
             json.dump(temp, file)
 
+        # If the contract is the Users contract, write the address to the database so the TradeAssets contract can reference it later
+        if(scname == "users"):
+            userscaddress = tx_receipt.contractAddress
+            print(userscaddress)
+
+            connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+            cursor = connection.cursor() # create a cursor to execute SQL queries
+            
+            query = "INSERT INTO contractaddress (address) VALUES (%s)"
+            cursor.execute(query, [userscaddress])
+
+            connection.commit() # Commit the changes
+
+            # Close the cursor/connection
+            cursor.close()
+            connection.close()
+
         return
 
 # Code that interacts with the deployed User smart contract to create a new User on the blockchain and return the data to be updated by the database
@@ -338,9 +357,6 @@ async def createUser(user: CreateUsersRequest):
         abi = user.conabi
     )
     
-    # Create the user data 'payload' (the information to be stored on the chain)
-    userdata = (user.fname + "," + user.lname + "," + user.dob + "," + user.email + "," + user.password)
-
     # Connect to the MySQL database - we need to ascertain how many users already exist in order to correctly assign this user a user ID (primary keys can't clash)
     connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
     cursor = connection.cursor() # create a cursor to execute SQL queries
@@ -352,16 +368,11 @@ async def createUser(user: CreateUsersRequest):
     userid = str(current_user_count)
 
     # Transaction that places the user data on the blockchain
-    tx_hash = UsersContract.functions.createUser(userid, userdata).transact() # calls the function that puts user information onto the blockchain
-    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    tx_hash = UsersContract.functions.createUser(userid, [user.fname, user.lname, user.dob, user.email, user.password]).transact() # calls the function that puts user information onto the blockchain    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
     # Call the get user function to get user data for update in the local database
     payload = UsersContract.functions.getUser(userid).call()
 
-    # Now we take the payload data and enter it into our MySQL database, ensuring changes on the blockchain reflect in our backend
-    split_payload = payload.split(',') # split the CSV into an array
-
-    # Grab a Ganache account address to use for this created user
     
     user_address = w3.eth.accounts[current_user_count + 1] # assign this user a wallet account (starting at 1, as our Ganache account that deploys the create user contract is account 0)
     
@@ -382,6 +393,7 @@ class assetTransferData(BaseModel):
     walletTo: str
     assetName: str
 
+"""
 @app.post("/transferasset")
 async def transferAsset(transferdata: assetTransferData):
     
@@ -419,16 +431,4 @@ async def transferAsset(transferdata: assetTransferData):
     _userIdCheck = cursor.fetchone()[0] # Stores the wallet address
 
     return "You do not own the asset"
-
-class SessionManager:
-    def __init__(self):
-        self.data = ""
-
-    def set_auth_token(self, auth_token):
-        self.data['auth_token'] = auth_token
-
-    def get_auth_token(self):
-        return self.data.get('auth_token')
-
-    def clear_all(self):
-        self.data = ""
+"""
