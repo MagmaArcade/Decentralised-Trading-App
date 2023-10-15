@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Users (
 -- Create the Category table if it doesn't exist
 CREATE TABLE IF NOT EXISTS Category (
     categoryName VARCHAR(255) PRIMARY KEY,
-    description TEXT
+    description VARCHAR(255)
 );
 
 -- Create the DigitalAssets table if it doesn't exist
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS DigitalAssets (
     assetID INT AUTO_INCREMENT PRIMARY KEY,
     UserId INT,
     name VARCHAR(255),
-    description TEXT,
+    description VARCHAR(255),
     price DECIMAL(15,2),
     categoryName VARCHAR(255),
     FOREIGN KEY (UserId) REFERENCES Users(userID),
