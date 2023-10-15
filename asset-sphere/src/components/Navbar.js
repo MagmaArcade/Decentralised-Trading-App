@@ -17,8 +17,22 @@ import "../css/Navbar.css"; // import css styling
 import logo from '../assets/AssetSphere_Logo.png';
 import profile from '../assets/Profile.png';
 
+var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
+
 // Navbar application
 function Navbar() {
+
+	/* Function needs to return different HTML/MUI depending on:
+		if currentSessionToken == "", then return HTML which shows a login button and that button routes the user to the login page
+
+		else: (AKA we have a current logged in user ID)
+			we need an API call that gets the first name of that user
+			return html which:
+				shows text saying: "Logged in as: {fname}"
+				next to that, a button which says logout 
+				button on press will call "http://127.0.0.1/sessioninitialiser"
+	*/
+
   return (
     <div className="navbar">
         <Grid 	
@@ -60,6 +74,7 @@ function Navbar() {
 			</Grid>
 			
 			<Grid item xs={1} sm={3}>
+				{/* This to call a function which will return some HTML */}
 				<item> 
 					<Link to="/Login"> {/* will route user to the login page */}
 						<img 
@@ -76,20 +91,5 @@ function Navbar() {
     </div>
   );
 }
-
-/* 	This JS function implements a responsive navbar that shrinks as the user scrolls down the page
-	Currently, it is glitching as the user scrolls, creating a very negative experience.
-	This will be fixed in time for the dynamic release of the application.
-
-function scrollFunction() {
-  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-    document.getElementsByClassName("navbar")[0].style.padding = "10px 0";
-  } else {
-    document.getElementsByClassName("navbar")[0].style.padding = "30px 0";
-  }
-}
-
-window.onscroll = function() {scrollFunction()}; */
-
 export default Navbar; 
 
