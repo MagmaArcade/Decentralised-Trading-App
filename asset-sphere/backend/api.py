@@ -220,6 +220,7 @@ async def login(user: LoginData):
             userid = db_user[0]
             useridstr = str(userid)
             setSessionToken(useridstr)
+            execute_sql_file()
             return {"status": "success"}
         else:
             return {"status": "failure", "detail": "Invalid email address or password" }
@@ -238,6 +239,28 @@ def setSessionToken(userID: str):
     with open('../src/localdata/currentSession.json', 'w') as file:
         json.dump(currentSession, file)
     return
+
+# fuction to create a new databasae and tables if they dont yet exist
+def execute_sql_file():
+    try:
+        sql_file = "createdb.sql"
+
+        # Establish a connection to the MySQL server
+        connection = mysql.connector.connect(**db_configuration)
+        cursor = connection.cursor()
+
+        # Read and execute the SQL script
+        #with open(sql_file, 'r') as sql_script:
+
+        #    cursor.execute(sql_script.read(), multi=True)
+
+        #connection.commit()
+        #connection.close()
+
+        print(f'Successfully executed {sql_file} to create tables in MySQL database')
+    except mysql.connector.Error as e:
+        print(f'Error: Failed to execute {sql_file} in MySQL database')
+        print(e)
 
 
 # Smart Contract Stuff Below
