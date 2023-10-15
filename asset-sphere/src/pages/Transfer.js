@@ -15,16 +15,8 @@ import "../css/Transfer.css"; // import css styling
 import { useNavigate } from "react-router-dom";
 
 var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
-
-// Gets current list of assets outside of render loop
 const assets = [];
-axios.get(`http://127.0.0.1:8000/getuserassets/${currentSessionToken}`)
-    .then(response => {
-        Object.values(response.data).map(({ name }) => assets.push(name));
-    })
-    .catch(error => {
-        console.error("Whoops, there was an error: ", error);
-    });
+
 
 // Get list of wallets outside of render loop
 const wallets = [];
@@ -46,16 +38,13 @@ function Transfer() {
   const [selectedAsset, setSelectedAsset] = useState('');
   const [selectedWallet, setSelectedWallet] = useState('[]');
 
-  const [currentLoggedInUserID, setLoggedInUserID] = useState("0"); // HARDCODED, FIND A WAY TO LINK WITH SESSION/LOGGED IN USER
-                                                                    // IF SESSION CODE ENDS UP BEING AN INT, CHANGE API ~ LINE 290 WITHIN THE BASEMODEL: change userFrom: string > userFrom: int
-
   const query = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}`);
   
   // Fetch assets from API on component mounts
   useEffect(() => {
     // Gets the current Session ID (i.e. which user is logged in?)
     getCurrentSession();
-    loadTableData();
+    loadData();
   }, [selectedAsset]);  
 
   // Calls the API to get the current Session Token (i.e. which user is logged in)
@@ -75,10 +64,12 @@ function Transfer() {
     });
   }
 
-  function loadTableData() {
+
+  function loadData() {
       axios.get(query)
         .then(response => {
             setAllAssets(response.data)
+            Object.values(response.data).map(({ name }) => assets.push(name));
         })
         .catch(error => {
             console.error("Whoops, there was an error: ", error)
@@ -104,7 +95,7 @@ function Transfer() {
       data: {
         "conaddress": contractData.conaddress,
         "conabi": contractData.conabi,
-        "userFrom": currentLoggedInUserID,
+        "userFrom": currentSessionToken,
         "walletTo": selectedWallet,
         "assetName": selectedAsset,
       }
