@@ -63,6 +63,26 @@ def get_asset_info(name: str):
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
         query = f"SELECT * FROM DigitalAssets WHERE name = '{name}'" # Selects all data from the DigitalAssets table for a given asset name
+        cursor.execute(query) # execute the querys
+        result = cursor.fetchall() # store the data in a temporary variable
+        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return assets
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
+
+    
+    # Get a specified digital asset (via user id)
+@app.get("/getuserassets/{userID}")
+def get_asset_info(userID: str):
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = f"SELECT * FROM DigitalAssets WHERE userID = '{userID}'" # Selects all data from the DigitalAssets table for a given asset name
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
         assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
@@ -367,16 +387,16 @@ async def createUser(user: CreateUsersRequest):
     userid = str(current_user_count)
 
     # Transaction that places the user data on the blockchain
-    tx_hash = UsersContract.functions.createUser(userid, [user.fname, user.lname, user.dob, user.email, user.password]).transact() # calls the function that puts user information onto the blockchain
-    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    tx_hash = UsersContract.functions.createUser(userid, [user.fname, user.lname, user.dob, user.email, user.password]).transact() # calls the function that puts user information onto the blockchain    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
     # Call the get user function to get user data for update in the local database
     payload = UsersContract.functions.getUser(userid).call()
+
     
     user_address = w3.eth.accounts[current_user_count + 1] # assign this user a wallet account (starting at 1, as our Ganache account that deploys the create user contract is account 0)
     
     query = "INSERT INTO users (userID, fname, lname, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    cursor.execute(query, (int(userid), payload[0], payload[1], payload[2], payload[3], payload[4], payload[5]))
+    cursor.execute(query, (int(userid), split_payload[0], split_payload[1], split_payload[2], split_payload[3], split_payload[4], user_address))
 
     connection.commit() # Commit the changes
 
@@ -392,11 +412,16 @@ class assetTransferData(BaseModel):
     walletTo: str
     assetName: str
 
-
 """
 @app.post("/transferasset")
 async def transferAsset(transferdata: assetTransferData):
     
+    # Open the contract with the address/abi that was passed in by AXIOS
+    TransferContract = w3.eth.contract(
+        address = transferdata.conaddress,
+        abi = transferdata.conabi
+    )
+
     # Ease readability by loading in the corresponding values of the above into local function variables
     _userFrom = transferdata.userFrom
     _walletTo = transferdata.walletTo
@@ -416,54 +441,13 @@ async def transferAsset(transferdata: assetTransferData):
     cursor.execute(query2) # execute the query
     _userTo = cursor.fetchone()[0] # Stores the wallet address
 
+    _userTostring = str(_userTo)
+
 
     # check if the user owns the asset
     query2 = f"SELECT userID FROM DigitalAssets WHERE name='{_assetName}'" 
     cursor.execute(query2) # execute the query
     _userIdCheck = cursor.fetchone()[0] # Stores the wallet address
 
-    if _userIdCheck == _userFrom:
-        # Create the user data 'payload' (the information to be stored on the chain)
-        assetdata = (_userFrom + "," + _userTo + "," + _assetName)
-
-        # Transaction that places the user data on the blockchain
-        tx_hash = UsersContract.functions.createUser(_userFrom, assetdata).transact() # calls the function that puts user information onto the blockchain
-        tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-        
-        # Get the timestamp
-        timestamp = tx_receipt['blockTimestamp']
-
-        # Call the get user function to get user data for update in the local database
-        payload = UsersContract.functions.getUser(_userFrom).call()
-        split_payload = payload.split(',') # split the CSV into an array
-
-
-
-        
-        # Update the asset table to reflect the new user owner
-        query3 = "UPDATE DigitalAssets SET userID = split_payload[1] WHERE name = split_payload[2];"
-        cursor.execute(query3) # execute the query
-
-        # gets the asset id and price of the asset in transaction for the transaction history table
-        query4 = f"SELECT assetID, price FROM digitalAssets WHERE name='{split_payload[2]}'" 
-        cursor.execute(query4) # execute the query
-        assetInfo = cursor.fetchall()
-
-     
-
-        query5 = "INSERT INTO users (assetID, userID, purchaseTime, price) VALUES (%s, %s, %s, %s, %s)"
-        cursor.execute(query5, (assetInfo[0], _userTo, timestamp, assetInfo[1])) # purchase time will be recieved contract variable
-
-        # Close the cursor/connection
-        cursor.close()
-        connection.close()
-
-        return "Success", assetInfo[0], _userTo, timestamp, assetInfo[1]
-
-    else:
-      # Close the cursor/connection
-        cursor.close()
-        connection.close()
-
-        return "You do not own the asset"
+    return "You do not own the asset"
 """

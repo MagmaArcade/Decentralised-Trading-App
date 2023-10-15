@@ -21,37 +21,15 @@ var currentSessionToken = "";    // Will initalise as blank, but this will be ca
 function Wallet() {
   const navigate = useNavigate();
   
-  // inialised constants outside of fetch request
-  const queryUserHistory = "";
-  const queryUserAssets = "";
+
+  // State variable which stores every asset in the database
+  const [allAssets, setAllAssets] = useState('[]');
   
-  // Fetch the authentication token from the backend
-  fetch('/api/get_auth_token')
-    .then(response => response.json())
-    .then(data => {
-      // String that calls the API to retrieve transaction history from the database for the current user
-      queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${currentSessionToken}`)
-
-      // String that calls the API to retrieve user assets from the database for the current user
-      queryUserAssets = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}`)
-    })
-    .catch(error => {
-      console.error('Error fetching auth token:', error);
-    });
-
-
 	// State variable which stores the asset you're trying to filter by
-	const [selectedAssetHistory, setSelectedAssetHistory] = useState('');
+	const [selectedAssetHistory, setSelectedAssetHistory] = useState('[]');
 
-	// Function that will automatically render the table upon startup
-	useEffect(() => {
-    // Gets the current Session ID (i.e. which user is logged in?)
-    getCurrentSession();
-
-    // Load table
-    loadTableData();
-	}, [selectedAssetHistory]);
-
+  
+  
   // Calls the API to get the current Session Token (i.e. which user is logged in)
   function getCurrentSession() {
     axios.get('http://127.0.0.1:8000/currentsessiontoken/')
@@ -69,8 +47,26 @@ function Wallet() {
     });
   }
 
+  const queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${currentSessionToken}` + selectedAssetHistory);
+
+  // String that calls the API to retrieve user assets from the database for the current user
+  const queryUserAssets = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + allAssets);
+
+	// Function that will automatically render the table upon startup
+	useEffect(() => {
+    // Gets the current Session ID (i.e. which user is logged in?)
+    getCurrentSession();
+  
+    // Load table data based on selectedAssetHistory
+    loadHistoryTableData();
+  
+    // Load DigitalAssets table data when AllAssets dependency changes
+    loadAssetTableData();
+  }, [selectedAssetHistory, allAssets]);
+  
+
 	// AXIOS function to request data from the API/Database
-	function loadTableData() {
+	function loadHistoryTableData() {
 		axios.get(queryUserHistory)
 		.then(response => {
 			setSelectedAssetHistory(response.data)
@@ -79,40 +75,30 @@ function Wallet() {
 			console.error("Whoops, there was an error: ", error)
 		})
 	}
+  // AXIOS function to request data from the API/Database
+	function loadAssetTableData() {
+		axios.get(queryUserAssets)
+		.then(response => {
+			setAllAssets(response.data)
+		})
+		.catch(error => {
+			console.error("Whoops, there was an error: ", error)
+		})
+	}
+
 
 	// Function which dynamically renders returned asset data in the form of a HTML table
 	const renderHistoryInTable = () => {
-		return Object.values(allAssets).map(({ assetID, userID, purchaseTime, pricePaid, tokenId}) => {
-		  return <tr key={assetID}>
+		return Object.values(selectedAssetHistory).map(({ transactionID, assetID, userID, purchaseTime, pricePaid}) => {
+		  return <tr key={transactionID}>
+		  <td>{transactionID}</td>
 		  <td>{assetID}</td>
 		  <td>{userID}</td>
 		  <td>{purchaseTime}</td>
 		  <td>{pricePaid}</td>
-		  <td>{tokenId}</td>
 		</tr>
 		})
 	}
-  // NEED TO PROGRAM HOW WALLET WILL HAVE DATA UPDATED 
-
-  // State variable which stores every asset in the database
-  const [allAssets, setAllAssets] = useState('[]');
-
-  // Function that will automatically (re)render the table upon startup/filter/search
-  useEffect(() => {
-    loadTableData();
-  }, [allAssets]);
-
-  // AXIOS function to request data from the API/Database
-  /* function loadTableData() { 
-    axios.get(queryUserAssets)
-    .then(response => {
-      setAllAssets(response.data)
-    })
-    .catch(error => {
-      console.error("Whoops, there was an error: ", error)
-    })
-  } */
-
   // Function which dynamically renders returned asset data in the form of a HTML table
   const renderAssetsInTable = () => {
     return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
@@ -125,13 +111,11 @@ function Wallet() {
     </tr>
     })
   }
-
   const renderUserId = () => {
-    return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
-      return 
-    })
+      return  <p>Wallet ID: {currentSessionToken} </p>
   }
 
+  
   return (
     <div className="Wallet">
       <Grid id="wallet-id-container"
@@ -139,7 +123,7 @@ function Wallet() {
         justifyContent="center"
         alignItems="center"
         container spacing={2}>
-        <p>Wallet ID: {currentSessionToken} </p>
+        {renderUserId()}
         <Grid item xs={3}>
           <item> 
             
@@ -153,11 +137,11 @@ function Wallet() {
           <table>  {/* in this table element, all avaliable assets will be displayed */}
             <thead>
               <tr>
+                <th>Transaction ID</th>
                 <th>Asset ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Category</th>
+                <th>User ID</th>
+                <th>Purchase Time</th>
+                <th>Price Paid</th>
               </tr>
             </thead>
             <tbody>
