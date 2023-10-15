@@ -37,6 +37,11 @@ function App() {
     if (!didInit) {
       didInit = true;
 
+      axios.get('http://127.0.0.1:8000/sessioninitialiser')
+			.catch(error => {
+				console.error("Whoops, there was an error: ", error)
+			})
+      
       axios.get('http://127.0.0.1:8000/deploysc/users')
         .then(response => {
           console.log(response)
@@ -57,7 +62,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar/> {/* used to add a navbar to all pages */}
+      {/*<Navbar/> {/* used to add a navbar to all pages */}
 
       <Grid xs={12}>
         <Box

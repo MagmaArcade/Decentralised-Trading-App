@@ -13,6 +13,8 @@ import { Grid, TextField, Select, MenuItem } from "@mui/material";
 import axios from 'axios';
 import "../css/Transfer.css"; // import css styling
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+
 
 var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
 const assets = [];
@@ -132,6 +134,7 @@ function Transfer() {
 
     return (
       <div className="transfer">
+        <Navbar/>
         <div className="transfer-main-container">
           <div className="transfer-left-container">
             {render()};

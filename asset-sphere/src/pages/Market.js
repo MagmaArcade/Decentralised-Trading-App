@@ -13,6 +13,8 @@ import React, { useState, useEffect } from 'react';
 import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js elements from mui
 import "../css/Market.css"; // import the css syles
 import axios from 'axios'
+import Navbar from "../components/Navbar";
+
 
 // Get the initial asset list before the main application is exported/React loop starts
 const assets = [];
@@ -86,6 +88,7 @@ function Market() {
 	// Return value (actual HTML code for the Market page)
   	return (
 		<div className="market">
+			<Navbar/>
 			<div className="search">
 				<Grid
 					direction="row"

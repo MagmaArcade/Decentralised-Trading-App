@@ -19,6 +19,8 @@ import * as d3 from 'd3';
 import "../css/Login.css"; // import css styling
 import Validation from "../components/LoginValidation.js"; // import login validation styling
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar";
+
 
 // Login application
 function Login() {
@@ -72,6 +74,7 @@ function Login() {
     
   return (
     <div className="login">
+      <Navbar/>
       <div className="main-container">
         <div className="main-content">
           <h1>Log In</h1>

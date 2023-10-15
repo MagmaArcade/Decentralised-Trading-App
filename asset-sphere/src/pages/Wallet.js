@@ -14,6 +14,8 @@ import axios from 'axios'
 import { Grid } from "@mui/material"; // import js elements from mui
 import "../css/Wallet.css"; // import css styling
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+
 
 var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
 
@@ -118,6 +120,7 @@ function Wallet() {
   
   return (
     <div className="Wallet">
+      <Navbar/>
       <Grid id="wallet-id-container"
         direction="row"
         justifyContent="center"

@@ -18,26 +18,25 @@ import axios from "axios"; // Added axios
 import logo from '../assets/AssetSphere_Logo.png';
 import profile from '../assets/Profile.png';
 
-var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
 
 // Navbar application
 function Navbar() {
 
-	//const [currentSessionToken, setCurrentSessionToken] = useState(""); 
+	const [currentSessionToken, setCurrentSessionToken] = useState(""); 
 	const [currentUserName, setCurrentUserName] = useState();
 
 	useEffect(() => {
 		// Gets the current Session ID (i.e. which user is logged in?)
 		getCurrentSession();
 
-	  }, []);
+	  }, [currentUserName, currentSessionToken]);
 	
 	// Calls the API to get the current Session Token (i.e. which user is logged in)
 	function getCurrentSession() {
 		axios.get('http://127.0.0.1:8000/currentsessiontoken/')
 		.then(response => {
 			// Maps the returned session token to the currentSessionToken variable
-			currentSessionToken = response.data.token;
+			setCurrentSessionToken(response.data.token);
 		})
 		.catch(error => {
 			console.error("Whoops, there was an error: ", error);
@@ -55,11 +54,10 @@ function Navbar() {
 			)
 		}
 		else {
-			var query = "SELECT fname FROM users WHERE userID=" + {currentSessionToken}
-			var apicall = "http://127.0.0.1:8000/querydatabase" + query
-			axios.get(apicall)
+			const query = (`http://127.0.0.1:8000/getusername/${currentSessionToken}`);
+			axios.get(query)
 			.then(response => {
-				Object.values(response.data).map(({ name }) => setCurrentUserName(name) );
+				setCurrentUserName(response.data)
 			})
 			.catch(error => {
 				console.error("Whoops, there was an error: ", error)
@@ -79,6 +77,8 @@ function Navbar() {
 			.catch(error => {
 				console.error("Whoops, there was an error: ", error)
 			})
+		
+		setCurrentSessionToken("")
 	}
 
 
@@ -122,7 +122,7 @@ function Navbar() {
 			</Grid>
 			
 			<Grid item xs={1} sm={3}>
-                {renderLoginComponent}
+                {renderLoginComponent()}
             </Grid>
 		</Grid>
     </div>

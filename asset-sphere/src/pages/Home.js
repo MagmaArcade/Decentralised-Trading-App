@@ -12,6 +12,8 @@ SID:	103865794
 import { Grid, Button } from "@mui/material"; // import js elements from mui
 import { Link } from "react-router-dom"; // import link to route to other pages
 import "../css/Home.css"; // import css styling
+import Navbar from "../components/Navbar";
+
 
 // import images
 import coin from '../assets/Coin.png';
@@ -22,6 +24,7 @@ import sold from '../assets/Sold.png';
 function Home() {
   	return (
 	<div>
+		<Navbar/>
 		<div className="top">
 			<div>
 				<h2> Trade With Ease... </h2>

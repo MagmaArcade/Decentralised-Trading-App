@@ -17,6 +17,7 @@ import axios from 'axios'
 import * as d3 from 'd3';
 import Validation from "../components/RegisterValidation.js";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 
 
@@ -100,6 +101,7 @@ function Register() {
 
   return (
     <div class="register">
+      <Navbar/>
       <div className="main-reg-container">
         <div className="main-reg-content">
           <h1>Create Personal Account</h1>
