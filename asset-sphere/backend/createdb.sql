@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Category (
 
 -- Create the DigitalAssets table if it doesn't exist
 CREATE TABLE IF NOT EXISTS DigitalAssets (
-    assetID INT AUTO_INCREMENT PRIMARY KEY,
+    assetID INT PRIMARY KEY,
     UserId INT,
     name VARCHAR(255),
     description VARCHAR(255),
@@ -47,10 +47,7 @@ CREATE TABLE IF NOT EXISTS TransactionHistory (
 CREATE TABLE IF NOT EXISTS contractinformation (
     contractName VARCHAR(255) NULL DEFAULT NULL,
     address VARCHAR(255) NULL DEFAULT NULL
-)
-
-
-/* for testing dummy data for the database
+);
 
 -- Insert data for Category
 INSERT INTO Category (categoryName, description)
@@ -58,13 +55,7 @@ VALUES
     ('Category A', 'fun a'),
     ('Category B', 'fun b');
 
--- Insert data for DigitalAssets
-INSERT INTO DigitalAssets (UserId, name, description, price, categoryName)
-VALUES
-    ("0", 'Asset 1', 'Description for Asset 1', 100.00, 'Category A'),
-    ("0", 'Asset 2', 'Description for Asset 2', 150.00, 'Category B'),
-    ("0", 'Asset 3', 'Description for Asset 3', 75.00, 'Category A');
-
+/*
 INSERT INTO transactionhistory (transactionID, assetID, userID, purchaseTime, pricePaid)
 VALUES
     ("0", '0', '0', "13:10:11", '100'),

@@ -50,21 +50,11 @@ function App() {
           console.error("Whoops, there was an error: ", error)
       })
 
-      // Create the assets on the blockchain/in the databse
-      axios({
-        method: "POST",
-        url: "http://127.0.0.1:8000/createassets",
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-        data: {
-          "conaddress": contractData.conaddress,
-          "conabi": contractData.conabi,
-        }
+      // Make the call that will deploy our demo data onto the blockchain/database
+      axios.get('http://127.0.0.1:8000/createdemodata')
+        .catch(error => {
+          console.error("Whoops, there was an error: ", error)
       })
-      .then((response) => {
-        console.log(response);
-    })
 
     }
   }, []);

@@ -410,10 +410,38 @@ async def createUser(user: CreateUsersRequest):
 @app.get("/createdemodata")
 async def createDemoData():
 
-    # CREATING DEMO ASSET DATA:
+    # CREATING DEMO USER DATA
+    # Open the contract with the address/abi that was written to file
+    # Usually we'd pass this in, but once again this function is HARDCODED as a demo
+    with open(f'../src/localdata/userscontractinfo.json', 'r') as file:    
+        contractjson = json.load(file)
+    
+    UsersContract = w3.eth.contract(
+        address = contractjson["conaddress"],
+        abi = contractjson["conabi"]
+    )    
 
     # Default Ganache Account (same one that created the contract, 'our' account)
     w3.eth.default_account = w3.eth.accounts[0]
+
+    # Define our User for creation
+    user = ["0", "Bridgette", "Lezaja", "2003-06-06", "bridgette@lezaja.com", "Password123", w3.eth.accounts[1]]
+    
+    # Transaction that places the user data on the blockchain as per requirements
+    tx_hash = UsersContract.functions.createUser(user[0], [user[1], user[2], user[3], user[4], user[5], user[6]]).transact() # calls the function that puts user information onto the blockchain    
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+
+    # Call the get user function to get user data for update in the local database
+    payload = UsersContract.functions.getUser("0").call()
+
+    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+    cursor = connection.cursor() # create a cursor to execute SQL queries
+    query = "INSERT INTO users (userID, fname, lname, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (int(user[0]), payload[0], payload[1], payload[2], payload[3], payload[4], user[6]))
+    
+
+    
+    # CREATING DEMO ASSET DATA:
 
     # Open the contract with the address/abi that was written to file
     # Usually we'd pass this in, but once again this function is HARDCODED as a demo
@@ -444,8 +472,6 @@ async def createDemoData():
     
 
     # Code that inserts Asset Data into the MySQL database as per requirements
-    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-    cursor = connection.cursor() # create a cursor to execute SQL queries
 
     query = "INSERT INTO digitalassets (assetID, userId, name, description, price, categoryName) VALUES (%s, %s, %s, %s, %s, %s)"
     cursor.execute(query, (int(assets[0][0]), int(assets[0][1]), assets[0][2], assets[0][3], assets[0][4], assets[0][5]))
@@ -455,12 +481,9 @@ async def createDemoData():
     
     query = "INSERT INTO digitalassets (assetID, userId, name, description, price, categoryName) VALUES (%s, %s, %s, %s, %s, %s)"
     cursor.execute(query, (int(assets[2][0]), int(assets[2][1]), assets[2][2], assets[2][3], assets[2][4], assets[2][5]))
-    
+
+
     connection.commit() # Commit the changes
-
-
-    # CREATING DEMO USER DATA
-
 
     # Close the cursor/connection
     cursor.close()

@@ -6,14 +6,15 @@ contract Users {
     event CreatedUser();
     // UserId -> Payload
     // Mapping that stores all the user ids & their payloads;
-    // Payload
+    // User Payload structure:
+    //  payload = [fname, lname, dob, email, password]
     mapping(string => string[]) public users;
 
     function createUser(string memory _userid, string[] memory _payload) external {
         users[_userid] = _payload;
     }
 
-    // returns all the user details such as [username, bio, zip, etc.....]
+    // returns all the user details in the payload format
     function getUser(string memory _userid) external view returns (string[] memory payload) {
         return users[_userid];
     }
@@ -23,14 +24,15 @@ contract Assets {
     event CreatedAsset();
     // Asset ID -> Payload
     // Mapping that stores all the asset IDs & their payloads;
-    // payloads meaning name, purchase price, user id that owns the asset etc.
+    // Asset Payload structure:
+    //  payload = [userID (owner of the asset currently), asset name, asset description, price, category]
     mapping(string => string[]) public assets;
 
     function createAsset(string memory _assetid, string[] memory _payload) external {
         assets[_assetid] = _payload;
     }
 
-    // returns all the user details such as [username, bio, zip, etc.....]
+    // returns all the asset details in the payload format
     function getAsset(string memory _assetid) external view returns (string[] memory payload) {
         return assets[_assetid];
     }
