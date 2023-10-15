@@ -371,7 +371,7 @@ async def transferAsset(transferdata: assetTransferData):
     _walletTo = transferdata.walletTo
     _assetName = transferdata.assetName
 
-    # Connect to the MySQL database - get some local variables
+   # Connect to the MySQL database - get some local variables
     connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
     cursor = connection.cursor() # create a cursor to execute SQL queries
 
@@ -384,33 +384,57 @@ async def transferAsset(transferdata: assetTransferData):
     query2 = f"SELECT userID FROM Users WHERE walletAddress='{_walletTo}'" # Gets the wallet ID of the user executing this call
     cursor.execute(query2) # execute the query
     _userTo = cursor.fetchone()[0] # Stores the wallet address
-    
-    query3 = "UPDATE DigitalAssets SET userID = _userTo WHERE name = _assetName;"
-
-    # gets the asset id and price of the asset in transaction for the transaction history table
-    query4 = f"SELECT assetID, price FROM digitalAssets WHERE name='{_assetName}'" 
-    cursor.execute(query4) # execute the query
-    assetInfo = cursor.fetchone() 
 
 
-    # are you needed? or is it auto increment?
-    # //////////////////////////////////////////////////////////////////////////
-    # gets the table row count of the transaction history table to calculate the transaction id
-    query5 = f"SELECT COUNT(*) FROM transactionHistory" 
-    cursor.execute(query5) # execute the query
-    transaction_count = cursor.fetchone()[0] # Stores the count
+    # check if the user owns the asset
+    query2 = f"SELECT userID FROM DigitalAssets WHERE name='{_assetName}'" 
+    cursor.execute(query2) # execute the query
+    _userIdCheck = cursor.fetchone()[0] # Stores the wallet address
 
-    transactionid = str(transaction_count)
+    if _userIdCheck == _userFrom:
+        # Create the user data 'payload' (the information to be stored on the chain)
+        assetdata = (_userFrom + "," + _userTo + "," + _assetName)
+
+        # Transaction that places the user data on the blockchain
+        tx_hash = UsersContract.functions.createUser(_userFrom, assetdata).transact() # calls the function that puts user information onto the blockchain
+        tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+        
+        # Get the timestamp
+        timestamp = tx_receipt['blockTimestamp']
+
+        # Call the get user function to get user data for update in the local database
+        payload = UsersContract.functions.getUser(_userFrom).call()
+        split_payload = payload.split(',') # split the CSV into an array
 
 
-    query6 = "INSERT INTO users (transactionID, assetID, userID, purchaseTime, price) VALUES (%s, %s, %s, %s, %s)"
-    #cursor.execute(query6, (int(transactionid), assetInfo[0], _userTo, , assetInfo[1])) # purchase time will be recieved contract variable
 
-    # Close the cursor/connection
-    cursor.close()
-    connection.close()
+        
+        # Update the asset table to reflect the new user owner
+        query3 = "UPDATE DigitalAssets SET userID = split_payload[1] WHERE name = split_payload[2];"
+        cursor.execute(query3) # execute the query
 
-    return
+        # gets the asset id and price of the asset in transaction for the transaction history table
+        query4 = f"SELECT assetID, price FROM digitalAssets WHERE name='{split_payload[2]}'" 
+        cursor.execute(query4) # execute the query
+        assetInfo = cursor.fetchall()
+
+     
+
+        query5 = "INSERT INTO users (assetID, userID, purchaseTime, price) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(query5, (assetInfo[0], _userTo, timestamp, assetInfo[1])) # purchase time will be recieved contract variable
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return "Success", assetInfo[0], _userTo, timestamp, assetInfo[1]
+
+    else:
+      # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return "You do not own the asset"
 
 class SessionManager:
     def __init__(self):
