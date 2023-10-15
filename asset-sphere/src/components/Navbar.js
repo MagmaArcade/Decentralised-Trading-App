@@ -9,10 +9,11 @@ SID:  	103865794
 */
 // this is the Navbar component. this is used for page navigation.
 
-import { Grid } from "@mui/material"; // import js elements from mui
-import { Link } from "react-router-dom"; // import link to route to other pages
+import { Grid, Button } from "@mui/material"; // import js elements from mui
+import { Link, useNavigate } from "react-router-dom"; // import link to route to other pages
 import "../css/Navbar.css"; // import css styling
-
+import React, { useState, useEffect } from "react"; // Added useState
+import axios from "axios"; // Added axios
 // images
 import logo from '../assets/AssetSphere_Logo.png';
 import profile from '../assets/Profile.png';
@@ -22,6 +23,40 @@ var currentSessionToken = "";    // Will initalise as blank, but this will be ca
 // Navbar application
 function Navbar() {
 
+	const [currentSessionToken, setCurrentSessionToken] = useState(""); 
+	const [user, setUser] = useState(null);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		fetch('http://127.0.0.1:8000/currentsessiontoken')
+		  .then(response => response.json())
+		  .then(data => {
+			setCurrentSessionToken(data.token || "");
+			if (data.token) {
+			  // If token exists, fetch user details
+			  fetch(`http://127.0.0.1:8000/getuserinfo/${data.token}`)
+				.then(res => res.json())
+				.then(userData => setUser(userData))
+				.catch(error => console.error('Error fetching user data:', error));
+			}
+		  })
+		  .catch(error => {
+			console.error('Error fetching auth token:', error);
+		  });
+	  }, []);
+	
+	  const handleLogout = () => {
+		fetch("http://127.0.0.1:8000/sessioninitialiser")
+			.then(() => {
+				setCurrentSessionToken("");
+				setUser(null);
+				navigate("/Home");
+			})
+			.catch(error => {
+				console.error("Error during logout: ", error);
+			});
+	};
+	
 	/* Function needs to return different HTML/MUI depending on:
 		if currentSessionToken == "", then return HTML which shows a login button and that button routes the user to the login page
 
@@ -73,18 +108,17 @@ function Navbar() {
 			</Grid>
 			
 			<Grid item xs={1} sm={3}>
-				{/* This to call a function which will return some HTML */}
-				<item> 
-					<Link to="/Login"> {/* will route user to the login page */}
-						<img 
-						src={profile}
-						alt={"Login"}	
-						align="right"
-						className="login-icon"				
-						/> 
-					</Link>
-				</item>
-			</Grid>
+                    {user ? (
+                        <div>
+                            <p>Logged in as: {user.fname}</p>
+                            <Button variant="contained" color="primary" onClick={handleLogout}>Logout</Button>
+                        </div>
+                    ) : (
+                        <Link to="/Login">
+                            <img src={profile} alt={"Login"} align="right" className="login-icon" />
+                        </Link>
+                    )}
+            </Grid>
 		</Grid>
     </div>
   );

@@ -22,22 +22,41 @@ This Page is the style elements for the Navbar component.
 }
 
 .page-links a {
-	display: block;
-	color: black;
-	text-align: center;
-	padding: 15px;
-	text-decoration: none;
-}
-
-.page-links a:hover {
-	text-decoration: underline;
+    display: inline-block;  /* to make sure padding affects clickable area */
+    color: black;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
 }
 
 .asset-sphere {
-	padding: 0;
 	width: 200px;
 	height: 50px;
 }
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        padding: 15px 0;
+        align-items: center;
+    }
+
+    .page-links a {
+        padding: 10px;  /* Adjust padding accordingly */
+        font-size: 14px;
+        margin-left: 0;  /* Ensure no negative margin */
+    }
+
+    .login-icon {
+        max-width: 40px; 
+        max-height: 40px;
+    }
+
+    .asset-sphere {
+        width: 160px;
+        height: 40px;
+    }
+}
+
 
 .login-icon {
 	width: 50px; height: 50px;
