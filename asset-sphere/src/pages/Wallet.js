@@ -33,7 +33,7 @@ function Wallet() {
       queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${currentSessionToken}`)
 
       // String that calls the API to retrieve user assets from the database for the current user
-      queryUserAssets = (`http://127.0.0.1:8000/getassetinfo/${currentSessionToken}`)
+      queryUserAssets = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}`)
     })
     .catch(error => {
       console.error('Error fetching auth token:', error);
@@ -126,6 +126,11 @@ function Wallet() {
     })
   }
 
+  const renderUserId = () => {
+    return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
+      return 
+    })
+  }
 
   return (
     <div className="Wallet">
@@ -134,10 +139,10 @@ function Wallet() {
         justifyContent="center"
         alignItems="center"
         container spacing={2}>
-
+        <p>Wallet ID: {currentSessionToken} </p>
         <Grid item xs={3}>
           <item> 
-            <p>Wallet ID: 000012</p> {/* will display the users individual wallet id */}
+            
           </item>
         </Grid>
       </Grid>
