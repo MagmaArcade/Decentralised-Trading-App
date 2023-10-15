@@ -48,7 +48,6 @@ function Navbar() {
 							src={logo}
 							alt={"Home"}
 							align="left"
-							style={{ width: 200, height: 50 }}
 							className="asset-sphere"
 						/>
 					</Link>
@@ -81,7 +80,6 @@ function Navbar() {
 						src={profile}
 						alt={"Login"}	
 						align="right"
-						style={{ width: 50, height: 50 }}
 						className="login-icon"				
 						/> 
 					</Link>
