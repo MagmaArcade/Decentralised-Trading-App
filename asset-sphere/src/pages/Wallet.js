@@ -13,6 +13,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { Grid } from "@mui/material"; // import js elements from mui
 import "../css/Wallet.css"; // import css styling
+import { useNavigate } from "react-router-dom";
 
 
 // Wallet application
@@ -42,9 +43,13 @@ function Wallet() {
 	// State variable which stores the asset you're trying to filter by
 	const [selectedAssetHistory, setSelectedAssetHistory] = useState('');
 
+  const navigate = useNavigate();
+
+
 	// Function that will automatically render the table upon startup
 	useEffect(() => {
-		loadTableData();
+      loadTableData();
+    
 	}, [selectedAssetHistory]);
 
 	// AXIOS function to request data from the API/Database

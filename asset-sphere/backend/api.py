@@ -153,6 +153,35 @@ def get_asset_info(email: str):
         return {"error": f"MySQL returned an error: {err}"}
 
 
+# Session Handling
+
+# API call that runs when the app starts the first time
+# Generates session handling file in the correct format without any token
+@app.get("/sessioninitialiser")
+def sessionInitialiser():
+    initalSession = {
+        "token": ""
+    }
+    with open('../src/localdata/currentSession.json', 'w') as file:
+        json.dump(initalSession, file)
+    return
+
+# API call that reads the existing file to return the current session token
+@app.get("/currentsessiontoken")
+def currentSessionToken():
+    with open('../src/localdata/currentSession.json', 'r') as file:
+        token = json.load(file)
+    
+    return(token)
+
+# API call that takes user login information, validates it, and sets the session token if correct
+@app.post("/setsessiontoken")
+def setSessionToken():
+
+    
+    return
+
+
 # Smart Contract Stuff Below
 
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545")) # Web3.py/Ganache initialisation
@@ -178,8 +207,8 @@ async def deploySmartContract(scname: str):
         # Also checks if its one of two valid sc names otherwise returns error & won't deploy anything (doesn't cost gas)
         if(scname == "users"):
             contractName = "Users"
-        elif(scname == "tradeassets"):
-            contractName = "TradeAssets"
+        elif(scname == "transferassets"):
+            contractName = "TransferAssets"
         else:
             return "Invalid Contract Name!!!"
         
@@ -321,7 +350,6 @@ async def login(user: LoginData):
 
 
 # Handle Asset Transfer
-
 class assetTransferData(BaseModel):
     userFrom: str
     walletTo: str

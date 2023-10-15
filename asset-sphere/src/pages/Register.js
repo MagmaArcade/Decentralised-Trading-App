@@ -18,8 +18,11 @@ import * as d3 from 'd3';
 import Validation from "../components/RegisterValidation.js";
 import { useNavigate } from "react-router-dom";
 
+
+
 // Register application
 function Register() {
+  
   let contractData = require('../localdata/userscontractinfo.json');
 
   const [inputValues, setInputValues] = useState({
@@ -86,12 +89,13 @@ function Register() {
 
   useEffect(() => {
     if (isFormValid) {
-        // Implement further actions (e.g., API call to server) here
-        registrationHandler()
+      // Implement further actions (e.g., API call to server) here
+      registrationHandler()
 
-        // Push users to wallet
-        navigate('/Wallet');
+      // Push users to wallet
+      navigate('/Login');
     }
+
   }, [isFormValid, navigate]);
 
   return (

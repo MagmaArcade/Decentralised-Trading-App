@@ -12,8 +12,10 @@ import React, { useState, useEffect } from 'react';
 import { Grid, TextField, Select, MenuItem } from "@mui/material";
 import axios from 'axios';
 import "../css/Transfer.css"; // import css styling
+import { useNavigate } from "react-router-dom";
 
-// Gets list of assets outside of render loop
+
+// Gets current list of assets outside of render loop
 const assets = [];
 axios.get('http://127.0.0.1:8000/getassetinfo/')
     .then(response => {
@@ -23,6 +25,17 @@ axios.get('http://127.0.0.1:8000/getassetinfo/')
         console.error("Whoops, there was an error: ", error);
     });
 
+
+// Gets the current session token (can be "" (no session token set))
+var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
+axios.get('http://127.0.0.1:8000/currentsessiontoken/')
+  .then(response => {
+      // Maps the returned session token to the currentSessionToken variable
+      Object.values(response.data).map(({ token }) => currentSessionToken = (token));
+  })
+  .catch(error => {
+      console.error("Whoops, there was an error: ", error);
+  });
 
 // Get list of wallets outside of render loop
 const wallets = [];
@@ -50,7 +63,7 @@ function Transfer() {
   
   // Fetch assets from API on component mounts
   useEffect(() => {
-      loadTableData();
+    loadTableData();
   }, [selectedAsset]);  
 
   function loadTableData() {
