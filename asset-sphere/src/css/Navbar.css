@@ -32,3 +32,50 @@ This Page is the style elements for the Navbar component.
 .page-links a:hover {
 	text-decoration: underline;
 }
+
+.asset-sphere {
+	padding: 0;
+}
+
+@media only screen and (max-width: 600px) {
+	.navbar {
+		padding: 15px 0;
+	}
+
+	.page-links a {
+		padding: 15px;
+		font-size: 14px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        padding: 15px 0;
+    }
+
+    .page-links a {
+        padding: 6px;
+        font-size: 14px;
+		margin-left: -90px;
+    }
+
+	.login-icon {
+
+	}
+
+}
+
+@media only screen and (max-width: 600px) {
+    img {
+        width: 100px;
+        height: auto;
+    }
+}
+
+/* Further adjust for screens smaller or equal to 400px wide */
+@media only screen and (max-width: 400px) {
+    img {
+        width: 50px;
+        height: auto;
+    }
+}

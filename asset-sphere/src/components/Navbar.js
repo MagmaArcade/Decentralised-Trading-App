@@ -21,13 +21,13 @@ import profile from '../assets/Profile.png';
 function Navbar() {
   return (
     <div className="navbar">
-        <Grid 
+        <Grid 	
 			direction="row"
 			justifyContent="center"
 			alignItems="center"
-			container spacing={3}>
+			container spacing={8}>
 
-			<Grid item xs={2}>
+			<Grid item xs={6} sm={3}>
 				<item> 
 					<Link to="/Home"> {/* will route user to the home page */}
 						<img
@@ -35,37 +35,39 @@ function Navbar() {
 							alt={"Home"}
 							align="left"
 							style={{ width: 200, height: 50 }}
+							className="asset-sphere"
 						/>
 					</Link>
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="page-links">
+			<Grid item xs={1} sm={1} className="page-links">
 				<item>
 					<Link to="/Market" > Market </Link> {/* routes user to the market page */}
 				</item>
 			</Grid>
 			
-			<Grid item xs={1.5} className="page-links">
+			<Grid item xs={1} sm={1} className="page-links">
 				<item>
 					<Link to="/Wallet"> Wallet </Link> {/* Wallet will eventually reroute to login if their is no user account */}
 				</item>
 			</Grid>
 
-			<Grid item xs={1.5} className="page-links">
+			<Grid item xs={1} sm={1} className="page-links">
 				<item>
 					<Link to="/Transfer"> Transfer </Link> {/* Transfer will eventually reroute to login if their is no user account */}
 				</item>
 			</Grid>
 			
-			<Grid item xs={2}>
+			<Grid item xs={1} sm={3}>
 				<item> 
 					<Link to="/Login"> {/* will route user to the login page */}
 						<img 
 						src={profile}
 						alt={"Login"}	
 						align="right"
-						style={{ width: 50, height: 50 }}				
+						style={{ width: 50, height: 50 }}
+						className="login-icon"				
 						/> 
 					</Link>
 				</item>
