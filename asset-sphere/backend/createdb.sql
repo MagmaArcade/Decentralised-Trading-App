@@ -44,7 +44,13 @@ CREATE TABLE IF NOT EXISTS TransactionHistory (
     FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
+CREATE TABLE IF NOT EXISTS contractinformation (
+    contractName VARCHAR(255) NULL DEFAULT NULL,
+    address VARCHAR(255) NULL DEFAULT NULL
+)
 
+
+/* for testing dummy data for the database
 
 -- Insert data for Category
 INSERT INTO Category (categoryName, description)
@@ -58,3 +64,10 @@ VALUES
     ("0", 'Asset 1', 'Description for Asset 1', 100.00, 'Category A'),
     ("0", 'Asset 2', 'Description for Asset 2', 150.00, 'Category B'),
     ("0", 'Asset 3', 'Description for Asset 3', 75.00, 'Category A');
+
+INSERT INTO transactionhistory (transactionID, assetID, userID, purchaseTime, pricePaid)
+VALUES
+    ("0", '0', '0', "13:10:11", '100'),
+    ("1", '1', '0', "13:10:11", '200'),
+    ("2", '2', '1', "13:10:11", '300');
+*/
