@@ -153,6 +153,17 @@ def get_asset_info(email: str):
         return {"error": f"MySQL returned an error: {err}"}
 
 
+class LoginData(BaseModel):
+    email: str
+    password: str
+
+@app.post("/validate_login")
+async def login(transferdata: LoginData):
+  
+    return "a"
+
+
+
 # Smart Contract Stuff Below
 
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545")) # Web3.py/Ganache initialisation
@@ -168,7 +179,7 @@ class CreateUsersRequest(BaseModel):
     lname: str
     dob: str
     email: str
-    password: str
+    password: str    
 
 # Code to take and deploy the 'Users.sol' Smart Contract or the 'tradeassets.sol' Smart Contract onto the local chain using account with index 0
 @app.get("/deploysc/{scname}")
@@ -239,7 +250,7 @@ async def deploySmartContract(scname: str):
             temp = json.loads(contractjson)
             json.dump(temp, file)
 
-        return
+        return "Success deployed ", contractName
 
 # Code that interacts with the deployed User smart contract to create a new User on the blockchain and return the data to be updated by the database
 
@@ -292,10 +303,12 @@ async def createUser(user: CreateUsersRequest):
     connection.close()
 
     return
+
     
 # Handle Asset Transfer
-
 class assetTransferData(BaseModel):
+    conaddress: str
+    conabi: tuple
     userFrom: str
     walletTo: str
     assetName: str
@@ -303,11 +316,18 @@ class assetTransferData(BaseModel):
 @app.post("/transferasset")
 async def transferAsset(transferdata: assetTransferData):
     
+
+    # Open the contract with the address/abi that was passed in by AXIOS
+    TransactContract = w3.eth.contract(
+        address = transferdata.conaddress,
+        abi = transferdata.conabi
+    )
+
     # Ease readability by loading in the corresponding values of the above into local function variables
     _userFrom = transferdata.userFrom
     _walletTo = transferdata.walletTo
     _assetName = transferdata.assetName
-
+    
     # Connect to the MySQL database - get some local variables
     connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
     cursor = connection.cursor() # create a cursor to execute SQL queries
@@ -321,36 +341,35 @@ async def transferAsset(transferdata: assetTransferData):
     query2 = f"SELECT userID FROM Users WHERE walletAddress='{_walletTo}'" # Gets the wallet ID of the user executing this call
     cursor.execute(query2) # execute the query
     _userTo = cursor.fetchone()[0] # Stores the wallet address
+    _userToString = str(_userTo)
 
 
-    
-    
-    query3 = "UPDATE DigitalAssets SET userID = _userTo WHERE name = _assetName;"
+    # Gets current user id associated with the asset
+    query2 = f"SELECT userID FROM DigitalAssets WHERE name='{_assetName}'" 
+    cursor.execute(query2) # execute the query
+    _userIdCheck = cursor.fetchone()[0] # Stores the wallet address
+    _useridString = str(_userIdCheck)
 
-    # gets the asset id and price of the asset in transaction for the transaction history table
-    query4 = f"SELECT assetID, price FROM digitalAssets WHERE name='{_assetName}'" 
-    cursor.execute(query4) # execute the query
-    assetInfo = cursor.fetchone() 
+    # checks if the asset is owned by the user
+    if _useridString == _userFrom:
+        # Create the user data 'payload' (the information to be stored on the chain)
+        assetdata = (_userFrom + "," + _userToString + "," + _assetName)
 
+        # Transaction that places the user data on the blockchain
+        tx_hash = TransactContract.functions.TransferAsset(_userFrom, assetdata).transact() # calls the function that puts user information onto the blockchain
+        tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+        
+        
+        # Call the get user function to get user data for update in the local database
 
-    # are you needed? or is it auto increment?
-    # //////////////////////////////////////////////////////////////////////////
-    # gets the table row count of the transaction history table to calculate the transaction id
-    query5 = f"SELECT COUNT(*) FROM transactionHistory" 
-    cursor.execute(query5) # execute the query
-    transaction_count = cursor.fetchone()[0] # Stores the count
+        return "Success"
+    else:
+      # Close the cursor/connection
+        cursor.close()
+        connection.close()
 
-    transactionid = str(transaction_count)
+        return "You do not own the asset"
 
-
-    query6 = "INSERT INTO users (transactionID, assetID, userID, purchaseTime, price) VALUES (%s, %s, %s, %s, %s)"
-    #cursor.execute(query6, (int(transactionid), assetInfo[0], _userTo, , assetInfo[1])) # purchase time will be recieved contract variable
-
-    # Close the cursor/connection
-    cursor.close()
-    connection.close()
-
-    return
 
 class SessionManager:
     def __init__(self):

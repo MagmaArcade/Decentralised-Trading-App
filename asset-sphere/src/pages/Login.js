@@ -39,21 +39,23 @@ function Login() {
     setIsFormValid(false);
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const validationErrors = Validation(values);
-    setErrors(validationErrors);
-    
-    if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) {        
-        // Check login credentials with server here if needed, then:
-        navigate('/Wallet');
-        setIsFormValid(true);
-    } else {
-        setIsFormValid(false);
-    }
+  const handleSubmit = () => {
+    axios({
+      method: "POST",
+      url: "http://127.0.0.1:8000/validate_login",
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      data: {
+        email: values.email,
+        password: values.password
+      }
+    })
+    .then((response) => {
+      console.log(response);
+  })
+}
 
-    setAuthToken(values.email); // sets the userId in api.py to be used in other functions
-  }
   
   return (
     <div className="login">

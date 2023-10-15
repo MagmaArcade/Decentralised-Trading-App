@@ -36,6 +36,8 @@ axios.get('http://127.0.0.1:8000/getwalletinfo/')
 
 // Transfer application
 function Transfer() {
+  let contractData = require('../localdata/tradeassetscontractinfo.json');
+
 
   const [allAssets, setAllAssets] = useState('[]');
   const [selectedAsset, setSelectedAsset] = useState('');
@@ -46,7 +48,7 @@ function Transfer() {
 
   const query = ("http://127.0.0.1:8000/getassetinfo/" + selectedAsset);
   
-  // Fetch assets from API on component mount
+  // Fetch assets from API on component mounts
   useEffect(() => {
       loadTableData();
   }, [selectedAsset]);  
@@ -78,6 +80,8 @@ function Transfer() {
         'Access-Control-Allow-Origin': '*',
       },
       data: {
+        "conaddress": contractData.conaddress,
+        "conabi": contractData.conabi,
         "userFrom": currentLoggedInUserID,
         "walletTo": selectedWallet,
         "assetName": selectedAsset,
