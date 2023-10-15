@@ -168,7 +168,7 @@ class CreateUsersRequest(BaseModel):
     lname: str
     dob: str
     email: str
-    password: str
+    password: str  
 
 # Code to take and deploy the 'Users.sol' Smart Contract or the 'tradeassets.sol' Smart Contract onto the local chain using account with index 0
 @app.get("/deploysc/{scname}")
@@ -292,7 +292,34 @@ async def createUser(user: CreateUsersRequest):
     connection.close()
 
     return
+
+# Login Validation 
+class LoginData(BaseModel):
+    email: str
+    password: str
+
+@app.post("/validate_login")
+async def login(user: LoginData):
+    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+    cursor = connection.cursor(dictionary=True) # create a cursor to execute SQL queries
     
+    try:
+        query = f"SELECT * FROM Users WHERE email=%s AND password=%s"
+        cursor.execute(query, (user.email, user.password))
+        
+        db_user = cursor.fetchone()
+        
+        if db_user:
+            return {"status": "success"}
+        else:
+            return {"status": "failure", "detail": "Invalid email address or password" }
+    except Exception as e:
+        print(f"Error: {str(e)}")
+    finally:
+        cursor.close()
+        connection.close()
+
+
 # Handle Asset Transfer
 
 class assetTransferData(BaseModel):
@@ -321,9 +348,6 @@ async def transferAsset(transferdata: assetTransferData):
     query2 = f"SELECT userID FROM Users WHERE walletAddress='{_walletTo}'" # Gets the wallet ID of the user executing this call
     cursor.execute(query2) # execute the query
     _userTo = cursor.fetchone()[0] # Stores the wallet address
-
-
-    
     
     query3 = "UPDATE DigitalAssets SET userID = _userTo WHERE name = _assetName;"
 

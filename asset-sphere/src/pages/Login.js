@@ -28,7 +28,6 @@ function Login() {
   })
 
   const [errors, setErrors] = useState({});
-  const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
 
   const handleInput = (event) => {
@@ -36,23 +35,34 @@ function Login() {
       ...values, 
       [event.target.name]: event.target.value
     });
-    setIsFormValid(false);
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const validationErrors = Validation(values);
     setErrors(validationErrors);
-    
-    if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) {        
-        // Check login credentials with server here if needed, then:
-        navigate('/Wallet');
-        setIsFormValid(true);
-    } else {
-        setIsFormValid(false);
-    }
 
-    setAuthToken(values.email); // sets the userId in api.py to be used in other functions
+    if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) {
+      try {
+          const response = await axios.post('http://127.0.0.1:8000/validate_login', {
+            email: values.email,
+            password: values.password
+          });
+          
+          if (response.data.status === "success") {
+              navigate('/Wallet');
+          } else {
+              setErrors(prev => ({ ...prev, password: "Invalid email or password" }));
+          }
+      } catch (error) {
+          if(error.response && error.response.data.detail) {
+              setErrors(prev => ({ ...prev, password: error.response.data.detail }));
+          } else {
+              console.error("Error during login validation", error);
+          }
+        }
+    } else {
+    }
   }
   
   return (
