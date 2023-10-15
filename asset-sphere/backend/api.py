@@ -258,9 +258,10 @@ class CreateUsersRequest(BaseModel):
     password: str  
 
 # Code to take and deploy the 'Users.sol' Smart Contract or the 'tradeassets.sol' Smart Contract onto the local chain using account with index 0
-@app.get("/deploysc/{scname}")
-async def deploySmartContract(scname: str):
+@app.get("/deploymainsc")
+async def deploySmartContract():
         
+        """
         # Quick variable assignment depending on the contract passed in (contract names need to be capitalised/exact for abi & bytecode)
         # Also checks if its one of two valid sc names otherwise returns error & won't deploy anything (doesn't cost gas)
         if(scname == "users"):
@@ -271,17 +272,18 @@ async def deploySmartContract(scname: str):
             contractName = "Assets"
         else:
             return "Invalid Contract Name!!!"
-        
+        """
+            
         w3.eth.defaultAccount = w3.eth.accounts[0]
 
-        with open(f"./{scname}.sol", "r") as file:
+        with open(f"./main.sol", "r") as file:
             sc_file = file.read()
             
         install_solc("0.8.0")
         compiled_sol = compile_standard(
             {
                 "language": "Solidity",
-                "sources": {f"{scname}.sol": {"content": sc_file}},
+                "sources": {"main.sol": {"content": sc_file}},
                 "settings": {
                     "outputSelection": {
                         "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
@@ -289,64 +291,67 @@ async def deploySmartContract(scname: str):
                 },
             },
             solc_version="0.8.0",
+            allow_paths="*"
         )
 
-        # get bytecode
-        bytecode = compiled_sol["contracts"][f"{scname}.sol"][contractName]["evm"]["bytecode"]["object"]
+        contracts = ["Users", "Assets", "TransferAssets"]
 
-        # get abi
-        abi = compiled_sol["contracts"][f"{scname}.sol"][contractName]["abi"]
+        for con in contracts:
+            # get bytecode
+            bytecode = compiled_sol["contracts"]["main.sol"][con]["evm"]["bytecode"]["object"]
 
-        SmartContract = w3.eth.contract(abi=abi, bytecode=bytecode)
+            # get abi
+            abi = compiled_sol["contracts"]["main.sol"][con]["abi"]
 
-        transaction = SmartContract.constructor().build_transaction(
-            {
-                "chainId": w3.eth.chain_id,
-                "gasPrice": w3.eth.gas_price,
-                "from": w3.eth.defaultAccount,
-                "nonce": w3.eth.get_transaction_count(w3.eth.defaultAccount),
-            }
-        )
-        transaction.pop('to')
+            SmartContract = w3.eth.contract(abi=abi, bytecode=bytecode)
+
+            transaction = SmartContract.constructor().build_transaction(
+                {
+                    "chainId": w3.eth.chain_id,
+                    "gasPrice": w3.eth.gas_price,
+                    "from": w3.eth.defaultAccount,
+                    "nonce": w3.eth.get_transaction_count(w3.eth.defaultAccount),
+                }
+            )
+            transaction.pop('to')
 
 
-        signed_txn = w3.eth.account.sign_transaction(transaction, private_key=constants.privateKeyGanacheAccount)
-        tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
-        tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+            signed_txn = w3.eth.account.sign_transaction(transaction, private_key=constants.privateKeyGanacheAccount)
+            tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+            tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
-        # standardise the contract information into JSON values for return in a way axios can understand
-        contract = ContractInfo(conaddress=tx_receipt.contractAddress, conabi = abi)
-        
-
-        # Returns deployed contract address and abi to be posted for interactions with the contract
-        # write these return values to a file for reference later in the application
-        with open(f'../src/localdata/{scname}contractinfo.json', 'w') as file:
+            # standardise the contract information into JSON values for return in a way axios can understand
+            contract = ContractInfo(conaddress=tx_receipt.contractAddress, conabi = abi)
             
-            # honestly the most circular bit of code ever written - to dump the Type ContractInfo into a file, it needs to be JSON, which Py doesn't recognise (even though it is formatted like that)
-            # thus, we take the ContractInfo, specifically code it into JSON, then load that JSON to remove the weird backslashes and literals. THEN we write to a file for reference in later applications.
-            contractjson = json.dumps(contract, default=lambda o: o.__dict__)
-            temp = json.loads(contractjson)
-            json.dump(temp, file)
 
-        # for any smart contract, write the address to the database so the TradeAssets contract can reference it later
-        scaddress = tx_receipt.contractAddress
+            # Returns deployed contract address and abi to be posted for interactions with the contract
+            # write these return values to a file for reference later in the application
+            with open(f'../src/localdata/{con}contractinfo.json', 'w') as file:
+                
+                # honestly the most circular bit of code ever written - to dump the Type ContractInfo into a file, it needs to be JSON, which Py doesn't recognise (even though it is formatted like that)
+                # thus, we take the ContractInfo, specifically code it into JSON, then load that JSON to remove the weird backslashes and literals. THEN we write to a file for reference in later applications.
+                contractjson = json.dumps(contract, default=lambda o: o.__dict__)
+                temp = json.loads(contractjson)
+                json.dump(temp, file)
 
-        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-        cursor = connection.cursor() # create a cursor to execute SQL queries
-        
-        query = "INSERT INTO contractinformation (contractName, address) VALUES (%s, %s)"
-        cursor.execute(query, [scname, scaddress])
+            # for any smart contract, write the address to the database so the TradeAssets contract can reference it later
+            scaddress = tx_receipt.contractAddress
 
-        connection.commit() # Commit the changes
+            connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+            cursor = connection.cursor() # create a cursor to execute SQL queries
+            
+            query = "INSERT INTO contractinformation (contractName, address) VALUES (%s, %s)"
+            cursor.execute(query, [con, scaddress])
 
-        # Close the cursor/connection
-        cursor.close()
-        connection.close()
+            connection.commit() # Commit the changes
+
+            # Close the cursor/connection
+            cursor.close()
+            connection.close()
 
         return
 
 # Code that interacts with the deployed User smart contract to create a new User on the blockchain and return the data to be updated by the database
-
 @app.post("/createuser")
 async def createUser(user: CreateUsersRequest):
 
@@ -375,11 +380,10 @@ async def createUser(user: CreateUsersRequest):
     # Call the get user function to get user data for update in the local database
     payload = UsersContract.functions.getUser(userid).call()
 
-    
     user_address = w3.eth.accounts[current_user_count + 1] # assign this user a wallet account (starting at 1, as our Ganache account that deploys the create user contract is account 0)
     
     query = "INSERT INTO users (userID, fname, lname, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    cursor.execute(query, (int(userid), split_payload[0], split_payload[1], split_payload[2], split_payload[3], split_payload[4], user_address))
+    cursor.execute(query, (int(userid), payload[0], payload[1], payload[2], payload[3], payload[4], user_address))
 
     connection.commit() # Commit the changes
 

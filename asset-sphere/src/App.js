@@ -44,21 +44,12 @@ function App() {
 				console.error("Whoops, there was an error: ", error)
 			})
       
-      // Call smart contract creator for each individual smart contract
-      axios.get('http://127.0.0.1:8000/deploysc/users')
+      // Call the smart contract deployer
+      axios.get('http://127.0.0.1:8000/deploymainsc')
         .catch(error => {
           console.error("Whoops, there was an error: ", error)
       })
 
-      axios.get('http://127.0.0.1:8000/deploysc/transferassets')
-        .catch(error => {
-          console.error("Whoops, there was an error: ", error)
-      })
-
-      axios.get('http://127.0.0.1:8000/deploysc/assets')
-      .catch(error => {
-        console.error("Whoops, there was an error: ", error)
-      })
     }
   }, []);
 
