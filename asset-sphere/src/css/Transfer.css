@@ -1,353 +1,353 @@
 /*
-Name: 	Nathan Hoorbkaht
-		Nicholas Gustin	
-		Connor Lack
+Name:   Nathan Hoorbkaht
+    Nicholas Gustin 
+    Connor Lack
 
-SID:	103865794
-		103995882
-		103992223
+SID:  103865794
+    103995882
+    103992223
 
 this Page is the style elements for the Transfer page
 */
 
 .transfer {
-    background-color: #262626;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .transfer-main-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* 2/3 for left-container, 1/3 for right-container */
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    height: 100%;
-    width: 100%;
-    max-width: 1400px; /* Ensures that both right and left container dont go beyond this width */
-    padding: 50px 20px; /* Adjusted padding */
-    gap: 50px; /* Gap between containers*/
-  }
-  
-  /* Dimensions and properties of left container */
-  .transfer-left-container { 
-    background-color: #3a3a3a;
-    height: 50vh;
-    width: 100%;
-    max-width: 1000px;
-    display: block;
-    flex-direction: row;
-    align-items: center;
-    /* flex-start starts container contents at the top */
-    justify-content: flex-start;
-    border-radius: 10px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .transfer-left-container .MuiSelect-root { 
-    position: absolute;
-    top: 2rem; /* Align it with the top of the container */
-    right: 2rem; /* Align it with the right of the container */
+  background-color: #262626;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-  
-    /* Dimensions and properties of right container */
-  .transfer-right-container {
-    background-color: #79F5AE;
-    height: 50vh;
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* flex-start starts container contents at the top */
-    justify-content: flex-start;
-    border-radius: 10px;
-    margin: 0 auto;
-  }
 
-  /* Media query for smaller screens */
+.transfer-main-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2/3 for left-container, 1/3 for right-container */
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  max-width: 1400px; /* Ensures that both right and left container dont go beyond this width */
+  padding: 50px 20px; /* Adjusted padding */
+  gap: 50px; /* Gap between containers*/
+}
+
+/* Dimensions and properties of left container */
+.transfer-left-container { 
+  background-color: #3a3a3a;
+  height: 50vh;
+  width: 100%;
+  max-width: 1000px;
+  display: block;
+  flex-direction: row;
+  align-items: center;
+  /* flex-start starts container contents at the top */
+  justify-content: flex-start;
+  border-radius: 10px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.transfer-left-container .MuiSelect-root { 
+  position: absolute;
+  top: 2rem; /* Align it with the top of the container */
+  right: 2rem; /* Align it with the right of the container */
+}
+
+  /* Dimensions and properties of right container */
+.transfer-right-container {
+  background-color: #79F5AE;
+  height: 50vh;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* flex-start starts container contents at the top */
+  justify-content: flex-start;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+/* Media query for smaller screens */
 @media (max-width: 1400px) {
-    .transfer-main-container {
-      grid-template-columns: 1fr; /* Single column layout for small screens */
-    }
-    .transfer-left-container,
-    .transfer-right-container {
-      width: 100%; /* Both containers take full width */
-    }
+  .transfer-main-container {
+    grid-template-columns: 1fr; /* Single column layout for small screens */
+  }
+  .transfer-left-container,
+  .transfer-right-container {
+    width: 100%; /* Both containers take full width */
+  }
 
-    /* Resizing for appearence and design */
-    .transfer-left-container
-    {
-        height: 110%;
-    }
+  /* Resizing for appearence and design */
+  .transfer-left-container
+  {
+      height: 110%;
+  }
 
-    .transfer-right-container
-    {
-        max-width: 1000px;
-    }
+  .transfer-right-container
+  {
+      max-width: 1000px;
+  }
 
-    .transfer-label{
-        margin-right: 20rem;
-    }
+  .transfer-label{
+      margin-right: 20rem;
+  }
 
-    .statistics, .coin-statistics
-    {
-        align-items: center;
-        margin-left: 4rem;
-    }
+  .statistics, .coin-statistics
+  {
+      align-items: center;
+      margin-left: 4rem;
+  }
 
-    .transfer-asset-value
-    {
-        margin-left: -6rem;
-    }
+  .transfer-asset-value
+  {
+      margin-left: -6rem;
+  }
 
-    .transfer-Low, .date-btns-gap
-    {
-        margin-left: 2rem;
-    }
+  .transfer-Low, .date-btns-gap
+  {
+      margin-left: 2rem;
+  }
 }
-  
-  .button-row {
-    display: flex;
-    gap: 50px;
-  }
-  
-  /* Properties for BUY / SELL buttons since they're identical. These buttons were removed from the webpage since it didnt fit the criteria */
-  .transfer-main-btn {
-    background-color: #262626;
-    color: #fff;
-    padding: 1rem 3rem;
-    border: 1px solid #79F5AE;
-    border-radius: 10px;
-    cursor: pointer;
-    /* Adjusting position in container */
-    margin-top: auto;
-    margin-bottom: 2rem;
-  }
-  
-  .transfer-purchase-btn {
-    background-color: #262626;
-    color: #fff;
-    padding: 1rem 7.5rem;
-    border: 1px solid #79F5AE;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-bottom: 10rem;
-  }
-  
+
+.button-row {
+  display: flex;
+  gap: 50px;
+}
+
+/* Properties for BUY / SELL buttons since they're identical. These buttons were removed from the webpage since it didnt fit the criteria */
+.transfer-main-btn {
+  background-color: #262626;
+  color: #fff;
+  padding: 1rem 3rem;
+  border: 1px solid #79F5AE;
+  border-radius: 10px;
+  cursor: pointer;
+  /* Adjusting position in container */
+  margin-top: auto;
+  margin-bottom: 2rem;
+}
+
+.transfer-purchase-btn {
+  background-color: #262626;
+  color: #fff;
+  padding: 1rem 7.5rem;
+  border: 1px solid #79F5AE;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 10rem;
+}
+
 .transfer-input-container {
-    display: flex;
-    flex-direction: column; /* Change to column to place "Amount" above input */
-    align-items: center;
-    justify-content: flex-start; /* Change to flex-start */
-    width: 65%;
-    margin-bottom: 1rem;
-    border: 1px solid #000; /* Adds a thin black border */
-    border-radius: 10px;
-    padding: 10px; /* Adds padding for spacing */
-    position: relative; /* Adds relative positioning */
-  }
-
-  .transfer-input-container input[type="text"] { 
-    width: 15rem;
-    height: 5rem;
-    font-size: 1.5rem;
-    border: none;
-    outline: none;
-    background: transparent; /* Ensure no background */
-    color: #000000;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  flex-direction: column; /* Change to column to place "Amount" above input */
+  align-items: center;
+  justify-content: flex-start; /* Change to flex-start */
+  width: 65%;
+  margin-bottom: 1rem;
+  border: 1px solid #000; /* Adds a thin black border */
+  border-radius: 10px;
+  padding: 10px; /* Adds padding for spacing */
+  position: relative; /* Adds relative positioning */
 }
-  
-  /* Updating the label styles */
-  .transfer-label {
-    font-size: 1rem;
-    color: #000000;
-    order: 2; /* Move label below input */
-    margin-top: -1.75rem; /* Adjust the margin to place the label outside the border */
-    margin-left: -11rem;
-  }
-  
-  /* Updates info about the input style */
-  .transfer-input-container input[type="number"] { /* ensures that only integers are accepted into the input */
-    width: 15rem;
-    height: 5rem;
-    font-size: 2rem;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #000000;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* Styles the */
-  .transfer-input-container::after {
-    color: #000000;
-    position: absolute; /* Position it absolutely within the container */
-    right: 10px; /* Adjust the right position to place it inside the border */
-    bottom: 35px; /* Adjust the bottom position to place it inside the border */
-  }
 
-    /* Remove number input spinners yoink*/
+.transfer-input-container input[type="text"] { 
+  width: 15rem;
+  height: 5rem;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent; /* Ensure no background */
+  color: #000000;
+  padding: 0;
+  margin: 0;
+}
+
+/* Updating the label styles */
+.transfer-label {
+  font-size: 1rem;
+  color: #000000;
+  order: 2; /* Move label below input */
+  margin-top: -1.75rem; /* Adjust the margin to place the label outside the border */
+  margin-left: -11rem;
+}
+
+/* Updates info about the input style */
+.transfer-input-container input[type="number"] { /* ensures that only integers are accepted into the input */
+  width: 15rem;
+  height: 5rem;
+  font-size: 2rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #000000;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styles the */
+.transfer-input-container::after {
+  color: #000000;
+  position: absolute; /* Position it absolutely within the container */
+  right: 10px; /* Adjust the right position to place it inside the border */
+  bottom: 35px; /* Adjust the bottom position to place it inside the border */
+}
+
+  /* Remove number input spinners yoink*/
 .transfer-input-container input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
-  }
-
-
-  .transfer-dollar-label {
-    position: absolute;
-    left: 10px; /* Adjust the left position to place the '$' label inside */
-    bottom: 35px; /* Adjust the bottom position to place it inside the border */
-    font-size: 1.5rem; /* Make the '$' text slightly smaller */
-    color: #000000;
-  }
-  
-  /* Heading styling */
-  .transfer-right-container-header {
-    color: #000; 
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
-  
-  /* Heading 3 styling */
 
-  .transfer-top h3 {
-    margin: 0;
-  }
-  
-  .transfer-asset-text {
-    font-size: 1.5rem;
-    color: white;
-  }
-  
-  .transfer-btc-text {
-    font-size: 1rem;
-    color: #717171;
-    margin-left: 0.5rem; /* Add some spacing between Swincoin and SWN */
-  }
-  
-    /* Change Asset styling and positioning*/
-  .transfer-top button {
-    background-color: #262626;
-    color: #ffffff;
-    padding: 1rem 2rem;
-    border: 1px solid #79F5AE;
-    border-radius: 18px; /* Makes border rounded */
-    cursor: pointer;
-    margin-left: 35rem; /* Reposition Button */
-    width: 11rem;
-    font-size: 1rem;
+
+.transfer-dollar-label {
+  position: absolute;
+  left: 10px; /* Adjust the left position to place the '$' label inside */
+  bottom: 35px; /* Adjust the bottom position to place it inside the border */
+  font-size: 1.5rem; /* Make the '$' text slightly smaller */
+  color: #000000;
 }
-  
-  .transfer-asset-value {
-    font-size: 2.5rem;
-    color: white;
-    margin-left: -3.4rem;
-  }
 
-  .transfer-asset-dollarsign {
-    font-size: 2.5rem;
-    color: white;
-    margin-left: -3.4rem;
-  }
-  
-  .transfer-currency {
-    color: #717171;
-  }
+/* Heading styling */
+.transfer-right-container-header {
+  color: #000; 
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 
-  /* Gap between date buttons */
-  .date-btns-gap{
-    display: flex;
-    gap: 15px;
-  }
+/* Heading 3 styling */
 
-  .date-btn{
-    background-color: #3a3a3a;
-    color: #fff;
-    padding: 0.25rem 0.35rem;
-    border: 0.5px solid #79F5AE;
-    border-radius: 15px;
-    cursor: pointer;
-  }
+.transfer-top h3 {
+  margin: 0;
+}
 
-  .transfer-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    align-self: flex-start;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-  }
+.asset-name {
+  font-size: 1.5rem;
+  color: white;
+}
 
-  .transfer-middle {
-    display: block;
-    align-items: center; /* Center elements vertically */
-    padding: 20px;
-    margin-left: -36rem; /* Positioning the Asset Value*/
-    margin-top: -1rem; /* Positioning the Asset Value*/
-  }
+.category-text {
+  font-size: 1rem;
+  color: #717171;
+  margin-left: 0.5rem; /* Add some spacing between Swincoin and SWN */
+}
 
-  .transfer-low {
-    display: block;
-    align-items: center; /* Center elements vertically */
-    padding: 20px;
-    margin-top: -2rem; /* Positioning the Asset Value*/
-    margin-left: 40rem; /* Positioning the Asset Value*/
-  }
-  
-  .statistics{
-    text-align: center;
-    width: 50rem;
-    margin-top: 3rem;
-    margin-left: 3rem;
-    display: block;
-    position: relative;
-  }
+  /* Change Asset styling and positioning*/
+.transfer-top button {
+  background-color: #262626;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  border: 1px solid #79F5AE;
+  border-radius: 18px; /* Makes border rounded */
+  cursor: pointer;
+  margin-left: 35rem; /* Reposition Button */
+  width: 11rem;
+  font-size: 1rem;
+}
 
-  .coin-statistics {
-    max-width: 100%;
-    height: auto;
-    width: 100%; /* Set the width to 100% to fill the container */
-  }
+.asset-value {
+  font-size: 2.5rem;
+  color: white;
+  margin-left: -3.4rem;
+}
 
-  /* Style for the file upload container */
+.transfer-asset-dollarsign {
+  font-size: 2.5rem;
+  color: white;
+  margin-left: -3.4rem;
+}
+
+.transfer-currency {
+  color: #717171;
+}
+
+/* Gap between date buttons */
+.date-btns-gap{
+  display: flex;
+  gap: 15px;
+}
+
+.date-btn{
+  background-color: #3a3a3a;
+  color: #fff;
+  padding: 0.25rem 0.35rem;
+  border: 0.5px solid #79F5AE;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.transfer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  align-self: flex-start;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.transfer-middle {
+  display: block;
+  align-items: center; /* Center elements vertically */
+  padding: 20px;
+  margin-left: -36rem; /* Positioning the Asset Value*/
+  margin-top: -1rem; /* Positioning the Asset Value*/
+}
+
+.transfer-low {
+  display: block;
+  align-items: center; /* Center elements vertically */
+  padding: 20px;
+  margin-top: -2rem; /* Positioning the Asset Value*/
+  margin-left: 40rem; /* Positioning the Asset Value*/
+}
+
+.asset-description{
+  text-align: center;
+  width: 50rem;
+  margin-top: 3rem;
+  margin-left: 3rem;
+  display: block;
+  position: relative;
+}
+
+.coin-statistics {
+  max-width: 100%;
+  height: auto;
+  width: 100%; /* Set the width to 100% to fill the container */
+}
+
+/* Style for the file upload container */
 .file-upload {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-  
-  /* Style for the file input */
-  #fileInput {
-    display: none; /* Hide the input element */
-  }
-  
-  /* Style for the file label/button */
-  .file-label {
-    background-color: #262626;
-    color: #fff;
-    padding: 1rem 3.5rem;
-    border: 1px solid #79F5AE;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 0.8rem;
-  }
-  
-  .transfer-asset {
-    margin-left: 5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Style for the file input */
+#fileInput {
+  display: none; /* Hide the input element */
+}
+
+/* Style for the file label/button */
+.file-label {
+  background-color: #262626;
+  color: #fff;
+  padding: 1rem 3.5rem;
+  border: 1px solid #79F5AE;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.transfer-asset {
+  margin-left: 5rem;
+}

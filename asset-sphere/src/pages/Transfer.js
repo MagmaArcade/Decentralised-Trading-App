@@ -1,11 +1,11 @@
 /*
 Name:   Nathan Hoorbkaht
-		    Nicholas Gustin	
-		    Connor Lack
+        Nicholas Gustin 
+        Connor Lack
 
-SID:	  103865794
-		    103995882
-		    103992223
+SID:    103865794
+        103995882
+        103992223
 */
 // this is the Transfer page. this page is view singular asset breakdowns, including options to Transfer.
 import React, { useState, useEffect } from 'react';
@@ -29,12 +29,12 @@ axios.get('http://127.0.0.1:8000/getassetinfo/')
 // Get list of wallets outside of render loop
 const wallets = [];
 axios.get('http://127.0.0.1:8000/getwalletinfo/')
-		.then(response => {
-			Object.values(response.data).map(({ walletAddress }) => wallets.push(walletAddress) );
-		})
-		.catch(error => {
-			console.error("Whoops, there was an error: ", error)
-		})
+    .then(response => {
+      Object.values(response.data).map(({ walletAddress }) => wallets.push(walletAddress) );
+    })
+    .catch(error => {
+      console.error("Whoops, there was an error: ", error)
+    })
 
 // Transfer application
 function Transfer() {  
@@ -86,9 +86,9 @@ function Transfer() {
   }
 
     // Handle user input React Hook changes outside of the return value (prevent infinite loops)
-	const onFilterChange = (e) => {
-		setSelectedAsset(e.target.value);
-	  };
+  const onFilterChange = (e) => {
+    setSelectedAsset(e.target.value);
+    };
 
   const onWalletAddressChange = (e) => {
     setSelectedWallet(e.target.value);
@@ -122,16 +122,16 @@ function Transfer() {
         <div className="asset-info" key={assetID}>
           <div className="transfer-top">
             <p>
-              <span className="transfer-asset-text">{name}</span>
-              <span className="transfer-btc-text">{categoryName}</span>
+              <span className="asset-name">{name}</span>
+              <span className="category-text">{categoryName}</span>
             </p>       
           </div>
           <div className="transfer-middle">
             <p>
-              <span className="transfer-asset-value">{price}</span> <span className="transfer-currency">AUD</span>
+              <span className="asset-value">{price}</span> <span className="transfer-currency">AUD</span>
             </p>
           </div>
-          <div className="statistics">
+          <div className="asset-description">
             <p>{description}</p>
           </div>
         </div>
@@ -200,3 +200,4 @@ function Transfer() {
 );
 }
 export default Transfer;
+
