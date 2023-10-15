@@ -115,7 +115,7 @@ function Transfer() {
 
 
   const render = () => {
-    return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
+    return Object.values(allAssets).filter(asset => asset.name === selectedAsset).map(({ assetID, name, description, price, categoryName }) => {
       return (
         <div className="asset-info" key={assetID}>
           <div className="transfer-top">
