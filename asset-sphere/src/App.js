@@ -37,14 +37,6 @@ function App() {
     if (!didInit) {
       didInit = true;
 
-      axios.get('http://127.0.0.1:8000/sessioninitialiser')
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.error("Whoops, there was an error: ", error)
-      })
-
       axios.get('http://127.0.0.1:8000/deploysc/users')
         .then(response => {
           console.log(response)
