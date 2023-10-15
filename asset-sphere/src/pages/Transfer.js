@@ -134,14 +134,14 @@ function Transfer() {
           </div>
         </div>
       );
-    });
+    }); 
   };
 
     return (
       <><Navbar/><div className="transfer">
         <div className="transfer-main-container">
           <div className="transfer-left-container">
-            {render()};
+            {render()}
             <Select
               value={selectedAsset}
               onChange={onFilterChange}
