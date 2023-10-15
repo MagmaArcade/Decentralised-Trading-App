@@ -328,22 +328,20 @@ async def deploySmartContract(scname: str):
             temp = json.loads(contractjson)
             json.dump(temp, file)
 
-        # If the contract is the Users contract, write the address to the database so the TradeAssets contract can reference it later
-        if(scname == "users"):
-            userscaddress = tx_receipt.contractAddress
-            print(userscaddress)
+        # for any smart contract, write the address to the database so the TradeAssets contract can reference it later
+        scaddress = tx_receipt.contractAddress
 
-            connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-            cursor = connection.cursor() # create a cursor to execute SQL queries
-            
-            query = "INSERT INTO contractaddress (address) VALUES (%s)"
-            cursor.execute(query, [userscaddress])
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        
+        query = "INSERT INTO contractinformation (contractName, address) VALUES (%s, %s)"
+        cursor.execute(query, [scname, scaddress])
 
-            connection.commit() # Commit the changes
+        connection.commit() # Commit the changes
 
-            # Close the cursor/connection
-            cursor.close()
-            connection.close()
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
 
         return
 

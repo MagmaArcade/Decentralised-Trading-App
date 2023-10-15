@@ -34,28 +34,30 @@ let didInit = false;
 // App application
 function App() {
   useEffect(() => {
+    // Anything inside this if statement will only execute once upon loading the app
     if (!didInit) {
       didInit = true;
 
+      // Call session initialiser to create the session file and set it to ""
       axios.get('http://127.0.0.1:8000/sessioninitialiser')
 			.catch(error => {
 				console.error("Whoops, there was an error: ", error)
 			})
       
+      // Call smart contract creator for each individual smart contract
       axios.get('http://127.0.0.1:8000/deploysc/users')
-        .then(response => {
-          console.log(response)
-        })
         .catch(error => {
           console.error("Whoops, there was an error: ", error)
       })
 
       axios.get('http://127.0.0.1:8000/deploysc/transferassets')
-        .then(response => {
-          console.log(response)
-        })
         .catch(error => {
           console.error("Whoops, there was an error: ", error)
+      })
+
+      axios.get('http://127.0.0.1:8000/deploysc/assets')
+      .catch(error => {
+        console.error("Whoops, there was an error: ", error)
       })
     }
   }, []);
