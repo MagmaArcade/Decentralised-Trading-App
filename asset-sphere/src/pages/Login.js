@@ -60,7 +60,7 @@ function Login() {
       .then((response) => {
         // If the email and password do exist, route the user to Wallet
         if(response.data.status == "success") {
-          navigate("/Wallet")
+          navigate("/Home")
         }
         // If not, set the error as invalid email or password and keep them on the page
         else {

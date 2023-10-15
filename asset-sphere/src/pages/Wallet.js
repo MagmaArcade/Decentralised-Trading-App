@@ -15,25 +15,25 @@ import { Grid } from "@mui/material"; // import js elements from mui
 import "../css/Wallet.css"; // import css styling
 import { useNavigate } from "react-router-dom";
 
+var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
 
 // Wallet application
 function Wallet() {
-
-    // inialised constants outside of fetch request
-    const queryUserHistory = "";
-    const queryUserAssets = "";
-
+  const navigate = useNavigate();
+  
+  // inialised constants outside of fetch request
+  const queryUserHistory = "";
+  const queryUserAssets = "";
+  
   // Fetch the authentication token from the backend
   fetch('/api/get_auth_token')
     .then(response => response.json())
     .then(data => {
-      const userID = data.auth_token;
-
       // String that calls the API to retrieve transaction history from the database for the current user
-      queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${userID}`)
+      queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${currentSessionToken}`)
 
       // String that calls the API to retrieve user assets from the database for the current user
-      queryUserAssets = (`http://127.0.0.1:8000/getassetinfo/${userID}`)
+      queryUserAssets = (`http://127.0.0.1:8000/getassetinfo/${currentSessionToken}`)
     })
     .catch(error => {
       console.error('Error fetching auth token:', error);
@@ -43,14 +43,31 @@ function Wallet() {
 	// State variable which stores the asset you're trying to filter by
 	const [selectedAssetHistory, setSelectedAssetHistory] = useState('');
 
-  const navigate = useNavigate();
-
-
 	// Function that will automatically render the table upon startup
 	useEffect(() => {
-      loadTableData();
-    
+    // Gets the current Session ID (i.e. which user is logged in?)
+    getCurrentSession();
+
+    // Load table
+    loadTableData();
 	}, [selectedAssetHistory]);
+
+  // Calls the API to get the current Session Token (i.e. which user is logged in)
+  function getCurrentSession() {
+    axios.get('http://127.0.0.1:8000/currentsessiontoken/')
+    .then(response => {
+      // Maps the returned session token to the currentSessionToken variable
+      currentSessionToken = response.data.token;
+
+      // If no user is logged in, push to Login page
+      if (currentSessionToken == "") {
+        navigate("/Login")
+      }
+    })
+    .catch(error => {
+        console.error("Whoops, there was an error: ", error);
+    });
+  }
 
 	// AXIOS function to request data from the API/Database
 	function loadTableData() {

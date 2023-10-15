@@ -14,6 +14,7 @@ import axios from 'axios';
 import "../css/Transfer.css"; // import css styling
 import { useNavigate } from "react-router-dom";
 
+var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
 
 // Gets current list of assets outside of render loop
 const assets = [];
@@ -24,18 +25,6 @@ axios.get('http://127.0.0.1:8000/getassetinfo/')
     .catch(error => {
         console.error("Whoops, there was an error: ", error);
     });
-
-// Gets the current session token (can be "" (no session token set))
-var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
-axios.get('http://127.0.0.1:8000/currentsessiontoken/')
-  .then(response => {
-    // Maps the returned session token to the currentSessionToken variable
-    currentSessionToken = response.data.token;
-  })
-  .catch(error => {
-      console.error("Whoops, there was an error: ", error);
-  });
-
 
 // Get list of wallets outside of render loop
 const wallets = [];
@@ -48,9 +37,10 @@ axios.get('http://127.0.0.1:8000/getwalletinfo/')
 		})
 
 // Transfer application
-function Transfer() {
+function Transfer() {  
   let contractData = require('../localdata/transferassetscontractinfo.json');
 
+  const navigate = useNavigate();
 
   const [allAssets, setAllAssets] = useState('[]');
   const [selectedAsset, setSelectedAsset] = useState('');
@@ -63,8 +53,27 @@ function Transfer() {
   
   // Fetch assets from API on component mounts
   useEffect(() => {
+    // Gets the current Session ID (i.e. which user is logged in?)
+    getCurrentSession();
     loadTableData();
   }, [selectedAsset]);  
+
+  // Calls the API to get the current Session Token (i.e. which user is logged in)
+  function getCurrentSession() {
+    axios.get('http://127.0.0.1:8000/currentsessiontoken/')
+    .then(response => {
+      // Maps the returned session token to the currentSessionToken variable
+      currentSessionToken = response.data.token;
+      
+      // If no user is logged in, push to Login page
+      if (currentSessionToken == "") {
+        navigate("/Login")
+      }
+    })
+    .catch(error => {
+        console.error("Whoops, there was an error: ", error);
+    });
+  }
 
   function loadTableData() {
       axios.get(query)
@@ -111,7 +120,6 @@ function Transfer() {
     return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
       return (
         <div className="asset-info" key={assetID}>
-          <h1>{currentSessionToken}</h1>
           <div className="transfer-top">
             <p>
               <span className="transfer-asset-text">{name}</span>
