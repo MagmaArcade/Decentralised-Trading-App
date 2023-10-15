@@ -38,7 +38,7 @@ this Page is the style elements for the Transfer page
   /* Dimensions and properties of left container */
   .transfer-left-container { 
     background-color: #3a3a3a;
-    height: 70vh;
+    height: 50vh;
     width: 100%;
     max-width: 1000px;
     display: block;
@@ -60,7 +60,7 @@ this Page is the style elements for the Transfer page
     /* Dimensions and properties of right container */
   .transfer-right-container {
     background-color: #79F5AE;
-    height: 70vh;
+    height: 50vh;
     width: 100%;
     max-width: 500px;
     display: flex;
@@ -139,8 +139,7 @@ this Page is the style elements for the Transfer page
     border: 1px solid #79F5AE;
     border-radius: 30px;
     cursor: pointer;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 10rem;
   }
   
 .transfer-input-container {
