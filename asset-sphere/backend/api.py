@@ -74,7 +74,25 @@ def get_asset_info(name: str):
         return assets
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
-    
+
+@app.get("querydatabase/{query}")
+def queryDatabase(query: str):
+    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+    cursor = connection.cursor() # create a cursor to execute SQL queries
+    cursor.execute(query) # execute the query
+    result = cursor.fetchall() # store the data in a temporary variable
+    data = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+    # Close the cursor/connection
+    cursor.close()
+    connection.close()
+
+    return data
+
+
+
+
+
 
 # Get User information from the database, to be used for listing dynamic information
 @app.get("/getuserinfo/")

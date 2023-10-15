@@ -23,50 +23,64 @@ var currentSessionToken = "";    // Will initalise as blank, but this will be ca
 // Navbar application
 function Navbar() {
 
-	const [currentSessionToken, setCurrentSessionToken] = useState(""); 
-	const [user, setUser] = useState(null);
-	const navigate = useNavigate();
+	//const [currentSessionToken, setCurrentSessionToken] = useState(""); 
+	const [currentUserName, setCurrentUserName] = useState();
 
 	useEffect(() => {
-		fetch('http://127.0.0.1:8000/currentsessiontoken')
-		  .then(response => response.json())
-		  .then(data => {
-			setCurrentSessionToken(data.token || "");
-			if (data.token) {
-			  // If token exists, fetch user details
-			  fetch(`http://127.0.0.1:8000/getuserinfo/${data.token}`)
-				.then(res => res.json())
-				.then(userData => setUser(userData))
-				.catch(error => console.error('Error fetching user data:', error));
-			}
-		  })
-		  .catch(error => {
-			console.error('Error fetching auth token:', error);
-		  });
+		// Gets the current Session ID (i.e. which user is logged in?)
+		getCurrentSession();
+
 	  }, []);
 	
-	  const handleLogout = () => {
-		fetch("http://127.0.0.1:8000/sessioninitialiser")
-			.then(() => {
-				setCurrentSessionToken("");
-				setUser(null);
-				navigate("/Home");
+	// Calls the API to get the current Session Token (i.e. which user is logged in)
+	function getCurrentSession() {
+		axios.get('http://127.0.0.1:8000/currentsessiontoken/')
+		.then(response => {
+			// Maps the returned session token to the currentSessionToken variable
+			currentSessionToken = response.data.token;
+		})
+		.catch(error => {
+			console.error("Whoops, there was an error: ", error);
+		});
+	}
+
+	const renderLoginComponent = () => {
+		if(currentSessionToken === "") {
+			return (
+				<item>
+				<Link to="/Login">
+					<img src={profile} alt={"Login"} align="right" className="login-icon" />
+				</Link>
+				</item>
+			)
+		}
+		else {
+			var query = "SELECT fname FROM users WHERE userID=" + {currentSessionToken}
+			var apicall = "http://127.0.0.1:8000/querydatabase" + query
+			axios.get(apicall)
+			.then(response => {
+				Object.values(response.data).map(({ name }) => setCurrentUserName(name) );
 			})
 			.catch(error => {
-				console.error("Error during logout: ", error);
-			});
-	};
-	
-	/* Function needs to return different HTML/MUI depending on:
-		if currentSessionToken == "", then return HTML which shows a login button and that button routes the user to the login page
+				console.error("Whoops, there was an error: ", error)
+			})
 
-		else: (AKA we have a current logged in user ID)
-			we need an API call that gets the first name of that user
-			return html which:
-				shows text saying: "Logged in as: {fname}"
-				next to that, a button which says logout 
-				button on press will call "http://127.0.0.1/sessioninitialiser"
-	*/
+			return (
+			<div>
+				<p>Logged in as: {currentUserName}</p>
+				<Button variant="contained" color="primary" onClick={handleLogout}>Logout</Button>
+			</div>
+			)
+		}
+	}
+
+	const handleLogout = () => {
+		axios.get('http://127.0.0.1:8000/sessioninitialiser')
+			.catch(error => {
+				console.error("Whoops, there was an error: ", error)
+			})
+	}
+
 
   return (
     <div className="navbar">
@@ -108,16 +122,7 @@ function Navbar() {
 			</Grid>
 			
 			<Grid item xs={1} sm={3}>
-                    {user ? (
-                        <div>
-                            <p>Logged in as: {user.fname}</p>
-                            <Button variant="contained" color="primary" onClick={handleLogout}>Logout</Button>
-                        </div>
-                    ) : (
-                        <Link to="/Login">
-                            <img src={profile} alt={"Login"} align="right" className="login-icon" />
-                        </Link>
-                    )}
+                {renderLoginComponent}
             </Grid>
 		</Grid>
     </div>
