@@ -6,3 +6,4 @@ asset-sphere/backend/constants.py
 asset-sphere/src/localdata/usercontractinfo.json
 asset-sphere/src/localdata/transferassetscontractinfo.json
 asset-sphere/src/localdata/userscontractinfo.json
+asset-sphere/backend/__pycache__/api.cpython-311.pyc

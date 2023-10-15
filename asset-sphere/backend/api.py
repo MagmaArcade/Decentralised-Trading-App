@@ -174,6 +174,33 @@ def currentSessionToken():
     
     return(token)
 
+
+# Login Validation 
+class LoginData(BaseModel):
+    email: str
+    password: str
+
+@app.post("/validate_login")
+async def login(user: LoginData):
+    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+    cursor = connection.cursor(dictionary=True) # create a cursor to execute SQL queries
+    
+    try:
+        query = f"SELECT * FROM Users WHERE email=%s AND password=%s"
+        cursor.execute(query, (user.email, user.password))
+        
+        db_user = cursor.fetchone()
+        
+        if db_user:
+            return {"status": "success"}
+        else:
+            return {"status": "failure", "detail": "Invalid email address or password" }
+    except Exception as e:
+        print(f"Error: {str(e)}")
+    finally:
+        cursor.close()
+        connection.close()
+
 # API call that takes user login information, validates it, and sets the session token if correct
 @app.post("/setsessiontoken")
 def setSessionToken():
@@ -321,33 +348,6 @@ async def createUser(user: CreateUsersRequest):
     connection.close()
 
     return
-
-# Login Validation 
-class LoginData(BaseModel):
-    email: str
-    password: str
-
-@app.post("/validate_login")
-async def login(user: LoginData):
-    connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-    cursor = connection.cursor(dictionary=True) # create a cursor to execute SQL queries
-    
-    try:
-        query = f"SELECT * FROM Users WHERE email=%s AND password=%s"
-        cursor.execute(query, (user.email, user.password))
-        
-        db_user = cursor.fetchone()
-        
-        if db_user:
-            return {"status": "success"}
-        else:
-            return {"status": "failure", "detail": "Invalid email address or password" }
-    except Exception as e:
-        print(f"Error: {str(e)}")
-    finally:
-        cursor.close()
-        connection.close()
-
 
 # Handle Asset Transfer
 class assetTransferData(BaseModel):
