@@ -37,40 +37,35 @@ function Login() {
     });
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const validationErrors = Validation(values);
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).every(key => validationErrors[key] === "")) {
-      try {
-          const response = await axios.post('http://127.0.0.1:8000/validate_login', {
-            email: values.email,
-            password: values.password
-          });
-          
-          if (response.data.status === "success") {
-              navigate('/Wallet');
-          } else {
-              setErrors(prev => ({ ...prev, password: "Invalid email or password" }));
-          }
-      } catch (error) {
-          if(error.response && error.response.data.detail) {
-              setErrors(prev => ({ ...prev, password: error.response.data.detail }));
-          } else {
-              console.error("Error during login validation", error);
-          }
+      axios({
+        method: "POST",
+        url: "http://127.0.0.1:8000/validatelogin",
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        data: {
+          "email": values.email,
+          "password": values.password
         }
-    } else {
+      })
+      .then((response) => {
+        console.log(response);
+      })
     }
   }
-  
+    
   return (
     <div className="login">
       <div className="main-container">
         <div className="main-content">
           <h1>Log In</h1>
-          <form className="login-form form-container" action="" onSubmit={handleSubmit}>
+          <form className="login-form form-container" action="" onSubmit={handleSubmit} >
             <input type="email" placeholder="Email" name="email" onChange={handleInput} value={values.email}/>
             {errors.email && <span className='text-danger'> {errors.email}</span>}
             <input type="password" placeholder="Password" name="password" onChange={handleInput} value={values.password}/>
@@ -87,35 +82,5 @@ function Login() {
       </div>
     </div>
   );
-}
-
-
-// Function to set the authentication token in the backend
-function setAuthToken(email) {
-
-	// String that calls the API to retrieve userID from the database
-  const userId = (`http://127.0.0.1:8000/getuserid/${email}`)
-
-  const requestBody = {
-    auth_token: userId,
-  };
-
-  fetch('/api/set_auth_token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(requestBody),
-  })
-    .then(response => {
-      if (response.ok) {
-        console.log('Authentication token set successfully');
-      } else {
-        console.error('Failed to set authentication token');
-      }
-    })
-    .catch(error => {
-      console.error('Error while setting authentication token:', error);
-    });
 }
 export default Login;

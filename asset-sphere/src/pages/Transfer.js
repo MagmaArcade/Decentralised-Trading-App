@@ -36,6 +36,7 @@ axios.get('http://127.0.0.1:8000/currentsessiontoken/')
       console.error("Whoops, there was an error: ", error);
   });
 
+
 // Get list of wallets outside of render loop
 const wallets = [];
 axios.get('http://127.0.0.1:8000/getwalletinfo/')

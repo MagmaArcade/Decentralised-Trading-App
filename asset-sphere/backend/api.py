@@ -171,26 +171,30 @@ def sessionInitialiser():
 def currentSessionToken():
     with open('../src/localdata/currentSession.json', 'r') as file:
         token = json.load(file)
-    
     return(token)
-
 
 # Login Validation 
 class LoginData(BaseModel):
     email: str
     password: str
 
-@app.post("/validate_login")
+@app.post("/validatelogin")
 async def login(user: LoginData):
     connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-    cursor = connection.cursor(dictionary=True) # create a cursor to execute SQL queries
+    cursor = connection.cursor() # create a cursor to execute SQL queries
     
+    # Load values into local variables
+    _email = LoginData.email
+    _password = LoginData.password
+
     try:
-        query = f"SELECT * FROM Users WHERE email=%s AND password=%s"
+        query = f"SELECT userID FROM Users WHERE email={_email} AND password={_password}"
         cursor.execute(query, (user.email, user.password))
         
         db_user = cursor.fetchone()
         
+        return _email, _password
+
         if db_user:
             return {"status": "success"}
         else:
@@ -203,7 +207,7 @@ async def login(user: LoginData):
 
 # API call that takes user login information, validates it, and sets the session token if correct
 @app.post("/setsessiontoken")
-def setSessionToken():
+def setSessionToken(user: LoginData):
 
     
     return
