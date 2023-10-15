@@ -64,11 +64,11 @@ function Navbar() {
 			})
 
 			return (
-			<div>
-				<p>Logged in as: {currentUserName}</p>
-				<Button variant="contained" color="primary" onClick={handleLogout}>Logout</Button>
-			</div>
-			)
+				<div className="user-info">
+					<p className="user-name">Logged in as: {currentUserName}</p>
+					<Button className="logout-button" variant="contained" color="inherit" onClick={handleLogout}>Logout</Button>
+				</div>
+			);
 		}
 	}
 

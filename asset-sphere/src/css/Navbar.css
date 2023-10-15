@@ -19,6 +19,9 @@ This Page is the style elements for the Navbar component.
 	width: 100%;
 	top: 0;
 	z-index: 99;
+	color: white;
+	padding: 1rem;
+	text-align: center;
 }
 
 .page-links a {
@@ -110,4 +113,23 @@ This Page is the style elements for the Navbar component.
         width: 50px;
         height: auto;
     }
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+	margin-left: 150px;
+	color:#262626;
+}
+
+.user-name {
+    margin: 0; /* remove default <p> margin */
+	white-space: nowrap;  /* Prevents the text from wrapping onto the next line */
+}
+
+.logout-button {
+    padding: 8px 15px; /* adjust padding as needed */
+    text-decoration: none;
+    /* remove display, text-align properties as they're unnecessary in this context */
 }

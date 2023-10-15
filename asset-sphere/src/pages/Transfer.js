@@ -13,6 +13,8 @@ import { Grid, TextField, Select, MenuItem } from "@mui/material";
 import axios from 'axios';
 import "../css/Transfer.css"; // import css styling
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+
 
 var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
 const assets = [];
@@ -113,7 +115,7 @@ function Transfer() {
 
 
   const render = () => {
-    return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
+    return Object.values(allAssets).filter(asset => asset.name === selectedAsset).map(({ assetID, name, description, price, categoryName }) => {
       return (
         <div className="asset-info" key={assetID}>
           <div className="transfer-top">
@@ -136,38 +138,39 @@ function Transfer() {
   };
 
     return (
-      <div className="transfer">
+      <><Navbar/><div className="transfer">
         <div className="transfer-main-container">
           <div className="transfer-left-container">
             {render()};
             <Select
-                value={selectedAsset}
-                onChange={onFilterChange}
-                displayEmpty
-                color="success"
-                sx={
-                  {width: 150, 
-                  height: 50, 
-                  color: '#FFFFFF',
-                  backgroundColor: '#3b3b3b' }}
-                  className="MuiSelect-root"
-              >
-                <MenuItem value="" default disabled>
-                  Select Asset
-                </MenuItem>
-                
-                {/* Maps the values loaded into const assets at page loading into dropdown selection options */}
-                {assets.map((asset) => (
+              value={selectedAsset}
+              onChange={onFilterChange}
+              displayEmpty
+              color="success"
+              sx={{
+                width: 150,
+                height: 50,
+                color: '#FFFFFF',
+                backgroundColor: '#3b3b3b'
+              }}
+              className="MuiSelect-root"
+            >
+              <MenuItem value="" default disabled>
+                Select Asset
+              </MenuItem>
+
+              {/* Maps the values loaded into const assets at page loading into dropdown selection options */}
+              {assets.map((asset) => (
                 <MenuItem value={asset} key={asset}>
                   {asset}
                 </MenuItem>
-                ))}
-              </Select> 
+              ))}
+            </Select>
           </div>
           <div className="transfer-right-container">
             <h1>Transfer Assets</h1>
             <div className="transfer-right-container">
-            <Select
+              <Select
                 value={selectedWallet}
                 onChange={onWalletAddressChange}
                 displayEmpty
@@ -177,14 +180,14 @@ function Transfer() {
                 <MenuItem value="" default disabled>
                   Select Wallet
                 </MenuItem>
-                
+
                 {/* Maps the values loaded into const assets at page loading into dropdown selection options */}
                 {wallets.map((wallet) => (
-                <MenuItem value={wallet} key={wallet}>
-                  {wallet}
-                </MenuItem>
+                  <MenuItem value={wallet} key={wallet}>
+                    {wallet}
+                  </MenuItem>
                 ))}
-              </Select> 
+              </Select>
             </div>
 
             <div>
@@ -192,7 +195,7 @@ function Transfer() {
             </div>
           </div>
         </div>
-      </div>
+      </div></>
 );
 }
 export default Transfer;
