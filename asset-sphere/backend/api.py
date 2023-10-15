@@ -189,8 +189,8 @@ async def deploySmartContract(scname: str):
         # Also checks if its one of two valid sc names otherwise returns error & won't deploy anything (doesn't cost gas)
         if(scname == "users"):
             contractName = "Users"
-        elif(scname == "tradeassets"):
-            contractName = "TradeAssets"
+        elif(scname == "transferassets"):
+            contractName = "TransferAssets"
         else:
             return "Invalid Contract Name!!!"
         
