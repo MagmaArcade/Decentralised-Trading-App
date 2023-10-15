@@ -121,6 +121,7 @@ This Page is the style elements for the Navbar component.
     gap: 15px;
 	margin-left: 150px;
 	color:#262626;
+	font-weight: bold;
 }
 
 .user-name {
