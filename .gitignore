@@ -4,3 +4,5 @@ asset-sphere/backend/constants.py
 *.pyc
 asset-sphere/backend/constants.py
 asset-sphere/src/localdata/usercontractinfo.json
+asset-sphere/src/localdata/transferassetscontractinfo.json
+asset-sphere/src/localdata/userscontractinfo.json
