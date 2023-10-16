@@ -23,7 +23,7 @@ const wallets = [];
 
 // Transfer application
 function Transfer() {  
-  let contractData = require('../localdata/transferassetscontractinfo.json');
+  let contractData = require('../localdata/TransferAssetscontractinfo.json');
 
   const navigate = useNavigate();
 
