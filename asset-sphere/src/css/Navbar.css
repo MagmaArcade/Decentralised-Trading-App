@@ -107,6 +107,46 @@ This Page is the style elements for the Navbar component.
     }
 }
 
+@media only screen and (max-width: 1250px) {
+    .navbar {
+        padding: 8px 0;
+		align-items: center;
+    }
+
+    .page-links a {
+        padding: 3px;
+        font-size: 12px;
+		margin-left: -100px;
+    }
+
+	.login-icon {
+		max-width: 30px; 
+		max-height: 30px;
+	}
+
+	.asset-sphere {
+		padding: 0;
+		width: 160px;
+		height: 40px;
+	}
+
+    .user-info {
+        margin-right: 40px;
+        color:#262626;
+        font-weight: bold;
+        width: 60%;
+        height: 60%;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .user-name, .logout-button {
+        font-size: 12px;
+        padding: 5px;
+        margin-right: -10rem;
+    }
+}
+
 /* Further adjust for screens smaller or equal to 400px wide */
 @media only screen and (max-width: 400px) {
     img {
@@ -119,9 +159,11 @@ This Page is the style elements for the Navbar component.
     display: flex;
     align-items: center;
     gap: 15px;
-	margin-left: 150px;
 	color:#262626;
 	font-weight: bold;
+    margin-left: 15px;
+    width: auto;
+    height: auto;
 }
 
 .user-name {
