@@ -51,10 +51,10 @@ function App() {
       })
 
       // Make the call that will deploy our demo data onto the blockchain/database
-      axios.get('http://127.0.0.1:8000/createdemodata')
-        .catch(error => {
-          console.error("Whoops, there was an error: ", error)
-      })
+      //axios.get('http://127.0.0.1:8000/createdemodata')
+      //  .catch(error => {
+      //    console.error("Whoops, there was an error: ", error)
+      //})
 
     }
   }, []);

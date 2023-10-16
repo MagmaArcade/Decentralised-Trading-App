@@ -127,24 +127,24 @@ def get_wallet_info():
         query = "SELECT walletAddress FROM Users" # Selects all data from the DigitalAssets table
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
-        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+        wallets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
 
         # Close the cursor/connection
         cursor.close()
         connection.close()
 
-        return assets
+        return wallets
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
     
     
-# Get all wallets from the database
+# WALLET PAGE
 @app.get("/getwalletinfo/{userID}")
 def get_wallet_info(userID: str):
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT walletAddress FROM users WHERE userID ={userID}" # Selects all data from the DigitalAssets table
+        query = f"SELECT walletAddress FROM users WHERE userID={userID}" # Selects all data from the DigitalAssets table
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
         assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
@@ -517,7 +517,7 @@ async def createDemoData():
     
     # Define our Assets for creation
     assets = [
-        ["0", "1", "Asset 1", "Cool asset", "100.0", "Category A"],
+        ["0", "0", "Asset 1", "Cool asset", "100.0", "Category A"],
         ["1", "0", "Asset 2", "Awesome asset", "50.0", "Category B"],
         ["2", "0", "Asset 3", "Epic asset", "75.0", "Category A"]
     ]
@@ -567,7 +567,7 @@ async def transferAsset(transferdata: assetTransferData):
     # Open the contract with the address/abi that was passed in by AXIOS
     TransferContract = w3.eth.contract(
         address = transferdata.conaddress,
-        abi = transferdata.conabi
+        abi = transferdata.conabi,
     )
 
     # Ease readability by loading in the corresponding values of the above into local function variables
@@ -591,21 +591,52 @@ async def transferAsset(transferdata: assetTransferData):
 
     # Lets get the assetID from the name
     query3 = f"SELECT assetID FROM digitalassets WHERE name='{_assetName}'" # Gets the wallet ID of the user executing this call
-    cursor.execute(query3) # execute the query
-    _assetID = cursor.fetchone()[0] # Stores the wallet address
+    cursor.execute(query3) 
+    _assetID = cursor.fetchone()[0]
 
     # Make 
     _userTostring = str(_userTo)
+    _assetIDToString = str(_assetID)
 
     # Currently we have the userID and walletAddress of both sender & reciever, as well as the ID of the asset we want to transfer
     # Interacting with the smart contract
     w3.eth.default_account = w3.eth.accounts[0]
     
-
-    # Now we call the contract function, passing in the two values we just retrieved from the database
-    test = TransferContract.functions.transfer(_userFrom, _userTostring, _assetID).call()
+    # Now we call the contract function, passing in the three values we just retrieved from the database
+    tx_hash = TransferContract.functions.transfer(_userFrom, _userTostring, _assetIDToString).transact() # calls the function that puts user information onto the blockchain    
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     
-    return
+    event = TransferContract.events.TransferFailed.processReceipt(tx_receipt)
+
+    print(event)
+
+    """
+    if(tx_receipt['logs'][0]):
+        purchaseInfo = tx_receipt['logs'][0]
+        print(purchaseInfo)
+        return
+    else:
+        print("Something went wrong")
+        return
+    """
+
+    # Check what the Smart Contract function returned
+    # If it returned failure, notify the user that the transfer did not succeed
+    # If it returned success, proceed to update the database
+    if (result == "failure"):
+        return "Transfer Failed"
+    elif(result != ""):
+        # Update user ID into the correct asset
+        query4 = f"UPDATE digitalassets SET UserId={result} WHERE assetID={_assetID}"
+        cursor.execute(query4) 
+
+        # Create an entry in transaction history
+        query5 = "INSERT INTO transactionhistory (assetID, userID, purchaseTime, pricePaid) VALUES (%s, %s, %s, %s)"
+        cursor.execute(query5, (_assetID, result, assets[0][4], assets[0][5]))
+
+        return "Success"
+    else:
+        return "Something Went Wrong"
 
 # Handle Asset Transfer
 
