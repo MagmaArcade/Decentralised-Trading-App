@@ -551,7 +551,7 @@ async def createDemoData():
     cursor.close()
     connection.close()
 
-    return
+    return "Success"
 
 # Handle Asset Transfer
 class assetTransferData(BaseModel):

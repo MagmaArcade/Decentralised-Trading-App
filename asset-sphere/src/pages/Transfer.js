@@ -111,7 +111,15 @@ function Transfer() {
       }
     })
     .then((response) => {
-      console.log(response);
+      if(response.data == "Transfer Failed") {
+        window.alert("The asset transfer failed - no transfer has occurred! Do you own this asset?")
+      }
+      else if (response.data == "Success") {
+        window.alert("The asset was transferred successfully!")
+      }
+      else if (response.data == "Something Went Wrong") {
+        window.alert("Something went wrong! Please try reloading the application")
+      }
   })
 
   }

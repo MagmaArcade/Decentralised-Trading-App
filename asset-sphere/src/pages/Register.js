@@ -93,6 +93,8 @@ function Register() {
       // Implement further actions (e.g., API call to server) here
       registrationHandler()
 
+      window.alert("You've successfully registered! Please log in!")
+
       // Push users to wallet
       navigate('/Login');
     }

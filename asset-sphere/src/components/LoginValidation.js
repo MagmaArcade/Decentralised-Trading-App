@@ -3,7 +3,7 @@ function Validation(values) {
     let error = {}
     // ensuring a syntax valid email address and password is input into the login 
     const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
+    const password_pattern = /^.{1,50}$/
 
     // checking if email is empty
     if(values.email === "") {
