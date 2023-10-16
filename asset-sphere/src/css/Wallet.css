@@ -32,29 +32,27 @@ body, html {
 
 .wallet-main-container {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 700px)); /* Ensures even sizes for both containers */
-  align-items: start;  /* Aligns items to the start of the container */
-  justify-content: center;  /* Centers the grid horizontally */
-  gap: 100px;  /* Adjust the gap between columns as needed */
-  width: calc(2 * 600px + 50px + 120px);  /* Explicit width with padding and gap accounted for */
-  margin: 0;  /* Centers the grid on the page */
-  padding: 20px 60px;  /* Adjust padding as needed */
-  margin-right: 4rem;
+  grid-template-rows: repeat(2, 1fr); /* Switch to a row-based layout */
+  align-items: stretch;  /* Stretch items to fill the container */
+  justify-content: center;  
+  width: 100%; /* Updated to 100% to stretch across the screen */  margin: 0;
+  gap: 20px;
+  padding: 0px 60px;  
 }
+
 
 .wallet-left-container,
 .wallet-right-container {
-  height: 70vh;
-  width: 700px;  /* Set the width */  
-  max-width: 700px; /* Ensure both containers have the same max-width */
-  display: flex; /* text is positioned in the middle of container*/
-  flex-direction: column; /* text moves down the container*/
+  height: auto;  /* Set the height to 50% of the viewport height */
+  width: 125vh; 
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   border-radius: 10px;
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
+
 
 .wallet-left-container {
   background-color: #3a3a3a;
@@ -120,27 +118,11 @@ body, html {
 
 
 @media (max-width: 1450px) {
-  .wallet-main-container {
-    grid-template-columns: 1fr; /* Single column layout for small screens */
-  }
+
   .wallet-left-container,
   .wallet-right-container {
-    width: 80%; /* Both containers take full width */
+    width: 110vh; 
     margin-left: 0; /* Remove the left margin */
-    min-width: 50%;
-    max-width: 100%; /* Ensure they don't exceed the screen width */
-    margin-left: 10rem;
-  }
-
-  /* Resizing for appearance and design */
-  .wallet-left-container {
-    max-width: 97%; /* Allow it to shrink to the screen width */
-    height: auto; /* Allow it to expand in height as needed */
-  }
-
-  .wallet-right-container {
-    max-width: 97%; /* Allow it to shrink to the screen width */
-    max-height: 300px; /* Limit the maximum height for smaller screens */
   }
 
   /* Responsive table adjustments */
@@ -159,27 +141,10 @@ body, html {
 }
 
 @media (max-width: 1100px) {
-  .wallet-main-container {
-    grid-template-columns: 1fr; /* Single column layout for small screens */
-  }
+
   .wallet-left-container,
   .wallet-right-container {
-    width: 40%; /* Both containers take full width */
-    margin-left: 0; /* Remove the left margin */
-    min-width: 50%;
-    max-width: 100%; /* Ensure they don't exceed the screen width */
-    margin-left: 24rem;
-  }
-
-  /* Resizing for appearance and design */
-  .wallet-left-container {
-    max-width: 97%; /* Allow it to shrink to the screen width */
-    height: auto; /* Allow it to expand in height as needed */
-  }
-
-  .wallet-right-container {
-    max-width: 97%; /* Allow it to shrink to the screen width */
-    max-height: 300px; /* Limit the maximum height for smaller screens */
+    width: 90vh; 
   }
 
   /* Responsive table adjustments */
