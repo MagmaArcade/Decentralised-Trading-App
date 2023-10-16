@@ -64,7 +64,7 @@ function Wallet() {
   
     // Load DigitalAssets table data when AllAssets dependency changes
     loadAssetTableData();
-  }, [selectedAssetHistory, allAssets]);
+  }, []);
   
 
 	// AXIOS function to request data from the API/Database

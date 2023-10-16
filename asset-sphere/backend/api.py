@@ -357,6 +357,7 @@ async def deploySmartContract():
             # If the contract being deployed is the TransferAssets contract, call setUsableContracts()
             # This will set the address of the already deployed User/Assets smart contracts inside the TransferAssets contract for instance creation
             if(con == "TransferAssets"):
+                w3.eth.default_account = w3.eth.accounts[0]
                 addresses = []
 
                 # First, get the address of the user smart contract that we just committed to the databaase
@@ -370,10 +371,7 @@ async def deploySmartContract():
                 cursor.execute(query) # execute the query
                 assetscaddress = cursor.fetchone()[0] # Stores the address
                 addresses.append(assetscaddress) # push this into the array
-
-                print(addresses[0])
-                print(addresses[1])
-
+                
                 # Initalise an instance of our just deployed TransferAssets SC
                 TAContract = w3.eth.contract(
                     address = tx_receipt.contractAddress,
@@ -381,8 +379,8 @@ async def deploySmartContract():
                 )
 
                 # Now we call the contract function, passing in the two values we just retrieved from the database
-                _tx_hash = TAContract.functions.setUsableContracts(addresses[0], addresses[1]).transact() # calls the function that puts user information onto the blockchain    
-                _tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+                _tx_hash = TAContract.functions.setUsableContracts(addresses[0], addresses[1]).transact()
+                _tx_receipt = w3.eth.wait_for_transaction_receipt(_tx_hash)
 
             # Close the cursor/database connection
             cursor.close()

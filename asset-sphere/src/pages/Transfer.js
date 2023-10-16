@@ -32,7 +32,7 @@ axios.get('http://127.0.0.1:8000/getwalletinfo/')
 
 // Transfer application
 function Transfer() {  
-  let contractData = require('../localdata/transferassetscontractinfo.json');
+  let contractData = require('../localdata/TransferAssetscontractinfo.json');
 
   const navigate = useNavigate();
 

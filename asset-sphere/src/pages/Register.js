@@ -24,7 +24,7 @@ import Navbar from "../components/Navbar";
 // Register application
 function Register() {
   
-  let contractData = require('../localdata/userscontractinfo.json');
+  let contractData = require('../localdata/Userscontractinfo.json');
 
   const [inputValues, setInputValues] = useState({
     fname: '',
