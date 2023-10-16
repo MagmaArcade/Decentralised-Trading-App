@@ -36,12 +36,11 @@ CREATE TABLE IF NOT EXISTS DigitalAssets (
 -- Create the TransactionHistory table if it doesn't exist
 CREATE TABLE IF NOT EXISTS TransactionHistory (
     transactionID INT AUTO_INCREMENT PRIMARY KEY,
-    assetID INT,
-    userID INT,
+    assetName VARCHAR(255),
+    walletFrom VARCHAR(255),
+    walletTo VARCHAR(255),
     purchaseTime TIMESTAMP,
-    pricePaid DECIMAL(15,2),
-    FOREIGN KEY (assetID) REFERENCES DigitalAssets(assetID),
-    FOREIGN KEY (userID) REFERENCES Users(userID)
+    pricePaid DECIMAL(15,2)
 );
 
 CREATE TABLE IF NOT EXISTS contractinformation (
@@ -52,22 +51,5 @@ CREATE TABLE IF NOT EXISTS contractinformation (
 -- Insert data for Category
 INSERT INTO Category (categoryName, description)
 VALUES
-    ('Category A', 'fun a'),
-    ('Category B', 'fun b');
-
-
-
-/* data used for testing
-
-INSERT INTO transactionhistory (transactionID, assetID, userID, purchaseTime, pricePaid)
-VALUES
-    ("0", '0', '0', "13:10:11", '100'),
-    ("1", '1', '0', "13:10:11", '200'),
-    ("2", '2', '1', "13:10:11", '300');
-
-INSERT INTO digitalassets (assetID, userID, name, description, price, categoryName)
-VALUES
-    ("4", '0', 'Asset 4', "Fun asset", '233', 'Category A'),
-    ("5", '1', 'Asset 4', "Goofy Asset", '24', 'Category A'),
-    ("6", '1', 'Asset 4', "Wild Asset", '21', 'Category B')
-*/
+    ('Category A', 'Coin'),
+    ('Category B', 'Image');

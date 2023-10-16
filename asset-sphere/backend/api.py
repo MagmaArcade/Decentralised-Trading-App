@@ -4,7 +4,7 @@ import json
 
 from fastapi import FastAPI # fastAPI modules
 import mysql.connector # Python MySQL database connector
-from web3 import Web3, exceptions # Web3.js (smart contract interactor & error handler)
+from web3 import Web3, utils # Web3.js (smart contract interactor & error handler)
 from solcx import compile_standard, install_solc # Solcx (solidity intepreter for smart contracts)
 from fastapi.middleware.cors import CORSMiddleware # security mechanisms
 from datetime import datetime # get date time
@@ -159,12 +159,12 @@ def get_wallet_info(userID: str):
 
 
 # Get Transaction information from the database, to be used for listing dynamic information
-@app.get("/gettrasactionhistoryinfo/{userID}")
-def get_asset_info(userID: str):
+@app.get("/gettrasactionhistoryinfo/{walletID}")
+def get_asset_info(walletID: str):
     try:
-        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        connection = mysql.connector.connect(*db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT * FROM TransactionHistory WHERE userID = '{userID}'" # Selects all data from the TransactionHistory table for a given user
+        query = f"SELECT FROM TransactionHistory WHERE walletFrom = '{walletID}'" # Selects all data from the TransactionHistory table for a given user
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
         history = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
@@ -483,7 +483,7 @@ async def createDemoData():
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
     #DELETE SECOND USER
-    user2 = ["1", "Slay", "Slay", "2004-07-07", "slay@slay.com", "Password123", w3.eth.accounts[2]]
+    user2 = ["1", "John", "Doe", "2004-07-07", "john@doe.com", "Password123", w3.eth.accounts[2]]
     tx_hash = UsersContract.functions.createUser(user2[0], [user2[1], user2[2], user2[3], user2[4], user2[5], user2[6]]).transact() # calls the function that puts user information onto the blockchain    
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
@@ -605,34 +605,44 @@ async def transferAsset(transferdata: assetTransferData):
     # Now we call the contract function, passing in the three values we just retrieved from the database
     tx_hash = TransferContract.functions.transfer(_userFrom, _userTostring, _assetIDToString).transact() # calls the function that puts user information onto the blockchain    
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+
+    rich_logs = TransferContract.events.AssetTransfered().process_receipt(tx_receipt)
+    blockchain_transfer_data = rich_logs[0]['args']
     
-    event = TransferContract.events.TransferFailed.processReceipt(tx_receipt)
+    # Get the returned purchase information from the blockchain
+    __status = blockchain_transfer_data['__status']
+    __assetID = blockchain_transfer_data['__assetID']
+    __newOwner = blockchain_transfer_data['__newOwner']
+    __timestamp = blockchain_transfer_data['timestamp']
+    __price = blockchain_transfer_data['__price']
 
-    print(event)
-
-    """
-    if(tx_receipt['logs'][0]):
-        purchaseInfo = tx_receipt['logs'][0]
-        print(purchaseInfo)
-        return
-    else:
-        print("Something went wrong")
-        return
-    """
+    purchase_time = datetime.fromtimestamp(__timestamp)
 
     # Check what the Smart Contract function returned
     # If it returned failure, notify the user that the transfer did not succeed
     # If it returned success, proceed to update the database
-    if (result == "failure"):
+    if (__status == "failed"):
+        print("failed")
         return "Transfer Failed"
-    elif(result != ""):
+    elif(__status == "success"):
+        # Query the asset name from the data retrieved in the blockchain receipt
+        query6 = f"SELECT name FROM digitalassets WHERE assetID='{__assetID}'" # Gets the wallet ID of the user executing this call
+        cursor.execute(query6) 
+        __name = cursor.fetchone()[0]
+        
         # Update user ID into the correct asset
-        query4 = f"UPDATE digitalassets SET UserId={result} WHERE assetID={_assetID}"
+        query4 = f"UPDATE digitalassets SET UserId={__newOwner} WHERE assetID={__assetID}"
         cursor.execute(query4) 
 
         # Create an entry in transaction history
-        query5 = "INSERT INTO transactionhistory (assetID, userID, purchaseTime, pricePaid) VALUES (%s, %s, %s, %s)"
-        cursor.execute(query5, (_assetID, result, assets[0][4], assets[0][5]))
+        query5 = "INSERT INTO transactionhistory (assetName, walletFrom, walletTo, purchaseTime, pricePaid) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(query5, (__name, _walletFrom, _walletTo, purchase_time, __price))
+
+        connection.commit() # Commit the changes
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
 
         return "Success"
     else:

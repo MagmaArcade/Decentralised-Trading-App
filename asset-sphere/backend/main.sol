@@ -64,8 +64,7 @@ contract TransferAssets {
     }
 
     // Record information onto the blockchain
-    event AssetTransfered(string __assetID, string __newOwner, uint256 timestamp, string __price);
-    event TransferFailed(string __msg);
+    event AssetTransfered(string __status, string __assetID, string __newOwner, uint256 timestamp, string __price);
 
     // Construct an instance of the contracts we will be interacting with when we construct this contract
     // Only the deployer of this contract (i.e. Ganache wallet address 0, our wallet) can call this function
@@ -86,10 +85,10 @@ contract TransferAssets {
         if(stringsEquals(userIDFrom, assetPayload[0]) == true) {
             assetsContract.modifyAssetOwner(assetID, assetPayload, userIDTo); // Call the function that will transact this onto the blockchain
             
-            emit AssetTransfered(assetID, userIDTo, block.timestamp, assetPayload[3]); // emit an event - record this transaction information & time to the blockchain
+            emit AssetTransfered("success", assetID, userIDTo, block.timestamp, assetPayload[3]); // emit an event - record this transaction information & time to the blockchain
         }
         else {
-            emit TransferFailed("Failed to transfer the asset.");
+            emit AssetTransfered("failed", "0", "0", block.timestamp, "0"); // emit an event - record failure to the blockchain
         }
     }
 

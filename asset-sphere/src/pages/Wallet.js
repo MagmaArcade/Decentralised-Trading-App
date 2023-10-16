@@ -30,7 +30,8 @@ function Wallet() {
 	// State variable which stores the asset you're trying to filter by
 	const [selectedAssetHistory, setSelectedAssetHistory] = useState('[]');
 
-  
+  // State variable which stores the wallet ID of the logged in user
+  const [walletAddress, setWalletAddress] = useState("")
   
   // Calls the API to get the current Session Token (i.e. which user is logged in)
   function getCurrentSession() {
@@ -49,7 +50,7 @@ function Wallet() {
     });
   }
 
-  const queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${currentSessionToken}` + selectedAssetHistory);
+  const queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${walletAddress}`);
 
   // String that calls the API to retrieve user assets from the database for the current user
   const queryUserAssets = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + allAssets);
@@ -58,7 +59,9 @@ function Wallet() {
 	useEffect(() => {
     // Gets the current Session ID (i.e. which user is logged in?)
     getCurrentSession();
-  
+
+    renderUserId();
+
     // Load table data based on selectedAssetHistory
     loadHistoryTableData();
   
@@ -91,11 +94,12 @@ function Wallet() {
 
 	// Function which dynamically renders returned asset data in the form of a HTML table
 	const renderHistoryInTable = () => {
-		return Object.values(selectedAssetHistory).map(({ transactionID, assetID, userID, purchaseTime, pricePaid}) => {
+		return Object.values(selectedAssetHistory).map(({ transactionID, assetName, userID, userTo, purchaseTime, pricePaid}) => {
 		  return <tr key={transactionID}>
 		  <td>{transactionID}</td>
-		  <td>{assetID}</td>
+		  <td>{assetName}</td>
 		  <td>{userID}</td>
+      <td>{userTo}</td>
 		  <td>{purchaseTime}</td>
 		  <td>{pricePaid}</td>
 		</tr>
@@ -113,8 +117,20 @@ function Wallet() {
     </tr>
     })
   }
+
+  
   const renderUserId = () => {
-      return  <p>Wallet ID: {currentSessionToken} </p>
+    const queryWalletAddress = (`http://127.0.0.1:8000/getwalletinfo/${currentSessionToken}`);
+
+    axios.get(queryWalletAddress)
+    .then(response => {
+      Object.values(response.data).map(({ walletAddress }) => setWalletAddress(walletAddress))
+    })
+    .catch(error => {
+        console.error("Whoops, there was an error: ", error);
+    });  
+    
+    return  <p>Wallet ID: {walletAddress} </p>
   }
 
   return (
@@ -139,8 +155,9 @@ function Wallet() {
             <thead>
               <tr className="wallet-p">
                 <th>Transaction ID</th>
-                <th>Asset ID</th>
-                <th>User ID</th>
+                <th>Asset Name</th>
+                <th>Sent From</th>
+                <th>Sent To</th>
                 <th>Purchase Time</th>
                 <th>Price Paid</th>
               </tr>
