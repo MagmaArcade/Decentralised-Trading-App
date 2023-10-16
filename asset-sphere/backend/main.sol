@@ -39,12 +39,25 @@ contract Assets {
 }
 
 contract TransferAssets {
-    Users public usersContract;
-    Assets public assetsContract;
+    Users public usersContract; // Instance of the Users SC
+    Assets public assetsContract; // Instance of the Assets SC
+    address owner; 
+
+    constructor() {
+        owner = msg.sender; // Sets hte owner as the deployer of the SC
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
 
     // Construct an instance of the contracts we will be interacting with when we construct this contract
-    function setUsableContracts(address _usersContractAddress, address _assetsContractAddress) external {
+    // Only the deployer of this contract (i.e. Ganache wallet address 0, our wallet) can call this function
+    function setUsableContracts(address _usersContractAddress, address _assetsContractAddress) external onlyOwner {
         usersContract = Users(_usersContractAddress);
         assetsContract = Assets(_assetsContractAddress);
     }
+
+
 }

@@ -29,7 +29,7 @@ function Navbar() {
 		// Gets the current Session ID (i.e. which user is logged in?)
 		getCurrentSession();
 
-	  }, [currentUserName, currentSessionToken]);
+	  }, [currentUserName]);
 	
 	// Calls the API to get the current Session Token (i.e. which user is logged in)
 	function getCurrentSession() {
@@ -72,6 +72,8 @@ function Navbar() {
 		}
 	}
 
+	const navigate = useNavigate();
+
 	const handleLogout = () => {
 		axios.get('http://127.0.0.1:8000/sessioninitialiser')
 			.catch(error => {
@@ -79,6 +81,8 @@ function Navbar() {
 			})
 		
 		setCurrentSessionToken("")
+
+		navigate("../Home")
 	}
 
 

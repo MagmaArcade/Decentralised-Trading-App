@@ -354,9 +354,38 @@ async def deploySmartContract():
 
             connection.commit() # Commit the changes
 
-            # Close the cursor/connection
+            # If the contract being deployed is the TransferAssets contract, call setUsableContracts()
+            # This will set the address of the already deployed User/Assets smart contracts inside the TransferAssets contract for instance creation
+            if(con == "TransferAssets"):
+                addresses = []
+
+                # First, get the address of the user smart contract that we just committed to the databaase
+                query = "SELECT address FROM contractinformation WHERE contractName='Users'"
+                cursor.execute(query) # execute the query
+                userscaddress = cursor.fetchone()[0] # Stores the address
+                addresses.append(userscaddress) # push this into the array
+
+                # Do the same for the Assets smart contract
+                query = "SELECT address FROM contractinformation WHERE contractName='Assets'"
+                cursor.execute(query) # execute the query
+                assetscaddress = cursor.fetchone()[0] # Stores the address
+                addresses.append(assetscaddress) # push this into the array
+
+                # Initalise an instance of our just deployed TransferAssets SC
+                TAContract = w3.eth.contract(
+                    address = tx_receipt.contractAddress,
+                    abi = abi
+                )
+
+                # Now we call the contract function, passing in the two values we just retrieved from the database
+                _tx_hash = TAContract.functions.setUsableContracts(addresses[0], addresses[1]).transact() # calls the function that puts user information onto the blockchain    
+                _tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+
+            # Close the cursor/database connection
             cursor.close()
             connection.close()
+
+
 
         return
 
@@ -425,7 +454,7 @@ async def createDemoData():
     w3.eth.default_account = w3.eth.accounts[0]
 
     # Define our User for creation
-    user = ["0", "Bridgette", "Lezaja", "2003-06-06", "bridgette@lezaja.com", "Password123", w3.eth.accounts[1]]
+    user = ["0", "Admin", "AssetSphere", "2003-06-06", "admin@assetsphere.com", "Password123", w3.eth.accounts[1]]
     
     # Transaction that places the user data on the blockchain as per requirements
     tx_hash = UsersContract.functions.createUser(user[0], [user[1], user[2], user[3], user[4], user[5], user[6]]).transact() # calls the function that puts user information onto the blockchain    
@@ -530,10 +559,7 @@ async def transferAsset(transferdata: assetTransferData):
     _userTostring = str(_userTo)
 
     # Currently we have the userID and walletAddress of both sender & reciever, as well as the ID of the asset we want to transfer
+    # Now we 
+    
 
-    # check if the user owns the asset
-    query2 = f"SELECT userID FROM DigitalAssets WHERE name='{_assetName}'" 
-    cursor.execute(query2) # execute the query
-    _userIdCheck = cursor.fetchone()[0] # Stores the wallet address
-
-    return "You do not own the asset"
+    return
