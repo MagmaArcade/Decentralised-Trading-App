@@ -159,12 +159,12 @@ def get_wallet_info(userID: str):
 
 
 # Get Transaction information from the database, to be used for listing dynamic information
-@app.get("/gettrasactionhistoryinfo/{walletID}")
-def get_asset_info(walletID: str):
+@app.get("/gettransactionhistoryinfo/{walletID}")
+def get_transaction_info(walletID: str):
     try:
-        connection = mysql.connector.connect(*db_configuration) # attempt to connect to the database using credential information
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT FROM TransactionHistory WHERE walletFrom = '{walletID}'" # Selects all data from the TransactionHistory table for a given user
+        query = f"SELECT * FROM TransactionHistory WHERE walletFrom = '{walletID}'" # Selects all data from the TransactionHistory table for a given user
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
         history = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries

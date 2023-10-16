@@ -44,6 +44,9 @@ function Wallet() {
       if (currentSessionToken == "") {
         navigate("/Login")
       }
+
+      // Call loaddata
+      loadData();
     })
     .catch(error => {
         console.error("Whoops, there was an error: ", error);
@@ -54,20 +57,11 @@ function Wallet() {
 	useEffect(() => {
     // Gets the current Session ID (i.e. which user is logged in?)
     getCurrentSession();
-
-    loadData();
   }, [currentSessionToken]);
   
 
 	// AXIOS function to request data from the API/Database
 	function loadData() {
-		axios.get(`http://127.0.0.1:8000/gettrasactionhistoryinfo/${walletAddress}`)
-		.then(response => {
-			setSelectedAssetHistory(response.data)
-		})
-		.catch(error => {
-			console.error("Whoops, there was an error: ", error)
-		})
 		axios.get(`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + allAssets)
 		.then(response => {
 			setAllAssets(response.data)
@@ -81,18 +75,26 @@ function Wallet() {
     })
     .catch(error => {
         console.error("Whoops, there was an error: ", error);
-    });  
+    });
+    console.log(walletAddress)
+    axios.get(`http://127.0.0.1:8000/gettransactionhistoryinfo/${walletAddress}`)
+		.then(response => {
+      setSelectedAssetHistory(response.data)
+		})
+		.catch(error => {
+			console.error("Whoops, there was an error: ", error)
+		})
 	}
 
 
 	// Function which dynamically renders returned asset data in the form of a HTML table
 	const renderHistoryInTable = () => {
-		return Object.values(selectedAssetHistory).map(({ transactionID, assetName, userID, userTo, purchaseTime, pricePaid}) => {
+		return Object.values(selectedAssetHistory).map(({ transactionID, assetName, walletFrom, walletTo, purchaseTime, pricePaid}) => {
 		  return <tr key={transactionID}>
 		  <td>{transactionID}</td>
 		  <td>{assetName}</td>
-		  <td>{userID}</td>
-      <td>{userTo}</td>
+		  <td>{walletFrom}</td>
+      <td>{walletTo}</td>
 		  <td>{purchaseTime}</td>
 		  <td>{pricePaid}</td>
 		</tr>
