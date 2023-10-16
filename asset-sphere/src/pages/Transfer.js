@@ -18,21 +18,12 @@ import Navbar from "../components/Navbar";
 
 var currentSessionToken = "";    // Will initalise as blank, but this will be called before any checks: therefore, if a session token exists, it will be updated before any calls on this variable are run
 const assets = [];
-
-
-// Get list of wallets outside of render loop
 const wallets = [];
-axios.get('http://127.0.0.1:8000/getwalletinfo/')
-    .then(response => {
-      Object.values(response.data).map(({ walletAddress }) => wallets.push(walletAddress) );
-    })
-    .catch(error => {
-      console.error("Whoops, there was an error: ", error)
-    })
+
 
 // Transfer application
 function Transfer() {  
-  let contractData = require('../localdata/TransferAssetscontractinfo.json');
+  let contractData = require('../localdata/transferassetscontractinfo.json');
 
   const navigate = useNavigate();
 
@@ -81,6 +72,18 @@ function Transfer() {
         .catch(error => {
             console.error("Whoops, there was an error: ", error)
         })
+      axios.get('http://127.0.0.1:8000/getwalletinfo/')
+        .then(response => {
+          console.log(response)
+          Object.values(response.data).map(({ walletAddress }) => {
+            if(!wallets.includes(walletAddress)) {
+              wallets.push(walletAddress)
+            }
+          });
+        })
+        .catch(error => {
+          console.error("Whoops, there was an error: ", error)
+      })
   }
 
     // Handle user input React Hook changes outside of the return value (prevent infinite loops)

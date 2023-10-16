@@ -36,6 +36,12 @@ contract Assets {
     function getAsset(string memory _assetid) external view returns (string[] memory payload) {
         return assets[_assetid];
     }
+
+    // Modify the asset owner and emit an event which records the transaction history onto the blockchain as per requirements
+    function modifyAssetOwner(string memory _assetID, string[] memory _assetPayload, string memory _newOwner) external {
+        _assetPayload[0] = _newOwner; // modify the existing payload to insert a new owner
+        assets[_assetID] = _assetPayload; // assign our modified payload to the asset ID
+    }
 }
 
 contract TransferAssets {
@@ -57,6 +63,10 @@ contract TransferAssets {
         _;
     }
 
+    // Record information onto the blockchain
+    event AssetTransfered(string __assetID, string __newOwner, uint256 timestamp, string __price);
+    event TransferFailed(string __msg);
+
     // Construct an instance of the contracts we will be interacting with when we construct this contract
     // Only the deployer of this contract (i.e. Ganache wallet address 0, our wallet) can call this function
     function setUsableContracts(address _usersContractAddress, address _assetsContractAddress) external onlyOwner {
@@ -66,22 +76,21 @@ contract TransferAssets {
 
     // The actual transfer function
     // Takes in the userID from (i.e. the current owner of the asset), userIDTo (the recipient) and the name of the asset
-    function transfer(string memory userIDFrom, string memory userIDTo, string memory assetID) external returns (string memory) {
-        // Access the payload of both users (retrieve user info stored on the blockchain, user ID will match up with what we have in our database)
-        // userFromPayload = usersContract.getUser(userIDFrom);
-        // userToPayload = usersContract.getUser(userIDTo);
+    function transfer(string memory userIDFrom, string memory userIDTo, string memory assetID) external {
 
         // Access the payload of the asset so we can retrieve the purchase information (i.e. name, price, etc.) from the blockchain
         assetPayload = assetsContract.getAsset(assetID);
 
         // Verify that userFrom owns the asset that they are trying to transfer
+        // Can successfully check if those two strings match and execute things after
         if(stringsEquals(userIDFrom, assetPayload[0]) == true) {
-            return "Success";
+            assetsContract.modifyAssetOwner(assetID, assetPayload, userIDTo); // Call the function that will transact this onto the blockchain
+            
+            emit AssetTransfered(assetID, userIDTo, block.timestamp, assetPayload[3]); // emit an event - record this transaction information & time to the blockchain
         }
         else {
-            return "Failure";
+            emit TransferFailed("Failed to transfer the asset.");
         }
-
     }
 
     // Function that takes in two strings, checks that their lengths match and the bytes are the same at each position

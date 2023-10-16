@@ -4,4 +4,4 @@
 databasePassword = "rootroot"
 
 # Private key for the FIRST GANACHE ACCOUNT (i.e. Account with index 0)
-privateKeyGanacheAccount = "0x3c7eb0d1ba2bcfeae83f9dc75ef577a1bf84bc7923fc2b7049870b85c9bdb7bd"
+privateKeyGanacheAccount = "0xce617c75959152ffa638add44e62bd176eb20d0c0b6e35f3f9f32208caa18170"
