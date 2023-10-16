@@ -119,15 +119,56 @@ body, html {
 }
 
 
-@media (max-width: 1400px) {
+@media (max-width: 1450px) {
   .wallet-main-container {
     grid-template-columns: 1fr; /* Single column layout for small screens */
   }
   .wallet-left-container,
   .wallet-right-container {
-    width: 100%; /* Both containers take full width */
+    width: 80%; /* Both containers take full width */
     margin-left: 0; /* Remove the left margin */
+    min-width: 50%;
     max-width: 100%; /* Ensure they don't exceed the screen width */
+    margin-left: 10rem;
+  }
+
+  /* Resizing for appearance and design */
+  .wallet-left-container {
+    max-width: 97%; /* Allow it to shrink to the screen width */
+    height: auto; /* Allow it to expand in height as needed */
+  }
+
+  .wallet-right-container {
+    max-width: 97%; /* Allow it to shrink to the screen width */
+    max-height: 300px; /* Limit the maximum height for smaller screens */
+  }
+
+  /* Responsive table adjustments */
+  .wallet-table th,
+  .wallet-table td {
+    padding: 8px; /* Reduce cell padding for smaller screens */
+  }
+
+  .wallet-table,
+  .asset-table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto; /* Make tables scrollable on x-axis on small screens */
+  }
+
+}
+
+@media (max-width: 1100px) {
+  .wallet-main-container {
+    grid-template-columns: 1fr; /* Single column layout for small screens */
+  }
+  .wallet-left-container,
+  .wallet-right-container {
+    width: 40%; /* Both containers take full width */
+    margin-left: 0; /* Remove the left margin */
+    min-width: 50%;
+    max-width: 100%; /* Ensure they don't exceed the screen width */
+    margin-left: 24rem;
   }
 
   /* Resizing for appearance and design */
