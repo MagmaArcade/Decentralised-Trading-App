@@ -55,10 +55,19 @@ VALUES
     ('Category A', 'fun a'),
     ('Category B', 'fun b');
 
-/*
+
+
+/* data used for testing
+
 INSERT INTO transactionhistory (transactionID, assetID, userID, purchaseTime, pricePaid)
 VALUES
     ("0", '0', '0', "13:10:11", '100'),
     ("1", '1', '0', "13:10:11", '200'),
     ("2", '2', '1', "13:10:11", '300');
+
+INSERT INTO digitalassets (assetID, userID, name, description, price, categoryName)
+VALUES
+    ("4", '0', 'Asset 4', "Fun asset", '233', 'Category A'),
+    ("5", '1', 'Asset 4', "Goofy Asset", '24', 'Category A'),
+    ("6", '1', 'Asset 4', "Wild Asset", '21', 'Category B')
 */

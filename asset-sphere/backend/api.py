@@ -136,6 +136,27 @@ def get_wallet_info():
         return assets
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
+    
+    
+# Get all wallets from the database
+@app.get("/getwalletinfo/{userID}")
+def get_wallet_info(userID: str):
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = f"SELECT walletAddress FROM users WHERE userID ={userID}" # Selects all data from the DigitalAssets table
+        cursor.execute(query) # execute the query
+        result = cursor.fetchall() # store the data in a temporary variable
+        assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return assets
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
+
 
 # Get Transaction information from the database, to be used for listing dynamic information
 @app.get("/gettrasactionhistoryinfo/{userID}")

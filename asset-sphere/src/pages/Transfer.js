@@ -40,14 +40,14 @@ function Transfer() {
   const [selectedAsset, setSelectedAsset] = useState('');
   const [selectedWallet, setSelectedWallet] = useState('[]');
 
-  const query = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}`);
+  const query = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + selectedAsset);
   
   // Fetch assets from API on component mounts
   useEffect(() => {
     // Gets the current Session ID (i.e. which user is logged in?)
     getCurrentSession();
     loadData();
-  }, [selectedAsset]);  
+  }, [selectedAsset, currentSessionToken]);  
 
   // Calls the API to get the current Session Token (i.e. which user is logged in)
   function getCurrentSession() {
