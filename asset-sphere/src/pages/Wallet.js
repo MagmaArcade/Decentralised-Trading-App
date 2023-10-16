@@ -117,10 +117,8 @@ function Wallet() {
       return  <p>Wallet ID: {currentSessionToken} </p>
   }
 
-  
   return (
-    <div className="Wallet">
-      <Navbar/>
+    <><Navbar /><div className="Wallet">
       <Grid id="wallet-id-container"
         direction="row"
         justifyContent="center"
@@ -128,8 +126,8 @@ function Wallet() {
         container spacing={2}>
         {renderUserId()}
         <Grid item xs={3}>
-          <item> 
-            
+          <item>
+
           </item>
         </Grid>
       </Grid>
@@ -137,7 +135,7 @@ function Wallet() {
       <div className="wallet-main-container">
         <div className="wallet-left-container">
           <h1 className="wallet-h1"> Transaction History </h1> {/* will display all previous transactions */}
-          <table>  {/* in this table element, all avaliable assets will be displayed */}
+          <table>  {/* in this table element, all available assets will be displayed */}
             <thead>
               <tr className="wallet-p">
                 <th>Transaction ID</th>
@@ -150,15 +148,14 @@ function Wallet() {
             <tbody>
               {renderHistoryInTable()}
             </tbody>
-			    </table>
-	      </div>
+          </table>
+        </div>
 
         <div className="wallet-right-container">
           <h1> Current Assets </h1> {/* will display all currently owned assets */}
-          <div className="wallet-input-container">
           <table>  {/* in this table element, all assets that belong to this user will be displayed */}
             <thead>
-              <tr className>
+              <tr className="asset-p">
                 <th>Asset ID</th>
                 <th>Name</th>
                 <th>Description</th>
@@ -169,12 +166,11 @@ function Wallet() {
             <tbody>
               {renderAssetsInTable()}
             </tbody>
-			    </table>
-          </div>
+          </table>
         </div>
       </div>
-  </div>
-);
+    </div></>
+  );  
 }
 
 export default Wallet;
