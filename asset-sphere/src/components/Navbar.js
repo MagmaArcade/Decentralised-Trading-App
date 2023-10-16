@@ -90,11 +90,11 @@ function Navbar() {
     <div className="navbar">
         <Grid 	
 			direction="row"
-			justifyContent="space-between"
+			justifyContent="center"
 			alignItems="center"
 			container spacing={8}>
 
-			<Grid item xs={5} sm={3}>
+			<Grid item xs={6} sm={3}>
 				<item> 
 					<Link to="/Home"> {/* will route user to the home page */}
 						<img
@@ -125,7 +125,7 @@ function Navbar() {
 				</item>
 			</Grid>
 			
-			<Grid item xs={12} sm={3} >
+			<Grid item xs={1} sm={3}>
                 {renderLoginComponent()}
             </Grid>
 		</Grid>
