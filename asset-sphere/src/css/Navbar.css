@@ -134,3 +134,20 @@ This Page is the style elements for the Navbar component.
     text-decoration: none;
     /* remove display, text-align properties as they're unnecessary in this context */
 }
+
+
+@media only screen and (max-width: 1200px) {
+
+    .user-info, .asset-sphere {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-info{
+        font-size: 12px;
+    }
+
+    .asset-sphere {
+    }
+}

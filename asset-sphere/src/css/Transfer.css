@@ -20,6 +20,7 @@ this Page is the style elements for the Transfer page
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
 }
 
 .transfer-main-container {
