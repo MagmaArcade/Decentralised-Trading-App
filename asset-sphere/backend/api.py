@@ -461,13 +461,24 @@ async def createDemoData():
     tx_hash = UsersContract.functions.createUser(user[0], [user[1], user[2], user[3], user[4], user[5], user[6]]).transact() # calls the function that puts user information onto the blockchain    
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
+    #DELETE SECOND USER
+    user2 = ["1", "Slay", "Slay", "2004-07-07", "slay@slay.com", "Password123", w3.eth.accounts[2]]
+    tx_hash = UsersContract.functions.createUser(user2[0], [user2[1], user2[2], user2[3], user2[4], user2[5], user2[6]]).transact() # calls the function that puts user information onto the blockchain    
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+
+
+
     # Call the get user function to get user data for update in the local database
     payload = UsersContract.functions.getUser("0").call()
+    payload2 = UsersContract.functions.getUser("1").call() 
 
     connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
     cursor = connection.cursor() # create a cursor to execute SQL queries
     query = "INSERT INTO users (userID, fname, lname, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor.execute(query, (int(user[0]), payload[0], payload[1], payload[2], payload[3], payload[4], user[6]))
+
+    query = "INSERT INTO users (userID, fname, lname, dob, email, password, walletAddress) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (int(user2[0]), payload2[0], payload2[1], payload2[2], payload2[3], payload2[4], user2[6]))
     
 
     
@@ -475,7 +486,7 @@ async def createDemoData():
 
     # Open the contract with the address/abi that was written to file
     # Usually we'd pass this in, but once again this function is HARDCODED as a demo
-    with open(f'../src/localdata/assetscontractinfo.json', 'r') as file:    
+    with open(f'../src/localdata/Assetscontractinfo.json', 'r') as file:    
         contractjson = json.load(file)
     
     AssetsContract = w3.eth.contract(
@@ -485,7 +496,7 @@ async def createDemoData():
     
     # Define our Assets for creation
     assets = [
-        ["0", "0", "Asset 1", "Cool asset", "100.0", "Category A"],
+        ["0", "1", "Asset 1", "Cool asset", "100.0", "Category A"],
         ["1", "0", "Asset 2", "Awesome asset", "50.0", "Category B"],
         ["2", "0", "Asset 3", "Epic asset", "75.0", "Category A"]
     ]
@@ -557,10 +568,40 @@ async def transferAsset(transferdata: assetTransferData):
     cursor.execute(query2) # execute the query
     _userTo = cursor.fetchone()[0] # Stores the wallet address
 
+    # Lets get the assetID from the name
+    query3 = f"SELECT assetID FROM digitalassets WHERE name='{_assetName}'" # Gets the wallet ID of the user executing this call
+    cursor.execute(query3) # execute the query
+    _assetID = cursor.fetchone()[0] # Stores the wallet address
+
+    # Make 
     _userTostring = str(_userTo)
 
     # Currently we have the userID and walletAddress of both sender & reciever, as well as the ID of the asset we want to transfer
-    # Now we 
+    # Interacting with the smart contract
+    w3.eth.default_account = w3.eth.accounts[0]
     
 
+    # Now we call the contract function, passing in the two values we just retrieved from the database
+    test = TransferContract.functions.transfer(_userFrom, _userTostring, _assetID).call()
+    
     return
+
+# Handle Asset Transfer
+
+@app.post("/test")
+async def test(transferdata: ContractInfo):
+    
+    TransferContract = w3.eth.contract(
+        address = transferdata.conaddress,
+        abi = transferdata.conabi
+    )
+
+    # Currently we have the userID and walletAddress of both sender & reciever, as well as the ID of the asset we want to transfer
+    # Interacting with the smart contract
+    w3.eth.default_account = w3.eth.accounts[0]
+    
+    # Now we call the contract function, passing in the two values we just retrieved from the database
+    test = TransferContract.functions.transfer("0", "1", "0").call()
+    
+    print(test)
+    return test
