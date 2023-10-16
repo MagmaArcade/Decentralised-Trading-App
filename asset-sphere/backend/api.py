@@ -371,6 +371,9 @@ async def deploySmartContract():
                 assetscaddress = cursor.fetchone()[0] # Stores the address
                 addresses.append(assetscaddress) # push this into the array
 
+                print(addresses[0])
+                print(addresses[1])
+
                 # Initalise an instance of our just deployed TransferAssets SC
                 TAContract = w3.eth.contract(
                     address = tx_receipt.contractAddress,

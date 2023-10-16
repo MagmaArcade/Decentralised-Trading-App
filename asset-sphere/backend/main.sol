@@ -44,7 +44,7 @@ contract TransferAssets {
     address owner; 
 
     constructor() {
-        owner = msg.sender; // Sets hte owner as the deployer of the SC
+        owner = msg.sender; // Sets the owner as the deployer of the SC
     }
 
     modifier onlyOwner {
