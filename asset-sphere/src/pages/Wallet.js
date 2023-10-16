@@ -50,45 +50,38 @@ function Wallet() {
     });
   }
 
-  const queryUserHistory = (`http://127.0.0.1:8000/gettrasactionhistoryinfo/${walletAddress}`);
-
-  // String that calls the API to retrieve user assets from the database for the current user
-  const queryUserAssets = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + allAssets);
-
 	// Function that will automatically render the table upon startup
 	useEffect(() => {
     // Gets the current Session ID (i.e. which user is logged in?)
     getCurrentSession();
 
-    renderUserId();
-
-    // Load table data based on selectedAssetHistory
-    loadHistoryTableData();
-  
-    // Load DigitalAssets table data when AllAssets dependency changes
-    loadAssetTableData();
+    loadData();
   }, [currentSessionToken]);
   
 
 	// AXIOS function to request data from the API/Database
-	function loadHistoryTableData() {
-		axios.get(queryUserHistory)
+	function loadData() {
+		axios.get(`http://127.0.0.1:8000/gettrasactionhistoryinfo/${walletAddress}`)
 		.then(response => {
 			setSelectedAssetHistory(response.data)
 		})
 		.catch(error => {
 			console.error("Whoops, there was an error: ", error)
 		})
-	}
-  // AXIOS function to request data from the API/Database
-	function loadAssetTableData() {
-		axios.get(queryUserAssets)
+		axios.get(`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + allAssets)
 		.then(response => {
 			setAllAssets(response.data)
 		})
 		.catch(error => {
 			console.error("Whoops, there was an error: ", error)
 		})
+    axios.get(`http://127.0.0.1:8000/getwalletinfo/${currentSessionToken}`)
+    .then(response => {
+      Object.values(response.data).map(({ walletAddress }) => setWalletAddress(walletAddress))
+    })
+    .catch(error => {
+        console.error("Whoops, there was an error: ", error);
+    });  
 	}
 
 
@@ -107,29 +100,16 @@ function Wallet() {
 	}
   // Function which dynamically renders returned asset data in the form of a HTML table
   const renderAssetsInTable = () => {
-    return Object.values(allAssets).map(({ assetID, name, description, price, categoryName }) => {
-      return <tr key={assetID}>
-      <td>{assetID}</td>
+    return Object.values(allAssets).map(({ name, description, price, categoryName }) => {
+      return <tr key={name}>
       <td>{name}</td>
       <td>{description}</td>
       <td>{price}</td>
       <td>{categoryName}</td>
     </tr>
     })
-  }
-
-  
-  const renderUserId = () => {
-    const queryWalletAddress = (`http://127.0.0.1:8000/getwalletinfo/${currentSessionToken}`);
-
-    axios.get(queryWalletAddress)
-    .then(response => {
-      Object.values(response.data).map(({ walletAddress }) => setWalletAddress(walletAddress))
-    })
-    .catch(error => {
-        console.error("Whoops, there was an error: ", error);
-    });  
-    
+  }  
+  const renderUserId = () => {   
     return  <p>Wallet ID: {walletAddress} </p>
   }
 
@@ -173,7 +153,6 @@ function Wallet() {
           <table>  {/* in this table element, all assets that belong to this user will be displayed */}
             <thead>
               <tr className="asset-p">
-                <th>Asset ID</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>

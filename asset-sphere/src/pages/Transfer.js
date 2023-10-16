@@ -30,15 +30,13 @@ function Transfer() {
   const [allAssets, setAllAssets] = useState('[]');
   const [selectedAsset, setSelectedAsset] = useState('');
   const [selectedWallet, setSelectedWallet] = useState('[]');
-
-  const query = (`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + selectedAsset);
   
   // Fetch assets from API on component mounts
   useEffect(() => {
     // Gets the current Session ID (i.e. which user is logged in?)
     getCurrentSession();
     loadData();
-  }, [selectedAsset, currentSessionToken]);  
+  }, [currentSessionToken]);  
 
   // Calls the API to get the current Session Token (i.e. which user is logged in)
   function getCurrentSession() {
@@ -59,7 +57,7 @@ function Transfer() {
 
 
   function loadData() {
-      axios.get(query)
+      axios.get(`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + selectedAsset)
         .then(response => {
             setAllAssets(response.data)
             // Extract names from the response and add to the assets array
