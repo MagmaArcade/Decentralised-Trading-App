@@ -18,13 +18,6 @@ import Navbar from "../components/Navbar";
 
 // Get the initial asset list before the main application is exported/React loop starts
 const assets = [];
-axios.get('http://127.0.0.1:8000/getassetinfo/')
-		.then(response => {
-			Object.values(response.data).map(({ name }) => assets.push(name) );
-		})
-		.catch(error => {
-			console.error("Whoops, there was an error: ", error)
-		})
 
 	
 // Market application
@@ -57,6 +50,20 @@ function Market() {
 		.catch(error => {
 			console.error("Whoops, there was an error: ", error)
 		})
+
+		// Appending on the get asset data to this function as it is called on use effect
+		axios.get('http://127.0.0.1:8000/getassetinfo')
+        .then(response => {
+            // Extract names from the response and add to the assets array
+            Object.values(response.data).map(({ name }) => {
+              if (!assets.includes(name)) {
+                assets.push(name); // Add the name if it doesn't exist in the array
+              }
+            })
+        })
+        .catch(error => {
+            console.error("Whoops, there was an error: ", error)
+        })
 	}
 
 	// Function which dynamically renders returned asset data in the form of a HTML table

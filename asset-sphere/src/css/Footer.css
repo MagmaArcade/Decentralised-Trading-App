@@ -13,7 +13,8 @@ This Page is the style elements for the Footer component.
 footer {
 	background-color: #262626;
 	color: white;
-	padding: 8px;
+	padding: 40px;
 	text-align: center;
 	margin-top: auto;
+
 }

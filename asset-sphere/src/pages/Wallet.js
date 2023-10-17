@@ -57,7 +57,7 @@ function Wallet() {
 	useEffect(() => {
     // Gets the current Session ID (i.e. which user is logged in?)
     getCurrentSession();
-  }, [currentSessionToken]);
+  }, []);
   
 
 	// AXIOS function to request data from the API/Database
@@ -95,8 +95,8 @@ function Wallet() {
 		  return <tr key={transactionID}>
 		  <td>{transactionID}</td>
 		  <td>{assetName}</td>
-		  <td>{walletFrom}</td>
-      <td>{walletTo}</td>
+		  <td className="walletFrom">{walletFrom}</td>
+      <td className="walletTo">{walletTo}</td>
 		  <td>{purchaseTime}</td>
 		  <td>{pricePaid}</td>
 		</tr>
@@ -135,7 +135,7 @@ function Wallet() {
       <div className="wallet-main-container">
         <div className="wallet-left-container">
           <h1 className="wallet-h1"> Transaction History </h1> {/* will display all previous transactions */}
-          <table>  {/* in this table element, all available assets will be displayed */}
+          <table className="historyTable">  {/* in this table element, all available assets will be displayed */}
             <thead>
               <tr className="wallet-p">
                 <th>Transaction ID</th>

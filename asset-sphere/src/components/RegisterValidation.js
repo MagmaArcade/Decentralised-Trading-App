@@ -32,11 +32,11 @@ function Validation(values) {
     // Quick call to the database in order to update our list of emails (needs to be unique per user)
     axios.get('http://127.0.0.1:8000/getallusers')
     .then(response => {
-        console.log(response)
         // Extract names from the response and add to the emails array
         Object.values(response.data).map(({ email }) => emails.push(email) );
     })
 
+    console.log(emails)
 
     // checking if email is empty
     if(emails.includes(values.email)) {

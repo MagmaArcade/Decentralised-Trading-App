@@ -40,15 +40,22 @@ function App() {
       // Call session initialiser to create the session file and set it to ""
       axios.get('http://127.0.0.1:8000/sessioninitialiser')
 			.catch(error => {
-				console.error("Whoops, there was an error: ", error)
+          // Check that the server is reachable on app startup. If not, send a prompt to the user requesting to check the server
+          if (error.code === "ERR_NETWORK") {  
+            window.alert("We have detected that the backend server was not available when this app started up. Critical functions or features of the website will not work unless the server exists before the app is started. Please check your server and restart the app.")
+          }
+          else {
+            console.log()
+          }
 			})
       
       // Call the smart contract deployer
       axios.get('http://127.0.0.1:8000/deploymainsc')
         .catch(error => {
-          console.error("Whoops, there was an error: ", error)
+          console.log(error)
       })
     }
+
   }, []);
 
   return (

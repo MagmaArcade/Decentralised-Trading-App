@@ -51,6 +51,9 @@ body, html {
   border-radius: 10px;
   margin: 0;
   box-sizing: border-box;
+  padding-bottom: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 
@@ -160,4 +163,16 @@ body, html {
     overflow-x: auto; /* Make tables scrollable on x-axis on small screens */
   }
 
+}
+
+.historyTable {
+  color: white;
+}
+
+.walletTo {
+  color: greenyellow;
+}
+
+.walletFrom {
+  color: rgb(247, 69, 69);
 }
