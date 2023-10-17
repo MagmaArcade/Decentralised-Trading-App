@@ -30,8 +30,8 @@ app.add_middleware(
 
 # MySQL database connection information (JSON format)
 db_configuration = {
-    "host": "localhost",
-    "user": "root",
+    "host": constants.databaseAddress,
+    "user": constants.databaseUsername,
     "password": constants.databasePassword,
     "database": "assetsphere"
 }
@@ -346,7 +346,7 @@ async def deploySmartContract():
             transaction.pop('to')
 
 
-            signed_txn = w3.eth.account.sign_transaction(transaction, private_key=constants.privateKeyGanacheAccount)
+            signed_txn = w3.eth.account.sign_transaction(transaction, private_key=constants.privateKeyGanacheAccount0)
             tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
             tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
