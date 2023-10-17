@@ -72,7 +72,6 @@ function Transfer() {
         })
       axios.get('http://127.0.0.1:8000/getwalletinfo/')
         .then(response => {
-          console.log(response)
           Object.values(response.data).map(({ walletAddress }) => {
             if(!wallets.includes(walletAddress)) {
               wallets.push(walletAddress)

@@ -162,7 +162,7 @@ def get_transaction_info(userID: str):
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT * FROM TransactionHistory WHERE walletFrom = '{userID}'" # Selects all data from the TransactionHistory table for a given user
+        query = f"SELECT * FROM TransactionHistory WHERE userFrom = '{userID}'" # Selects all data from the TransactionHistory table for a given user
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
         history = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
@@ -633,8 +633,8 @@ async def transferAsset(transferdata: assetTransferData):
         cursor.execute(query4) 
 
         # Create an entry in transaction history
-        query5 = "INSERT INTO transactionhistory (assetName, walletFrom, walletTo, purchaseTime, pricePaid) VALUES (%s, %s, %s, %s, %s)"
-        cursor.execute(query5, (__name, _walletFrom, _walletTo, purchase_time, __price))
+        query5 = "INSERT INTO transactionhistory (assetName, userFrom, walletFrom, walletTo, purchaseTime, pricePaid) VALUES (%s, %s, %s, %s, %s, %s)"
+        cursor.execute(query5, (__name, _userFrom, _walletFrom, _walletTo, purchase_time, __price))
 
         connection.commit() # Commit the changes
 

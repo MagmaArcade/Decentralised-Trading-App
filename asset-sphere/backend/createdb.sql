@@ -37,11 +37,12 @@ CREATE TABLE IF NOT EXISTS DigitalAssets (
 CREATE TABLE IF NOT EXISTS TransactionHistory (
     transactionID INT AUTO_INCREMENT PRIMARY KEY,
     assetName VARCHAR(255),
-    userFrom VARCHAR(255),
+    userFrom INT,
     walletFrom VARCHAR(255),
     walletTo VARCHAR(255),
     purchaseTime TIMESTAMP,
-    pricePaid DECIMAL(15,2)
+    pricePaid DECIMAL(15,2),
+    FOREIGN KEY (userFrom) REFERENCES Users(userID)
 );
 
 CREATE TABLE IF NOT EXISTS contractinformation (

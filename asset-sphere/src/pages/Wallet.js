@@ -69,6 +69,7 @@ function Wallet() {
 		.catch(error => {
 			console.error("Whoops, there was an error: ", error)
 		})
+
     axios.get(`http://127.0.0.1:8000/getwalletinfo/${currentSessionToken}`)
     .then(response => {
       Object.values(response.data).map(({ walletAddress }) => setWalletAddress(walletAddress))
@@ -76,8 +77,10 @@ function Wallet() {
     .catch(error => {
         console.error("Whoops, there was an error: ", error);
     });
+
     axios.get(`http://127.0.0.1:8000/gettransactionhistoryinfo/${currentSessionToken}`)
 		.then(response => {
+      console.log(response)
       setSelectedAssetHistory(response.data)
 		})
 		.catch(error => {

@@ -6,4 +6,4 @@ databaseUsername = "root"        # the username that can be used to access your 
 databasePassword = "rootroot"    # the password that can be used to access your database instance
 
 # [REQUIRES UPDATE] Private blockchain information:
-privateKeyGanacheAccount0 = "0x7f25df951ae348136bddc21598687544c3fefb1de060376a44ede1eca61a2330"    # Private key for the account with the INDEX 0 that exists on your local Ganache installation
+privateKeyGanacheAccount0 = "0xfac6ba72301c19ae6108780ad7150227175f8a8f59083b36008304804fad4af9"    # Private key for the account with the INDEX 0 that exists on your local Ganache installation
