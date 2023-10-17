@@ -1,24 +1,21 @@
-from pydantic import BaseModel
-import os
-import json
-
+from pydantic import BaseModel # used to create data models
+import json # python json handling library
 from fastapi import FastAPI # fastAPI modules
 import mysql.connector # Python MySQL database connector
-from web3 import Web3, utils # Web3.js (smart contract interactor & error handler)
+from web3 import Web3 # Web3.js (smart contract interactor & error handler)
 from solcx import compile_standard, install_solc # Solcx (solidity intepreter for smart contracts)
 from fastapi.middleware.cors import CORSMiddleware # security mechanisms
 from datetime import datetime # get date time
 
-
-import constants
+import constants # constants.py - contains cruical information for database/blockchain connection
 
 
 # FastAPI initialisation
 app = FastAPI()
 
+# Configure CORS to allow requests to the API
+# Could be made more restrictive but outside current scope
 origins = ["*"]
-
-# Configure CORS to allow requests from your React app
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  # Allow all origins
@@ -56,13 +53,14 @@ def get_asset_info():
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
     
-# Get a specified digital asset (via name)
+
+# Get a specified digital asset (via asset name)
 @app.get("/getassetinfo/{name}")
 def get_asset_info(name: str):
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT * FROM DigitalAssets WHERE name = '{name}'" # Selects all data from the DigitalAssets table for a given asset name
+        query = f"SELECT * FROM DigitalAssets WHERE name = '{name}'" # Selects all information for one asset referenced by name.
         cursor.execute(query) # execute the querys
         result = cursor.fetchall() # store the data in a temporary variable
         assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
@@ -75,16 +73,16 @@ def get_asset_info(name: str):
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
 
-    
-    # Get a specified digital asset (via user id)
+
+# Get a list of all digital assets owned by a specific user (via userID)
 @app.get("/getuserassets/{userID}")
 def get_asset_info(userID: str):
     try:
-        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-        cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT * FROM DigitalAssets WHERE userID = '{userID}'" # Selects all data from the DigitalAssets table for a given asset name
-        cursor.execute(query) # execute the query
-        result = cursor.fetchall() # store the data in a temporary variable
+        connection = mysql.connector.connect(**db_configuration)
+        cursor = connection.cursor()
+        query = f"SELECT * FROM DigitalAssets WHERE userID = '{userID}'" # Selects all data from the DigitalAssets table for a user
+        cursor.execute(query)
+        result = cursor.fetchall()
         assets = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
 
         # Close the cursor/connection
@@ -96,14 +94,14 @@ def get_asset_info(userID: str):
         return {"error": f"MySQL returned an error: {err}"}
 
 
-# Get User information from the database, to be used for listing dynamic information
+# Get the first name of the user from the database - used to render the Navbar 'logged in as: ' component
 @app.get("/getusername/{userID}")
 def get_asset_info(userID: str):
     try:
         print(userID)
-        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-        cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT fname FROM Users WHERE userid={userID}" # Selects all data from the Users table
+        connection = mysql.connector.connect(**db_configuration)
+        cursor = connection.cursor()
+        query = f"SELECT fname FROM Users WHERE userid={userID}" # Selects the first name stored in the database for a specified userID
         cursor.execute(query) # execute the query
         result = cursor.fetchone()[0] # store the data in a temporary variable
 
@@ -118,7 +116,7 @@ def get_asset_info(userID: str):
         return {"error": f"MySQL returned an error: {err}"}
 
 
-# Get all wallets from the database
+# Get all wallets from the database (used to create the dropdown on transfer page)
 @app.get("/getwalletinfo/")
 def get_wallet_info():
     try:
@@ -138,7 +136,7 @@ def get_wallet_info():
         return {"error": f"MySQL returned an error: {err}"}
     
     
-# WALLET PAGE
+# Used specifically on the Wallets page to get 'currentWallet' of a logged in user and render it on top of the page
 @app.get("/getwalletinfo/{userID}")
 def get_wallet_info(userID: str):
     try:
@@ -159,12 +157,12 @@ def get_wallet_info(userID: str):
 
 
 # Get Transaction information from the database, to be used for listing dynamic information
-@app.get("/gettransactionhistoryinfo/{walletID}")
-def get_transaction_info(walletID: str):
+@app.get("/gettransactionhistoryinfo/{userID}")
+def get_transaction_info(userID: str):
     try:
         connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
         cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT * FROM TransactionHistory WHERE walletFrom = '{walletID}'" # Selects all data from the TransactionHistory table for a given user
+        query = f"SELECT * FROM TransactionHistory WHERE walletFrom = '{userID}'" # Selects all data from the TransactionHistory table for a given user
         cursor.execute(query) # execute the query
         result = cursor.fetchall() # store the data in a temporary variable
         history = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
