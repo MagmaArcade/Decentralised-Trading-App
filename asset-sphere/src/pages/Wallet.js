@@ -76,8 +76,7 @@ function Wallet() {
     .catch(error => {
         console.error("Whoops, there was an error: ", error);
     });
-    console.log(walletAddress)
-    axios.get(`http://127.0.0.1:8000/gettransactionhistoryinfo/${walletAddress}`)
+    axios.get(`http://127.0.0.1:8000/gettransactionhistoryinfo/${currentSessionToken}`)
 		.then(response => {
       setSelectedAssetHistory(response.data)
 		})
@@ -89,7 +88,7 @@ function Wallet() {
 
 	// Function which dynamically renders returned asset data in the form of a HTML table
 	const renderHistoryInTable = () => {
-		return Object.values(selectedAssetHistory).map(({ transactionID, assetName, walletFrom, walletTo, purchaseTime, pricePaid}) => {
+		return Object.values(selectedAssetHistory).map(({ transactionID, assetName, userFrom, walletFrom, walletTo, purchaseTime, pricePaid}) => {
 		  return <tr key={transactionID}>
 		  <td>{transactionID}</td>
 		  <td>{assetName}</td>
