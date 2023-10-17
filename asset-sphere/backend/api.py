@@ -1,3 +1,7 @@
+# API file for FastAPI
+# Created by Nicholas Gustin, Nathan Hoorbakht, Connor Lack
+#               103995882,      103865794,          103992223
+
 from pydantic import BaseModel # used to create data models
 import json # python json handling library
 from fastapi import FastAPI # fastAPI modules

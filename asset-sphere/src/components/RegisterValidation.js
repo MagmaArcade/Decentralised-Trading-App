@@ -1,3 +1,16 @@
+/*
+Function that validates entered register data through regex & makes an API call to ensure duplicate emails are not used
+
+Name:   Nathan Hoorbkaht
+  	    Nicholas Gustin	
+	      Connor Lack
+
+SID:  	103865794
+	      103995882
+	      103992223
+*/
+
+
 import axios from 'axios'
 const emails = [];
 

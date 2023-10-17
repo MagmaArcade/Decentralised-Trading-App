@@ -1,3 +1,7 @@
+-- Database creation file for assetsphere application
+-- Created by Nicholas Gustin, Nathan Hoorbakht, Connor Lack
+--      103995882,      103865794,          103992223
+
 -- Create the database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS assetsphere;
 

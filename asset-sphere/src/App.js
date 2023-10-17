@@ -1,4 +1,6 @@
 /*
+Main application file that runs when you execute npm start
+
 Name:   Nathan Hoorbkaht
   	    Nicholas Gustin	
 	      Connor Lack

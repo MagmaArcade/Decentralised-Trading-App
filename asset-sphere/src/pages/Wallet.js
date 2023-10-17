@@ -7,7 +7,7 @@ SID:	  103865794
 		    103995882
 		    103992223
 */
-// this is the Register page. this page is used view a users owned coins.
+// this is the Wallet page. this page is used view a users owned assets, wallet address and transaction history
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'

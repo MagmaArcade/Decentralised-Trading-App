@@ -1,3 +1,16 @@
+/*
+Function that validates entered login data through regex 
+
+Name:   Nathan Hoorbkaht
+  	    Nicholas Gustin	
+	      Connor Lack
+
+SID:  	103865794
+	      103995882
+	      103992223
+*/
+
+
 function Validation(values) {
     // error object stores errors
     let error = {}

@@ -7,7 +7,7 @@ SID:	  103865794
 		    103995882
 	    	103992223
 */
-// this is the Login page. this page is used to access the user's account.
+// this is the Register page. this page is used to register new user accounts
 
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "../css/Register.css"; // import the css syles

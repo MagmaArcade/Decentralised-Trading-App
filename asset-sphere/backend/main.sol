@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 
+// Smart Contract file created by Nicholas, Nathan and Connor for the Assetsphere application
+// The file contains three separate smart contracts, all of which are deployed onto the blockchain individually and referenced
+
 pragma solidity 0.8.0;
 
 contract Users {

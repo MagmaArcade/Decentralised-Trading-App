@@ -7,7 +7,7 @@ SID:	103865794
 		103995882
 	    103992223
 */
-// this is the Login page. this page is used to access the user's account.
+// this is the Home page. this page is used as a landing page.
 
 import { Grid, Button } from "@mui/material"; // import js elements from mui
 import { Link } from "react-router-dom"; // import link to route to other pages
