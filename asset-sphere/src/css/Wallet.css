@@ -44,7 +44,7 @@ body, html {
 .wallet-left-container,
 .wallet-right-container {
   height: auto;  /* Set the height to 50% of the viewport height */
-  width: 125vh; 
+  width: 150vh; 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
