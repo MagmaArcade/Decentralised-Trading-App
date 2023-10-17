@@ -9,7 +9,7 @@ SID:    103865794
 */
 // this is the Transfer page. this page is view singular asset breakdowns, including options to Transfer.
 import React, { useState, useEffect } from 'react';
-import { Grid, TextField, Select, MenuItem } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
 import axios from 'axios';
 import "../css/Transfer.css"; // import css styling
 import { useNavigate } from "react-router-dom";

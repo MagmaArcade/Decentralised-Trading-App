@@ -12,10 +12,8 @@ SID:	  103865794
 import { Link } from "react-router-dom"; // import link to route to other pages
 import Coin from '../assets/CoinS.png'; // import images
 import "../css/Login.css"; // import css styling
-import React, { useState, useEffect } from 'react';
-import { Grid, TextField, Select, MenuItem } from "@mui/material"; // import js elements from mui
+import React, { useState } from 'react';
 import axios from 'axios'
-import * as d3 from 'd3';
 import "../css/Login.css"; // import css styling
 import Validation from "../components/LoginValidation.js"; // import login validation styling
 import { useNavigate } from 'react-router-dom';

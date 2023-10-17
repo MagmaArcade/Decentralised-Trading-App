@@ -9,7 +9,7 @@ SID:  	103865794
 */
 
 // Import libraries
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import "./App.css"; // import css styling
 import { Grid, Box } from "@mui/material"; // import js elements from mui
 import { Routes, Route } from "react-router-dom"; // import routes for page navigation
@@ -24,10 +24,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Transfer from "./pages/Transfer";
 import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 
 // Top level variable which controls functions that should only execute a single time on app load
-// This includes deploying smart contracts and creating the original user who owns all assets
+// This includes deploying smart contracts and initialising an empty session
 let didInit = false;
 
 
@@ -49,13 +48,6 @@ function App() {
         .catch(error => {
           console.error("Whoops, there was an error: ", error)
       })
-
-      // Make the call that will deploy our demo data onto the blockchain/database
-      //axios.get('http://127.0.0.1:8000/createdemodata')
-      //  .catch(error => {
-      //    console.error("Whoops, there was an error: ", error)
-      //})
-
     }
   }, []);
 
