@@ -54,4 +54,7 @@ CREATE TABLE IF NOT EXISTS contractinformation (
 INSERT INTO Category (categoryName, description)
 VALUES
     ('Category A', 'Coin'),
-    ('Category B', 'Image');
+    ('Category B', 'Image')
+;
+
+-- Done!

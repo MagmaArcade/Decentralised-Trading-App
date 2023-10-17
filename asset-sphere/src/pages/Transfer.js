@@ -12,7 +12,7 @@ import React, { useState, useEffect } from 'react';
 import { Select, MenuItem } from "@mui/material";
 import axios from 'axios';
 import "../css/Transfer.css"; // import css styling
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 
@@ -57,7 +57,7 @@ function Transfer() {
 
 
   function loadData() {
-      axios.get(`http://127.0.0.1:8000/getuserassets/${currentSessionToken}` + selectedAsset)
+      axios.get('http://127.0.0.1:8000/getassetinfo')
         .then(response => {
             setAllAssets(response.data)
             // Extract names from the response and add to the assets array
@@ -113,6 +113,7 @@ function Transfer() {
       }
       else if (response.data == "Success") {
         window.alert("The asset was transferred successfully!")
+        navigate("../Wallet")
       }
       else if (response.data == "Something Went Wrong") {
         window.alert("Something went wrong! Please try reloading the application")

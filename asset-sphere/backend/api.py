@@ -73,8 +73,27 @@ def get_asset_info(name: str):
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
 
+# Get a list of all current users - critical for ensuring that, upon registered, no duplicate emails can be registered
+@app.get("/getallusers")
+def get_all_users():
+    try:
+        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
+        cursor = connection.cursor() # create a cursor to execute SQL queries
+        query = "SELECT * FROM Users" # Selects all data from the DigitalAssets table
+        cursor.execute(query) # execute the query
+        result = cursor.fetchall() # store the data in a temporary variable
+        users = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
+
+        # Close the cursor/connection
+        cursor.close()
+        connection.close()
+
+        return users
+    except mysql.connector.Error as err:
+        return {"error": f"MySQL returned an error: {err}"}
 
 # Get a list of all digital assets owned by a specific user (via userID)
+# Used for wallet page table
 @app.get("/getuserassets/{userID}")
 def get_asset_info(userID: str):
     try:
@@ -172,25 +191,6 @@ def get_transaction_info(userID: str):
         connection.close()
 
         return history
-    except mysql.connector.Error as err:
-        return {"error": f"MySQL returned an error: {err}"}
-    
-# Get User ID from the database, to be used in the auth token
-@app.get("/getuserid/{email}")
-def get_asset_info(email: str):
-    try:
-        connection = mysql.connector.connect(**db_configuration) # attempt to connect to the database using credential information
-        cursor = connection.cursor() # create a cursor to execute SQL queries
-        query = f"SELECT userId FROM Users WHERE email = '{email}'" # Selects user data from the DigitalAssets table
-        cursor.execute(query) # execute the query
-        result = cursor.fetchall() # store the data in a temporary variable
-        userId = [dict(zip(cursor.column_names, row)) for row in result] # convert the result to a list of dictionaries
-
-        # Close the cursor/connection
-        cursor.close()
-        connection.close()
-
-        return userId
     except mysql.connector.Error as err:
         return {"error": f"MySQL returned an error: {err}"}
 
