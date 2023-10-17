@@ -645,23 +645,3 @@ async def transferAsset(transferdata: assetTransferData):
         return "Success"
     else:
         return "Something Went Wrong"
-
-# Handle Asset Transfer
-
-@app.post("/test")
-async def test(transferdata: ContractInfo):
-    
-    TransferContract = w3.eth.contract(
-        address = transferdata.conaddress,
-        abi = transferdata.conabi
-    )
-
-    # Currently we have the userID and walletAddress of both sender & reciever, as well as the ID of the asset we want to transfer
-    # Interacting with the smart contract
-    w3.eth.default_account = w3.eth.accounts[0]
-    
-    # Now we call the contract function, passing in the two values we just retrieved from the database
-    test = TransferContract.functions.transfer("0", "1", "0").call()
-    
-    print(test)
-    return test
